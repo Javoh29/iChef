@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ichef/presentation/pages/calendar/calendar_page.dart';
+import 'package:ichef/presentation/pages/calendar/generation_menu_page.dart';
 import 'package:ichef/presentation/pages/cart/cart_page.dart';
 import 'package:ichef/presentation/pages/favorites/favorites_page.dart';
 import 'package:ichef/presentation/pages/home/home_page.dart';
@@ -23,11 +23,13 @@ class _MainPageState extends State<MainPage> {
     const SearchPage(),
     const RecipesPage(),
     const FavoritesPage(),
-    const CalendarPage(),
+    // const CalendarPage(),
+    const GenerationPage(),
     const CartPage(),
     const SettingsPage()
   ];
   int _selectedIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

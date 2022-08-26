@@ -41,6 +41,16 @@ class _Icons extends _AssetsHolder {
   String get ingredients => '$basePath/ic_ingredients.svg';
 
   String get variation => '$basePath/ic_variation.svg';
+
+
+  //jalolxon
+  String get icBack => '$basePath/ic_back.svg';
+
+  String get icInfo => '$basePath/ic_info.svg';
+
+  String get icAdd => '$basePath/ic_add.svg';
+
+  String get icRemove => 'assets/icons/ic_remove.svg';
 }
 
 class _Images extends _AssetsHolder {

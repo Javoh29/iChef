@@ -100,7 +100,7 @@ abstract class AppTextStyles {
       fontStyle: FontStyle.normal,
       fontSize: 12.0,
       height: 16 / 12,
-      color: AppColors.metalColor.shade100);
+      color: AppColors.metalColor.shade10);
 
   static TextStyle b4Regular = TextStyle(
       fontFamily: fontFamily,
