@@ -4,6 +4,8 @@ class RecipeModel {
   String? userName;
   String? categoryName;
   String? recipeName;
+  String? recipeTime;
+  String? recipeView;
   int? likeCount;
   int? commentCount;
   int? ingredientCount;
@@ -15,6 +17,8 @@ class RecipeModel {
     this.userName,
     this.categoryName,
     this.recipeName,
+    this.recipeTime,
+    this.recipeView,
     this.likeCount,
     this.commentCount,
     this.ingredientCount,

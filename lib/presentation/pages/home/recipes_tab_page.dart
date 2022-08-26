@@ -4,6 +4,7 @@ import 'package:ichef/config/constants/app_text_styles.dart';
 import 'package:ichef/config/constants/assets.dart';
 import 'package:ichef/data/models/recipe_model.dart';
 import 'package:ichef/presentation/components/icon_button_action.dart';
+import 'package:ichef/presentation/pages/home/recipe_info_page.dart';
 
 import '../../../config/constants/local_data.dart';
 
@@ -15,7 +16,16 @@ class RecipesTabPage extends StatelessWidget {
     return ListView.separated(
       padding: const EdgeInsets.only(top: 10, bottom: 80),
       itemBuilder: (context, index) {
-        return itemRecipe(listRecipes[index]);
+        return GestureDetector(
+            onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (BuildContext context) => RecipeInfoPage(
+                      model: listRecipes[index],
+                    ),
+                  ),
+                ),
+            child: itemRecipe(listRecipes[index]));
       },
       separatorBuilder: (context, index) => const SizedBox(
         height: 10,

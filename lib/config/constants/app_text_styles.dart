@@ -38,6 +38,14 @@ abstract class AppTextStyles {
       height: 24 / 18,
       color: AppColors.metalColor.shade100);
 
+  static TextStyle h6 = TextStyle(
+      fontFamily: fontFamily,
+      fontWeight: FontWeight.bold,
+      fontStyle: FontStyle.normal,
+      fontSize: 11.0,
+      height: 22 / 11,
+      color: AppColors.metalColor.shade10);
+
   static TextStyle b1Medium = TextStyle(
       fontFamily: fontFamily,
       fontWeight: FontWeight.w500,
