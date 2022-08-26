@@ -338,17 +338,15 @@ class _GenerationPageState extends State<GenerationPage> {
                 child: Padding(
                   padding:
                       const EdgeInsets.only(bottom: 8, right: 16.0, left: 16),
-                  child: Row(
-                    children: [
-                      Container(
-                        alignment: Alignment.center,
-                        child: Text('Пн'),
-                        height: 40,
-                        width: 40,
-                        decoration: BoxDecoration(
-                            shape: BoxShape.circle, color: AppColors.baseLight),
-                      )
-                    ],
+                  child: ListView.separated(
+                    separatorBuilder: (context, index) =>
+                        const SizedBox(width: 6),
+                    scrollDirection: Axis.horizontal,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: 7,
+                    itemBuilder: (context, index) => WeekDaysWidget(
+                      id: index,
+                    ),
                   ),
                 ),
               ),
@@ -410,6 +408,49 @@ class _GenerationPageState extends State<GenerationPage> {
         blokController.text = personCount.toString();
       });
     }
+  }
+}
+
+class WeekDaysWidget extends StatefulWidget {
+  const WeekDaysWidget({
+    Key? key,
+    required this.id,
+  }) : super(key: key);
+  final int id;
+
+  @override
+  State<WeekDaysWidget> createState() => _WeekDaysWidgetState();
+}
+
+class _WeekDaysWidgetState extends State<WeekDaysWidget> {
+  bool isActive = false;
+  final List<String> days = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'];
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        setState(() {});
+        isActive = !isActive;
+      },
+      child: Container(
+        alignment: Alignment.center,
+        height: 40,
+        width: 40,
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          color: isActive ? AppColors.baseLight : AppColors.baseLight.shade100,
+        ),
+        child: Text(
+          days[widget.id],
+          style: AppTextStyles.b5Regular.copyWith(
+              fontWeight: FontWeight.w500,
+              color: isActive
+                  ? AppColors.baseLight.shade100
+                  : AppColors.metalColor.shade100),
+        ),
+      ),
+    );
   }
 }
 
