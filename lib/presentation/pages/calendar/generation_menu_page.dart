@@ -6,6 +6,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ichef/config/constants/app_decorations.dart';
 import 'package:ichef/config/constants/app_text_styles.dart';
 import 'package:ichef/config/constants/assets.dart';
+import 'package:ichef/presentation/pages/calendar/widgets/chapter_widget.dart';
+import 'package:ichef/presentation/pages/calendar/widgets/wek_day_widget.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 import '../../../config/constants/app_colors.dart';
@@ -344,9 +346,7 @@ class _GenerationPageState extends State<GenerationPage> {
                     scrollDirection: Axis.horizontal,
                     physics: const NeverScrollableScrollPhysics(),
                     itemCount: 7,
-                    itemBuilder: (context, index) => WeekDaysWidget(
-                      id: index,
-                    ),
+                    itemBuilder: (context, index) => WeekDaysWidget(id: index),
                   ),
                 ),
               ),
@@ -411,82 +411,3 @@ class _GenerationPageState extends State<GenerationPage> {
   }
 }
 
-class WeekDaysWidget extends StatefulWidget {
-  const WeekDaysWidget({
-    Key? key,
-    required this.id,
-  }) : super(key: key);
-  final int id;
-
-  @override
-  State<WeekDaysWidget> createState() => _WeekDaysWidgetState();
-}
-
-class _WeekDaysWidgetState extends State<WeekDaysWidget> {
-  bool isActive = false;
-  final List<String> days = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'];
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        setState(() {});
-        isActive = !isActive;
-      },
-      child: Container(
-        alignment: Alignment.center,
-        height: 40,
-        width: 40,
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          color: isActive ? AppColors.baseLight : AppColors.baseLight.shade100,
-        ),
-        child: Text(
-          days[widget.id],
-          style: AppTextStyles.b5Regular.copyWith(
-              fontWeight: FontWeight.w500,
-              color: isActive
-                  ? AppColors.baseLight.shade100
-                  : AppColors.metalColor.shade100),
-        ),
-      ),
-    );
-  }
-}
-
-class ChapterWidget extends StatelessWidget {
-  const ChapterWidget({
-    Key? key,
-    required this.title,
-    required this.child,
-  }) : super(key: key);
-  final String title;
-  final Widget child;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Padding(
-          padding: const EdgeInsets.only(top: 10.0, bottom: 5),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(title),
-              const SizedBox(width: 6),
-              SvgPicture.asset(Assets.icons.icInfo)
-            ],
-          ),
-        ),
-        Container(
-          height: 80,
-          padding: const EdgeInsets.only(top: 18, bottom: 10),
-          margin: const EdgeInsets.only(bottom: 20),
-          decoration: AppDecorations.defDecor,
-          child: child,
-        ),
-      ],
-    );
-  }
-}
