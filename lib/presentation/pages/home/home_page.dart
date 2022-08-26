@@ -46,9 +46,11 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
 
   SliverAppBar appBar(bool innerBoxIsScrolled) {
     return SliverAppBar(
+      automaticallyImplyLeading: false,
       pinned: true,
       floating: true,
       forceElevated: innerBoxIsScrolled,
+      actions: const [SizedBox.shrink()],
       centerTitle: false,
       title: Row(children: [
         SvgPicture.asset(

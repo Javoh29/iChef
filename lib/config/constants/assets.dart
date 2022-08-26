@@ -41,6 +41,34 @@ class _Icons extends _AssetsHolder {
   String get ingredients => '$basePath/ic_ingredients.svg';
 
   String get variation => '$basePath/ic_variation.svg';
+
+  String get peoples => '$basePath/ic_peoples.svg';
+
+  String get calendar => '$basePath/ic_calendar.svg';
+
+  String get recipeTime => '$basePath/recipe_info_icons/ic_recipe_time.svg';
+
+  String get recipeView => '$basePath/recipe_info_icons/ic_recipe_view.svg';
+
+  String get bakeryOne => '$basePath/recipe_info_icons/ic_bakery_one.png';
+
+  String get flagOne => '$basePath/recipe_info_icons/ic_flag_one.png';
+
+  String get gluttenOne => '$basePath/recipe_info_icons/ic_glutten_one.png';
+
+  String get moreOne => '$basePath/recipe_info_icons/ic_more_one.png';
+
+  String get pancakeOne => '$basePath/recipe_info_icons/ic_pancake_one.png';
+
+  String get stoveOne => '$basePath/recipe_info_icons/ic_stove_one.png';
+
+  String get timeOne => '$basePath/recipe_info_icons/ic_time_one.png';
+
+  String get backArrow => '$basePath/ic_back_arrow.svg';
+
+  String get search => '$basePath/ic_search.svg';
+
+  String get playBtn => '$basePath/ic_play_btn.svg';
 }
 
 class _Images extends _AssetsHolder {
@@ -53,4 +81,6 @@ class _Images extends _AssetsHolder {
   String get recipeChicken => "$basePath/img_chicken.png";
 
   String get recipeMedovik => "$basePath/img_classic_medovik.png";
+
+  String get recipePrepaireOne => "$basePath/im_prepaire_one.png";
 }
