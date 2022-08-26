@@ -17,7 +17,7 @@ class CustomBadge extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
-      margin: const EdgeInsets.symmetric(horizontal: 3),
+      margin: const EdgeInsets.only(left: 3),
       decoration: AppDecorations.defDecor.copyWith(color: isActive ? AppColors.primaryLight : null),
       child: Text(text,
           style: AppTextStyles.b4Medium.copyWith(

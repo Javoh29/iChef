@@ -4,6 +4,7 @@ import 'package:ichef/config/constants/app_colors.dart';
 import 'package:ichef/config/constants/app_decorations.dart';
 import 'package:ichef/config/constants/app_text_styles.dart';
 import 'package:ichef/config/constants/assets.dart';
+import 'package:ichef/presentation/pages/home/recipes_tab_page.dart';
 
 import '../../components/custom_badge.dart';
 
@@ -26,6 +27,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
   @override
   Widget build(BuildContext context) {
     return NestedScrollView(
+      physics: const NeverScrollableScrollPhysics(),
       headerSliverBuilder: (context, innerBoxIsScrolled) {
         return <Widget>[
           appBar(innerBoxIsScrolled),
@@ -34,7 +36,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
       body: TabBarView(
         controller: _tabController,
         children: [
-          Container(color: Colors.green, child: const Center(child: Text('Рецепты'))),
+          const RecipesTabPage(),
           Container(color: Colors.blue, child: const Center(child: Text('Блоги'))),
           Container(color: Colors.red, child: const Center(child: Text('Чат'))),
         ],
@@ -78,7 +80,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
 
   TabBar tabBar() {
     return TabBar(
-      padding: EdgeInsets.zero,
+      padding: const EdgeInsets.symmetric(horizontal: 10),
       controller: _tabController,
       indicator: UnderlineTabIndicator(
         borderSide: BorderSide(width: 4.0, color: AppColors.primaryLight),
@@ -122,73 +124,4 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
       ],
     );
   }
-}
-
-class CustomTabBar extends StatelessWidget implements PreferredSizeWidget {
-  const CustomTabBar({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 46,
-      child: Row(
-        mainAxisSize: MainAxisSize.max,
-        children: [
-          Expanded(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text('Рецепты'),
-                  ],
-                ),
-                Divider(
-                  color: AppColors.primaryLight,
-                  height: 5,
-                  thickness: 5,
-                ),
-              ],
-            ),
-          ),
-          Expanded(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text('Рецепты'),
-                SizedBox(
-                  height: 10,
-                ),
-                Divider(
-                  color: AppColors.primaryLight,
-                  height: 5,
-                  thickness: 5,
-                ),
-              ],
-            ),
-          ),
-          Expanded(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text('Рецепты'),
-                SizedBox(
-                  height: 10,
-                ),
-                Divider(
-                  color: AppColors.primaryLight,
-                  height: 5,
-                  thickness: 5,
-                ),
-              ],
-            ),
-          )
-        ],
-      ),
-    );
-  }
-
-  @override
-  Size get preferredSize => const Size.fromHeight(46);
 }

@@ -36,7 +36,7 @@ class BaseColor extends ColorSwatch<int> {
   Color get shade50 => this[50]!;
 
   Color get shade40 => this[40]!;
-  
+
   Color get shade80 => this[80]!;
 
   Color get shade20 => this[20]!;

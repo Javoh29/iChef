@@ -19,7 +19,7 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   final PageController _pageController = PageController();
   final List<Widget> pages = [
-    HomePage(),
+    const HomePage(),
     const SearchPage(),
     const RecipesPage(),
     const FavoritesPage(),
@@ -31,7 +31,6 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[200],
       body: Stack(
         children: [
           PageView(
