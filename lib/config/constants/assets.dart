@@ -42,6 +42,10 @@ class _Icons extends _AssetsHolder {
 
   String get variation => '$basePath/ic_variation.svg';
 
+  String get peoples => '$basePath/ic_peoples.svg';
+
+  String get calendar => '$basePath/ic_calendar.svg';
+
   String get recipeTime => '$basePath/recipe_info_icons/ic_recipe_time.svg';
 
   String get recipeView => '$basePath/recipe_info_icons/ic_recipe_view.svg';
