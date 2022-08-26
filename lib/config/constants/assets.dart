@@ -72,4 +72,7 @@ class _Images extends _AssetsHolder {
   String get recipeChicken => "$basePath/img_chicken.png";
 
   String get recipeMedovik => "$basePath/img_classic_medovik.png";
+
+  String get recipePrepaireOne => "$basePath/im_prepaire_one.png";
+
 }
