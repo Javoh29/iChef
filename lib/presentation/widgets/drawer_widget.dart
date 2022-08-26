@@ -10,36 +10,39 @@ import '../../config/constants/app_decorations.dart';
 import '../../config/constants/app_text_styles.dart';
 import '../components/ingridient_detail_container.dart';
 
-class IngredientsDrawer extends StatelessWidget {
+class IngredientsDrawer extends StatefulWidget {
   const IngredientsDrawer({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    bool isSwitch = false;
-    String dropdownvalue = '1';
-    String dropdownvalueCal = '5-10';
-    var items = [
-      '1',
-      '2',
-      '3',
-      '4',
-      '5',
-    ];
-    var itemsCal = [
-      '5-10',
-      '10-15',
-      '15-25',
-      '25-40',
-      '40-60',
-      '60-100',
-    ];
+  State<IngredientsDrawer> createState() => _IngredientsDrawerState();
+}
 
+class _IngredientsDrawerState extends State<IngredientsDrawer> {
+  bool isSwitch = false;
+  String dropdownvalue = '1';
+  String dropdownvalueCal = '5-10';
+  var items = [
+    '1',
+    '2',
+    '3',
+    '4',
+    '5',
+  ];
+  var itemsCal = [
+    '5-10',
+    '5-11',
+    '5-12',
+    '5-13',
+  ];
+  @override
+  Widget build(BuildContext context) {
     return Drawer(
       width: MediaQuery.of(context).size.width - 70,
       backgroundColor: AppColors.baseLight.shade100,
       child: SafeArea(
         minimum: const EdgeInsets.all(10),
-        child: Column(
+        child: ListView(
+          shrinkWrap: true,
           children: [
             Row(
               children: [
@@ -51,12 +54,10 @@ class IngredientsDrawer extends StatelessWidget {
                 const Spacer(),
                 TextButton(
                   onPressed: () {},
-                  style: AppDecorations.buttonStyle(
-                      padding: const EdgeInsets.symmetric(horizontal: 12)),
+                  style: AppDecorations.buttonStyle(padding: const EdgeInsets.symmetric(horizontal: 12)),
                   child: Text(
                     "В покупки",
-                    style: AppTextStyles.b4Medium
-                        .copyWith(color: AppColors.baseLight.shade100),
+                    style: AppTextStyles.b4Medium.copyWith(color: AppColors.baseLight.shade100),
                   ),
                 )
               ],
@@ -75,10 +76,7 @@ class IngredientsDrawer extends StatelessWidget {
                       ),
                       Container(
                         margin: const EdgeInsets.only(top: 9),
-                        padding: const EdgeInsets.symmetric(
-                          vertical: 4,
-                          horizontal: 12,
-                        ),
+                        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 8),
                         decoration: AppDecorations.defDecor.copyWith(
                           color: AppColors.metalColor.shade10,
                         ),
@@ -94,13 +92,14 @@ class IngredientsDrawer extends StatelessWidget {
                             DropdownButton(
                               underline: const SizedBox(),
                               value: dropdownvalue,
+                              isDense: true,
                               icon: const Icon(Icons.keyboard_arrow_down),
                               items: items.map((String items) {
                                 return DropdownMenuItem(
                                   value: items,
                                   child: Text(
                                     items,
-                                    style: AppTextStyles.h3,
+                                    style: AppTextStyles.h6,
                                   ),
                                 );
                               }).toList(),
@@ -119,10 +118,10 @@ class IngredientsDrawer extends StatelessWidget {
                         style: AppTextStyles.b4Regular,
                       ),
                       Container(
-                        margin: const EdgeInsets.only(top: 9, right: 16),
+                        margin: const EdgeInsets.only(top: 9),
                         padding: const EdgeInsets.symmetric(
-                          vertical: 4,
-                          horizontal: 12,
+                          vertical: 8,
+                          horizontal: 15,
                         ),
                         decoration: AppDecorations.defDecor.copyWith(
                           color: AppColors.metalColor.shade10,
@@ -140,12 +139,13 @@ class IngredientsDrawer extends StatelessWidget {
                               underline: const SizedBox(),
                               value: dropdownvalueCal,
                               icon: const Icon(Icons.keyboard_arrow_down),
+                              isDense: true,
                               items: itemsCal.map((String items) {
                                 return DropdownMenuItem(
                                   value: items,
                                   child: Text(
                                     items,
-                                    style: AppTextStyles.h3,
+                                    style: AppTextStyles.h6,
                                   ),
                                 );
                               }).toList(),
@@ -166,114 +166,102 @@ class IngredientsDrawer extends StatelessWidget {
                 color: Colors.transparent,
                 border: Border.all(
                   width: 1,
-                  color: const Color(0xFFF3F4F6),
+                  color: AppColors.metalColor.shade10,
                 ),
               ),
               child: Row(
                 children: [
-                  const Flexible(
+                  Flexible(
                     child: Text(
                       "Вычеркивайте добавленные инградиенты в процессе готовки, чтобы ничего не забыть",
+                      style: AppTextStyles.b4Regular,
                     ),
                   ),
                   CupertinoSwitch(
                     value: isSwitch,
-                    onChanged: ((value) {
-                      isSwitch = !isSwitch;
-                    }),
+                    onChanged: (value) {
+                      setState(() {
+                        isSwitch = value;
+                      });
+                    },
                   ),
                 ],
               ),
             ),
-            ExpandablePanel(
-              header: Text(
+            ExpansionTile(
+              title: Text(
                 "Название раздела",
                 style: AppTextStyles.b5DemiBold,
               ),
-              collapsed: const IngridientDetailContainer(
-                isActive: false,
-                title: "Пшеничная мука",
-                addInfo: "Manitoba 400",
-                data: "400 г, 3 шт",
-              ),
-              expanded: Column(
-                children: const [
-                  IngridientDetailContainer(
-                    isActive: false,
-                    title: "Пшеничная мука",
-                    addInfo: "Manitoba 400",
-                    data: "400 г, 3 шт",
-                  ),
-                  IngridientDetailContainer(
-                    isActive: false,
-                    title: "Сливочное масло",
-                    addInfo: "",
-                    data: "400 г, 3 шт",
-                  ),
-                ],
-              ),
+              tilePadding: EdgeInsets.zero,
+              initiallyExpanded: true,
+              children: const [
+                IngridientDetailContainer(
+                  isActive: false,
+                  title: "Пшеничная мука",
+                  addInfo: "Manitoba 400",
+                  data: "400 г, 3 шт",
+                ),
+                SizedBox(
+                  height: 5,
+                ),
+                IngridientDetailContainer(
+                  isActive: false,
+                  title: "Сливочное масло",
+                  addInfo: "",
+                  data: "400 г, 3 шт",
+                ),
+              ],
             ),
-            ExpandablePanel(
-              header: Text(
+            ExpansionTile(
+              tilePadding: EdgeInsets.zero,
+              initiallyExpanded: true,
+              title: Text(
                 "Название раздела",
                 style: AppTextStyles.b5DemiBold,
               ),
-              collapsed: const IngridientDetailContainer(
-                isActive: true,
-                title: "Куриное яйцо",
-                addInfo: "C0",
-                data: "400 г, 3 шт",
-              ),
-              expanded: Column(
-                children: const [
-                  IngridientDetailContainer(
-                    isActive: true,
-                    title: "Куриное яйцо",
-                    addInfo: "C0",
-                    data: "400 г, 3 шт",
-                  ),
-                  IngridientDetailContainer(
-                    isActive: true,
-                    title: "Тыква",
-                    addInfo: "",
-                    data: "400 г, 3 шт",
-                  ),
-                  IngridientDetailContainer(
-                    isActive: false,
-                    title: "Корица",
-                    addInfo: "KOTANYI целая",
-                    data: "400 г, 3 шт",
-                  ),
-                  IngridientDetailContainer(
-                    isActive: false,
-                    title: "Соль",
-                    addInfo: "",
-                    data: "400 г, 3 шт",
-                  ),
-                ],
-              ),
-            ),
-            InkWell(
-              onTap: (() {}),
-              child: Container(
-                width: double.infinity,
-                height: 44,
-                decoration: AppDecorations.defDecor.copyWith(
-                  color: AppColors.baseLight.shade50,
+              children: const [
+                IngridientDetailContainer(
+                  isActive: true,
+                  title: "Куриное яйцо",
+                  addInfo: "C0",
+                  data: "400 г, 3 шт",
                 ),
-                child: Center(
-                  child: Text(
-                    "Добавить",
-                    style: AppTextStyles.b5Regular,
-                  ),
+                SizedBox(
+                  height: 5,
                 ),
-              ),
+                IngridientDetailContainer(
+                  isActive: true,
+                  title: "Тыква",
+                  addInfo: "",
+                  data: "400 г, 3 шт",
+                ),
+                SizedBox(
+                  height: 5,
+                ),
+                IngridientDetailContainer(
+                  isActive: false,
+                  title: "Корица",
+                  addInfo: "KOTANYI целая",
+                  data: "400 г, 3 шт",
+                ),
+                SizedBox(
+                  height: 5,
+                ),
+                IngridientDetailContainer(
+                  isActive: false,
+                  title: "Соль",
+                  addInfo: "",
+                  data: "400 г, 3 шт",
+                ),
+              ],
             ),
             TextButton(
               style: AppDecorations.buttonStyle(
-                bgColor: AppColors.baseLight.shade50,
+                bgColor: AppColors.primaryLight.shade50,
+                padding: const EdgeInsets.symmetric(vertical: 12),
               ),
-              onPressed: (() {}),
+              onPressed: () {},
               child: Text(
                 "Добавить",
                 style: AppTextStyles.b5Regular,

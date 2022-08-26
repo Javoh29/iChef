@@ -15,7 +15,7 @@ class RecipesTabPage extends StatelessWidget {
     return ListView.separated(
       padding: const EdgeInsets.only(top: 10, bottom: 80),
       itemBuilder: (context, index) {
-        return itemRecipe(listRecipes[index]);
+        return itemRecipe(listRecipes[index], context);
       },
       separatorBuilder: (context, index) => const SizedBox(
         height: 10,
@@ -24,7 +24,7 @@ class RecipesTabPage extends StatelessWidget {
     );
   }
 
-  Widget itemRecipe(RecipeModel model) {
+  Widget itemRecipe(RecipeModel model, BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -103,7 +103,9 @@ class RecipesTabPage extends StatelessWidget {
               ),
               const Spacer(),
               IconButtonAction(
-                onTap: () {},
+                onTap: () {
+                  Scaffold.of(context).openEndDrawer();
+                },
                 icon: Assets.icons.ingredients,
                 lable: '7',
                 height: 32,

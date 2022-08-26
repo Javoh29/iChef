@@ -30,7 +30,7 @@ class IconButtonAction extends StatelessWidget {
       height: height ?? 28,
       child: lable == null
           ? IconButton(
-              onPressed: () => onTap,
+              onPressed: () => onTap(),
               icon: SvgPicture.asset(
                 icon,
                 height: 16,
@@ -39,7 +39,7 @@ class IconButtonAction extends StatelessWidget {
               padding: EdgeInsets.zero,
             )
           : TextButton.icon(
-              onPressed: () => onTap,
+              onPressed: () => onTap(),
               icon: SvgPicture.asset(
                 icon,
                 height: 16,

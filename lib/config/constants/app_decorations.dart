@@ -11,11 +11,13 @@ abstract class AppDecorations {
     double? borderRadius,
     Color? bgColor,
     EdgeInsets? padding,
+    BorderSide? border,
   }) {
     return ButtonStyle(
       shape: MaterialStateProperty.all(
         RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(borderRadius ?? 10),
+          side: border ?? BorderSide.none,
         ),
       ),
       backgroundColor: MaterialStateProperty.all(bgColor ?? AppColors.primaryLight),

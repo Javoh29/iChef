@@ -20,66 +20,44 @@ class IngridientDetailContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Widget addInfoWidget = addInfo.isEmpty
-        ? const SizedBox()
-        : Text(
-            addInfo,
-            style: AppTextStyles.b4Medium.copyWith(
-              color: AppColors.metalColor.shade50,
-            ),
-          );
-
-    return Container(
-      margin: const EdgeInsets.only(bottom: 5),
-      padding: const EdgeInsets.symmetric(
-        vertical: 6,
-        horizontal: 10,
+    return CheckboxListTile(
+      value: isActive,
+      tileColor: isActive ? AppColors.primaryLight.shade50 : AppColors.metalColor.shade10,
+      contentPadding: const EdgeInsets.symmetric(horizontal: 5),
+      side: BorderSide(color: AppColors.metalColor.shade30, width: 2),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(12),
       ),
-      decoration: AppDecorations.defDecor.copyWith(
-        color: isActive
-            ? AppColors.primaryLight.shade50
-            : AppColors.metalColor.shade10,
+      checkboxShape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10),
       ),
-      child: Row(
-        children: [
-          Checkbox(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10),
-            ),
-            value: isActive,
-            onChanged: (value) {},
+      controlAffinity: ListTileControlAffinity.leading,
+      title: TextButton(
+        onPressed: () {},
+        style: AppDecorations.buttonStyle(
+          bgColor: AppColors.primaryLight.shade50,
+          border: BorderSide(color: AppColors.primaryLight.shade100, width: 1),
+        ),
+        child: Text(
+          title,
+          style: AppTextStyles.b4Medium.copyWith(
+            color: AppColors.primaryLight.shade100,
           ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                padding: const EdgeInsets.symmetric(
-                  vertical: 10,
-                  horizontal: 12,
-                ),
-                decoration: AppDecorations.defDecor.copyWith(
-                  color: Colors.transparent,
-                  border: Border.all(
-                    color: AppColors.primaryLight,
-                  ),
-                ),
-                child: Text(
-                  title,
-                  style: AppTextStyles.b4Medium.copyWith(
-                    color: AppColors.primaryLight.shade100,
-                  ),
-                ),
+        ),
+      ),
+      subtitle: addInfo.isNotEmpty
+          ? Text(
+              addInfo,
+              style: AppTextStyles.b4Medium.copyWith(
+                color: AppColors.metalColor.shade50,
               ),
-              addInfoWidget,
-            ],
-          ),
-          const Spacer(),
-          Text(
-            data,
-            style: AppTextStyles.b5DemiBold,
-          ),
-        ],
+            )
+          : null,
+      secondary: Text(
+        data,
+        style: AppTextStyles.b5DemiBold,
       ),
+      onChanged: (value) {},
     );
   }
 }

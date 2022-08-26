@@ -4,7 +4,6 @@ import 'package:ichef/config/constants/app_colors.dart';
 import 'package:ichef/config/constants/app_decorations.dart';
 import 'package:ichef/config/constants/app_text_styles.dart';
 import 'package:ichef/config/constants/assets.dart';
-import 'package:ichef/config/constants/is_drawer.dart';
 import 'package:ichef/presentation/pages/home/recipes_tab_page.dart';
 
 import '../../components/custom_badge.dart';
@@ -16,10 +15,8 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage>
-    with SingleTickerProviderStateMixin {
-  late final TabController _tabController =
-      TabController(length: 3, vsync: this);
+class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin {
+  late final TabController _tabController = TabController(length: 3, vsync: this);
 
   @override
   void initState() {
@@ -40,8 +37,7 @@ class _HomePageState extends State<HomePage>
         controller: _tabController,
         children: [
           const RecipesTabPage(),
-          Container(
-              color: Colors.blue, child: const Center(child: Text('Блоги'))),
+          Container(color: Colors.blue, child: const Center(child: Text('Блоги'))),
           Container(color: Colors.red, child: const Center(child: Text('Чат'))),
         ],
       ),
@@ -54,6 +50,7 @@ class _HomePageState extends State<HomePage>
       pinned: true,
       floating: true,
       forceElevated: innerBoxIsScrolled,
+      actions: const [SizedBox.shrink()],
       centerTitle: false,
       title: Row(children: [
         SvgPicture.asset(
@@ -71,16 +68,11 @@ class _HomePageState extends State<HomePage>
           ),
         ),
         TextButton(
-          onPressed: () {
-            isDrawer ? Scaffold.of(context).openEndDrawer() : null;
-            isDrawer = !isDrawer;
-          },
-          style: AppDecorations.buttonStyle(
-              padding: const EdgeInsets.symmetric(horizontal: 12)),
+          onPressed: () {},
+          style: AppDecorations.buttonStyle(padding: const EdgeInsets.symmetric(horizontal: 12)),
           child: Text(
             'Фильтры',
-            style: AppTextStyles.b4Medium
-                .copyWith(color: AppColors.baseLight.shade100),
+            style: AppTextStyles.b4Medium.copyWith(color: AppColors.baseLight.shade100),
           ),
         )
       ]),
