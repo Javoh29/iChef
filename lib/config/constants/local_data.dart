@@ -1,6 +1,8 @@
+import 'package:flutter/material.dart';
 import 'package:ichef/config/constants/assets.dart';
 
 import '../../data/models/recipe_model.dart';
+import '../../presentation/components/ingridient_detail_container.dart';
 
 List<RecipeModel> listRecipes = [
   RecipeModel(
@@ -108,6 +110,7 @@ List<Map> recipeSteps = [
 ];
 
 String stepName = "Soften the onion";
+
 String stepContext =
     '''Cut the bell pepper into rings (it is better to choose three different colors - it looks more colorful), after removing the seeds. Cut the onion into half rings, grate the garlic on a fine grater.
 Cut the bell pepper into rings (it is better to choose three different colors - it looks more colorful), after removing the seeds. Cut the onion into half rings, grate the garlic on a fine grater.Cut the bell pepper into rings (it is better to choose three different colors - it looks more colorful), after removing the seeds. Cut the onion into half rings, grate the garlic on a fine grater.
@@ -123,4 +126,90 @@ List<Map> userComments = [
     "time": "Ср 18, 13:49",
     "chatText": "Cut the bell"
   },
+
+List<Map> recipeSteps = [
+  {
+    "stepNumber": "Шаг 1",
+    "stepName": "Soften the onion",
+    "stepContext":
+        "Cut the bell pepper into rings (it is better to choose three different colors - it looks more colorful), after removing the seeds. Cut the onion into half rings, grate the garlic on a fine grater.",
+  },
+  {
+    "stepNumber": "Шаг 2",
+    "stepName": "Soften the onion",
+    "stepContext":
+        "Cut the bell pepper into rings (it is better to choose three different colors - it looks more colorful), after removing the seeds. Cut the onion into half rings, grate the garlic on a fine grater.",
+  },
+  {
+    "stepNumber": "Шаг 3",
+    "stepName": "Soften the onion",
+    "stepContext":
+        "Cut the bell pepper into rings (it is better to choose three different colors - it looks more colorful), after removing the seeds. Cut the onion into half rings, grate the garlic on a fine grater.",
+  },
+  {
+    "stepNumber": "Шаг 4",
+    "stepName": "Soften the onion",
+    "stepContext":
+        "Cut the bell pepper into rings (it is better to choose three different colors - it looks more colorful), after removing the seeds. Cut the onion into half rings, grate the garlic on a fine grater.",
+  },
+  {
+    "stepNumber": "Шаг 5",
+    "stepName": "Soften the onion",
+    "stepContext":
+        "Cut the bell pepper into rings (it is better to choose three different colors - it looks more colorful), after removing the seeds. Cut the onion into half rings, grate the garlic on a fine grater.",
+  }
+];
+
+List<Widget> firstIngredientsRazdel = const [
+  IngridientDetailContainer(
+    isActive: false,
+    title: "Пшеничная мука",
+    addInfo: "Manitoba 400",
+    data: "400 г, 3 шт",
+  ),
+  SizedBox(
+    height: 5,
+  ),
+  IngridientDetailContainer(
+    isActive: false,
+    title: "Сливочное масло",
+    addInfo: "",
+    data: "400 г, 3 шт",
+  ),
+];
+
+List<Widget> secondIngredientsRazdel = const [
+  IngridientDetailContainer(
+    isActive: true,
+    title: "Куриное яйцо",
+    addInfo: "C0",
+    data: "400 г, 3 шт",
+  ),
+  SizedBox(
+    height: 5,
+  ),
+  IngridientDetailContainer(
+    isActive: true,
+    title: "Тыква",
+    addInfo: "",
+    data: "400 г, 3 шт",
+  ),
+  SizedBox(
+    height: 5,
+  ),
+  IngridientDetailContainer(
+    isActive: false,
+    title: "Корица",
+    addInfo: "KOTANYI целая",
+    data: "400 г, 3 шт",
+  ),
+  SizedBox(
+    height: 5,
+  ),
+  IngridientDetailContainer(
+    isActive: false,
+    title: "Соль",
+    addInfo: "",
+    data: "400 г, 3 шт",
+  ),
 ];
