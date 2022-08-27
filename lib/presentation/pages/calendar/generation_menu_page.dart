@@ -20,7 +20,7 @@ class GenerationPage extends StatefulWidget {
 }
 
 class _GenerationPageState extends State<GenerationPage> {
-  TextEditingController blokController = TextEditingController();
+  TextEditingController personController = TextEditingController();
   TextEditingController doseController = TextEditingController();
   late Timer timer;
   int personCount = 1;
@@ -33,7 +33,7 @@ class _GenerationPageState extends State<GenerationPage> {
   @override
   void initState() {
     super.initState();
-    blokController.text = '1';
+    personController.text = '1';
     doseController.text = '1';
   }
 
@@ -87,15 +87,15 @@ class _GenerationPageState extends State<GenerationPage> {
                           timer = Timer.periodic(
                               const Duration(milliseconds: 100), (t) {
                             if (personCount > 1) {
-                              if (blokController.text.isEmpty) {
+                              if (personController.text.isEmpty) {
                                 personCount = 0;
                               } else {
-                                personCount = int.parse(blokController.text);
+                                personCount = int.parse(personController.text);
                               }
                               if (personCount > 1) {
                                 personCount--;
                               }
-                              blokController.text = personCount.toString();
+                              personController.text = personCount.toString();
                               // b = personCount.toString();
                             }
                           });
@@ -123,7 +123,7 @@ class _GenerationPageState extends State<GenerationPage> {
                           inputFormatters: [maskFormatter],
                           cursorColor: Colors.black,
                           textAlign: TextAlign.center,
-                          controller: blokController,
+                          controller: personController,
                           style:
                               AppTextStyles.b3DemiBold.copyWith(fontSize: 36),
                           maxLines: 1,
@@ -143,13 +143,13 @@ class _GenerationPageState extends State<GenerationPage> {
                             const Duration(milliseconds: 100),
                             (t) => setState(
                               () {
-                                if (blokController.text.isEmpty) {
+                                if (personController.text.isEmpty) {
                                   personCount = 0;
                                 } else {
-                                  personCount = int.parse(blokController.text);
+                                  personCount = int.parse(personController.text);
                                 }
                                 personCount++;
-                                blokController.text = personCount.toString();
+                                personController.text = personCount.toString();
                                 // initialBlok = personCount.toString();
                               },
                             ),
@@ -182,7 +182,7 @@ class _GenerationPageState extends State<GenerationPage> {
                         height: 26,
                         width: double.infinity,
                         child: SliderTheme(
-                          data: SliderThemeData(trackHeight: 10),
+                          data: const SliderThemeData(trackHeight: 10),
                           child: CupertinoSlider(
                             activeColor: AppColors.primaryLight,
                             value: sliderValue,
@@ -264,7 +264,6 @@ class _GenerationPageState extends State<GenerationPage> {
                           ),
                         ),
                       ),
-                      // ElevatedButton(onPressed: () {}, child: Text('Ккал'))
                     ],
                   ),
                 ),
@@ -389,23 +388,23 @@ class _GenerationPageState extends State<GenerationPage> {
   void onTapInOrDecrement({required int count, required bool isInc}) {
     if (isInc) {
       setState(() {
-        if (blokController.text.isEmpty) {
+        if (personController.text.isEmpty) {
           personCount = 0;
         } else {
-          personCount = int.parse(blokController.text);
+          personCount = int.parse(personController.text);
         }
         personCount++;
-        blokController.text = personCount.toString();
+        personController.text = personCount.toString();
       });
     } else {
       setState(() {
-        if (blokController.text.isEmpty) {
+        if (personController.text.isEmpty) {
           personCount = 0;
         } else {
-          personCount = int.parse(blokController.text);
+          personCount = int.parse(personController.text);
         }
         if (personCount > 0) personCount--;
-        blokController.text = personCount.toString();
+        personController.text = personCount.toString();
       });
     }
   }

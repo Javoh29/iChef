@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:ichef/config/theme/themes.dart';
 import 'package:ichef/presentation/pages/main/main_page.dart';
+import 'package:ichef/presentation/pages/shopping_list/shopping_list.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,9 +19,10 @@ class MyApp extends StatelessWidget {
         statusBarBrightness: Brightness.dark,
         statusBarIconBrightness: Brightness.dark));
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: Themes.lightTheme,
-      home: const MainPage(),
-    );
+        title: 'Flutter Demo',
+        theme: Themes.lightTheme,
+        home: const ShoppingListPage()
+        // const MainPage(),
+        );
   }
 }

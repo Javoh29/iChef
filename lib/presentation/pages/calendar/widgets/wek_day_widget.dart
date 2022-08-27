@@ -36,10 +36,11 @@ class _WeekDaysWidgetState extends State<WeekDaysWidget> {
         child: Text(
           days[widget.id],
           style: AppTextStyles.b5Regular.copyWith(
-              fontWeight: FontWeight.w500,
-              color: isActive
-                  ? AppColors.baseLight.shade100
-                  : AppColors.metalColor.shade100),
+            fontWeight: FontWeight.w500,
+            color: isActive
+                ? AppColors.baseLight.shade100
+                : AppColors.metalColor.shade100,
+          ),
         ),
       ),
     );
