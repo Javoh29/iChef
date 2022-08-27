@@ -3,10 +3,13 @@ import 'package:ichef/presentation/pages/home/recipe_info_page.dart';
 import 'package:ichef/presentation/pages/main/main_page.dart';
 import 'package:ichef/presentation/pages/settings/user_prefrences_page.dart';
 
+import '../pages/calendar/generation_menu_page.dart';
+
 class Routes {
   static const main = '/';
   static const recipeInfoPage = '/recipeInfoPage';
   static const userPrefrencesPage = '/userPrefrencesPage';
+  static const generationMenuPage = '/generationMenuPage';
 
   static Route<dynamic> generateRoute(RouteSettings routeSettings) {
     try {
@@ -29,6 +32,11 @@ class Routes {
           return MaterialPageRoute(
             settings: routeSettings,
             builder: (_) => const UserPrefrencesPage(),
+          );
+        case generationMenuPage:
+          return MaterialPageRoute(
+            settings: routeSettings,
+            builder: (_) => const GenerationMenuPage(),
           );
         default:
           return MaterialPageRoute(

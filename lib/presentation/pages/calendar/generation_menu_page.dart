@@ -13,14 +13,14 @@ import '../../../config/constants/app_colors.dart';
 import 'components/chapter_widget.dart';
 import 'components/wek_day_widget.dart';
 
-class GenerationPage extends StatefulWidget {
-  const GenerationPage({Key? key}) : super(key: key);
+class GenerationMenuPage extends StatefulWidget {
+  const GenerationMenuPage({Key? key}) : super(key: key);
 
   @override
-  State<GenerationPage> createState() => _GenerationPageState();
+  State<GenerationMenuPage> createState() => _GenerationMenuPageState();
 }
 
-class _GenerationPageState extends State<GenerationPage> {
+class _GenerationMenuPageState extends State<GenerationMenuPage> {
   final TextEditingController _personController = TextEditingController();
   final TextEditingController _doseController = TextEditingController();
   Timer? _timerCounter;
@@ -58,7 +58,12 @@ class _GenerationPageState extends State<GenerationPage> {
           style: AppTextStyles.h1.copyWith(fontSize: 14),
         ),
         elevation: 0,
-        leading: IconButton(onPressed: () {}, icon: SvgPicture.asset(Assets.icons.icBack)),
+        leading: IconButton(
+            onPressed: () {},
+            icon: SvgPicture.asset(
+              Assets.icons.back,
+              height: 20,
+            )),
         actions: [
           Padding(
             padding: const EdgeInsets.only(right: 20, bottom: 10, top: 10),
@@ -82,7 +87,7 @@ class _GenerationPageState extends State<GenerationPage> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  btnIncOrDec(icon: Assets.icons.icRemove, isInc: false),
+                  btnIncOrDec(icon: Assets.icons.remove, isInc: false),
                   Container(
                     width: 92,
                     height: 45,
@@ -106,7 +111,7 @@ class _GenerationPageState extends State<GenerationPage> {
                       decoration: const InputDecoration(border: InputBorder.none),
                     ),
                   ),
-                  btnIncOrDec(icon: Assets.icons.icAdd),
+                  btnIncOrDec(icon: Assets.icons.add),
                   // const SizedBox(width: 25)
                 ],
               ),

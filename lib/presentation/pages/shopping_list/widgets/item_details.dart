@@ -65,7 +65,7 @@ class _ShoppingItemDetailsState extends State<ShoppingItemDetails> {
                     ),
                   ),
                   child: SvgPicture.asset(
-                    Assets.icons.icCheck,
+                    Assets.icons.check,
                     fit: BoxFit.none,
                     height: 18,
                     width: 18,
@@ -108,7 +108,7 @@ class _ShoppingItemDetailsState extends State<ShoppingItemDetails> {
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                      child: SvgPicture.asset(Assets.icons.icDelete),
+                      child: SvgPicture.asset(Assets.icons.delete),
                     ),
                   ],
                 ),
@@ -129,7 +129,7 @@ class _ShoppingItemDetailsState extends State<ShoppingItemDetails> {
                     color: AppColors.primaryLight.shade100,
                   ),
                   child: SvgPicture.asset(
-                    Assets.icons.icEdit,
+                    Assets.icons.edit,
                     fit: BoxFit.none,
                     height: 18,
                     width: 18,
@@ -157,7 +157,7 @@ class _ShoppingItemDetailsState extends State<ShoppingItemDetails> {
                       borderRadius:
                           BorderRadius.horizontal(right: Radius.circular(10))),
                   child: SvgPicture.asset(
-                    Assets.icons.icDelete,
+                    Assets.icons.delete,
                     fit: BoxFit.none,
                     height: 18,
                     width: 18,

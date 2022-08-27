@@ -79,7 +79,7 @@ class _ShoppingListPageState extends State<ShoppingListPage> {
       leading: IconButton(
         onPressed: () {},
         icon: SvgPicture.asset(
-          Assets.icons.icBack,
+          Assets.icons.back,
           height: 20,
         ),
       ),
@@ -93,7 +93,7 @@ class _ShoppingListPageState extends State<ShoppingListPage> {
           child: IconButton(
             onPressed: () {},
             icon: SvgPicture.asset(
-              Assets.icons.icScanner,
+              Assets.icons.scanner,
               height: 24,
             ),
           ),

@@ -21,7 +21,7 @@ class ChapterWidget extends StatelessWidget {
           padding: const EdgeInsets.only(top: 10.0, bottom: 5),
           child: Row(
             mainAxisSize: MainAxisSize.min,
-            children: [Text(title), const SizedBox(width: 6), SvgPicture.asset(Assets.icons.icInfo)],
+            children: [Text(title), const SizedBox(width: 6), SvgPicture.asset(Assets.icons.info)],
           ),
         ),
         Container(

@@ -71,28 +71,25 @@ class _Icons extends _AssetsHolder {
 
   String get playBtn => '$basePath/ic_play_btn.svg';
 
-  //jalolxon
-  String get icBack => '$basePath/ic_back.svg';
+  String get back => '$basePath/ic_back.svg';
 
-  String get icInfo => '$basePath/ic_info.svg';
+  String get info => '$basePath/ic_info.svg';
 
-  String get icAdd => '$basePath/ic_add.svg';
+  String get add => '$basePath/ic_add.svg';
 
-  String get icAddBlack => '$basePath/ic_add_black.svg';
+  String get addBlack => '$basePath/ic_add_black.svg';
 
-  String get icRemove => '$basePath/ic_remove.svg';
+  String get remove => '$basePath/ic_remove.svg';
 
-  String get icRemoveBlack => '$basePath/ic_remove_black.svg';
+  String get removeBlack => '$basePath/ic_remove_black.svg';
 
-  String get icScanner => '$basePath/ic_scanner.svg';
+  String get scanner => '$basePath/ic_scanner.svg';
 
-  String get icEdit => '$basePath/ic_edit.svg';
-
-  String get icDelete => '$basePath/ic_delete.svg';
-
-  String get icCheck => '$basePath/ic_check.svg';
+  String get edit => '$basePath/ic_edit.svg';
 
   String get delete => '$basePath/ic_delete.svg';
+
+  String get check => '$basePath/ic_check.svg';
 }
 
 class _Images extends _AssetsHolder {

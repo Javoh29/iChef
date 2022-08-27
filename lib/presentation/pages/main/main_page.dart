@@ -9,6 +9,7 @@ import 'package:ichef/presentation/pages/settings/settings_page.dart';
 import 'package:ichef/presentation/widgets/drawer_widget.dart';
 
 import '../../components/bottom_nav_bar.dart';
+import '../calendar/calendar_page.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -23,8 +24,7 @@ class _MainPageState extends State<MainPage> {
     const HomePage(),
     const RecipesPage(),
     const FavoritesPage(),
-    // const CalendarPage(),
-    const GenerationPage(),
+    const CalendarPage(),
     const CartPage(),
     const SettingsPage()
   ];
