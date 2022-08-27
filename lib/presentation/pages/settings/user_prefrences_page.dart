@@ -8,8 +8,8 @@ import 'package:ichef/presentation/components/prefrences_info_container.dart';
 import 'package:ichef/presentation/components/prefrences_products_container.dart';
 import 'package:ichef/presentation/components/product_item.dart';
 
-class ProductPrefrencesPage extends StatelessWidget {
-  const ProductPrefrencesPage({Key? key}) : super(key: key);
+class UserPrefrencesPage extends StatelessWidget {
+  const UserPrefrencesPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,7 @@ class ProductPrefrencesPage extends StatelessWidget {
           icon: SvgPicture.asset(
             Assets.icons.backArrow,
             color: AppColors.metalColor.shade90,
-            height: 24,
+            height: 20,
           ),
         ),
         centerTitle: true,
@@ -63,8 +63,7 @@ class ProductPrefrencesPage extends StatelessWidget {
             ],
           ),
           CustomExpandTile(
-            title:
-                "Эти продукты я не предпочитаю (могу есть только в маленьких дозах как составная часть блюда)",
+            title: "Эти продукты я не предпочитаю (могу есть только в маленьких дозах как составная часть блюда)",
             elements: [
               PrefrencesProductsContainer(
                 [
