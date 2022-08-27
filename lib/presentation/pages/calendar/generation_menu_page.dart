@@ -6,11 +6,12 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ichef/config/constants/app_decorations.dart';
 import 'package:ichef/config/constants/app_text_styles.dart';
 import 'package:ichef/config/constants/assets.dart';
-import 'package:ichef/presentation/pages/calendar/widgets/chapter_widget.dart';
-import 'package:ichef/presentation/pages/calendar/widgets/wek_day_widget.dart';
+import 'package:intl/intl.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 import '../../../config/constants/app_colors.dart';
+import 'components/chapter_widget.dart';
+import 'components/wek_day_widget.dart';
 
 class GenerationPage extends StatefulWidget {
   const GenerationPage({Key? key}) : super(key: key);
@@ -20,27 +21,35 @@ class GenerationPage extends StatefulWidget {
 }
 
 class _GenerationPageState extends State<GenerationPage> {
-  TextEditingController personController = TextEditingController();
-  TextEditingController doseController = TextEditingController();
-  late Timer timer;
-  int personCount = 1;
-  var maskFormatter = MaskTextInputFormatter(mask: '####');
-  var dailyDose = MaskTextInputFormatter(mask: '#########');
-  double sliderValue = 0;
-  var start;
-  var end;
+  final TextEditingController _personController = TextEditingController();
+  final TextEditingController _doseController = TextEditingController();
+  Timer? _timerCounter;
+  int _personCount = 1;
+  final _maskFormatter = MaskTextInputFormatter(mask: '####');
+  final _dailyDose = MaskTextInputFormatter(mask: '######');
+  double _sliderValue = 0;
+  DateTime? _startDate;
+  DateTime? _endDate;
 
   @override
   void initState() {
     super.initState();
-    personController.text = '1';
-    doseController.text = '1';
+    _personController.text = '1';
+    _doseController.text = '1';
+  }
+
+  @override
+  void dispose() {
+    _personController.dispose();
+    _doseController.dispose();
+    _timerCounter?.cancel();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    start = dateTimeRange.start;
-    end = dateTimeRange.end;
+    _startDate = dateTimeRange.start;
+    _endDate = dateTimeRange.end;
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -49,309 +58,226 @@ class _GenerationPageState extends State<GenerationPage> {
           style: AppTextStyles.h1.copyWith(fontSize: 14),
         ),
         elevation: 0,
-        leading: IconButton(
-            onPressed: () {}, icon: SvgPicture.asset(Assets.icons.icBack)),
+        leading: IconButton(onPressed: () {}, icon: SvgPicture.asset(Assets.icons.icBack)),
         actions: [
           Padding(
             padding: const EdgeInsets.only(right: 20, bottom: 10, top: 10),
-            child: ElevatedButton(
+            child: TextButton(
               onPressed: () {},
-              style: AppDecorations.buttonStyle(),
-              child: Text('Применить', style: AppTextStyles.b4Medium),
+              style: AppDecorations.buttonStyle(padding: const EdgeInsets.symmetric(horizontal: 15), borderRadius: 12),
+              child: Text('Применить', style: AppTextStyles.b4Medium.copyWith(color: AppColors.baseLight.shade100)),
             ),
           ),
         ],
       ),
-      body: Padding(
+      body: ListView(
+        physics: const BouncingScrollPhysics(),
+        shrinkWrap: true,
         padding: const EdgeInsets.symmetric(horizontal: 20.0),
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              ChapterWidget(
-                title: 'Количество персон',
-                child: Padding(
-                  padding: const EdgeInsets.only(bottom: 8.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      GestureDetector(
-                        onTap: () {
-                          FocusManager.instance.primaryFocus?.unfocus();
-                          onTapInOrDecrement(count: 1, isInc: false);
-                        },
-                        onTapDown: (TapDownDetails details) {
-                          FocusManager.instance.primaryFocus?.unfocus();
-                          FocusManager.instance.primaryFocus?.unfocus();
-
-                          timer = Timer.periodic(
-                              const Duration(milliseconds: 100), (t) {
-                            if (personCount > 1) {
-                              if (personController.text.isEmpty) {
-                                personCount = 0;
-                              } else {
-                                personCount = int.parse(personController.text);
-                              }
-                              if (personCount > 1) {
-                                personCount--;
-                              }
-                              personController.text = personCount.toString();
-                              // b = personCount.toString();
-                            }
+        children: [
+          ChapterWidget(
+            title: 'Количество персон',
+            child: Padding(
+              padding: const EdgeInsets.only(bottom: 8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  btnIncOrDec(icon: Assets.icons.icRemove, isInc: false),
+                  Container(
+                    width: 92,
+                    height: 45,
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(25),
+                    ),
+                    margin: const EdgeInsets.symmetric(horizontal: 10),
+                    child: TextFormField(
+                      inputFormatters: [_maskFormatter],
+                      cursorColor: AppColors.metalColor.shade100,
+                      textAlign: TextAlign.center,
+                      controller: _personController,
+                      style: AppTextStyles.b3DemiBold.copyWith(fontSize: 36),
+                      maxLines: 1,
+                      onEditingComplete: () {
+                        if (_personController.text.isEmpty) _personController.text = '1';
+                        FocusManager.instance.primaryFocus?.unfocus();
+                      },
+                      keyboardType: TextInputType.number,
+                      decoration: const InputDecoration(border: InputBorder.none),
+                    ),
+                  ),
+                  btnIncOrDec(icon: Assets.icons.icAdd),
+                  // const SizedBox(width: 25)
+                ],
+              ),
+            ),
+          ),
+          ChapterWidget(
+            title: 'Частота готовки',
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: 26,
+                    width: double.infinity,
+                    child: SliderTheme(
+                      data: const SliderThemeData(trackHeight: 10),
+                      child: CupertinoSlider(
+                        activeColor: AppColors.primaryLight,
+                        value: _sliderValue,
+                        onChanged: (value) {
+                          setState(() {
+                            _sliderValue = value;
                           });
                         },
-                        onTapUp: (TapUpDetails details) => timer.cancel(),
-                        onTapCancel: () => timer.cancel(),
-                        child: Container(
-                          width: 42,
-                          height: 42,
-                          padding: const EdgeInsets.all(9),
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(25),
-                              color: AppColors.baseLight.shade100),
-                          child: SvgPicture.asset(Assets.icons.icRemove),
-                        ),
                       ),
-                      Container(
-                        width: 92,
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(25),
-                        ),
-                        margin: const EdgeInsets.symmetric(horizontal: 10),
-                        child: TextFormField(
-                          inputFormatters: [maskFormatter],
-                          cursorColor: Colors.black,
-                          textAlign: TextAlign.center,
-                          controller: personController,
-                          style:
-                              AppTextStyles.b3DemiBold.copyWith(fontSize: 36),
-                          maxLines: 1,
-                          keyboardType: TextInputType.number,
-                          decoration:
-                              const InputDecoration(border: InputBorder.none),
-                        ),
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          FocusManager.instance.primaryFocus?.unfocus();
-                          onTapInOrDecrement(count: personCount, isInc: true);
-                        },
-                        onTapDown: (TapDownDetails details) {
-                          FocusManager.instance.primaryFocus?.unfocus();
-                          timer = Timer.periodic(
-                            const Duration(milliseconds: 100),
-                            (t) => setState(
-                              () {
-                                if (personController.text.isEmpty) {
-                                  personCount = 0;
-                                } else {
-                                  personCount = int.parse(personController.text);
-                                }
-                                personCount++;
-                                personController.text = personCount.toString();
-                                // initialBlok = personCount.toString();
-                              },
-                            ),
-                          );
-                        },
-                        onTapUp: (TapUpDetails details) => timer.cancel(),
-                        onTapCancel: () => timer.cancel(),
-                        child: Container(
-                          width: 42,
-                          height: 42,
-                          padding: const EdgeInsets.all(9),
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(25),
-                              color: AppColors.baseLight.shade100),
-                          child: SvgPicture.asset(Assets.icons.icAdd),
-                        ),
-                      ),
-                      // const SizedBox(width: 25)
-                    ],
+                    ),
                   ),
-                ),
-              ),
-              ChapterWidget(
-                title: 'Частота готовки',
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                  child: Column(
+                  const SizedBox(height: 10),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      SizedBox(
-                        height: 26,
-                        width: double.infinity,
-                        child: SliderTheme(
-                          data: const SliderThemeData(trackHeight: 10),
-                          child: CupertinoSlider(
-                            activeColor: AppColors.primaryLight,
-                            value: sliderValue,
-                            onChanged: (value) {
-                              setState(() {});
-                              sliderValue = value;
-                            },
-                          ),
-                        ),
+                      Text(
+                        'Редко',
+                        style: AppTextStyles.b4Regular.copyWith(color: MetalColor().shade50),
                       ),
-                      const SizedBox(height: 10),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            'Редко',
-                            style: AppTextStyles.b4Regular
-                                .copyWith(color: MetalColor().shade50),
-                          ),
-                          Text(
-                            'Часто',
-                            style: AppTextStyles.b4Regular
-                                .copyWith(color: MetalColor().shade50),
-                          ),
-                        ],
-                      )
-                    ],
-                  ),
-                ),
-              ),
-              ChapterWidget(
-                title: 'Ваша суточная доза',
-                child: Padding(
-                  padding:
-                      const EdgeInsets.only(bottom: 8, right: 16.0, left: 16),
-                  child: Row(
-                    children: [
-                      Container(
-                        width: MediaQuery.of(context).size.width / 1.7,
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(25),
-                        ),
-                        margin: const EdgeInsets.symmetric(horizontal: 10),
-                        child: TextFormField(
-                          cursorWidth: 4,
-                          inputFormatters: [dailyDose],
-                          cursorColor: Colors.black,
-                          textAlign: TextAlign.center,
-                          controller: doseController,
-                          style:
-                              AppTextStyles.b3DemiBold.copyWith(fontSize: 36),
-                          maxLines: 1,
-                          keyboardType: TextInputType.number,
-                          decoration: const InputDecoration(
-                            border: InputBorder.none,
-                            // hintText: 'Ккал',
-                            // hintStyle: TextStyle()
-                          ),
-                        ),
-                      ),
-                      ElevatedButton(
-                        onPressed: () {},
-                        style: AppDecorations.buttonStyle().copyWith(
-                            elevation: const MaterialStatePropertyAll(0),
-                            shape: MaterialStatePropertyAll(
-                                RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(50))),
-                            padding: const MaterialStatePropertyAll(
-                                EdgeInsets.all(10)),
-                            fixedSize: const MaterialStatePropertyAll(
-                                Size.fromHeight(40)),
-                            backgroundColor: MaterialStatePropertyAll(
-                                AppColors.baseLight.shade100)),
-                        child: Text(
-                          'Ккал',
-                          style: AppTextStyles.b5Regular.copyWith(
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
+                      Text(
+                        'Часто',
+                        style: AppTextStyles.b4Regular.copyWith(color: MetalColor().shade50),
                       ),
                     ],
-                  ),
-                ),
+                  )
+                ],
               ),
-              ChapterWidget(
-                title: 'Начало и конец',
-                child: Padding(
-                  padding:
-                      const EdgeInsets.only(bottom: 8, right: 16.0, left: 16),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      InkWell(
-                        overlayColor:
-                            MaterialStateProperty.all(Colors.transparent),
-                        onTap: () {
-                          pickDateRange(context)
-                              .then((value) => {setState(() {})});
-                        },
-                        child: Container(
-                          height: 40,
-                          alignment: Alignment.center,
-                          width: 92,
-                          padding: const EdgeInsets.only(left: 10, right: 10),
-                          decoration: BoxDecoration(
-                              color: AppColors.baseLight.shade100,
-                              borderRadius: BorderRadius.circular(30)),
-                          child: Text(
-                            '${start.day}.${start.month}.${start.year}',
-                            style: AppTextStyles.b5Regular.copyWith(
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 6),
-                        child: Text(
-                          '—',
-                          style: AppTextStyles.b4DemiBold
-                              .copyWith(fontWeight: FontWeight.w500),
-                        ),
-                      ),
-                      InkWell(
-                        overlayColor:
-                            MaterialStateProperty.all(Colors.transparent),
-                        onTap: () {
-                          pickDateRange(context)
-                              .then((value) => {setState(() {})});
-                        },
-                        child: Container(
-                          alignment: Alignment.center,
-                          height: 40,
-                          width: 92,
-                          padding: const EdgeInsets.only(left: 10, right: 10),
-                          decoration: BoxDecoration(
-                              color: AppColors.baseLight.shade100,
-                              borderRadius: BorderRadius.circular(30)),
-                          child: Text(
-                            '${end.day}.${end.month}.${end.year}',
-                            style: AppTextStyles.b5Regular.copyWith(
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              ChapterWidget(
-                title: 'Повторять по дням',
-                child: Padding(
-                  padding:
-                      const EdgeInsets.only(bottom: 8, right: 16.0, left: 16),
-                  child: ListView.separated(
-                    separatorBuilder: (context, index) =>
-                        const SizedBox(width: 6),
-                    scrollDirection: Axis.horizontal,
-                    physics: const NeverScrollableScrollPhysics(),
-                    itemCount: 7,
-                    itemBuilder: (context, index) => WeekDaysWidget(id: index),
-                  ),
-                ),
-              ),
-            ],
+            ),
           ),
+          ChapterWidget(
+            title: 'Ваша суточная доза',
+            child: Padding(
+              padding: const EdgeInsets.only(bottom: 8, right: 16.0, left: 16),
+              child: Stack(
+                alignment: Alignment.centerRight,
+                children: [
+                  Flexible(
+                    child: Container(
+                      height: 45,
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(25),
+                      ),
+                      margin: const EdgeInsets.symmetric(horizontal: 10),
+                      child: TextFormField(
+                        cursorWidth: 4,
+                        inputFormatters: [_dailyDose],
+                        cursorColor: Colors.black,
+                        textAlign: TextAlign.center,
+                        controller: _doseController,
+                        style: AppTextStyles.b3DemiBold.copyWith(fontSize: 36),
+                        maxLines: 1,
+                        onEditingComplete: () {
+                          if (_doseController.text.isEmpty) _doseController.text = '1';
+                          FocusManager.instance.primaryFocus?.unfocus();
+                        },
+                        keyboardType: TextInputType.number,
+                        decoration: const InputDecoration(
+                          border: InputBorder.none,
+                        ),
+                      ),
+                    ),
+                  ),
+                  TextButton(
+                    onPressed: () {},
+                    style: AppDecorations.buttonStyle().copyWith(
+                      shape: MaterialStateProperty.all(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(50),
+                        ),
+                      ),
+                      padding: MaterialStateProperty.all(
+                        const EdgeInsets.all(10),
+                      ),
+                      fixedSize: MaterialStateProperty.all(
+                        const Size.fromHeight(40),
+                      ),
+                      backgroundColor: MaterialStateProperty.all(AppColors.baseLight.shade100),
+                    ),
+                    child: Text(
+                      'Ккал',
+                      style: AppTextStyles.b5Regular.copyWith(
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          ChapterWidget(
+            title: 'Начало и конец',
+            child: Padding(
+              padding: const EdgeInsets.only(bottom: 8, right: 16, left: 16),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  btnDateTime(context, _startDate),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 6),
+                    child: Text(
+                      '—',
+                      style: AppTextStyles.b4DemiBold.copyWith(fontWeight: FontWeight.w500),
+                    ),
+                  ),
+                  btnDateTime(context, _endDate),
+                ],
+              ),
+            ),
+          ),
+          ChapterWidget(
+            title: 'Повторять по дням',
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Wrap(
+                children: List.generate(7, (index) => WeekDaysWidget(id: index)),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  TextButton btnDateTime(BuildContext context, DateTime? dateTime) {
+    return TextButton(
+      onPressed: () => pickDateRange(context).then((value) => setState(() {})),
+      style: AppDecorations.buttonStyle(
+          padding: const EdgeInsets.all(10), borderRadius: 20, bgColor: AppColors.baseLight.shade100),
+      child: Text(
+        DateFormat('dd.MM.yyyy').format(dateTime ?? DateTime.now()),
+        style: AppTextStyles.b5Regular.copyWith(
+          fontWeight: FontWeight.w500,
         ),
+      ),
+    );
+  }
+
+  GestureDetector btnIncOrDec({required String icon, bool isInc = true}) {
+    return GestureDetector(
+      onTap: () => onTapIncOrDecrement(isInc: isInc),
+      onTapDown: (TapDownDetails details) {
+        _timerCounter = Timer.periodic(
+          const Duration(milliseconds: 100),
+          (t) => onTapIncOrDecrement(isInc: isInc),
+        );
+      },
+      onTapUp: (TapUpDetails details) => _timerCounter?.cancel(),
+      onTapCancel: () => _timerCounter?.cancel(),
+      child: Container(
+        width: 42,
+        height: 42,
+        padding: const EdgeInsets.all(9),
+        decoration: BoxDecoration(borderRadius: BorderRadius.circular(25), color: AppColors.baseLight.shade100),
+        child: SvgPicture.asset(icon),
       ),
     );
   }
@@ -382,31 +308,20 @@ class _GenerationPageState extends State<GenerationPage> {
     });
   }
 
-  DateTimeRange dateTimeRange =
-      DateTimeRange(start: DateTime.now(), end: DateTime.now());
+  DateTimeRange dateTimeRange = DateTimeRange(start: DateTime.now(), end: DateTime.now());
 
-  void onTapInOrDecrement({required int count, required bool isInc}) {
-    if (isInc) {
-      setState(() {
-        if (personController.text.isEmpty) {
-          personCount = 0;
-        } else {
-          personCount = int.parse(personController.text);
-        }
-        personCount++;
-        personController.text = personCount.toString();
-      });
+  void onTapIncOrDecrement({bool isInc = true}) {
+    FocusManager.instance.primaryFocus?.unfocus();
+    if (_personController.text.isEmpty) {
+      _personCount = 1;
     } else {
-      setState(() {
-        if (personController.text.isEmpty) {
-          personCount = 0;
-        } else {
-          personCount = int.parse(personController.text);
-        }
-        if (personCount > 0) personCount--;
-        personController.text = personCount.toString();
-      });
+      _personCount = int.parse(_personController.text);
     }
+    if (isInc) {
+      _personCount++;
+    } else if (_personCount > 1) {
+      _personCount--;
+    }
+    _personController.text = _personCount.toString();
   }
 }
-

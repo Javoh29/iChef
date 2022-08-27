@@ -21,15 +21,11 @@ class ChapterWidget extends StatelessWidget {
           padding: const EdgeInsets.only(top: 10.0, bottom: 5),
           child: Row(
             mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(title),
-              const SizedBox(width: 6),
-              SvgPicture.asset(Assets.icons.icInfo)
-            ],
+            children: [Text(title), const SizedBox(width: 6), SvgPicture.asset(Assets.icons.icInfo)],
           ),
         ),
         Container(
-          height: 80,
+          width: double.infinity,
           padding: const EdgeInsets.only(top: 18, bottom: 10),
           margin: const EdgeInsets.only(bottom: 20),
           decoration: AppDecorations.defDecor,

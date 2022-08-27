@@ -80,17 +80,17 @@ class _Icons extends _AssetsHolder {
 
   String get icAddBlack => '$basePath/ic_add_black.svg';
 
-  String get icRemove => 'assets/icons/ic_remove.svg';
+  String get icRemove => '$basePath/ic_remove.svg';
 
-  String get icRemoveBlack => 'assets/icons/ic_remove_black.svg';
+  String get icRemoveBlack => '$basePath/ic_remove_black.svg';
 
-  String get icScanner => 'assets/icons/ic_scanner.svg';
+  String get icScanner => '$basePath/ic_scanner.svg';
 
-  String get icEdit => 'assets/icons/ic_edit.svg';
+  String get icEdit => '$basePath/ic_edit.svg';
 
-  String get icDelete => 'assets/icons/ic_delete.svg';
+  String get icDelete => '$basePath/ic_delete.svg';
 
-  String get icCheck => 'assets/icons/ic_check.svg';
+  String get icCheck => '$basePath/ic_check.svg';
 }
 
 class _Images extends _AssetsHolder {
