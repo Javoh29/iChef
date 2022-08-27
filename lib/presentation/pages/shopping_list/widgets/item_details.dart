@@ -38,13 +38,15 @@ class _ShoppingItemDetailsState extends State<ShoppingItemDetails> {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
+    return ListView.separated(
+      separatorBuilder: (context, index) => const SizedBox(height: 5),
       itemCount: modelList.length,
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
       itemBuilder: (context, index) => SlidableAutoCloseBehavior(
+        closeWhenOpened: true,
         child: Slidable(
-          key: Key('${modelList[index].id}'),
+          key: ObjectKey(modelList[index]),
           direction: Axis.horizontal,
           startActionPane: ActionPane(
             extentRatio: 0.185,
@@ -54,7 +56,7 @@ class _ShoppingItemDetailsState extends State<ShoppingItemDetails> {
               InkWell(
                 onTap: () {},
                 borderRadius:
-                    const BorderRadius.horizontal(right: Radius.circular(10)),
+                    const BorderRadius.horizontal(left: Radius.circular(10)),
                 child: Container(
                   width: 60,
                   height: 87,
@@ -74,21 +76,22 @@ class _ShoppingItemDetailsState extends State<ShoppingItemDetails> {
               ),
             ],
           ),
-          closeOnScroll: true,
+          // closeOnScroll: true,
           endActionPane: ActionPane(
-            extentRatio: 0.35,
+            dragDismissible: true,
+            extentRatio: 0.325,
             dismissible: Dismissible(
+              direction: DismissDirection.endToStart,
               onDismissed: (direction) {
-                // modelList.removeAt(index);
-                // deletedItem = modelList.elementAt(index);
-                // modelList.removeAt(index);
-                deletedItems.add(modelList.removeAt(index));
-                modelList.addAll(deletedItems);
-                modelList[index].isDeleted = true;
-                setState(() {});
+                setState(() {
+                  deletedItems.add(modelList.removeAt(modelList[index].id));
+                  modelList.addAll(deletedItems);
+                  modelList[index].isDeleted = true;
+                  deletedItems.clear();
+                  debugPrint('$modelList');
+                });
               },
-              direction: DismissDirection.vertical,
-              key: ValueKey(modelList[index].id),
+              key: ObjectKey(modelList[index]),
               child: Container(
                 width: 60,
                 height: 87,
@@ -115,7 +118,6 @@ class _ShoppingItemDetailsState extends State<ShoppingItemDetails> {
               ),
             ),
             motion: const BehindMotion(),
-            dragDismissible: true,
             children: [
               InkWell(
                 onTap: () async {},
@@ -140,10 +142,8 @@ class _ShoppingItemDetailsState extends State<ShoppingItemDetails> {
                 onTap: () {
                   setState(() {});
                   deletedItems.add(modelList.removeAt(index));
-                  // modelList.removeAt(index);
                   modelList.addAll(deletedItems);
                   modelList[index].isDeleted = true;
-
                   deletedItems.clear();
                   debugPrint('$modelList');
                 },
@@ -173,23 +173,12 @@ class _ShoppingItemDetailsState extends State<ShoppingItemDetails> {
                 left: 10,
                 bottom: modelList[index].subTitle != null ? 6 : 0,
                 right: 10),
-            margin: const EdgeInsets.only(bottom: 5),
             decoration: modelList[index].isDeleted
-                ? AppDecorations.defDecor.copyWith(color: Colors.red)
+                ? AppDecorations.defDecor.copyWith(color: AppColors.deletedItem)
                 : AppDecorations.defDecor,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                // widget.image != null
-                //     ? Container(
-                //         height: 36,
-                //         width: 36,
-                //         margin: EdgeInsets.only(right: 10),
-                //         decoration: const BoxDecoration(shape: BoxShape.circle),
-                //         child: ClipRRect(
-                //             borderRadius: BorderRadius.circular(50),
-                //             child: Image.asset('${widget.image}', fit: BoxFit.cover)))
-                //     : Container(),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -197,14 +186,21 @@ class _ShoppingItemDetailsState extends State<ShoppingItemDetails> {
                       TextButton(
                         onPressed: () {},
                         style: AppDecorations.buttonStyle(
-                          bgColor: AppColors.primaryLight.shade50,
+                          bgColor: modelList[index].isDeleted
+                              ? AppColors.deletedItem
+                              : AppColors.primaryLight.shade50,
                           border: BorderSide(
-                              color: AppColors.primaryLight.shade100, width: 1),
+                              color: modelList[index].isDeleted
+                                  ? AppColors.deletedItemBorder
+                                  : AppColors.primaryLight.shade100,
+                              width: 1),
                         ),
                         child: Text(
                           modelList[index].title,
                           style: AppTextStyles.b4Medium.copyWith(
-                            color: AppColors.primaryLight.shade100,
+                            color: modelList[index].isDeleted
+                                ? AppColors.deletedItemBorder
+                                : AppColors.primaryLight.shade100,
                           ),
                         ),
                       ),
@@ -215,12 +211,6 @@ class _ShoppingItemDetailsState extends State<ShoppingItemDetails> {
                                   color: AppColors.metalColor.shade50),
                             )
                           : Container(),
-                      // Text(
-                      //   widget.subTitle,
-                      //   style: AppTextStyles.b4Regular
-                      //       .copyWith(color: AppColors.metalColor.shade50),
-                      // ),
-                      // Text('${widget.price} р', style: AppTextStyles.b4DemiBold),
                     ],
                   ),
                 ),
@@ -235,133 +225,15 @@ class _ShoppingItemDetailsState extends State<ShoppingItemDetails> {
                             '${modelList[index].price} р, ${modelList[index].count} шт',
                             style: AppTextStyles.b4Regular
                                 .copyWith(color: AppColors.metalColor.shade50)),
-                        // Text(
-                        //   widget.subTitle,
-                        //   style: AppTextStyles.b4Regular
-                        //       .copyWith(color: AppColors.metalColor.shade50),
-                        // ),
                       ],
                     ),
                   ],
                 ),
-                // Container(
-                //   height: 28,
-                //   padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 3),
-                //   decoration: BoxDecoration(
-                //       color: const Color(0xffE5E7EB),
-                //       borderRadius: BorderRadius.circular(6)),
-                //   child: Row(
-                //     mainAxisAlignment: MainAxisAlignment.center,
-                //     children: [
-                //       GestureDetector(
-                //         onTap: () {
-                //           FocusManager.instance.primaryFocus?.unfocus();
-                //           onTapInOrDecrement(isInc: false);
-                //         },
-                //         onTapDown: (TapDownDetails details) {
-                //           FocusManager.instance.primaryFocus?.unfocus();
-                //           FocusManager.instance.primaryFocus?.unfocus();
-                //
-                //           timer =
-                //               Timer.periodic(const Duration(milliseconds: 100), (t) {
-                //             if (count > 1) {
-                //               if (counterController.text.isEmpty) {
-                //                 count = 0;
-                //               } else {
-                //                 count = int.parse(counterController.text);
-                //               }
-                //               if (count > 1) {
-                //                 count--;
-                //               }
-                //               counterController.text = count.toString();
-                //               // b = personCount.toString();
-                //             }
-                //           });
-                //         },
-                //         onTapUp: (TapUpDetails details) => timer.cancel(),
-                //         onTapCancel: () => timer.cancel(),
-                //         child: SvgPicture.asset(Assets.icons.icRemoveBlack,
-                //             color: AppColors.metalColor.shade100),
-                //       ),
-                //       Container(
-                //         width: 20,
-                //         alignment: Alignment.center,
-                //         decoration: BoxDecoration(
-                //           borderRadius: BorderRadius.circular(25),
-                //         ),
-                //         margin: const EdgeInsets.symmetric(horizontal: 10),
-                //         child: TextFormField(
-                //           inputFormatters: [maskFormatter],
-                //           cursorColor: Colors.black,
-                //           textAlign: TextAlign.center,
-                //           controller: counterController,
-                //           style: AppTextStyles.b3DemiBold.copyWith(fontSize: 12),
-                //           maxLines: 1,
-                //           keyboardType: TextInputType.number,
-                //           decoration: const InputDecoration(border: InputBorder.none),
-                //         ),
-                //       ),
-                //       GestureDetector(
-                //         onTap: () {
-                //           FocusManager.instance.primaryFocus?.unfocus();
-                //           onTapInOrDecrement(isInc: true);
-                //         },
-                //         onTapDown: (TapDownDetails details) {
-                //           FocusManager.instance.primaryFocus?.unfocus();
-                //           timer = Timer.periodic(
-                //             const Duration(milliseconds: 100),
-                //             (t) => setState(
-                //               () {
-                //                 if (counterController.text.isEmpty) {
-                //                   count = 0;
-                //                 } else {
-                //                   count = int.parse(counterController.text);
-                //                 }
-                //                 count++;
-                //                 counterController.text = count.toString();
-                //                 // initialBlok = personCount.toString();
-                //               },
-                //             ),
-                //           );
-                //         },
-                //         onTapUp: (TapUpDetails details) => timer.cancel(),
-                //         onTapCancel: () => timer.cancel(),
-                //         child: SvgPicture.asset(Assets.icons.icAddBlack,
-                //             color: AppColors.metalColor.shade100),
-                //       ),
-                //       // const SizedBox(width: 25)
-                //     ],
-                //   ),
-                // )
               ],
             ),
           ),
         ),
       ),
     );
-  }
-
-  void onTapInOrDecrement({required bool isInc}) {
-    if (isInc) {
-      setState(() {
-        if (counterController.text.isEmpty) {
-          count = 0;
-        } else {
-          count = int.parse(counterController.text);
-        }
-        count++;
-        counterController.text = count.toString();
-      });
-    } else {
-      setState(() {
-        if (counterController.text.isEmpty) {
-          count = 0;
-        } else {
-          count = int.parse(counterController.text);
-        }
-        if (count > 0) count--;
-        counterController.text = count.toString();
-      });
-    }
   }
 }
