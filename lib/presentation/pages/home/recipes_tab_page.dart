@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ichef/presentation/components/recipe_item.dart';
-import 'package:ichef/presentation/pages/home/recipe_info_page.dart';
+import 'package:ichef/presentation/routes/routes.dart';
 
 import '../../../config/constants/local_data.dart';
 
@@ -13,13 +13,10 @@ class RecipesTabPage extends StatelessWidget {
       padding: const EdgeInsets.only(top: 10, bottom: 80),
       itemBuilder: (context, index) {
         return GestureDetector(
-          onTap: () => Navigator.push(
+          onTap: () => Navigator.pushNamed(
             context,
-            MaterialPageRoute(
-              builder: (BuildContext context) => RecipeInfoPage(
-                model: listRecipes[index],
-              ),
-            ),
+            Routes.recipeInfoPage,
+            arguments: {'recipe_model': listRecipes[index]},
           ),
           child: RecipeItem(model: listRecipes[index]),
         );

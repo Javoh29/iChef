@@ -21,7 +21,6 @@ class _MainPageState extends State<MainPage> {
   final PageController _pageController = PageController();
   final List<Widget> pages = [
     const HomePage(),
-    const SearchPage(),
     const RecipesPage(),
     const FavoritesPage(),
     const CalendarPage(),

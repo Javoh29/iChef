@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ichef/config/constants/app_colors.dart';
 import 'package:ichef/config/constants/app_decorations.dart';
 import 'package:ichef/config/constants/app_text_styles.dart';
-import 'package:ichef/presentation/pages/settings/user_prefrences_page.dart';
+import 'package:ichef/presentation/routes/routes.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({Key? key}) : super(key: key);
@@ -11,7 +11,7 @@ class SettingsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: TextButton(
-        onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const UserPrefrencesPage())),
+        onPressed: () => Navigator.pushNamed(context, Routes.userPrefrencesPage),
         style: AppDecorations.buttonStyle(),
         child: Text(
           'User Prefrences',
