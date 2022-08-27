@@ -53,6 +53,7 @@ class _RecipeInfoPageState extends State<RecipeInfoPage> {
                   margin: const EdgeInsets.symmetric(vertical: 20),
                   child: ListView(
                     scrollDirection: Axis.horizontal,
+                    physics: const BouncingScrollPhysics(),
                     children: recipeTypes
                         .map(
                           (item) => Container(

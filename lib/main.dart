@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:ichef/config/theme/themes.dart';
 import 'package:ichef/presentation/pages/main/main_page.dart';
-import 'package:ichef/presentation/pages/shopping_list/shopping_list.dart';
+import 'package:ichef/presentation/routes/routes.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,10 +19,9 @@ class MyApp extends StatelessWidget {
         statusBarBrightness: Brightness.dark,
         statusBarIconBrightness: Brightness.dark));
     return MaterialApp(
-        title: 'Flutter Demo',
-        theme: Themes.lightTheme,
-        home: const ShoppingListPage()
-        // const MainPage(),
-        );
+      title: 'Flutter Demo',
+      theme: Themes.lightTheme,
+      onGenerateRoute: (setting) => Routes.generateRoute(setting),
+    );
   }
 }

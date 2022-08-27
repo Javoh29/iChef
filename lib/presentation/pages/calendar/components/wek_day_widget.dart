@@ -21,14 +21,14 @@ class _WeekDaysWidgetState extends State<WeekDaysWidget> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        setState(() {});
+      onTap: () => setState(() {
         isActive = !isActive;
-      },
+      }),
       child: Container(
         alignment: Alignment.center,
         height: 40,
         width: 40,
+        margin: const EdgeInsets.only(right: 8, bottom: 10),
         decoration: BoxDecoration(
           shape: BoxShape.circle,
           color: isActive ? AppColors.baseLight : AppColors.baseLight.shade100,
@@ -37,9 +37,7 @@ class _WeekDaysWidgetState extends State<WeekDaysWidget> {
           days[widget.id],
           style: AppTextStyles.b5Regular.copyWith(
             fontWeight: FontWeight.w500,
-            color: isActive
-                ? AppColors.baseLight.shade100
-                : AppColors.metalColor.shade100,
+            color: isActive ? AppColors.baseLight.shade100 : AppColors.metalColor.shade100,
           ),
         ),
       ),
