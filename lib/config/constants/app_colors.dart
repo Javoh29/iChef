@@ -57,6 +57,7 @@ class MetalColor extends ColorSwatch<int> {
       : super(
           0xff111827,
           <int, Color>{
+            // 200: const Color(0xffE5E7EB),
             100: const Color(0xff111827),
             90: const Color(0xff111827),
             70: const Color(0xff111827).withOpacity(.7),

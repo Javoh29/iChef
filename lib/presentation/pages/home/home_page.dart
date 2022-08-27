@@ -69,9 +69,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
           ),
         ),
         TextButton(
-          onPressed: () {
-            
-          },
+          onPressed: () {},
           style: AppDecorations.buttonStyle(padding: const EdgeInsets.symmetric(horizontal: 12)),
           child: Text(
             'Фильтры',

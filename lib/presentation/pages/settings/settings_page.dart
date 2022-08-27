@@ -9,15 +9,29 @@ class SettingsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: TextButton(
-        onPressed: () => Navigator.pushNamed(context, Routes.userPrefrencesPage),
-        style: AppDecorations.buttonStyle(),
-        child: Text(
-          'User Prefrences',
-          style: AppTextStyles.h5.copyWith(color: AppColors.baseLight.shade100),
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        TextButton(
+          onPressed: () => Navigator.pushNamed(context, Routes.userPrefrencesPage),
+          style: AppDecorations.buttonStyle(),
+          child: Text(
+            'User Prefrences',
+            style: AppTextStyles.h5.copyWith(color: AppColors.baseLight.shade100),
+          ),
         ),
-      ),
+        const SizedBox(
+          height: 10,
+        ),
+        TextButton(
+          onPressed: () => Navigator.pushNamed(context, Routes.generationMenuPage),
+          style: AppDecorations.buttonStyle(),
+          child: Text(
+            'Generation Menu',
+            style: AppTextStyles.h5.copyWith(color: AppColors.baseLight.shade100),
+          ),
+        ),
+      ],
     );
   }
 }
