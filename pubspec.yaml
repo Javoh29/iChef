@@ -27,6 +27,7 @@ flutter:
     - fonts/
     - assets/icons/
     - assets/icons/menu_icons/
+    - assets/icons/recipe_info_icons/
     - assets/images/
 
   # An image asset can refer to one or more resolution-specific "variants", see

@@ -58,6 +58,7 @@ class MetalColor extends ColorSwatch<int> {
           0xff111827,
           <int, Color>{
             100: const Color(0xff111827),
+            90: const Color(0xff111827),
             70: const Color(0xff111827).withOpacity(.7),
             50: const Color(0xff6B7280),
             40: const Color(0xff9CA3B0),
@@ -67,6 +68,7 @@ class MetalColor extends ColorSwatch<int> {
         );
 
   Color get shade100 => this[100]!;
+  Color get shade90 => this[90]!;
   Color get shade70 => this[70]!;
   Color get shade50 => this[50]!;
   Color get shade40 => this[40]!;

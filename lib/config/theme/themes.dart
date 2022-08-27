@@ -21,6 +21,7 @@ abstract class Themes {
           color: AppColors.metalColor.shade100,
         ),
       ),
+      dividerColor: Colors.transparent,
       tabBarTheme: TabBarTheme(
         indicator: BoxDecoration(
           border: Border(
