@@ -1,9 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:ichef/config/constants/app_colors.dart';
-import 'package:ichef/config/constants/app_text_styles.dart';
-import 'package:ichef/config/constants/assets.dart';
-import 'package:ichef/data/models/recipe_model.dart';
-import 'package:ichef/presentation/components/icon_button_action.dart';
 import 'package:ichef/presentation/components/recipe_item.dart';
 import 'package:ichef/presentation/pages/home/recipe_info_page.dart';
 
