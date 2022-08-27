@@ -1,13 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:ichef/config/constants/app_colors.dart';
 import 'package:ichef/config/constants/assets.dart';
+import 'package:ichef/config/constants/local_data.dart';
 import 'package:ichef/presentation/components/custom_badge.dart';
+import 'package:ichef/presentation/components/dropdown_with_icon.dart';
 
 import '../../config/constants/app_decorations.dart';
 import '../../config/constants/app_text_styles.dart';
-import '../components/ingridient_detail_container.dart';
+import '../components/ingridient_expand_tile.dart';
 
 class IngredientsDrawer extends StatefulWidget {
   const IngredientsDrawer({Key? key}) : super(key: key);
@@ -20,19 +21,10 @@ class _IngredientsDrawerState extends State<IngredientsDrawer> {
   bool isSwitch = false;
   String dropdownvalue = '1';
   String dropdownvalueCal = '5-10';
-  var items = [
-    '1',
-    '2',
-    '3',
-    '4',
-    '5',
-  ];
-  var itemsCal = [
-    '5-10',
-    '5-11',
-    '5-12',
-    '5-13',
-  ];
+
+  var items = ['1', '2', '3', '4', '5'];
+  var itemsCal = ['5-10', '5-11', '5-12', '5-13'];
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -53,10 +45,12 @@ class _IngredientsDrawerState extends State<IngredientsDrawer> {
                 const Spacer(),
                 TextButton(
                   onPressed: () {},
-                  style: AppDecorations.buttonStyle(padding: const EdgeInsets.symmetric(horizontal: 12)),
+                  style: AppDecorations.buttonStyle(
+                      padding: const EdgeInsets.symmetric(horizontal: 12)),
                   child: Text(
                     "В покупки",
-                    style: AppTextStyles.b4Medium.copyWith(color: AppColors.baseLight.shade100),
+                    style: AppTextStyles.b4Medium
+                        .copyWith(color: AppColors.baseLight.shade100),
                   ),
                 )
               ],
@@ -66,94 +60,17 @@ class _IngredientsDrawerState extends State<IngredientsDrawer> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Количество персон",
-                        style: AppTextStyles.b4Regular,
-                      ),
-                      Container(
-                        margin: const EdgeInsets.only(top: 9),
-                        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 8),
-                        decoration: AppDecorations.defDecor.copyWith(
-                          color: AppColors.metalColor.shade10,
-                        ),
-                        child: Row(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(right: 8),
-                              child: SvgPicture.asset(
-                                Assets.icons.peoples,
-                                height: 16,
-                              ),
-                            ),
-                            DropdownButton(
-                              underline: const SizedBox(),
-                              value: dropdownvalue,
-                              isDense: true,
-                              icon: const Icon(Icons.keyboard_arrow_down),
-                              items: items.map((String items) {
-                                return DropdownMenuItem(
-                                  value: items,
-                                  child: Text(
-                                    items,
-                                    style: AppTextStyles.h6,
-                                  ),
-                                );
-                              }).toList(),
-                              onChanged: (String? newValue) {},
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
+                  DropDownWithIcon(
+                    title: "Количество персон",
+                    iconPath: Assets.icons.peoples,
+                    dropDownValue: dropdownvalue,
+                    elements: items,
                   ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Кол-во дней",
-                        style: AppTextStyles.b4Regular,
-                      ),
-                      Container(
-                        margin: const EdgeInsets.only(top: 9),
-                        padding: const EdgeInsets.symmetric(
-                          vertical: 8,
-                          horizontal: 15,
-                        ),
-                        decoration: AppDecorations.defDecor.copyWith(
-                          color: AppColors.metalColor.shade10,
-                        ),
-                        child: Row(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(right: 8),
-                              child: SvgPicture.asset(
-                                Assets.icons.calendar,
-                                height: 16,
-                              ),
-                            ),
-                            DropdownButton(
-                              underline: const SizedBox(),
-                              value: dropdownvalueCal,
-                              icon: const Icon(Icons.keyboard_arrow_down),
-                              isDense: true,
-                              items: itemsCal.map((String items) {
-                                return DropdownMenuItem(
-                                  value: items,
-                                  child: Text(
-                                    items,
-                                    style: AppTextStyles.h6,
-                                  ),
-                                );
-                              }).toList(),
-                              onChanged: (String? newValue) {},
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
+                  DropDownWithIcon(
+                    title: "Кол-во дней",
+                    iconPath: Assets.icons.calendar,
+                    dropDownValue: dropdownvalueCal,
+                    elements: itemsCal,
                   ),
                 ],
               ),
@@ -187,73 +104,13 @@ class _IngredientsDrawerState extends State<IngredientsDrawer> {
                 ],
               ),
             ),
-            ExpansionTile(
-              title: Text(
-                "Название раздела",
-                style: AppTextStyles.b5DemiBold,
-              ),
-              tilePadding: EdgeInsets.zero,
-              initiallyExpanded: true,
-              children: const [
-                IngridientDetailContainer(
-                  isActive: false,
-                  title: "Пшеничная мука",
-                  addInfo: "Manitoba 400",
-                  data: "400 г, 3 шт",
-                ),
-                SizedBox(
-                  height: 5,
-                ),
-                IngridientDetailContainer(
-                  isActive: false,
-                  title: "Сливочное масло",
-                  addInfo: "",
-                  data: "400 г, 3 шт",
-                ),
-              ],
+            IngridientsExpandTile(
+              title: "Название раздела",
+              elements: firstIngredientsRazdel,
             ),
-            ExpansionTile(
-              tilePadding: EdgeInsets.zero,
-              initiallyExpanded: true,
-              title: Text(
-                "Название раздела",
-                style: AppTextStyles.b5DemiBold,
-              ),
-              children: const [
-                IngridientDetailContainer(
-                  isActive: true,
-                  title: "Куриное яйцо",
-                  addInfo: "C0",
-                  data: "400 г, 3 шт",
-                ),
-                SizedBox(
-                  height: 5,
-                ),
-                IngridientDetailContainer(
-                  isActive: true,
-                  title: "Тыква",
-                  addInfo: "",
-                  data: "400 г, 3 шт",
-                ),
-                SizedBox(
-                  height: 5,
-                ),
-                IngridientDetailContainer(
-                  isActive: false,
-                  title: "Корица",
-                  addInfo: "KOTANYI целая",
-                  data: "400 г, 3 шт",
-                ),
-                SizedBox(
-                  height: 5,
-                ),
-                IngridientDetailContainer(
-                  isActive: false,
-                  title: "Соль",
-                  addInfo: "",
-                  data: "400 г, 3 шт",
-                ),
-              ],
+            IngridientsExpandTile(
+              title: "Название раздела",
+              elements: secondIngredientsRazdel,
             ),
             TextButton(
               style: AppDecorations.buttonStyle(
