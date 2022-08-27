@@ -5,6 +5,7 @@ import 'package:ichef/config/constants/app_decorations.dart';
 import 'package:ichef/config/constants/app_text_styles.dart';
 import 'package:ichef/config/constants/assets.dart';
 import 'package:ichef/presentation/pages/home/recipes_tab_page.dart';
+import 'package:ichef/presentation/pages/settings/user_prefrences_page.dart';
 
 import '../../components/custom_badge.dart';
 
@@ -68,7 +69,9 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
           ),
         ),
         TextButton(
-          onPressed: () {},
+          onPressed: () {
+            
+          },
           style: AppDecorations.buttonStyle(padding: const EdgeInsets.symmetric(horizontal: 12)),
           child: Text(
             'Фильтры',
