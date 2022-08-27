@@ -3,6 +3,7 @@ abstract class Assets {
 
   // ignore: library_private_types_in_public_api
   static _Icons get icons => const _Icons();
+
   // ignore: library_private_types_in_public_api
   static _Images get images => const _Images();
 }
@@ -70,17 +71,26 @@ class _Icons extends _AssetsHolder {
 
   String get playBtn => '$basePath/ic_play_btn.svg';
 
-
   //jalolxon
   String get icBack => '$basePath/ic_back.svg';
 
   String get icInfo => '$basePath/ic_info.svg';
 
   String get icAdd => '$basePath/ic_add.svg';
+
   String get icAddBlack => '$basePath/ic_add_black.svg';
 
   String get icRemove => 'assets/icons/ic_remove.svg';
+
   String get icRemoveBlack => 'assets/icons/ic_remove_black.svg';
+
+  String get icScanner => 'assets/icons/ic_scanner.svg';
+
+  String get icEdit => 'assets/icons/ic_edit.svg';
+
+  String get icDelete => 'assets/icons/ic_delete.svg';
+
+  String get icCheck => 'assets/icons/ic_check.svg';
 }
 
 class _Images extends _AssetsHolder {

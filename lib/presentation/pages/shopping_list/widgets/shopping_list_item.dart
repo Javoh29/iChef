@@ -1,47 +1,77 @@
 import 'package:flutter/material.dart';
+import 'package:ichef/presentation/pages/shopping_list/widgets/shipping_model.dart';
 
 import '../../../../config/constants/app_text_styles.dart';
 import 'item_details.dart';
 
-class ShoppingListItem extends StatelessWidget {
+class ShoppingListItem extends StatefulWidget {
   const ShoppingListItem({
     Key? key,
     required this.title,
-    required this.price,
   }) : super(key: key);
   final String title;
-  final int price;
 
   @override
+  State<ShoppingListItem> createState() => _ShoppingListItemState();
+}
+
+class _ShoppingListItemState extends State<ShoppingListItem> {
+  @override
   Widget build(BuildContext context) {
-    return ExpansionTile(
-      title: Row(
-        children: [
-          Text(
-            title,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 10),
+          child: Text(
+            widget.title,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
             style: AppTextStyles.h1.copyWith(fontSize: 14),
           ),
-          const SizedBox(width: 6),
-          Text("$price р", style: AppTextStyles.b4Regular),
-        ],
-      ),
-      tilePadding: EdgeInsets.zero,
-      childrenPadding: EdgeInsets.zero,
-      children: [
-        ListView.builder(
-          itemCount: 3,
-          shrinkWrap: true,
-          itemBuilder: (context, index) {
-            return const ShoppingItemDetails(
-              image: 'assets/images/borsh.png',
-              title: 'Пшеничная мука',
-              subTitle: 'Manitoba 400',
-              price: 69,
-              weight: 400,
-            );
-          },
-        )
+        ),
+        ShoppingItemDetails(
+          shippingList: list,
+        ),
       ],
     );
   }
+
+  List<ShippingModel> list = [
+    ShippingModel(
+        isDeleted: false,
+        title: 'Соль',
+        count: 10,
+        price: 129,
+        weight: 34,
+        id: 1),
+    ShippingModel(
+        isDeleted: false,
+        title: 'Корица',
+        count: 10,
+        price: 129,
+        weight: 34,
+        id: 1),
+    ShippingModel(
+        isDeleted: false,
+        title: 'Соль',
+        count: 10,
+        price: 129,
+        weight: 34,
+        id: 1),
+    ShippingModel(
+        isDeleted: false,
+        title: 'Корица',
+        count: 10,
+        price: 129,
+        weight: 34,
+        id: 1),
+    ShippingModel(
+        isDeleted: false,
+        title: 'Соль',
+        count: 10,
+        price: 129,
+        weight: 34,
+        id: 1),
+  ];
 }
