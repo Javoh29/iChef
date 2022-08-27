@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:ichef/config/constants/app_decorations.dart';
 import 'package:ichef/presentation/components/recipe_item.dart';
-import 'package:ichef/presentation/components/recipe_step.dart';
+import 'package:ichef/presentation/components/recipe_step_card.dart';
 import 'package:ichef/presentation/widgets/drawer_widget.dart';
 
 import '../../../config/constants/app_colors.dart';
@@ -100,7 +100,7 @@ class _RecipeInfoPageState extends State<RecipeInfoPage> {
             padding: const EdgeInsets.all(20),
             child: Column(
               children: List.generate(recipeSteps.length, ((index) {
-                return RecipeStep(
+                return RecipeStepCard(
                     size: size,
                     stepNumber: recipeSteps[index]['stepNumber'],
                     stepName: recipeSteps[index]['stepName'],
