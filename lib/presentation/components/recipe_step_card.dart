@@ -4,9 +4,10 @@ import 'package:ichef/config/constants/app_colors.dart';
 import 'package:ichef/config/constants/app_decorations.dart';
 import 'package:ichef/config/constants/app_text_styles.dart';
 import 'package:ichef/config/constants/assets.dart';
+import 'package:ichef/presentation/pages/home/recipe_step_page.dart';
 
-class RecipeStep extends StatelessWidget {
-  const RecipeStep({
+class RecipeStepCard extends StatelessWidget {
+  const RecipeStepCard({
     Key? key,
     required this.size,
     required this.stepNumber,
@@ -68,15 +69,25 @@ class RecipeStep extends StatelessWidget {
                   ],
                 ),
               ),
-              Container(
-                width: 27,
-                height: 27,
-                alignment: Alignment.center,
-                decoration: BoxDecoration(shape: BoxShape.circle, color: AppColors.baseLight),
-                child: Icon(
-                  Icons.arrow_forward_ios_rounded,
-                  color: AppColors.metalColor.shade10,
-                  size: 12,
+              GestureDetector(
+                onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (BuildContext context) {
+                      return RecipeStep(currentStep: 1, stepsLength: 7,);
+                    },
+                  ),
+                ),
+                child: Container(
+                  width: 27,
+                  height: 27,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(shape: BoxShape.circle, color: AppColors.baseLight),
+                  child: Icon(
+                    Icons.arrow_forward_ios_rounded,
+                    color: AppColors.metalColor.shade10,
+                    size: 12,
+                  ),
                 ),
               ),
             ],

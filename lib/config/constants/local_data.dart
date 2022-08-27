@@ -109,6 +109,57 @@ List<Map> recipeSteps = [
   }
 ];
 
+String stepName = "Soften the onion";
+
+String stepContext =
+    '''Cut the bell pepper into rings (it is better to choose three different colors - it looks more colorful), after removing the seeds. Cut the onion into half rings, grate the garlic on a fine grater.
+Cut the bell pepper into rings (it is better to choose three different colors - it looks more colorful), after removing the seeds. Cut the onion into half rings, grate the garlic on a fine grater.Cut the bell pepper into rings (it is better to choose three different colors - it looks more colorful), after removing the seeds. Cut the onion into half rings, grate the garlic on a fine grater.
+Cut the bell pepper into rings (it is better to choose three different colors - it looks more colorful), after removing the seeds. Cut the onion into half rings, grate the garlic on a fine grater.Cut the bell pepper into rings (it is better to choose three different colors - it looks more colorful), after removing the seeds. Cut the onion into half rings, grate the garlic on a fine grater.
+Cut the bell pepper into rings (it is better to choose three different colors - it looks more colorful), after removing the seeds. Cut the onion into half rings, grate the garlic on a fine grater.Cut the bell pepper into rings (it is better to choose three different colors - it looks more colorful), after removing the seeds. Cut the onion into half rings, grate the garlic on a fine grater.
+Cut the bell pepper into rings (it is better to choose three different colors - it looks more colorful), after removing the seeds. Cut the onion into half rings, grate the garlic on a fine grater.''';
+
+List<Map> userComments = [
+  {
+    "userName": "Надежда Румянцева",
+    "userImage": Assets.images.userAvatar1,
+    "lastSeen": "2 м назад",
+    "time": "Ср 18, 13:49",
+    "chatText": "Cut the bell"
+  },
+
+List<Map> recipeSteps = [
+  {
+    "stepNumber": "Шаг 1",
+    "stepName": "Soften the onion",
+    "stepContext":
+        "Cut the bell pepper into rings (it is better to choose three different colors - it looks more colorful), after removing the seeds. Cut the onion into half rings, grate the garlic on a fine grater.",
+  },
+  {
+    "stepNumber": "Шаг 2",
+    "stepName": "Soften the onion",
+    "stepContext":
+        "Cut the bell pepper into rings (it is better to choose three different colors - it looks more colorful), after removing the seeds. Cut the onion into half rings, grate the garlic on a fine grater.",
+  },
+  {
+    "stepNumber": "Шаг 3",
+    "stepName": "Soften the onion",
+    "stepContext":
+        "Cut the bell pepper into rings (it is better to choose three different colors - it looks more colorful), after removing the seeds. Cut the onion into half rings, grate the garlic on a fine grater.",
+  },
+  {
+    "stepNumber": "Шаг 4",
+    "stepName": "Soften the onion",
+    "stepContext":
+        "Cut the bell pepper into rings (it is better to choose three different colors - it looks more colorful), after removing the seeds. Cut the onion into half rings, grate the garlic on a fine grater.",
+  },
+  {
+    "stepNumber": "Шаг 5",
+    "stepName": "Soften the onion",
+    "stepContext":
+        "Cut the bell pepper into rings (it is better to choose three different colors - it looks more colorful), after removing the seeds. Cut the onion into half rings, grate the garlic on a fine grater.",
+  }
+];
+
 List<Widget> firstIngredientsRazdel = const [
   IngridientDetailContainer(
     isActive: false,

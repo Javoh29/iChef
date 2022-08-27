@@ -67,9 +67,15 @@ class _Icons extends _AssetsHolder {
 
   String get backArrow => '$basePath/ic_back_arrow.svg';
 
+  String get nextArrow => '$basePath/ic_next_arrow.svg';
+
   String get search => '$basePath/ic_search.svg';
 
   String get playBtn => '$basePath/ic_play_btn.svg';
+
+  String get coffee => "$basePath/ic_coffee.png";
+
+  String get cancel => "$basePath/ic_cancel.svg";
 
   String get back => '$basePath/ic_back.svg';
 
@@ -99,9 +105,17 @@ class _Images extends _AssetsHolder {
 
   String get userAvatar2 => "$basePath/img_user2.jpeg";
 
+  String get userAvatar3 => "$basePath/img_user3.png";
+
+  String get userAvatar4 => "$basePath/img_user4.png";
+
+  String get userAvatar5 => "$basePath/img_user5.png";
+
   String get recipeChicken => "$basePath/img_chicken.png";
 
   String get recipeMedovik => "$basePath/img_classic_medovik.png";
 
-  String get recipePrepaireOne => "$basePath/im_prepaire_one.png";
+  String get recipePrepaireOne => "$basePath/img_prepaire_one.png";
+
+  String get smile => "$basePath/img_smile.png";
 }
