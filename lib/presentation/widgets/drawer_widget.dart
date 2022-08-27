@@ -8,7 +8,7 @@ import 'package:ichef/presentation/components/dropdown_with_icon.dart';
 
 import '../../config/constants/app_decorations.dart';
 import '../../config/constants/app_text_styles.dart';
-import '../components/ingridient_expand_tile.dart';
+import '../components/custom_expand_tile.dart';
 
 class IngredientsDrawer extends StatefulWidget {
   const IngredientsDrawer({Key? key}) : super(key: key);
@@ -104,11 +104,11 @@ class _IngredientsDrawerState extends State<IngredientsDrawer> {
                 ],
               ),
             ),
-            IngridientsExpandTile(
+            CustomExpandTile(
               title: "Название раздела",
               elements: firstIngredientsRazdel,
             ),
-            IngridientsExpandTile(
+            CustomExpandTile(
               title: "Название раздела",
               elements: secondIngredientsRazdel,
             ),

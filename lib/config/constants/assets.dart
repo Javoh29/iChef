@@ -69,6 +69,8 @@ class _Icons extends _AssetsHolder {
   String get search => '$basePath/ic_search.svg';
 
   String get playBtn => '$basePath/ic_play_btn.svg';
+
+  String get delete => '$basePath/ic_delete.svg';
 }
 
 class _Images extends _AssetsHolder {

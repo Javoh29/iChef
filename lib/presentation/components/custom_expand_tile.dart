@@ -4,8 +4,8 @@ import '../../config/constants/app_colors.dart';
 import '../../config/constants/app_text_styles.dart';
 
 // ignore: must_be_immutable
-class IngridientsExpandTile extends StatelessWidget {
-  IngridientsExpandTile({
+class CustomExpandTile extends StatelessWidget {
+  CustomExpandTile({
     required this.title,
     required this.elements,
     Key? key,
