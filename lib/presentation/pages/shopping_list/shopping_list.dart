@@ -15,7 +15,108 @@ class ShoppingListPage extends StatefulWidget {
 }
 
 class _ShoppingListPageState extends State<ShoppingListPage> {
-  String dropdownValue = 'По рецепту';
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: NestedScrollView(
+        physics: const NeverScrollableScrollPhysics(),
+        headerSliverBuilder: (context, innerBoxIsScrolled) {
+          return [appBar(innerBoxIsScrolled)];
+        },
+        body: Stack(
+          alignment: Alignment.bottomCenter,
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Column(
+                children: const [
+                  ListTileTheme(
+                    data: ListTileThemeData(dense: true),
+                    child: ShoppingListItem(
+                      title:
+                          'Пицца с куриными колбасками, ветчиной, гриб...Пицца с куриными колбасками, ветчиной, гриб...',
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              padding: const EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                color: AppColors.baseLight.shade100,
+              ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Container(
+                    width: double.infinity,
+                    margin: const EdgeInsets.only(left: 10, right: 10, bottom: 10),
+                    height: 50,
+                    child: TextButton(
+                      onPressed: () {},
+                      style: AppDecorations.buttonStyle(borderRadius: 12),
+                      child: Text(
+                        'Заказать доставку',
+                        style: AppTextStyles.h7.copyWith(color: AppColors.baseLight.shade100),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
+  SliverAppBar appBar(bool innerBoxIsScrolled) {
+    return SliverAppBar(
+      automaticallyImplyLeading: false,
+      pinned: true,
+      floating: true,
+      forceElevated: innerBoxIsScrolled,
+      leading: IconButton(
+        onPressed: () {},
+        icon: SvgPicture.asset(
+          Assets.icons.icBack,
+          height: 20,
+        ),
+      ),
+      title: Text(
+        'Шопинг лист',
+        style: AppTextStyles.h1.copyWith(fontSize: 14),
+      ),
+      actions: [
+        Padding(
+          padding: const EdgeInsets.only(right: 10),
+          child: IconButton(
+            onPressed: () {},
+            icon: SvgPicture.asset(
+              Assets.icons.icScanner,
+              height: 24,
+            ),
+          ),
+        ),
+      ],
+      bottom: const ShoppingListAppBar(),
+    );
+  }
+}
+
+// ignore: must_be_immutable
+class ShoppingListAppBar extends StatefulWidget implements PreferredSizeWidget {
+  const ShoppingListAppBar({Key? key}) : super(key: key);
+
+  @override
+  State<ShoppingListAppBar> createState() => _ShoppingListAppBarState();
+
+  @override
+  Size get preferredSize => const Size.fromHeight(56);
+}
+
+class _ShoppingListAppBarState extends State<ShoppingListAppBar> {
+  String? _dropdownValue = 'По рецепту';
   var items = [
     'По рецепту',
     '2',
@@ -23,155 +124,42 @@ class _ShoppingListPageState extends State<ShoppingListPage> {
     '4',
     '5',
   ];
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text(
-          'Шопинг лист',
-          style: AppTextStyles.h1.copyWith(fontSize: 14),
-        ),
-        elevation: 0,
-        leading: IconButton(
-            onPressed: () {}, icon: SvgPicture.asset(Assets.icons.icBack)),
-        actions: [
-          Padding(
-              padding: const EdgeInsets.only(right: 20, bottom: 10, top: 10),
-              child: GestureDetector(
-                onTap: () {},
-                child: SvgPicture.asset(Assets.icons.icScanner),
-              )),
-        ],
-        bottom: PreferredSize(
-          preferredSize: const Size.fromHeight(60),
-          child: Container(
-            decoration: AppDecorations.defDecor,
-            padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 16),
-            margin: const EdgeInsets.symmetric(horizontal: 20),
-            child: Row(
-              children: [
-                Text(
-                  'Сортировка',
-                  style: AppTextStyles.b4Regular
-                      .copyWith(color: AppColors.metalColor.shade40),
-                ),
-                const SizedBox(width: 6),
-                Expanded(
-                  child: DropdownButton<String>(
-                    isExpanded: true,
-                    underline: const SizedBox(),
-                    value: dropdownValue,
-                    isDense: true,
-                    icon: const Icon(Icons.keyboard_arrow_down),
-                    items: items.map((String item) {
-                      return DropdownMenuItem(
-                        value: item,
-                        child: Text(
-                          item,
-                          style: AppTextStyles.b4DemiBold,
-                        ),
-                      );
-                    }).toList(),
-                    onChanged: (String? newValue) {
-                      setState(() {
-                        dropdownValue = newValue ?? '';
-                      });
-                    },
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
-      body: Stack(
-        alignment: Alignment.bottomCenter,
+    return Container(
+      decoration: AppDecorations.defDecor,
+      padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
+      margin: const EdgeInsets.only(left: 20, right: 20, bottom: 8),
+      child: Row(
         children: [
-          ListView.builder(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            itemBuilder: (context, index) => const ListTileTheme(
-              data: ListTileThemeData(dense: true),
-              child: ShoppingListItem(
-                title: 'Пицца с куриными колбасками, ветчиной, гриб...Пицца с куриными колбасками, ветчиной, гриб...',
-              ),
+          Text(
+            'Сортировка',
+            style: AppTextStyles.b4Regular.copyWith(color: AppColors.metalColor.shade40),
+          ),
+          const SizedBox(width: 6),
+          Expanded(
+            child: DropdownButton<String>(
+              isExpanded: true,
+              underline: const SizedBox(),
+              value: _dropdownValue,
+              isDense: true,
+              icon: const Icon(Icons.keyboard_arrow_down),
+              items: items.map((String item) {
+                return DropdownMenuItem(
+                  value: item,
+                  child: Text(
+                    item,
+                    style: AppTextStyles.b4DemiBold,
+                  ),
+                );
+              }).toList(),
+              onChanged: (value) {
+                setState(() {
+                  _dropdownValue = value;
+                });
+              },
             ),
           ),
-          Container(
-            padding: const EdgeInsets.all(10),
-            decoration: BoxDecoration(
-              color: AppColors.baseLight.shade100,
-            ),
-            // boxShadow: const [
-            //   BoxShadow(
-            //       offset: Offset(0, -1),
-            //       color: Colors.grey,
-            //       blurRadius: 5,
-            //       spreadRadius: 1)
-            // ],
-            // borderRadius: const BorderRadius.vertical(top: Radius.circular(30))),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                // ElevatedButton(
-                //   onPressed: () {},
-                //   style: AppDecorations.buttonStyle(),
-                //   child: Padding(
-                //     padding: const EdgeInsets.symmetric(vertical: 10.0),
-                //     child: Row(
-                //       mainAxisAlignment: MainAxisAlignment.spaceAround,
-                //       children: [
-                //         // Text(
-                //         //   '30-40 мин',
-                //         //   style: AppTextStyles.b4Regular
-                //         //       .copyWith(color: AppColors.baseLight.shade100),
-                //         // ),
-                //         Text(
-                //           'Заказать доставку',
-                //           style: AppTextStyles.h7
-                //               .copyWith(color: AppColors.baseLight.shade100),
-                //         ),
-                //         // Text(
-                //         //   '687 р.',
-                //         //   style: AppTextStyles.b4Regular
-                //         //       .copyWith(color: AppColors.baseLight.shade100),
-                //         // ),
-                //       ],
-                //     ),
-                //   ),
-                // ),
-                const SizedBox(height: 10),
-                ElevatedButton(
-                  onPressed: () {},
-                  style: AppDecorations.buttonStyle(),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 10.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        // Text(
-                        //   '30-40 мин',
-                        //   style: AppTextStyles.b4Regular
-                        //       .copyWith(color: AppColors.baseLight.shade100),
-                        // ),
-                        Text(
-                          'Заказать доставку',
-                          style: AppTextStyles.h7
-                              .copyWith(color: AppColors.baseLight.shade100),
-                        ),
-                        // Text(
-                        //   '687 р.',
-                        //   style: AppTextStyles.b4Regular
-                        //       .copyWith(color: AppColors.baseLight.shade100),
-                        // ),
-                      ],
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          )
         ],
       ),
     );
