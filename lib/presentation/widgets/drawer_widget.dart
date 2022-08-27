@@ -45,12 +45,10 @@ class _IngredientsDrawerState extends State<IngredientsDrawer> {
                 const Spacer(),
                 TextButton(
                   onPressed: () {},
-                  style: AppDecorations.buttonStyle(
-                      padding: const EdgeInsets.symmetric(horizontal: 12)),
+                  style: AppDecorations.buttonStyle(padding: const EdgeInsets.symmetric(horizontal: 12)),
                   child: Text(
                     "В покупки",
-                    style: AppTextStyles.b4Medium
-                        .copyWith(color: AppColors.baseLight.shade100),
+                    style: AppTextStyles.b4Medium.copyWith(color: AppColors.baseLight.shade100),
                   ),
                 )
               ],
