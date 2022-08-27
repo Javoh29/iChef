@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:ichef/config/constants/app_decorations.dart';
@@ -12,6 +10,7 @@ import '../../../config/constants/app_text_styles.dart';
 import '../../../config/constants/assets.dart';
 import '../../../config/constants/local_data.dart';
 import '../../../data/models/recipe_model.dart';
+import '../../components/blured_panel.dart';
 
 class RecipeInfoPage extends StatefulWidget {
   const RecipeInfoPage({required this.model, Key? key}) : super(key: key);
@@ -158,61 +157,49 @@ class _RecipeInfoPageState extends State<RecipeInfoPage> {
                 // #back button
                 IconButton(
                   onPressed: () => Navigator.pop(context),
-                  icon: SvgPicture.asset(Assets.icons.backArrow),
+                  icon: SvgPicture.asset(Assets.icons.backArrow,),
                 ),
                 // #time and views
-                Container(
-                  height: 28,
-                  decoration: AppDecorations.defDecor.copyWith(
-                    color: AppColors.metalColor.shade70.withOpacity(0.5),
-                    borderRadius: BorderRadius.circular(18),
-                    border: Border.all(color: AppColors.baseLight.shade20, width: 1.5),
-                  ),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(18),
-                    child: BackdropFilter(
-                      filter: ImageFilter.blur(sigmaX: 4, sigmaY: 4),
-                      child: Padding(
+                BluredPanel(
+                  mHeight: 28,
+                  mPadding: const EdgeInsets.symmetric(horizontal: 5),
+                  mBorderRadius: 18,
+                  widget: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      SvgPicture.asset(
+                        Assets.icons.recipeTime,
+                        width: 16,
+                        height: 16,
+                      ),
+                      Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 5),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            SvgPicture.asset(
-                              Assets.icons.recipeTime,
-                              width: 16,
-                              height: 16,
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 5),
-                              child: Text(
-                                widget.model.recipeTime ?? '',
-                                style: AppTextStyles.h6,
-                              ),
-                            ),
-                            VerticalDivider(
-                              indent: 6,
-                              endIndent: 6,
-                              width: 1.5,
-                              thickness: 1.5,
-                              color: AppColors.baseLight.shade100,
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 5),
-                              child: SvgPicture.asset(
-                                Assets.icons.recipeView,
-                                width: 16,
-                                height: 16,
-                              ),
-                            ),
-                            Text(
-                              widget.model.recipeView ?? '',
-                              style: AppTextStyles.h6,
-                            )
-                          ],
+                        child: Text(
+                          widget.model.recipeTime ?? '',
+                          style: AppTextStyles.h6,
                         ),
                       ),
-                    ),
+                      VerticalDivider(
+                        indent: 6,
+                        endIndent: 6,
+                        width: 1.5,
+                        thickness: 1.5,
+                        color: AppColors.baseLight.shade100,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 5),
+                        child: SvgPicture.asset(
+                          Assets.icons.recipeView,
+                          width: 16,
+                          height: 16,
+                        ),
+                      ),
+                      Text(
+                        widget.model.recipeView ?? '',
+                        style: AppTextStyles.h6,
+                      )
+                    ],
                   ),
                 ),
                 // #search button

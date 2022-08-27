@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:ichef/config/constants/assets.dart';
+import 'package:ichef/presentation/components/blured_panel.dart';
+import 'package:ichef/presentation/widgets/drawer_widget.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
 import '../../../config/constants/app_colors.dart';
@@ -7,6 +10,7 @@ import '../../../config/constants/app_decorations.dart';
 import '../../../config/constants/app_text_styles.dart';
 import '../../../config/constants/local_data.dart';
 import '../../components/icon_button_action.dart';
+import '../../components/svg_circle_button.dart';
 
 class RecipeStep extends StatefulWidget {
   const RecipeStep({required this.currentStep, required this.stepsLength, Key? key}) : super(key: key);
@@ -18,20 +22,38 @@ class RecipeStep extends StatefulWidget {
 }
 
 class _RecipeStepState extends State<RecipeStep> {
+  final PanelController _panelController = PanelController();
+  final ScrollController _scrollController = ScrollController();
   late int currentStep;
   late int stepsLength;
   bool isVisible = true;
+
   @override
   void initState() {
     super.initState();
     currentStep = widget.currentStep;
     stepsLength = widget.stepsLength;
+    _scrollController.addListener(() {
+      if (_scrollController.offset < -50) {
+        if (_panelController.isPanelOpen) {
+          _panelController.close();
+        }
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
+      endDrawer: const IngredientsDrawer(),
+      endDrawerEnableOpenDragGesture: false,
       body: Stack(
         children: [
           SlidingUpPanel(
@@ -45,15 +67,16 @@ class _RecipeStepState extends State<RecipeStep> {
                 isVisible = false;
               });
             },
-            backdropColor: Colors.transparent,
             color: Colors.transparent,
             minHeight: size.height * 0.3,
             maxHeight: size.height,
             boxShadow: List.empty(),
+            controller: _panelController,
             panel: recipeInfo(),
             body: Stack(
               children: [
                 Container(
+                  height: size.height * 0.8,
                   decoration: BoxDecoration(
                     image: DecorationImage(
                       image: AssetImage(Assets.images.recipePrepaireOne),
@@ -95,6 +118,7 @@ class _RecipeStepState extends State<RecipeStep> {
       left: 0,
       right: 0,
       child: Container(
+        padding: const EdgeInsets.only(bottom: 20, left: 20, right: 20),
         decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topRight,
@@ -109,48 +133,34 @@ class _RecipeStepState extends State<RecipeStep> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             currentStep != 1
-                ? GestureDetector(
-                    onTap: () => setState(() {
-                      currentStep -= 1;
-                    }),
-                    child: Image(
-                      image: AssetImage(Assets.images.previous),
-                      width: 80,
-                    ),
-                  )
+                ? SvgCircleButton(
+                    size: 42,
+                    icon: Assets.icons.backArrow,
+                    iconColor: AppColors.metalColor.shade100,
+                    iconSize: 14,
+                    mOnTap: () => setState(() {
+                          currentStep--;
+                        }))
                 : const SizedBox(
-                    width: 80,
-                    height: 80,
+                    width: 42,
+                    height: 42,
                   ),
-            GestureDetector(
-              onTap: () => Navigator.pop(context),
-              child: Container(
-                width: 45,
-                height: 45,
-                alignment: Alignment.center,
-                decoration: const BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Colors.white,
-                ),
-                child: Image(
-                  image: AssetImage(Assets.images.cancel),
-                  width: 25,
-                ),
-              ),
+            SvgCircleButton(
+              size: 42,
+              icon: Assets.icons.cancel,
+              mOnTap: () => Navigator.pop(context),
             ),
             currentStep != stepsLength
-                ? GestureDetector(
-                    onTap: () => setState(() {
-                      currentStep += 1;
-                    }),
-                    child: Image(
-                      image: AssetImage(Assets.images.next),
-                      width: 80,
-                    ),
-                  )
+                ? SvgCircleButton(
+                    size: 42,
+                    icon: Assets.icons.nextArrow,
+                    iconSize: 14,
+                    mOnTap: () => setState(() {
+                          currentStep++;
+                        }))
                 : const SizedBox(
-                    width: 80,
-                    height: 80,
+                    width: 42,
+                    height: 42,
                   ),
           ],
         ),
@@ -192,7 +202,11 @@ class _RecipeStepState extends State<RecipeStep> {
                 topRight: Radius.circular(35),
               ),
             ),
-            child: Column(
+            child: ListView(
+              padding: EdgeInsets.zero,
+              physics: isVisible ? const NeverScrollableScrollPhysics() : const BouncingScrollPhysics(),
+              shrinkWrap: true,
+              controller: _scrollController,
               children: [
                 Text(
                   stepName,
@@ -222,15 +236,12 @@ class _RecipeStepState extends State<RecipeStep> {
         ),
         Align(
           alignment: Alignment.topCenter,
-          child: Container(
-            margin: const EdgeInsets.only(top: 10),
-            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(18),
-              color: AppColors.metalColor.shade70.withOpacity(0.5),
-              border: Border.all(color: AppColors.metalColor.shade50),
-            ),
-            child: Text(
+          child: BluredPanel(
+            mBorderRadius: 20,
+            mHeight: 30,
+            mPadding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+            mMargin: const EdgeInsets.only(top: 10),
+            widget: Text(
               '$currentStep из $stepsLength',
               style: AppTextStyles.b3Medium.copyWith(color: AppColors.baseLight.shade100),
             ),
