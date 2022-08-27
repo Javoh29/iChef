@@ -83,6 +83,13 @@ abstract class AppTextStyles {
       fontSize: 15.0,
       color: AppColors.metalColor.shade100);
 
+  static TextStyle b5Medium = TextStyle(
+      fontFamily: fontFamily,
+      fontWeight: FontWeight.w500,
+      fontStyle: FontStyle.normal,
+      fontSize: 14.0,
+      color: AppColors.metalColor.shade100);
+
   static TextStyle b3DemiBold = TextStyle(
       fontFamily: fontFamily,
       fontWeight: FontWeight.w600,
