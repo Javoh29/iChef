@@ -30,9 +30,7 @@ class _ShoppingListItemState extends State<ShoppingListItem> {
             style: AppTextStyles.h1.copyWith(fontSize: 14),
           ),
         ),
-        ShoppingItemDetails(
-          shippingList: list,
-        ),
+        ShoppingItemDetails(shippingList: list),
       ],
     );
   }
@@ -44,6 +42,7 @@ class _ShoppingListItemState extends State<ShoppingListItem> {
         count: 10,
         price: 129,
         weight: 34,
+        subTitle: 'fhdkslafhdlsakjfhdaslkjfhdslkf',
         id: 1),
     ShippingModel(
         isDeleted: false,

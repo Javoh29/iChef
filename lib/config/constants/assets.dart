@@ -89,6 +89,8 @@ class _Icons extends _AssetsHolder {
 
   String get delete => '$basePath/ic_delete.svg';
 
+  String get trash => '$basePath/ic_trash.svg';
+
   String get check => '$basePath/ic_check.svg';
 }
 

@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:ichef/presentation/pages/calendar/generation_menu_page.dart';
 import 'package:ichef/presentation/pages/cart/cart_page.dart';
 import 'package:ichef/presentation/pages/favorites/favorites_page.dart';
 import 'package:ichef/presentation/pages/home/home_page.dart';
 import 'package:ichef/presentation/pages/recipes/recipes_page.dart';
-import 'package:ichef/presentation/pages/search/search_page.dart';
 import 'package:ichef/presentation/pages/settings/settings_page.dart';
 import 'package:ichef/presentation/widgets/drawer_widget.dart';
 
