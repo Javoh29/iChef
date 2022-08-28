@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:ichef/config/constants/assets.dart';
 import 'package:ichef/presentation/components/blured_panel.dart';
 import 'package:ichef/presentation/widgets/drawer_widget.dart';
