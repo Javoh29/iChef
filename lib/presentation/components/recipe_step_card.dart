@@ -6,6 +6,8 @@ import 'package:ichef/config/constants/app_text_styles.dart';
 import 'package:ichef/config/constants/assets.dart';
 import 'package:ichef/presentation/pages/home/recipe_step_page.dart';
 
+import '../routes/routes.dart';
+
 class RecipeStepCard extends StatelessWidget {
   const RecipeStepCard({
     Key? key,
@@ -13,12 +15,16 @@ class RecipeStepCard extends StatelessWidget {
     required this.stepNumber,
     required this.stepName,
     required this.stepContext,
+    required this.currentStep,
+    required this.stepsLength,
   }) : super(key: key);
 
   final Size size;
   final String stepNumber;
   final String stepName;
   final String stepContext;
+  final int currentStep;
+  final int stepsLength;
 
   @override
   Widget build(BuildContext context) {
@@ -70,14 +76,10 @@ class RecipeStepCard extends StatelessWidget {
                 ),
               ),
               GestureDetector(
-                onTap: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (BuildContext context) {
-                      return RecipeStep(currentStep: 1, stepsLength: 7,);
-                    },
-                  ),
-                ),
+                onTap: () => Navigator.pushNamed(context, Routes.recipeStepPage, arguments: {
+                  "currentStep": currentStep,
+                  "stepsLength": stepsLength,
+                }),
                 child: Container(
                   width: 27,
                   height: 27,

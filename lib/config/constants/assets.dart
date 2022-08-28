@@ -97,6 +97,10 @@ class _Icons extends _AssetsHolder {
 
   String get check => '$basePath/ic_check.svg';
 
+  String get more => '$basePath/ic_more.svg';
+
+  String get folder => '$basePath/ic_folder.svg';
+  
   String get filter => '$basePath/ic_filter.svg';
 }
 
