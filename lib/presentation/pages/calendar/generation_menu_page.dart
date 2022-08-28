@@ -59,7 +59,7 @@ class _GenerationMenuPageState extends State<GenerationMenuPage> {
         ),
         elevation: 0,
         leading: IconButton(
-            onPressed: () {},
+            onPressed: ()=> Navigator.pop(context),
             icon: SvgPicture.asset(
               Assets.icons.back,
               height: 20,

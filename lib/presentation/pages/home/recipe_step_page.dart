@@ -11,6 +11,8 @@ import '../../../config/constants/app_text_styles.dart';
 import '../../../config/constants/local_data.dart';
 import '../../components/icon_button_action.dart';
 import '../../components/svg_circle_button.dart';
+import '../../widgets/bottom_textfield_widget.dart';
+import '../../widgets/chat_comment_widget.dart';
 
 class RecipeStep extends StatefulWidget {
   const RecipeStep({required this.currentStep, required this.stepsLength, Key? key}) : super(key: key);
@@ -107,6 +109,25 @@ class _RecipeStepState extends State<RecipeStep> {
             visible: isVisible,
             child: bottomNavigation(),
           ),
+          Visibility(
+            visible: !isVisible,
+            child: BottomTextFiledWidget(
+              mLeading: IconButton(
+                onPressed: () {},
+                icon: SvgPicture.asset(
+                  Assets.icons.add,
+                  color: AppColors.metalColor.shade100,
+                ),
+              ),
+              mTrailing: IconButton(
+                onPressed: () {},
+                icon: SvgPicture.asset(
+                  Assets.icons.share,
+                  color: AppColors.metalColor.shade100,
+                ),
+              ),
+            ),
+          ),
         ],
       ),
     );
@@ -138,9 +159,13 @@ class _RecipeStepState extends State<RecipeStep> {
                     icon: Assets.icons.backArrow,
                     iconColor: AppColors.metalColor.shade100,
                     iconSize: 14,
-                    mOnTap: () => setState(() {
+                    mOnTap: () {
+                      if (currentStep != 1) {
+                        setState(() {
                           currentStep--;
-                        }))
+                        });
+                      }
+                    })
                 : const SizedBox(
                     width: 42,
                     height: 42,
@@ -155,9 +180,13 @@ class _RecipeStepState extends State<RecipeStep> {
                     size: 42,
                     icon: Assets.icons.nextArrow,
                     iconSize: 14,
-                    mOnTap: () => setState(() {
+                    mOnTap: () {
+                      if (currentStep != stepsLength) {
+                        setState(() {
                           currentStep++;
-                        }))
+                        });
+                      }
+                    })
                 : const SizedBox(
                     width: 42,
                     height: 42,
@@ -195,9 +224,9 @@ class _RecipeStepState extends State<RecipeStep> {
           padding: const EdgeInsets.only(top: 25),
           child: Container(
             padding: const EdgeInsets.all(30),
-            decoration: const BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.only(
+            decoration: BoxDecoration(
+              color: AppColors.baseLight.shade100,
+              borderRadius: const BorderRadius.only(
                 topLeft: Radius.circular(35),
                 topRight: Radius.circular(35),
               ),
@@ -221,15 +250,16 @@ class _RecipeStepState extends State<RecipeStep> {
                 const SizedBox(height: 30),
                 ...userComments.map(
                   (userComment) {
-                    return chatItem(
-                      userName: userComment["userName"],
-                      userImage: userComment["userImage"],
-                      lastSeen: userComment["lastSeen"],
-                      time: userComment["time"],
-                      chatText: userComment["chatText"],
-                    );
+                    return ChatCommentWidget(
+                        userName: userComment["userName"],
+                        userImage: userComment["userImage"],
+                        lastSeen: userComment["lastSeen"],
+                        time: userComment["time"],
+                        chatText: userComment["chatText"],
+                        isOwner: userComment["isOwner"]);
                   },
-                )
+                ),
+                const SizedBox(height: 50),
               ],
             ),
           ),
@@ -251,7 +281,15 @@ class _RecipeStepState extends State<RecipeStep> {
           top: 0,
           right: 20,
           child: TextButton.icon(
-            onPressed: () {},
+            onPressed: () {
+              if (currentStep == stepsLength) {
+                Navigator.pop(context);
+              } else {
+                setState(() {
+                  currentStep++;
+                });
+              }
+            },
             style: AppDecorations.buttonStyle(padding: const EdgeInsets.symmetric(horizontal: 12), borderRadius: 12)
                 .copyWith(
               backgroundColor: MaterialStateProperty.all(currentStepBgColor),
@@ -263,106 +301,6 @@ class _RecipeStepState extends State<RecipeStep> {
             ),
             label: currentStepIcon,
           ),
-        ),
-      ],
-    );
-  }
-
-  Widget chatItem({String? userName, String? userImage, String? lastSeen, String? time, String? chatText}) {
-    return Column(
-      children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 10),
-          child: Row(
-            children: [
-              Container(
-                width: 34,
-                height: 34,
-                margin: const EdgeInsets.only(right: 5),
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  image: DecorationImage(
-                    image: AssetImage(userImage!),
-                  ),
-                ),
-              ),
-              Expanded(
-                child: RichText(
-                  text: TextSpan(
-                    text: userName,
-                    style: AppTextStyles.b4Medium
-                        .copyWith(color: AppColors.metalColor.shade100, fontWeight: FontWeight.w700),
-                    children: [
-                      TextSpan(
-                        text: ' · ',
-                        style: AppTextStyles.b4Regular.copyWith(color: AppColors.metalColor.shade50),
-                        children: [
-                          TextSpan(text: lastSeen),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              Text(
-                time!,
-                style: AppTextStyles.h5.copyWith(color: AppColors.metalColor.shade100, fontSize: 12),
-              ),
-            ],
-          ),
-        ),
-        Container(
-          width: double.infinity,
-          margin: const EdgeInsets.symmetric(vertical: 5),
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(12),
-            color: AppColors.metalColor.shade10,
-          ),
-          child: Text(
-            chatText!,
-            style: AppTextStyles.h5,
-          ),
-        ),
-        Row(
-          children: [
-            Image(
-              image: AssetImage(Assets.images.smile),
-              width: 16,
-            ),
-            Expanded(
-              child: Row(
-                children: [
-                  Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 10),
-                    padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      border: Border.all(color: AppColors.baseLight),
-                    ),
-                    child: const Text('😎 112'),
-                  ),
-                  Container(
-                    padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      border: Border.all(color: AppColors.baseLight),
-                    ),
-                    child: const Text('😍 1'),
-                  ),
-                ],
-              ),
-            ),
-            Text(
-              "Изменить",
-              style: AppTextStyles.h5.copyWith(color: AppColors.metalColor.shade100, fontSize: 12),
-            ),
-            const SizedBox(width: 20),
-            Text(
-              "Удалить",
-              style: AppTextStyles.h5.copyWith(color: AppColors.metalColor.shade100, fontSize: 12),
-            ),
-          ],
         ),
       ],
     );
