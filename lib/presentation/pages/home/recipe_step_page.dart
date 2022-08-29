@@ -260,12 +260,13 @@ class _RecipeStepState extends State<RecipeStep> {
                 ...userComments.map(
                   (userComment) {
                     return ChatCommentWidget(
-                        userName: userComment["userName"],
-                        userImage: userComment["userImage"],
-                        lastSeen: userComment["lastSeen"],
-                        time: userComment["time"],
-                        chatText: userComment["chatText"],
-                        isOwner: userComment["isOwner"]);
+                      userName: userComment["userName"],
+                      userImage: userComment["userImage"],
+                      lastSeen: userComment["lastSeen"],
+                      time: userComment["time"],
+                      chatText: userComment["chatText"],
+                      isOwner: userComment["isOwner"],
+                    );
                   },
                 ),
                 const SizedBox(height: 50),

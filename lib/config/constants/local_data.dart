@@ -376,6 +376,29 @@ List<String> commands = [
   "Удалить из избранного",
 ];
 
+  List info = [
+    {
+      "amount": "56",
+      "type": "Б",
+      "status": "down",
+    },
+    {
+      "amount": "62",
+      "type": "Ж",
+      "status": "up",
+    },
+    {
+      "amount": "56",
+      "type": "У",
+      "status": "down",
+    },
+    {
+      "amount": "1226",
+      "type": "Ккал",
+      "status": "up",
+    },
+  ];
+
 Map<String, dynamic> mockData = {
   "items": [
     {
@@ -400,3 +423,26 @@ Map<String, dynamic> mockData = {
     }
   ]
 };
+
+  List info = [
+    {
+      "amount": "56",
+      "type": "Б",
+      "status": "down",
+    },
+    {
+      "amount": "62",
+      "type": "Ж",
+      "status": "up",
+    },
+    {
+      "amount": "56",
+      "type": "У",
+      "status": "down",
+    },
+    {
+      "amount": "1226",
+      "type": "Ккал",
+      "status": "up",
+    },
+  ];

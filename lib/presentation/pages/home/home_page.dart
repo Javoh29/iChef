@@ -66,7 +66,9 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
           ),
         ),
         IconButton(
-          onPressed: () {},
+          onPressed: () {
+            Scaffold.of(context).openEndDrawer();
+          },
           icon: SvgPicture.asset(
             Assets.icons.filter,
             height: 22,
