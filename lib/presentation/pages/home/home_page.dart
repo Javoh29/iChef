@@ -34,10 +34,10 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
       },
       body: TabBarView(
         controller: _tabController,
-        children: [
-          const RecipesTabPage(),
-          Container(color: Colors.blue, child: const Center(child: Text('Блоги'))),
-          Container(color: Colors.red, child: const Center(child: Text('Чат'))),
+        children: const [
+          RecipesTabPage(),
+          RecipesTabPage(),
+          RecipesTabPage(),
         ],
       ),
     );
@@ -46,16 +46,13 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
   SliverAppBar appBar(bool innerBoxIsScrolled) {
     return SliverAppBar(
       automaticallyImplyLeading: false,
+      pinned: true,
       floating: true,
       forceElevated: innerBoxIsScrolled,
       actions: const [SizedBox.shrink()],
       centerTitle: false,
       title: Row(children: [
-        SvgPicture.asset(
-          Assets.icons.appLogo,
-          height: 35,
-          width: 35
-        ),
+        SvgPicture.asset(Assets.icons.appLogo, height: 35, width: 35),
         const SizedBox(
           width: 5,
         ),

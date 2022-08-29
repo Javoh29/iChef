@@ -34,7 +34,6 @@ class _FlickMultiPlayerState extends State<FlickMultiPlayer> {
 
   @override
   void dispose() {
-    flickManager.dispose();
     widget.flickMultiManager.remove(flickManager);
     super.dispose();
   }

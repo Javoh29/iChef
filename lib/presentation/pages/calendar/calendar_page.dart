@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:ichef/config/constants/app_colors.dart';
 import 'package:ichef/config/constants/app_decorations.dart';
@@ -8,8 +7,6 @@ import 'package:ichef/config/constants/assets.dart';
 import 'package:ichef/presentation/pages/home/recipes_tab_page.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
-
-import '../../components/custom_badge.dart';
 
 class CalendarPage extends StatefulWidget {
   const CalendarPage({Key? key}) : super(key: key);
@@ -42,10 +39,10 @@ class _CalendarPageState extends State<CalendarPage> with SingleTickerProviderSt
       },
       body: TabBarView(
         controller: _tabController,
-        children: [
-          const RecipesTabPage(),
-          Container(color: Colors.blue, child: const Center(child: Text('Блоги'))),
-          Container(color: Colors.red, child: const Center(child: Text('Чат'))),
+        children: const [
+          RecipesTabPage(),
+          RecipesTabPage(),
+          RecipesTabPage(),
         ],
       ),
     );
