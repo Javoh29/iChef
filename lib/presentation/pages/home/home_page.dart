@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:ichef/config/constants/app_colors.dart';
-import 'package:ichef/config/constants/app_decorations.dart';
 import 'package:ichef/config/constants/app_text_styles.dart';
 import 'package:ichef/config/constants/assets.dart';
 import 'package:ichef/presentation/pages/home/recipes_tab_page.dart';
@@ -68,7 +67,9 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
           ),
         ),
         IconButton(
-          onPressed: () {},
+          onPressed: () {
+            Scaffold.of(context).openEndDrawer();
+          },
           icon: SvgPicture.asset(
             Assets.icons.filter,
             height: 22,

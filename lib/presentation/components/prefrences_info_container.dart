@@ -9,14 +9,15 @@ class PrefrencesInfoContainer extends StatefulWidget {
   PrefrencesInfoContainer({
     required this.title,
     required this.isSwitched,
+    this.textColor,
     Key? key,
   }) : super(key: key);
   String title;
   bool isSwitched;
+  Color? textColor;
 
   @override
-  State<PrefrencesInfoContainer> createState() =>
-      _PrefrencesInfoContainerState();
+  State<PrefrencesInfoContainer> createState() => _PrefrencesInfoContainerState();
 }
 
 class _PrefrencesInfoContainerState extends State<PrefrencesInfoContainer> {
@@ -31,8 +32,7 @@ class _PrefrencesInfoContainerState extends State<PrefrencesInfoContainer> {
         children: [
           Text(
             widget.title,
-            style:
-                AppTextStyles.b5Medium.copyWith(color: AppColors.primaryLight),
+            style: AppTextStyles.b5Medium.copyWith(color: widget.textColor ?? AppColors.primaryLight),
           ),
           CupertinoSwitch(
             value: widget.isSwitched,

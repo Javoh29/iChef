@@ -100,7 +100,7 @@ abstract class AppTextStyles {
 
   static TextStyle b4DemiBold = TextStyle(
       fontFamily: fontFamily,
-      fontWeight: FontWeight.w600,
+      fontWeight: FontWeight.w500,
       fontStyle: FontStyle.normal,
       fontSize: 14.0,
       color: AppColors.metalColor.shade100);
