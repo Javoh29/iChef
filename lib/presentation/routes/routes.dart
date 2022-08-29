@@ -16,7 +16,7 @@ class Routes {
   static const userPrefrencesPage = '/userPrefrencesPage';
   static const generationMenuPage = '/generationMenuPage';
   static const shoppingListPage = '/shoppingListPage';
-  static const dishReplaceMentPage = '/dishReplaceMentPage';
+  static const recipeReplacePage = '/recipeReplacePage';
   
   static Route<dynamic> generateRoute(RouteSettings routeSettings) {
     try {
@@ -53,7 +53,7 @@ class Routes {
               stepsLength: args?['stepsLength'],
             ),
           );
-        case dishReplaceMentPage:
+        case recipeReplacePage:
           return MaterialPageRoute(
             settings: routeSettings,
             builder: (_) => const RecipeReplacePage(),
