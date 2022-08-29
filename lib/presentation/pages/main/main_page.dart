@@ -31,7 +31,7 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      endDrawer: Drawer(width: MediaQuery.of(context).size.width * 0.85, child: const FilterEndDrawer()),
+      endDrawer: const FilterEndDrawer(),
       endDrawerEnableOpenDragGesture: false,
       body: Stack(
         children: [
