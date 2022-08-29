@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:ichef/config/constants/app_colors.dart';
-import 'package:ichef/config/constants/app_decorations.dart';
 import 'package:ichef/config/constants/app_text_styles.dart';
 import 'package:ichef/config/constants/assets.dart';
 import 'package:ichef/presentation/pages/home/recipes_tab_page.dart';
-import 'package:ichef/presentation/pages/settings/user_prefrences_page.dart';
 
 import '../../components/custom_badge.dart';
 
@@ -48,7 +46,6 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
   SliverAppBar appBar(bool innerBoxIsScrolled) {
     return SliverAppBar(
       automaticallyImplyLeading: false,
-      pinned: true,
       floating: true,
       forceElevated: innerBoxIsScrolled,
       actions: const [SizedBox.shrink()],
@@ -68,12 +65,12 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
             style: AppTextStyles.h3.copyWith(fontSize: 22),
           ),
         ),
-        TextButton(
+        IconButton(
           onPressed: () {},
-          style: AppDecorations.buttonStyle(padding: const EdgeInsets.symmetric(horizontal: 12)),
-          child: Text(
-            'Фильтры',
-            style: AppTextStyles.b4Medium.copyWith(color: AppColors.baseLight.shade100),
+          icon: SvgPicture.asset(
+            Assets.icons.filter,
+            height: 22,
+            width: 22,
           ),
         )
       ]),

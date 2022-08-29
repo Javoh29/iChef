@@ -20,8 +20,8 @@ class BottomTextFiledWidget extends StatelessWidget {
       left: 0,
       right: 0,
       child: Container(
-        padding: const EdgeInsets.only(bottom: 30),
-        color: AppColors.baseLight.shade100,
+        color: Colors.white,
+        padding: const EdgeInsets.only(bottom: 20, top: 10),
         child: ListTile(
           contentPadding: EdgeInsets.zero,
           leading: mLeading,
@@ -37,8 +37,9 @@ class BottomTextFiledWidget extends StatelessWidget {
               style: AppTextStyles.h5,
               decoration: InputDecoration(
                 border: InputBorder.none,
-                hintText: 'Ok great, Let me ask arou|',
-                hintStyle: AppTextStyles.h5,
+                hintText: 'Напишите комментарий',
+                hintStyle: AppTextStyles.h5.copyWith(color: AppColors.metalColor.shade50),
+                contentPadding: const EdgeInsets.symmetric(horizontal: 15),
               ),
             ),
           ),
