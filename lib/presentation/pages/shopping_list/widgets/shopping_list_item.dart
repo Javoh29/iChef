@@ -70,41 +70,10 @@ class _ShoppingListItemState extends State<ShoppingListItem> {
   }
 
   List<ShippingModel> list = [
-    ShippingModel(
-        isDeleted: false,
-        title: 'Соль',
-        count: 10,
-        price: 129,
-        weight: 34,
-        subTitle: 'fhdkslafhdlsakjfhdaslkjfhdslkf',
-        id: 1),
-    ShippingModel(
-        isDeleted: false,
-        title: 'Корица',
-        count: 10,
-        price: 129,
-        weight: 34,
-        id: 1),
-    ShippingModel(
-        isDeleted: false,
-        title: 'Соль',
-        count: 10,
-        price: 129,
-        weight: 34,
-        id: 1),
-    ShippingModel(
-        isDeleted: false,
-        title: 'Корица',
-        count: 10,
-        price: 129,
-        weight: 34,
-        id: 1),
-    ShippingModel(
-        isDeleted: false,
-        title: 'Соль',
-        count: 10,
-        price: 129,
-        weight: 34,
-        id: 1),
+    ShippingModel(isDeleted: false, title: 'Соль', count: 10, price: 129, weight: 34, subTitle: 'C0', id: 1),
+    ShippingModel(isDeleted: false, title: 'Корица', count: 10, price: 129, weight: 34, id: 1),
+    ShippingModel(isDeleted: false, title: 'Соль', count: 10, price: 129, weight: 34, id: 1),
+    ShippingModel(isDeleted: false, title: 'Корица', count: 10, price: 129, weight: 34, id: 1),
+    ShippingModel(isDeleted: false, title: 'Соль', count: 10, price: 129, weight: 34, id: 1),
   ];
 }

@@ -1,10 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:ichef/presentation/pages/shopping_list/widgets/shopping_list_app_bar.dart';
-
-import '../../../../config/constants/app_text_styles.dart';
-import '../../../../config/constants/assets.dart';
-
 class SliverAppBarWidget extends StatelessWidget {
   const SliverAppBarWidget({
     Key? key,
