@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ichef/config/constants/assets.dart';
 import 'package:ichef/presentation/components/blured_panel.dart';
 import 'package:ichef/presentation/widgets/drawer_widget.dart';
@@ -26,6 +26,7 @@ class RecipeStep extends StatefulWidget {
 class _RecipeStepState extends State<RecipeStep> {
   final PanelController _panelController = PanelController();
   final ScrollController _scrollController = ScrollController();
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
   late int currentStep;
   late int stepsLength;
   bool isVisible = true;
@@ -54,6 +55,7 @@ class _RecipeStepState extends State<RecipeStep> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
+      key: _scaffoldKey,
       endDrawer: const IngredientsDrawer(),
       endDrawerEnableOpenDragGesture: false,
       body: Stack(
@@ -91,7 +93,7 @@ class _RecipeStepState extends State<RecipeStep> {
                     alignment: const Alignment(0.9, -1.0),
                     child: IconButtonAction(
                       onTap: () {
-                        Scaffold.of(context).openEndDrawer();
+                        _scaffoldKey.currentState?.openEndDrawer();
                       },
                       icon: Assets.icons.ingredients,
                       lable: '7',

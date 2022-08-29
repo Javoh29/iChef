@@ -27,7 +27,9 @@ class CustomBottomSheet extends StatelessWidget {
       ),
       child: Material(
         color: Colors.transparent,
-        child: Column(
+        child: ListView(
+          physics: const BouncingScrollPhysics(),
+          shrinkWrap: true,
           children: [
             mAppBar ?? const SizedBox.shrink(),
             mBody,
