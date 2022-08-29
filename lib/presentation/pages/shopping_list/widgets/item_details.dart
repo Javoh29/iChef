@@ -7,6 +7,7 @@ import '../../../../config/constants/app_colors.dart';
 import '../../../../config/constants/app_decorations.dart';
 import '../../../../config/constants/app_text_styles.dart';
 import '../../../../config/constants/assets.dart';
+import '../../../widgets/dismissible_panel_widget.dart';
 
 class ShoppingItemDetails extends StatefulWidget {
   const ShoppingItemDetails({Key? key, required this.shippingList})
@@ -59,7 +60,7 @@ class _ShoppingItemDetailsState extends State<ShoppingItemDetails> {
                 extentRatio: 0.325,
                 dragDismissible: true,
                 motion: const ScrollMotion(),
-                dismissible: DismissiblePane(
+                dismissible: DismissiblePaneWidget(
                   closeOnCancel: true,
                   confirmDismiss: () async => true,
                   onDismissed: () {

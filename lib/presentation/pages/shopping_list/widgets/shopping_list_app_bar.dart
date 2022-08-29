@@ -7,7 +7,7 @@ import '../../../../config/constants/app_decorations.dart';
 import '../../../../config/constants/app_text_styles.dart';
 
 class ShoppingListAppBar extends StatefulWidget implements PreferredSizeWidget {
-  const ShoppingListAppBar({Key? key}) : super(key: key);
+  const   ShoppingListAppBar({Key? key}) : super(key: key);
 
   @override
   State<ShoppingListAppBar> createState() => _ShoppingListAppBarState();

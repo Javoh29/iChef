@@ -92,6 +92,11 @@ class _Icons extends _AssetsHolder {
   String get trash => '$basePath/ic_trash.svg';
 
   String get check => '$basePath/ic_check.svg';
+
+  String get filter => '$basePath/ic_filter.svg';
+
+  String get threePoint => '$basePath/three_point.svg';
+  String get bSheetClose => '$basePath/ic_bsheet_close.svg';
 }
 
 class _Images extends _AssetsHolder {
