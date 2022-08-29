@@ -1,5 +1,6 @@
 class RecipeModel {
   String? recipeVideo;
+  String? recipeVideoPoster;
   String? userAvatar;
   String? userName;
   String? categoryName;
@@ -13,6 +14,7 @@ class RecipeModel {
 
   RecipeModel({
     this.recipeVideo,
+    this.recipeVideoPoster,
     this.userAvatar,
     this.userName,
     this.categoryName,
@@ -27,6 +29,7 @@ class RecipeModel {
 
   factory RecipeModel.fromJson(Map<String, dynamic> json) => RecipeModel(
         recipeVideo: json['recipe_video'] as String?,
+        recipeVideoPoster: json['recipe_video_poster'] as String?,
         userAvatar: json['user_avatar'] as String?,
         userName: json['user_name'] as String?,
         categoryName: json['category_name'] as String?,
@@ -39,6 +42,7 @@ class RecipeModel {
 
   Map<String, dynamic> toJson() => {
         'recipe_video': recipeVideo,
+        'recipe_video_poster': recipeVideoPoster,
         'user_avatar': userAvatar,
         'user_name': userName,
         'category_name': categoryName,
@@ -51,6 +55,7 @@ class RecipeModel {
 
   RecipeModel copyWith({
     String? recipeVideo,
+    String? recipeVideoPoster,
     String? userAvatar,
     String? userName,
     String? categoryName,
@@ -62,6 +67,7 @@ class RecipeModel {
   }) {
     return RecipeModel(
       recipeVideo: recipeVideo ?? this.recipeVideo,
+      recipeVideoPoster: recipeVideoPoster ?? this.recipeVideoPoster,
       userAvatar: userAvatar ?? this.userAvatar,
       userName: userName ?? this.userName,
       categoryName: categoryName ?? this.categoryName,
