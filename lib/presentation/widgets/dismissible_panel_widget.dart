@@ -3,8 +3,11 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_slidable/src/controller.dart';
 import 'package:flutter_slidable/src/dismissible_pane_motions.dart';
 import 'package:flutter_slidable/src/slidable.dart';
+import 'package:flutter_svg/svg.dart';
 
 import '../../config/constants/app_colors.dart';
+import '../../config/constants/app_text_styles.dart';
+import '../../config/constants/assets.dart';
 
 const double _kDismissThreshold = 0.75;
 const Duration _kDismissalDuration = Duration(milliseconds: 300);
@@ -155,7 +158,27 @@ class _DismissiblePaneWidgetState extends State<DismissiblePaneWidget> {
           right: Radius.circular(10),
         ),
       ),
-      child: widget.motion,
+      child: Stack(
+        clipBehavior: Clip.none,
+        alignment: Alignment.centerRight,
+        children: [
+          widget.motion,
+          Row(
+            children: [
+              const Spacer(),
+              Text(
+                'Удалить',
+                style: AppTextStyles.b4DemiBold
+                    .copyWith(color: AppColors.baseLight.shade100),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                child: SvgPicture.asset(Assets.icons.trash),
+              ),
+            ],
+          )
+        ],
+      ),
     );
   }
 }

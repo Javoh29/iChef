@@ -15,7 +15,9 @@ import '../../widgets/bottom_textfield_widget.dart';
 import '../../widgets/chat_comment_widget.dart';
 
 class RecipeStep extends StatefulWidget {
-  const RecipeStep({required this.currentStep, required this.stepsLength, Key? key}) : super(key: key);
+  const RecipeStep(
+      {required this.currentStep, required this.stepsLength, Key? key})
+      : super(key: key);
   final int currentStep;
   final int stepsLength;
 
@@ -100,7 +102,8 @@ class _RecipeStepState extends State<RecipeStep> {
                       height: 32,
                       borderRadius: 12,
                       isActive: true,
-                      textStyle: AppTextStyles.b4DemiBold.copyWith(color: AppColors.primaryLight.shade100),
+                      textStyle: AppTextStyles.b4DemiBold
+                          .copyWith(color: AppColors.primaryLight.shade100),
                     ),
                   ),
                 )
@@ -205,7 +208,9 @@ class _RecipeStepState extends State<RecipeStep> {
         : stepsLength > currentStep
             ? "•••"
             : "Завершить";
-    Color currentStepBgColor = currentStep == stepsLength ? AppColors.accentLight : AppColors.primaryLight;
+    Color currentStepBgColor = currentStep == stepsLength
+        ? AppColors.accentLight
+        : AppColors.primaryLight;
     Widget currentStepIcon = currentStep == 1
         ? Icon(
             Icons.arrow_forward_ios,
@@ -235,7 +240,9 @@ class _RecipeStepState extends State<RecipeStep> {
             ),
             child: ListView(
               padding: EdgeInsets.zero,
-              physics: isVisible ? const NeverScrollableScrollPhysics() : const BouncingScrollPhysics(),
+              physics: isVisible
+                  ? const NeverScrollableScrollPhysics()
+                  : const BouncingScrollPhysics(),
               shrinkWrap: true,
               controller: _scrollController,
               children: [
@@ -275,7 +282,8 @@ class _RecipeStepState extends State<RecipeStep> {
             mMargin: const EdgeInsets.only(top: 10),
             widget: Text(
               '$currentStep из $stepsLength',
-              style: AppTextStyles.b3Medium.copyWith(color: AppColors.baseLight.shade100),
+              style: AppTextStyles.b3Medium
+                  .copyWith(color: AppColors.baseLight.shade100),
             ),
           ),
         ),
@@ -292,14 +300,18 @@ class _RecipeStepState extends State<RecipeStep> {
                 });
               }
             },
-            style: AppDecorations.buttonStyle(padding: const EdgeInsets.symmetric(horizontal: 12), borderRadius: 12)
+            style: AppDecorations.buttonStyle(
+                    padding: const EdgeInsets.symmetric(horizontal: 12),
+                    borderRadius: 12)
                 .copyWith(
               backgroundColor: MaterialStateProperty.all(currentStepBgColor),
-              overlayColor: MaterialStateProperty.all(AppColors.baseLight.shade20),
+              overlayColor:
+                  MaterialStateProperty.all(AppColors.baseLight.shade20),
             ),
             icon: Text(
               currentStepName,
-              style: AppTextStyles.b3Medium.copyWith(color: AppColors.baseLight.shade100),
+              style: AppTextStyles.b3Medium
+                  .copyWith(color: AppColors.baseLight.shade100),
             ),
             label: currentStepIcon,
           ),

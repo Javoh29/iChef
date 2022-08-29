@@ -102,12 +102,16 @@ class _Icons extends _AssetsHolder {
   String get filter => '$basePath/ic_filter.svg';
 
   String get threePoint => '$basePath/three_point.svg';
+
   String get bSheetClose => '$basePath/ic_bsheet_close.svg';
 
   String get more => '$basePath/ic_more.svg';
 
   String get folder => '$basePath/ic_folder.svg';
 
+  String get addOutlined => '$basePath/ic_add_outlined.svg';
+
+  String get twoPerson => '$basePath/ic_two_person.svg';
 }
 
 class _Images extends _AssetsHolder {
