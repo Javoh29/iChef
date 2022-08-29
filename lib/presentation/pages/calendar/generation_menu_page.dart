@@ -59,10 +59,11 @@ class _GenerationMenuPageState extends State<GenerationMenuPage> {
         ),
         elevation: 0,
         leading: IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: SvgPicture.asset(Assets.icons.back, height: 20)),
+            onPressed: () => Navigator.pop(context),
+            icon: SvgPicture.asset(
+              Assets.icons.back,
+              height: 20,
+            )),
         actions: [
           Padding(
             padding: const EdgeInsets.only(right: 20, bottom: 10, top: 10),
@@ -151,13 +152,11 @@ class _GenerationMenuPageState extends State<GenerationMenuPage> {
                     children: [
                       Text(
                         'Редко',
-                        style: AppTextStyles.b4Regular
-                            .copyWith(color: MetalColor().shade50),
+                        style: AppTextStyles.b4Regular.copyWith(color: MetalColor().shade50),
                       ),
                       Text(
                         'Часто',
-                        style: AppTextStyles.b4Regular
-                            .copyWith(color: MetalColor().shade50),
+                        style: AppTextStyles.b4Regular.copyWith(color: MetalColor().shade50),
                       ),
                     ],
                   )
@@ -172,30 +171,30 @@ class _GenerationMenuPageState extends State<GenerationMenuPage> {
               child: Stack(
                 alignment: Alignment.centerRight,
                 children: [
-                  Container(
-                    height: 45,
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(25),
-                    ),
-                    margin: const EdgeInsets.symmetric(horizontal: 10),
-                    child: TextFormField(
-                      cursorWidth: 4,
-                      inputFormatters: [_dailyDose],
-                      cursorColor: Colors.black,
-                      textAlign: TextAlign.center,
-                      controller: _doseController,
-                      style: AppTextStyles.b3DemiBold.copyWith(fontSize: 36),
-                      maxLines: 1,
-                      onEditingComplete: () {
-                        if (_doseController.text.isEmpty) {
-                          _doseController.text = '1';
-                        }
-                        FocusManager.instance.primaryFocus?.unfocus();
-                      },
-                      keyboardType: TextInputType.number,
-                      decoration: const InputDecoration(
-                        border: InputBorder.none,
+                  Flexible(
+                    child: Container(
+                      height: 45,
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(25),
+                      ),
+                      margin: const EdgeInsets.symmetric(horizontal: 10),
+                      child: TextFormField(
+                        cursorWidth: 4,
+                        inputFormatters: [_dailyDose],
+                        cursorColor: Colors.black,
+                        textAlign: TextAlign.center,
+                        controller: _doseController,
+                        style: AppTextStyles.b3DemiBold.copyWith(fontSize: 36),
+                        maxLines: 1,
+                        onEditingComplete: () {
+                          if (_doseController.text.isEmpty) _doseController.text = '1';
+                          FocusManager.instance.primaryFocus?.unfocus();
+                        },
+                        keyboardType: TextInputType.number,
+                        decoration: const InputDecoration(
+                          border: InputBorder.none,
+                        ),
                       ),
                     ),
                   ),
@@ -213,8 +212,7 @@ class _GenerationMenuPageState extends State<GenerationMenuPage> {
                       fixedSize: MaterialStateProperty.all(
                         const Size.fromHeight(40),
                       ),
-                      backgroundColor: MaterialStateProperty.all(
-                          AppColors.baseLight.shade100),
+                      backgroundColor: MaterialStateProperty.all(AppColors.baseLight.shade100),
                     ),
                     child: Text(
                       'Ккал',
@@ -239,8 +237,7 @@ class _GenerationMenuPageState extends State<GenerationMenuPage> {
                     padding: const EdgeInsets.symmetric(horizontal: 6),
                     child: Text(
                       '—',
-                      style: AppTextStyles.b4DemiBold
-                          .copyWith(fontWeight: FontWeight.w500),
+                      style: AppTextStyles.b4DemiBold.copyWith(fontWeight: FontWeight.w500),
                     ),
                   ),
                   btnDateTime(context, _endDate),
@@ -253,8 +250,7 @@ class _GenerationMenuPageState extends State<GenerationMenuPage> {
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Wrap(
-                children:
-                    List.generate(7, (index) => WeekDaysWidget(id: index)),
+                children: List.generate(7, (index) => WeekDaysWidget(id: index)),
               ),
             ),
           ),

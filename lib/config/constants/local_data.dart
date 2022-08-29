@@ -250,6 +250,44 @@ List<Map> recipeSteps = [
   }
 ];
 
+String stepName = "Soften the onion";
+
+String stepContext =
+    '''Cut the bell pepper into rings (it is better to choose three different colors - it looks more colorful), after removing the seeds. Cut the onion into half rings, grate the garlic on a fine grater.
+Cut the bell pepper into rings (it is better to choose three different colors - it looks more colorful), after removing the seeds. Cut the onion into half rings, grate the garlic on a fine grater.Cut the bell pepper into rings (it is better to choose three different colors - it looks more colorful), after removing the seeds. Cut the onion into half rings, grate the garlic on a fine grater.
+Cut the bell pepper into rings (it is better to choose three different colors - it looks more colorful), after removing the seeds. Cut the onion into half rings, grate the garlic on a fine grater.Cut the bell pepper into rings (it is better to choose three different colors - it looks more colorful), after removing the seeds. Cut the onion into half rings, grate the garlic on a fine grater.
+Cut the bell pepper into rings (it is better to choose three different colors - it looks more colorful), after removing the seeds. Cut the onion into half rings, grate the garlic on a fine grater.Cut the bell pepper into rings (it is better to choose three different colors - it looks more colorful), after removing the seeds. Cut the onion into half rings, grate the garlic on a fine grater.
+Cut the bell pepper into rings (it is better to choose three different colors - it looks more colorful), after removing the seeds. Cut the onion into half rings, grate the garlic on a fine grater.''';
+
+List<Map> userComments = [
+  {
+    "userName": "Надежда Румянцева",
+    "userImage": Assets.images.userAvatar3,
+    "lastSeen": "2 м назад",
+    "time": "Ср 18, 13:49",
+    "chatText": "Cut the bell",
+    "isOwner": false
+  },
+  {
+    "userName": "Анна Матюнина",
+    "userImage": Assets.images.userAvatar4,
+    "lastSeen": "5 м назад",
+    "time": "Ср 18, 13:49",
+    "chatText":
+        "Cut the bell pepper into rings (it is better to choose three different colors - it looks more colorful)",
+    "isOwner": true
+  },
+  {
+    "userName": "Александра Кадира",
+    "userImage": Assets.images.userAvatar5,
+    "lastSeen": "2 м назад",
+    "time": "Ср 18, 13:49",
+    "chatText":
+        '''Cut the bell pepper into rings (it is better to choose three different colors - it looks more colorful), after removing the seeds. Cut the onion into half rings, grate the garlic on a fine grater.
+Cut the bell pepper into rings (it is better to choose three different colors - it looks more colorful), after removing the seeds. Cut the onion into half rings, grate the garlic on a fine grater.''',
+    "isOwner": false
+  },
+];
 List<Widget> firstIngredientsRazdel = const [
   IngridientDetailContainer(
     isActive: false,
@@ -302,4 +340,21 @@ List<Widget> secondIngredientsRazdel = const [
     addInfo: "",
     data: "400 г, 3 шт",
   ),
+];
+
+List<String> folders = [
+  "Понравилось",
+  "Приготовлено",
+  "К готовке",
+  "Название папки",
+];
+
+List<String> commands = [
+  "Заблокировать",
+  "Пожаловаться",
+  "Информация об аккаунте",
+  "Скопировать URL  профиля",
+  "Поделиться этим профилем",
+  "Перенести в папку",
+  "Удалить из избранного",
 ];

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:ichef/config/theme/themes.dart';
-import 'package:ichef/presentation/pages/main/main_page.dart';
 import 'package:ichef/presentation/routes/routes.dart';
 
 void main() {

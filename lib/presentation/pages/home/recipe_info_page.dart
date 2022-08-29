@@ -1,17 +1,22 @@
-import 'dart:ui';
+import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:ichef/config/constants/app_decorations.dart';
 import 'package:ichef/presentation/components/recipe_item.dart';
-import 'package:ichef/presentation/components/recipe_step.dart';
+import 'package:ichef/presentation/components/recipe_step_card.dart';
 import 'package:ichef/presentation/widgets/drawer_widget.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 import '../../../config/constants/app_colors.dart';
 import '../../../config/constants/app_text_styles.dart';
 import '../../../config/constants/assets.dart';
 import '../../../config/constants/local_data.dart';
 import '../../../data/models/recipe_model.dart';
+import '../../components/blured_panel.dart';
+import '../../components/custom_bottom_sheet.dart';
+import '../../routes/routes.dart';
+import '../../widgets/scale_widget.dart';
 
 class RecipeInfoPage extends StatefulWidget {
   const RecipeInfoPage({required this.model, Key? key}) : super(key: key);
@@ -30,7 +35,7 @@ class _RecipeInfoPageState extends State<RecipeInfoPage> {
       body: ListView(
         padding: EdgeInsets.zero,
         children: [
-          itemRecipe(widget.model),
+          itemRecipe(widget.model, size),
           // #additional info
           Container(
             padding: const EdgeInsets.only(left: 20, top: 20),
@@ -45,6 +50,128 @@ class _RecipeInfoPageState extends State<RecipeInfoPage> {
                         )
                         .toList(),
                     itemIconCtg(Assets.icons.moreOne),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    TextButton.icon(
+                      onPressed: () {
+                        showCupertinoModalBottomSheet(
+                          topRadius: const Radius.circular(30),
+                          bounce: true,
+                          context: context,
+                          backgroundColor: Colors.transparent,
+                          builder: (BuildContext context) {
+                            return CustomBottomSheet(
+                              mHeight: size.height * 0.4,
+                              mPadding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+                              mBorderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(30),
+                                topRight: Radius.circular(30),
+                              ),
+                              mBgColor: AppColors.baseLight.shade100,
+                              mAppBar: Stack(
+                                children: [
+                                  Container(
+                                    padding: const EdgeInsets.only(top: 7),
+                                    height: 50,
+                                    width: double.infinity,
+                                    child: Text(
+                                      'Перенести',
+                                      textAlign: TextAlign.center,
+                                      style: AppTextStyles.h5.copyWith(
+                                        fontWeight: FontWeight.w700,
+                                      ),
+                                    ),
+                                  ),
+                                  Positioned(
+                                    left: 0,
+                                    child: ScaleWidget(
+                                      mOnTap: () => Navigator.pop(context),
+                                      scale: .7,
+                                      child: Container(
+                                        height: 34,
+                                        width: 34,
+                                        alignment: Alignment.center,
+                                        decoration: BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          color: AppColors.metalColor.shade10,
+                                        ),
+                                        child: SvgPicture.asset(
+                                          Assets.icons.cancel,
+                                          height: 16,
+                                          width: 16,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              mBody: SingleChildScrollView(
+                                child: Column(
+                                  children: List.generate(
+                                    folders.length,
+                                    (index) => Container(
+                                      decoration: AppDecorations.defDecor,
+                                      margin: const EdgeInsets.symmetric(vertical: 3),
+                                      child: ListTile(
+                                        title: Text(
+                                          folders[index],
+                                          style: AppTextStyles.h5.copyWith(fontWeight: FontWeight.w600),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            );
+                          },
+                        );
+                      },
+                      icon: SvgPicture.asset(Assets.icons.folder),
+                      style: ButtonStyle(
+                        padding: MaterialStateProperty.all(
+                          const EdgeInsets.symmetric(vertical: 6, horizontal: 10),
+                        ),
+                        backgroundColor: MaterialStateProperty.all(AppColors.metalColor.shade10),
+                        shape: MaterialStateProperty.all(
+                          RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                        ),
+                      ),
+                      label: Text(
+                        'Приготовлено',
+                        style: AppTextStyles.h5.copyWith(
+                          color: AppColors.metalColor.shade50,
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(right: 10, top: 5),
+                      child: TextButton.icon(
+                        onPressed: () {},
+                        icon: SvgPicture.asset(
+                          Assets.icons.recipeTime,
+                          color: AppColors.metalColor.shade50,
+                        ),
+                        style: ButtonStyle(
+                          padding: MaterialStateProperty.all(
+                            const EdgeInsets.symmetric(vertical: 6, horizontal: 10),
+                          ),
+                          backgroundColor: MaterialStateProperty.all(AppColors.metalColor.shade10),
+                          shape: MaterialStateProperty.all(
+                            RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                          ),
+                        ),
+                        label: Text(
+                          '00:18:49',
+                          style: AppTextStyles.h5.copyWith(
+                            color: AppColors.metalColor.shade50,
+                          ),
+                        ),
+                      ),
+                    ),
                   ],
                 ),
                 // #recipe types
@@ -101,8 +228,10 @@ class _RecipeInfoPageState extends State<RecipeInfoPage> {
             padding: const EdgeInsets.all(20),
             child: Column(
               children: List.generate(recipeSteps.length, ((index) {
-                return RecipeStep(
+                return RecipeStepCard(
                     size: size,
+                    currentStep: index + 1,
+                    stepsLength: recipeSteps.length + 1,
                     stepNumber: recipeSteps[index]['stepNumber'],
                     stepName: recipeSteps[index]['stepName'],
                     stepContext: recipeSteps[index]['stepContext']);
@@ -143,7 +272,7 @@ class _RecipeInfoPageState extends State<RecipeInfoPage> {
   }
 
   //#recipe item
-  Widget itemRecipe(RecipeModel model) {
+  Widget itemRecipe(RecipeModel model, Size size) {
     return RecipeItem(
       model: model,
       borderRadius: 0,
@@ -159,67 +288,100 @@ class _RecipeInfoPageState extends State<RecipeInfoPage> {
                 // #back button
                 IconButton(
                   onPressed: () => Navigator.pop(context),
-                  icon: SvgPicture.asset(Assets.icons.backArrow),
+                  icon: SvgPicture.asset(
+                    Assets.icons.backArrow,
+                  ),
                 ),
                 // #time and views
-                Container(
-                  height: 28,
-                  decoration: AppDecorations.defDecor.copyWith(
-                    color: AppColors.metalColor.shade70.withOpacity(0.5),
-                    borderRadius: BorderRadius.circular(18),
-                    border: Border.all(color: AppColors.baseLight.shade20, width: 1.5),
-                  ),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(18),
-                    child: BackdropFilter(
-                      filter: ImageFilter.blur(sigmaX: 4, sigmaY: 4),
-                      child: Padding(
+                BluredPanel(
+                  mHeight: 28,
+                  mPadding: const EdgeInsets.symmetric(horizontal: 5),
+                  mBorderRadius: 18,
+                  widget: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      SvgPicture.asset(
+                        Assets.icons.recipeTime,
+                        width: 16,
+                        height: 16,
+                      ),
+                      Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 5),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            SvgPicture.asset(
-                              Assets.icons.recipeTime,
-                              width: 16,
-                              height: 16,
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 5),
-                              child: Text(
-                                widget.model.recipeTime ?? '',
-                                style: AppTextStyles.h6,
-                              ),
-                            ),
-                            VerticalDivider(
-                              indent: 6,
-                              endIndent: 6,
-                              width: 1.5,
-                              thickness: 1.5,
-                              color: AppColors.baseLight.shade100,
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 5),
-                              child: SvgPicture.asset(
-                                Assets.icons.recipeView,
-                                width: 16,
-                                height: 16,
-                              ),
-                            ),
-                            Text(
-                              widget.model.recipeView ?? '',
-                              style: AppTextStyles.h6,
-                            )
-                          ],
+                        child: Text(
+                          widget.model.recipeTime ?? '',
+                          style: AppTextStyles.h6,
                         ),
                       ),
-                    ),
+                      VerticalDivider(
+                        indent: 6,
+                        endIndent: 6,
+                        width: 1.5,
+                        thickness: 1.5,
+                        color: AppColors.baseLight.shade100,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 5),
+                        child: SvgPicture.asset(
+                          Assets.icons.recipeView,
+                          width: 16,
+                          height: 16,
+                        ),
+                      ),
+                      Text(
+                        widget.model.recipeView ?? '',
+                        style: AppTextStyles.h6,
+                      )
+                    ],
                   ),
                 ),
-                // #search button
+                // #more button
                 IconButton(
-                  onPressed: () {},
-                  icon: SvgPicture.asset(Assets.icons.search),
+                  onPressed: () {
+                    showCupertinoModalBottomSheet(
+                      topRadius: const Radius.circular(30),
+                      bounce: true,
+                      context: context,
+                      backgroundColor: Colors.transparent,
+                      builder: (BuildContext context) {
+                        return CustomBottomSheet(
+                          mHeight: size.height * 0.55,
+                          mPadding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+                          mBorderRadius: const BorderRadius.only(
+                            topLeft: Radius.circular(30),
+                            topRight: Radius.circular(30),
+                          ),
+                          mBgColor: AppColors.baseLight.shade100,
+                          mAppBar: null,
+                          mBody: SingleChildScrollView(
+                            child: Column(
+                              children: List.generate(
+                                commands.length,
+                                (index) => Container(
+                                  decoration: AppDecorations.defDecor,
+                                  margin: const EdgeInsets.symmetric(vertical: 3),
+                                  child: ListTile(
+                                    leading: Checkbox(
+                                      onChanged: (bool? value) {},
+                                      value: Random.secure().nextBool(),
+                                      shape: const RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.all(Radius.circular(10))),
+                                    ),
+                                    title: Text(
+                                      commands[index],
+                                      style: AppTextStyles.h5.copyWith(fontWeight: FontWeight.w600),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        );
+                      },
+                    );
+                  },
+                  icon: SvgPicture.asset(Assets.icons.more),
+                  iconSize: 18,
                 ),
               ],
             ),
@@ -229,7 +391,10 @@ class _RecipeInfoPageState extends State<RecipeInfoPage> {
           bottom: 30,
           right: 20,
           child: TextButton.icon(
-            onPressed: () {},
+            onPressed: () => Navigator.pushNamed(context, Routes.recipeStepPage, arguments: {
+              "currentStep": 1,
+              "stepsLength": recipeSteps.length + 1,
+            }),
             style: AppDecorations.buttonStyle(
               padding: const EdgeInsets.symmetric(horizontal: 12),
             ).copyWith(

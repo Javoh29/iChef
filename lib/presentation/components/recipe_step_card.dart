@@ -4,20 +4,27 @@ import 'package:ichef/config/constants/app_colors.dart';
 import 'package:ichef/config/constants/app_decorations.dart';
 import 'package:ichef/config/constants/app_text_styles.dart';
 import 'package:ichef/config/constants/assets.dart';
+import 'package:ichef/presentation/pages/home/recipe_step_page.dart';
 
-class RecipeStep extends StatelessWidget {
-  const RecipeStep({
+import '../routes/routes.dart';
+
+class RecipeStepCard extends StatelessWidget {
+  const RecipeStepCard({
     Key? key,
     required this.size,
     required this.stepNumber,
     required this.stepName,
     required this.stepContext,
+    required this.currentStep,
+    required this.stepsLength,
   }) : super(key: key);
 
   final Size size;
   final String stepNumber;
   final String stepName;
   final String stepContext;
+  final int currentStep;
+  final int stepsLength;
 
   @override
   Widget build(BuildContext context) {
@@ -68,15 +75,21 @@ class RecipeStep extends StatelessWidget {
                   ],
                 ),
               ),
-              Container(
-                width: 27,
-                height: 27,
-                alignment: Alignment.center,
-                decoration: BoxDecoration(shape: BoxShape.circle, color: AppColors.baseLight),
-                child: Icon(
-                  Icons.arrow_forward_ios_rounded,
-                  color: AppColors.metalColor.shade10,
-                  size: 12,
+              GestureDetector(
+                onTap: () => Navigator.pushNamed(context, Routes.recipeStepPage, arguments: {
+                  "currentStep": currentStep,
+                  "stepsLength": stepsLength,
+                }),
+                child: Container(
+                  width: 27,
+                  height: 27,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(shape: BoxShape.circle, color: AppColors.baseLight),
+                  child: Icon(
+                    Icons.arrow_forward_ios_rounded,
+                    color: AppColors.metalColor.shade10,
+                    size: 12,
+                  ),
                 ),
               ),
             ],
