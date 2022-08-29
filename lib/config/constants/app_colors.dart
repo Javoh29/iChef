@@ -4,6 +4,8 @@ abstract class AppColors {
   const AppColors._();
 
   static const Color accentLight = Color(0xFFDC2828);
+  static const Color deletedItem = Color(0xFFFFE9E9);
+  static const Color deletedItemBorder = Color(0xFFF1A9A9);
 
   static PrimaryColor primaryLight = const PrimaryColor(
     0xFF16A249,

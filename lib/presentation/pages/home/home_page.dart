@@ -54,7 +54,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
         SvgPicture.asset(
           Assets.icons.appLogo,
           height: 35,
-          width: 35,
+          width: 35
         ),
         const SizedBox(
           width: 5,

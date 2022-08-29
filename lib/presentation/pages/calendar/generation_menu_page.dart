@@ -25,7 +25,7 @@ class _GenerationMenuPageState extends State<GenerationMenuPage> {
   final TextEditingController _doseController = TextEditingController();
   Timer? _timerCounter;
   int _personCount = 1;
-  final _maskFormatter = MaskTextInputFormatter(mask: '####');
+  final _personCountFormatter = MaskTextInputFormatter(mask: '###');
   final _dailyDose = MaskTextInputFormatter(mask: '######');
   double _sliderValue = 0;
   DateTime? _startDate;
@@ -69,8 +69,12 @@ class _GenerationMenuPageState extends State<GenerationMenuPage> {
             padding: const EdgeInsets.only(right: 20, bottom: 10, top: 10),
             child: TextButton(
               onPressed: () {},
-              style: AppDecorations.buttonStyle(padding: const EdgeInsets.symmetric(horizontal: 15), borderRadius: 12),
-              child: Text('Применить', style: AppTextStyles.b4Medium.copyWith(color: AppColors.baseLight.shade100)),
+              style: AppDecorations.buttonStyle(
+                  padding: const EdgeInsets.symmetric(horizontal: 15),
+                  borderRadius: 12),
+              child: Text('Применить',
+                  style: AppTextStyles.b4Medium
+                      .copyWith(color: AppColors.baseLight.shade100)),
             ),
           ),
         ],
@@ -97,18 +101,21 @@ class _GenerationMenuPageState extends State<GenerationMenuPage> {
                     ),
                     margin: const EdgeInsets.symmetric(horizontal: 10),
                     child: TextFormField(
-                      inputFormatters: [_maskFormatter],
+                      inputFormatters: [_personCountFormatter],
                       cursorColor: AppColors.metalColor.shade100,
                       textAlign: TextAlign.center,
                       controller: _personController,
                       style: AppTextStyles.b3DemiBold.copyWith(fontSize: 36),
                       maxLines: 1,
                       onEditingComplete: () {
-                        if (_personController.text.isEmpty) _personController.text = '1';
+                        if (_personController.text.isEmpty) {
+                          _personController.text = '1';
+                        }
                         FocusManager.instance.primaryFocus?.unfocus();
                       },
                       keyboardType: TextInputType.number,
-                      decoration: const InputDecoration(border: InputBorder.none),
+                      decoration:
+                          const InputDecoration(border: InputBorder.none),
                     ),
                   ),
                   btnIncOrDec(icon: Assets.icons.add),
@@ -256,7 +263,10 @@ class _GenerationMenuPageState extends State<GenerationMenuPage> {
     return TextButton(
       onPressed: () => pickDateRange(context).then((value) => setState(() {})),
       style: AppDecorations.buttonStyle(
-          padding: const EdgeInsets.all(10), borderRadius: 20, bgColor: AppColors.baseLight.shade100),
+        padding: const EdgeInsets.all(10),
+        borderRadius: 20,
+        bgColor: AppColors.baseLight.shade100,
+      ),
       child: Text(
         DateFormat('dd.MM.yyyy').format(dateTime ?? DateTime.now()),
         style: AppTextStyles.b5Regular.copyWith(
@@ -281,7 +291,9 @@ class _GenerationMenuPageState extends State<GenerationMenuPage> {
         width: 42,
         height: 42,
         padding: const EdgeInsets.all(9),
-        decoration: BoxDecoration(borderRadius: BorderRadius.circular(25), color: AppColors.baseLight.shade100),
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(25),
+            color: AppColors.baseLight.shade100),
         child: SvgPicture.asset(icon),
       ),
     );
@@ -313,7 +325,8 @@ class _GenerationMenuPageState extends State<GenerationMenuPage> {
     });
   }
 
-  DateTimeRange dateTimeRange = DateTimeRange(start: DateTime.now(), end: DateTime.now());
+  DateTimeRange dateTimeRange =
+      DateTimeRange(start: DateTime.now(), end: DateTime.now());
 
   void onTapIncOrDecrement({bool isInc = true}) {
     FocusManager.instance.primaryFocus?.unfocus();
