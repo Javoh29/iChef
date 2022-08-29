@@ -4,13 +4,16 @@ import 'package:ichef/data/models/recipe_model.dart';
 import '../../config/constants/app_colors.dart';
 import '../../config/constants/app_text_styles.dart';
 import '../../config/constants/assets.dart';
+import '../../core/utils/flick_multi_manager.dart';
+import '../../core/utils/flick_multi_player.dart';
 import 'icon_button_action.dart';
 
 class RecipeItem extends StatelessWidget {
-  const RecipeItem({required this.model, this.borderRadius, this.listAdditional, Key? key}) : super(key: key);
+  RecipeItem({required this.model, this.borderRadius, this.listAdditional, Key? key}) : super(key: key);
   final RecipeModel model;
   final double? borderRadius;
   final List<Widget>? listAdditional;
+  final FlickMultiManager flickMultiManager = FlickMultiManager();
 
   @override
   Widget build(BuildContext context) {
@@ -25,11 +28,13 @@ class RecipeItem extends StatelessWidget {
               child: ClipRRect(
                 borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(borderRadius ?? 35), topRight: Radius.circular(borderRadius ?? 35)),
-                child: Image.asset(
-                  model.recipeVideo!,
-                  height: 390,
-                  width: double.infinity,
-                  fit: BoxFit.cover,
+                child: AspectRatio(
+                  aspectRatio: 3 / 4,
+                  child: FlickMultiPlayer(
+                    url: model.recipeVideo!,
+                    flickMultiManager: flickMultiManager,
+                    image: model.recipeVideoPoster,
+                  ),
                 ),
               ),
             ),

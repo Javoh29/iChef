@@ -8,7 +8,8 @@ List<RecipeModel> listRecipes = [
   RecipeModel(
       userName: "Ирина Волкова",
       userAvatar: Assets.images.userAvatar1,
-      recipeVideo: Assets.images.recipeMedovik,
+      recipeVideo: 'assets/videos/video1.mp4',
+      recipeVideoPoster: "assets/images/img_classic_medovik.png",
       categoryName: "Temantoga",
       recipeName: "Классический медовик",
       recipeTime: "1.5ч",
@@ -20,7 +21,8 @@ List<RecipeModel> listRecipes = [
   RecipeModel(
       userName: "Павел Антипов",
       userAvatar: Assets.images.userAvatar2,
-      recipeVideo: Assets.images.recipeChicken,
+      recipeVideo: 'assets/videos/video2.mp4',
+      recipeVideoPoster: "assets/images/img_chicken.png",
       categoryName: "Баклажан",
       recipeName: "Запеченная курица",
       recipeTime: "1.5ч",
@@ -31,8 +33,9 @@ List<RecipeModel> listRecipes = [
       ingredientCount: 5),
   RecipeModel(
       userName: "Ирина Волкова",
-      userAvatar: Assets.images.userAvatar3,
-      recipeVideo: Assets.images.recipeMedovik,
+      userAvatar: Assets.images.userAvatar1,
+      recipeVideo: 'assets/videos/video3.mp4',
+      recipeVideoPoster: "assets/images/img_classic_medovik.png",
       categoryName: "Temantoga",
       recipeName: "Классический медовик",
       recipeTime: "1.5ч",
@@ -43,8 +46,9 @@ List<RecipeModel> listRecipes = [
       ingredientCount: 7),
   RecipeModel(
       userName: "Павел Антипов",
-      userAvatar: Assets.images.userAvatar4,
-      recipeVideo: Assets.images.recipeChicken,
+      userAvatar: Assets.images.userAvatar2,
+      recipeVideo: 'assets/videos/video4.mp4',
+      recipeVideoPoster: "assets/images/img_chicken.png",
       categoryName: "Баклажан",
       recipeName: "Запеченная курица",
       recipeTime: "1.5ч",
@@ -53,6 +57,19 @@ List<RecipeModel> listRecipes = [
       commentCount: 99,
       variationCount: 14,
       ingredientCount: 5),
+  RecipeModel(
+      userName: "Ирина Волкова",
+      userAvatar: Assets.images.userAvatar1,
+      recipeVideo: 'assets/videos/video5.mp4',
+      recipeVideoPoster: "assets/images/img_classic_medovik.png",
+      categoryName: "Temantoga",
+      recipeName: "Классический медовик",
+      recipeTime: "1.5ч",
+      recipeView: "32K",
+      likeCount: 14,
+      commentCount: 135,
+      variationCount: 23,
+      ingredientCount: 7),
 ];
 
 List<String> infoIcons = [
@@ -217,6 +234,31 @@ List<String> commands = [
   "Перенести в папку",
   "Удалить из избранного",
 ];
+
+Map<String, dynamic> mockData = {
+  "items": [
+    {
+      "image": "assets/images/img_classic_medovik.png",
+      "video_path": 'assets/videos/video1.mp4',
+    },
+    {
+      "image": "assets/images/img_classic_medovik.png",
+      "video_path": "assets/videos/video2.mp4",
+    },
+    {
+      "image": "assets/images/img_classic_medovik.png",
+      "video_path": "assets/videos/video3.mp4",
+    },
+    {
+      "image": "assets/images/img_classic_medovik.png",
+      "video_path": "assets/videos/video4.mp4",
+    },
+    {
+      "image": "assets/images/img_classic_medovik.png",
+      "video_path": "assets/videos/video5.mp4",
+    }
+  ]
+};
 
   List info = [
     {
