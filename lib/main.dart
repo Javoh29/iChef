@@ -19,6 +19,7 @@ class MyApp extends StatelessWidget {
         statusBarIconBrightness: Brightness.dark));
     return MaterialApp(
       title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
       theme: Themes.lightTheme,
       onGenerateRoute: (setting) => Routes.generateRoute(setting),
     );
