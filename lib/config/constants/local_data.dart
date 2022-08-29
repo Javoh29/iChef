@@ -31,7 +31,7 @@ List<RecipeModel> listRecipes = [
       ingredientCount: 5),
   RecipeModel(
       userName: "Ирина Волкова",
-      userAvatar: Assets.images.userAvatar1,
+      userAvatar: Assets.images.userAvatar3,
       recipeVideo: Assets.images.recipeMedovik,
       categoryName: "Temantoga",
       recipeName: "Классический медовик",
@@ -43,7 +43,7 @@ List<RecipeModel> listRecipes = [
       ingredientCount: 7),
   RecipeModel(
       userName: "Павел Антипов",
-      userAvatar: Assets.images.userAvatar2,
+      userAvatar: Assets.images.userAvatar4,
       recipeVideo: Assets.images.recipeChicken,
       categoryName: "Баклажан",
       recipeName: "Запеченная курица",
@@ -217,3 +217,26 @@ List<String> commands = [
   "Перенести в папку",
   "Удалить из избранного",
 ];
+
+  List info = [
+    {
+      "amount": "56",
+      "type": "Б",
+      "status": "down",
+    },
+    {
+      "amount": "62",
+      "type": "Ж",
+      "status": "up",
+    },
+    {
+      "amount": "56",
+      "type": "У",
+      "status": "down",
+    },
+    {
+      "amount": "1226",
+      "type": "Ккал",
+      "status": "up",
+    },
+  ];

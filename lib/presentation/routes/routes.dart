@@ -6,6 +6,7 @@ import 'package:ichef/presentation/pages/settings/user_prefrences_page.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 import '../pages/calendar/generation_menu_page.dart';
+import '../pages/home/dish_replacement_page.dart';
 
 class Routes {
   static const main = '/';
@@ -13,6 +14,8 @@ class Routes {
   static const recipeStepPage = '/recipeStepPage';
   static const userPrefrencesPage = '/userPrefrencesPage';
   static const generationMenuPage = '/generationMenuPage';
+  static const dishReplaceMentPage = '/dishReplaceMentPage';
+  
 
   static Route<dynamic> generateRoute(RouteSettings routeSettings) {
     try {
@@ -48,6 +51,11 @@ class Routes {
               currentStep: args?['currentStep'],
               stepsLength: args?['stepsLength'],
             ),
+          );
+          case dishReplaceMentPage:
+          return MaterialPageRoute(
+            settings: routeSettings,
+            builder: (_) => const DishReplaceMentPage(),
           );
         default:
           return MaterialPageRoute(

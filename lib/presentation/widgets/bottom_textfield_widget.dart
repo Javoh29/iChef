@@ -16,11 +16,12 @@ class BottomTextFiledWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Positioned(
-      bottom: 20,
+      bottom: 0,
       left: 0,
       right: 0,
       child: Container(
-        color: Colors.white,
+        padding: const EdgeInsets.only(bottom: 30),
+        color: AppColors.baseLight.shade100,
         child: ListTile(
           contentPadding: EdgeInsets.zero,
           leading: mLeading,
