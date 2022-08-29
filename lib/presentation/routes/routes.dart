@@ -15,7 +15,7 @@ class Routes {
   static const userPrefrencesPage = '/userPrefrencesPage';
   static const generationMenuPage = '/generationMenuPage';
   static const dishReplaceMentPage = '/dishReplaceMentPage';
-
+  
   static Route<dynamic> generateRoute(RouteSettings routeSettings) {
     try {
       final Map<String, dynamic>? args = routeSettings.arguments as Map<String, dynamic>?;
