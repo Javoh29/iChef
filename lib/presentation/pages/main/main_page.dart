@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:ichef/presentation/widgets/filter_drawer_widget.dart';
 import 'package:ichef/presentation/pages/cart/cart_page.dart';
 import 'package:ichef/presentation/pages/favorites/favorites_page.dart';
 import 'package:ichef/presentation/pages/home/home_page.dart';
 import 'package:ichef/presentation/pages/recipes/recipes_page.dart';
 import 'package:ichef/presentation/pages/settings/settings_page.dart';
-import 'package:ichef/presentation/widgets/drawer_widget.dart';
 
 import '../../components/bottom_nav_bar.dart';
 import '../calendar/calendar_page.dart';
@@ -31,7 +31,7 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      endDrawer: const IngredientsDrawer(),
+      endDrawer: const FilterDrawerWidget(),
       endDrawerEnableOpenDragGesture: false,
       body: Stack(
         children: [

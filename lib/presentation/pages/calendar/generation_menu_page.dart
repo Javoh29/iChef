@@ -59,21 +59,18 @@ class _GenerationMenuPageState extends State<GenerationMenuPage> {
         ),
         elevation: 0,
         leading: IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: SvgPicture.asset(Assets.icons.back, height: 20)),
+            onPressed: () => Navigator.pop(context),
+            icon: SvgPicture.asset(
+              Assets.icons.back,
+              height: 20,
+            )),
         actions: [
           Padding(
             padding: const EdgeInsets.only(right: 20, bottom: 10, top: 10),
             child: TextButton(
               onPressed: () {},
-              style: AppDecorations.buttonStyle(
-                  padding: const EdgeInsets.symmetric(horizontal: 15),
-                  borderRadius: 12),
-              child: Text('Применить',
-                  style: AppTextStyles.b4Medium
-                      .copyWith(color: AppColors.baseLight.shade100)),
+              style: AppDecorations.buttonStyle(padding: const EdgeInsets.symmetric(horizontal: 15), borderRadius: 12),
+              child: Text('Применить', style: AppTextStyles.b4Medium.copyWith(color: AppColors.baseLight.shade100)),
             ),
           ),
         ],
@@ -113,8 +110,7 @@ class _GenerationMenuPageState extends State<GenerationMenuPage> {
                         FocusManager.instance.primaryFocus?.unfocus();
                       },
                       keyboardType: TextInputType.number,
-                      decoration:
-                          const InputDecoration(border: InputBorder.none),
+                      decoration: const InputDecoration(border: InputBorder.none),
                     ),
                   ),
                   btnIncOrDec(icon: Assets.icons.add),
@@ -151,13 +147,11 @@ class _GenerationMenuPageState extends State<GenerationMenuPage> {
                     children: [
                       Text(
                         'Редко',
-                        style: AppTextStyles.b4Regular
-                            .copyWith(color: MetalColor().shade50),
+                        style: AppTextStyles.b4Regular.copyWith(color: MetalColor().shade50),
                       ),
                       Text(
                         'Часто',
-                        style: AppTextStyles.b4Regular
-                            .copyWith(color: MetalColor().shade50),
+                        style: AppTextStyles.b4Regular.copyWith(color: MetalColor().shade50),
                       ),
                     ],
                   )
@@ -188,9 +182,7 @@ class _GenerationMenuPageState extends State<GenerationMenuPage> {
                       style: AppTextStyles.b3DemiBold.copyWith(fontSize: 36),
                       maxLines: 1,
                       onEditingComplete: () {
-                        if (_doseController.text.isEmpty) {
-                          _doseController.text = '1';
-                        }
+                        if (_doseController.text.isEmpty) _doseController.text = '1';
                         FocusManager.instance.primaryFocus?.unfocus();
                       },
                       keyboardType: TextInputType.number,
@@ -213,8 +205,7 @@ class _GenerationMenuPageState extends State<GenerationMenuPage> {
                       fixedSize: MaterialStateProperty.all(
                         const Size.fromHeight(40),
                       ),
-                      backgroundColor: MaterialStateProperty.all(
-                          AppColors.baseLight.shade100),
+                      backgroundColor: MaterialStateProperty.all(AppColors.baseLight.shade100),
                     ),
                     child: Text(
                       'Ккал',
@@ -239,8 +230,7 @@ class _GenerationMenuPageState extends State<GenerationMenuPage> {
                     padding: const EdgeInsets.symmetric(horizontal: 6),
                     child: Text(
                       '—',
-                      style: AppTextStyles.b4DemiBold
-                          .copyWith(fontWeight: FontWeight.w500),
+                      style: AppTextStyles.b4DemiBold.copyWith(fontWeight: FontWeight.w500),
                     ),
                   ),
                   btnDateTime(context, _endDate),
@@ -253,8 +243,7 @@ class _GenerationMenuPageState extends State<GenerationMenuPage> {
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Wrap(
-                children:
-                    List.generate(7, (index) => WeekDaysWidget(id: index)),
+                children: List.generate(7, (index) => WeekDaysWidget(id: index)),
               ),
             ),
           ),
@@ -295,9 +284,7 @@ class _GenerationMenuPageState extends State<GenerationMenuPage> {
         width: 42,
         height: 42,
         padding: const EdgeInsets.all(9),
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(25),
-            color: AppColors.baseLight.shade100),
+        decoration: BoxDecoration(borderRadius: BorderRadius.circular(25), color: AppColors.baseLight.shade100),
         child: SvgPicture.asset(icon),
       ),
     );
@@ -329,8 +316,7 @@ class _GenerationMenuPageState extends State<GenerationMenuPage> {
     });
   }
 
-  DateTimeRange dateTimeRange =
-      DateTimeRange(start: DateTime.now(), end: DateTime.now());
+  DateTimeRange dateTimeRange = DateTimeRange(start: DateTime.now(), end: DateTime.now());
 
   void onTapIncOrDecrement({bool isInc = true}) {
     FocusManager.instance.primaryFocus?.unfocus();

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:ichef/config/constants/app_colors.dart';
-import 'package:ichef/config/constants/app_decorations.dart';
 import 'package:ichef/config/constants/app_text_styles.dart';
 import 'package:ichef/config/constants/assets.dart';
 import 'package:ichef/presentation/pages/home/recipes_tab_page.dart';
@@ -24,24 +23,41 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
     _tabController.addListener(() => setState(() {}));
   }
 
+  Future<bool> loader() async {
+    await Future.delayed(const Duration(seconds: 1));
+    return true;
+  }
+
   @override
   Widget build(BuildContext context) {
-    return NestedScrollView(
-      physics: const NeverScrollableScrollPhysics(),
-      headerSliverBuilder: (context, innerBoxIsScrolled) {
-        return <Widget>[
-          appBar(innerBoxIsScrolled),
-        ];
-      },
-      body: TabBarView(
-        controller: _tabController,
-        children: [
-          const RecipesTabPage(),
-          Container(color: Colors.blue, child: const Center(child: Text('Блоги'))),
-          Container(color: Colors.red, child: const Center(child: Text('Чат'))),
-        ],
-      ),
-    );
+    return FutureBuilder(
+        future: loader(),
+        builder: ((context, snapshot) {
+          if (snapshot.hasData) {
+            return NestedScrollView(
+              physics: const NeverScrollableScrollPhysics(),
+              headerSliverBuilder: (context, innerBoxIsScrolled) {
+                return <Widget>[
+                  appBar(innerBoxIsScrolled),
+                ];
+              },
+              body: TabBarView(
+                controller: _tabController,
+                children: [
+                  const RecipesTabPage(),
+                  Container(),
+                  Container(),
+                ],
+              ),
+            );
+          } else {
+            return Center(
+              child: CircularProgressIndicator(
+                color: AppColors.primaryLight.shade100,
+              ),
+            );
+          }
+        }));
   }
 
   SliverAppBar appBar(bool innerBoxIsScrolled) {
@@ -53,11 +69,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
       actions: const [SizedBox.shrink()],
       centerTitle: false,
       title: Row(children: [
-        SvgPicture.asset(
-          Assets.icons.appLogo,
-          height: 35,
-          width: 35,
-        ),
+        SvgPicture.asset(Assets.icons.appLogo, height: 35, width: 35),
         const SizedBox(
           width: 5,
         ),
@@ -67,12 +79,14 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
             style: AppTextStyles.h3.copyWith(fontSize: 22),
           ),
         ),
-        TextButton(
-          onPressed: () {},
-          style: AppDecorations.buttonStyle(padding: const EdgeInsets.symmetric(horizontal: 12)),
-          child: Text(
-            'Фильтры',
-            style: AppTextStyles.b4Medium.copyWith(color: AppColors.baseLight.shade100),
+        IconButton(
+          onPressed: () {
+            Scaffold.of(context).openEndDrawer();
+          },
+          icon: SvgPicture.asset(
+            Assets.icons.filter,
+            height: 22,
+            width: 22,
           ),
         )
       ]),
@@ -84,6 +98,8 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
     return TabBar(
       padding: const EdgeInsets.symmetric(horizontal: 10),
       controller: _tabController,
+      labelStyle: AppTextStyles.b4Medium,
+      unselectedLabelStyle: AppTextStyles.b4Medium,
       indicator: UnderlineTabIndicator(
         borderSide: BorderSide(width: 4.0, color: AppColors.primaryLight),
       ),
