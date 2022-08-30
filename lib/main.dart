@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:ichef/config/theme/themes.dart';
-import 'package:ichef/presentation/pages/main/main_page.dart';
+import 'package:ichef/presentation/routes/routes.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,8 +19,9 @@ class MyApp extends StatelessWidget {
         statusBarIconBrightness: Brightness.dark));
     return MaterialApp(
       title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
       theme: Themes.lightTheme,
-      home: const MainPage(),
+      onGenerateRoute: (setting) => Routes.generateRoute(setting),
     );
   }
 }

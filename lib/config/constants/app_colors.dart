@@ -4,6 +4,8 @@ abstract class AppColors {
   const AppColors._();
 
   static const Color accentLight = Color(0xFFDC2828);
+  static const Color deletedItem = Color(0xFFFFE9E9);
+  static const Color deletedItemBorder = Color(0xFFF1A9A9);
 
   static PrimaryColor primaryLight = const PrimaryColor(
     0xFF16A249,
@@ -57,6 +59,7 @@ class MetalColor extends ColorSwatch<int> {
       : super(
           0xff111827,
           <int, Color>{
+            // 200: const Color(0xffE5E7EB),
             100: const Color(0xff111827),
             90: const Color(0xff111827),
             70: const Color(0xff111827).withOpacity(.7),

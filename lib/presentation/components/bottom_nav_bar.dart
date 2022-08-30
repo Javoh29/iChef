@@ -15,7 +15,6 @@ class BottomNavBar extends StatelessWidget {
   final Function onTap;
   final List<String> menuIcons = [
     Assets.icons.homeMenu,
-    Assets.icons.searchMenu,
     Assets.icons.recipesMenu,
     Assets.icons.favoritesMenu,
     Assets.icons.calendarMenu,
@@ -27,8 +26,8 @@ class BottomNavBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Positioned(
       bottom: 30,
-      left: 26,
-      right: 26,
+      left: 40,
+      right: 40,
       child: Container(
         height: 44,
         decoration: AppDecorations.defDecor.copyWith(

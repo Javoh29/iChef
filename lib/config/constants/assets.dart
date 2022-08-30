@@ -3,6 +3,7 @@ abstract class Assets {
 
   // ignore: library_private_types_in_public_api
   static _Icons get icons => const _Icons();
+
   // ignore: library_private_types_in_public_api
   static _Images get images => const _Images();
 }
@@ -66,15 +67,62 @@ class _Icons extends _AssetsHolder {
 
   String get backArrow => '$basePath/ic_back_arrow.svg';
 
+  String get nextArrow => '$basePath/ic_next_arrow.svg';
+
   String get search => '$basePath/ic_search.svg';
 
   String get playBtn => '$basePath/ic_play_btn.svg';
+
+  String get coffee => "$basePath/ic_coffee.png";
+
+  String get cancel => "$basePath/ic_cancel.svg";
+
+  String get cancelBlack => "$basePath/ic_cancel_black.png";
+
+  String get back => '$basePath/ic_back.svg';
+
+  String get info => '$basePath/ic_info.svg';
+
+  String get add => '$basePath/ic_add.svg';
+
+  String get addBlack => '$basePath/ic_add_black.svg';
+
+  String get remove => '$basePath/ic_remove.svg';
+
+  String get removeBlack => '$basePath/ic_remove_black.svg';
+
+  String get scanner => '$basePath/ic_scanner.svg';
+
+  String get edit => '$basePath/ic_edit.svg';
 
   String get delete => '$basePath/ic_delete.svg';
 
   String get basket => '$basePath/ic_basket.svg';
 
   String get subscribe => '$basePath/ic_subscripe.svg';
+  
+  String get trash => '$basePath/ic_trash.svg';
+
+  String get check => '$basePath/ic_check.svg';
+
+  String get filter => '$basePath/ic_filter.svg';
+
+  String get threePoint => '$basePath/three_point.svg';
+
+  String get bSheetClose => '$basePath/ic_bsheet_close.svg';
+
+  String get more => '$basePath/ic_more.svg';
+
+  String get folder => '$basePath/ic_folder.svg';
+
+  String get up => '$basePath/ic_up.svg';
+  
+  String get down => '$basePath/ic_down.svg';
+
+  String get addOutlined => '$basePath/ic_add_outlined.svg';
+
+  String get twoPerson => '$basePath/ic_two_person.svg';
+
 }
 
 class _Images extends _AssetsHolder {
@@ -83,6 +131,12 @@ class _Images extends _AssetsHolder {
   String get userAvatar1 => "$basePath/img_user1.jpeg";
 
   String get userAvatar2 => "$basePath/img_user2.jpeg";
+
+  String get userAvatar3 => "$basePath/img_user3.png";
+
+  String get userAvatar4 => "$basePath/img_user4.png";
+
+  String get userAvatar5 => "$basePath/img_user5.png";
 
   String get recipeChicken => "$basePath/img_chicken.png";
 
@@ -105,4 +159,8 @@ class _Images extends _AssetsHolder {
   String get saler2 => "$basePath/flour_salers/img_saler_okey.png";
 
   String get saler3 => "$basePath/flour_salers/img_saler_ozon.png";
+  
+  String get recipePrepaireOne => "$basePath/img_prepaire_one.png";
+
+  String get smile => "$basePath/img_smile.png";
 }

@@ -8,7 +8,8 @@ List<RecipeModel> listRecipes = [
   RecipeModel(
       userName: "Ирина Волкова",
       userAvatar: Assets.images.userAvatar1,
-      recipeVideo: Assets.images.recipeMedovik,
+      recipeVideo: 'assets/videos/video1.mp4',
+      recipeVideoPoster: "assets/images/img_classic_medovik.png",
       categoryName: "Temantoga",
       recipeName: "Классический медовик",
       recipeTime: "1.5ч",
@@ -20,7 +21,8 @@ List<RecipeModel> listRecipes = [
   RecipeModel(
       userName: "Павел Антипов",
       userAvatar: Assets.images.userAvatar2,
-      recipeVideo: Assets.images.recipeChicken,
+      recipeVideo: 'assets/videos/video2.mp4',
+      recipeVideoPoster: "assets/images/img_chicken.png",
       categoryName: "Баклажан",
       recipeName: "Запеченная курица",
       recipeTime: "1.5ч",
@@ -32,7 +34,8 @@ List<RecipeModel> listRecipes = [
   RecipeModel(
       userName: "Ирина Волкова",
       userAvatar: Assets.images.userAvatar1,
-      recipeVideo: Assets.images.recipeMedovik,
+      recipeVideo: 'assets/videos/video3.mp4',
+      recipeVideoPoster: "assets/images/img_classic_medovik.png",
       categoryName: "Temantoga",
       recipeName: "Классический медовик",
       recipeTime: "1.5ч",
@@ -44,7 +47,8 @@ List<RecipeModel> listRecipes = [
   RecipeModel(
       userName: "Павел Антипов",
       userAvatar: Assets.images.userAvatar2,
-      recipeVideo: Assets.images.recipeChicken,
+      recipeVideo: 'assets/videos/video4.mp4',
+      recipeVideoPoster: "assets/images/img_chicken.png",
       categoryName: "Баклажан",
       recipeName: "Запеченная курица",
       recipeTime: "1.5ч",
@@ -53,6 +57,19 @@ List<RecipeModel> listRecipes = [
       commentCount: 99,
       variationCount: 14,
       ingredientCount: 5),
+  RecipeModel(
+      userName: "Ирина Волкова",
+      userAvatar: Assets.images.userAvatar1,
+      recipeVideo: 'assets/videos/video5.mp4',
+      recipeVideoPoster: "assets/images/img_chicken.png",
+      categoryName: "Temantoga",
+      recipeName: "Классический медовик",
+      recipeTime: "1.5ч",
+      recipeView: "32K",
+      likeCount: 14,
+      commentCount: 135,
+      variationCount: 23,
+      ingredientCount: 7),
 ];
 
 List<String> infoIcons = [
@@ -109,6 +126,44 @@ List<Map> recipeSteps = [
   }
 ];
 
+String stepName = "Soften the onion";
+
+String stepContext =
+    '''Cut the bell pepper into rings (it is better to choose three different colors - it looks more colorful), after removing the seeds. Cut the onion into half rings, grate the garlic on a fine grater.
+Cut the bell pepper into rings (it is better to choose three different colors - it looks more colorful), after removing the seeds. Cut the onion into half rings, grate the garlic on a fine grater.Cut the bell pepper into rings (it is better to choose three different colors - it looks more colorful), after removing the seeds. Cut the onion into half rings, grate the garlic on a fine grater.
+Cut the bell pepper into rings (it is better to choose three different colors - it looks more colorful), after removing the seeds. Cut the onion into half rings, grate the garlic on a fine grater.Cut the bell pepper into rings (it is better to choose three different colors - it looks more colorful), after removing the seeds. Cut the onion into half rings, grate the garlic on a fine grater.
+Cut the bell pepper into rings (it is better to choose three different colors - it looks more colorful), after removing the seeds. Cut the onion into half rings, grate the garlic on a fine grater.Cut the bell pepper into rings (it is better to choose three different colors - it looks more colorful), after removing the seeds. Cut the onion into half rings, grate the garlic on a fine grater.
+Cut the bell pepper into rings (it is better to choose three different colors - it looks more colorful), after removing the seeds. Cut the onion into half rings, grate the garlic on a fine grater.''';
+
+List<Map> userComments = [
+  {
+    "userName": "Надежда Румянцева",
+    "userImage": Assets.images.userAvatar3,
+    "lastSeen": "2 м назад",
+    "time": "Ср 18, 13:49",
+    "chatText": "Cut the bell",
+    "isOwner": false
+  },
+  {
+    "userName": "Анна Матюнина",
+    "userImage": Assets.images.userAvatar4,
+    "lastSeen": "5 м назад",
+    "time": "Ср 18, 13:49",
+    "chatText":
+        "Cut the bell pepper into rings (it is better to choose three different colors - it looks more colorful)",
+    "isOwner": true
+  },
+  {
+    "userName": "Александра Кадира",
+    "userImage": Assets.images.userAvatar5,
+    "lastSeen": "2 м назад",
+    "time": "Ср 18, 13:49",
+    "chatText":
+        '''Cut the bell pepper into rings (it is better to choose three different colors - it looks more colorful), after removing the seeds. Cut the onion into half rings, grate the garlic on a fine grater.
+Cut the bell pepper into rings (it is better to choose three different colors - it looks more colorful), after removing the seeds. Cut the onion into half rings, grate the garlic on a fine grater.''',
+    "isOwner": false
+  },
+];
 List<Widget> firstIngredientsRazdel = const [
   IngridientDetailContainer(
     isActive: false,
@@ -197,4 +252,78 @@ List salerPrices = [
   "98",
   "88",
   "102",
+List<String> folders = [
+  "Понравилось",
+  "Приготовлено",
+  "К готовке",
+  "Название папки",
+];
+
+List<String> commands = [
+  "Заблокировать",
+  "Пожаловаться",
+  "Информация об аккаунте",
+  "Скопировать URL  профиля",
+  "Поделиться этим профилем",
+  "Перенести в папку",
+  "Удалить из избранного",
+];
+
+List info = [
+  {
+    "amount": "56",
+    "type": "Б",
+    "status": "down",
+  },
+  {
+    "amount": "62",
+    "type": "Ж",
+    "status": "up",
+  },
+  {
+    "amount": "56",
+    "type": "У",
+    "status": "down",
+  },
+  {
+    "amount": "1226",
+    "type": "Ккал",
+    "status": "up",
+  },
+];
+
+Map<String, dynamic> mockData = {
+  "items": [
+    {
+      "image": "assets/images/img_classic_medovik.png",
+      "video_path": 'assets/videos/video1.mp4',
+    },
+    {
+      "image": "assets/images/img_classic_medovik.png",
+      "video_path": "assets/videos/video2.mp4",
+    },
+    {
+      "image": "assets/images/img_classic_medovik.png",
+      "video_path": "assets/videos/video3.mp4",
+    },
+    {
+      "image": "assets/images/img_classic_medovik.png",
+      "video_path": "assets/videos/video4.mp4",
+    },
+    {
+      "image": "assets/images/img_classic_medovik.png",
+      "video_path": "assets/videos/video5.mp4",
+    }
+  ]
+};
+
+List<String> types = [
+  "Завтрак",
+  "Континентальный завтрак",
+  "Бранч",
+  "Ланч",
+  "Обед",
+  "Полдник",
+  "Ужин",
+  "Ямча",
 ];
