@@ -61,7 +61,7 @@ List<RecipeModel> listRecipes = [
       userName: "Ирина Волкова",
       userAvatar: Assets.images.userAvatar1,
       recipeVideo: 'assets/videos/video5.mp4',
-      recipeVideoPoster: "assets/images/img_classic_medovik.png",
+      recipeVideoPoster: "assets/images/img_chicken.png",
       categoryName: "Temantoga",
       recipeName: "Классический медовик",
       recipeTime: "1.5ч",

@@ -97,7 +97,15 @@ class _Icons extends _AssetsHolder {
 
   String get delete => '$basePath/ic_delete.svg';
 
+  String get trash => '$basePath/ic_trash.svg';
+
   String get check => '$basePath/ic_check.svg';
+
+  String get filter => '$basePath/ic_filter.svg';
+
+  String get threePoint => '$basePath/three_point.svg';
+
+  String get bSheetClose => '$basePath/ic_bsheet_close.svg';
 
   String get more => '$basePath/ic_more.svg';
 
@@ -106,8 +114,10 @@ class _Icons extends _AssetsHolder {
   String get up => '$basePath/ic_up.svg';
   
   String get down => '$basePath/ic_down.svg';
-  
-  String get filter => '$basePath/ic_filter.svg';
+
+  String get addOutlined => '$basePath/ic_add_outlined.svg';
+
+  String get twoPerson => '$basePath/ic_two_person.svg';
 
 }
 

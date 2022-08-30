@@ -23,39 +23,53 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
     _tabController.addListener(() => setState(() {}));
   }
 
+  Future<bool> loader() async {
+    await Future.delayed(const Duration(seconds: 1));
+    return true;
+  }
+
   @override
   Widget build(BuildContext context) {
-    return NestedScrollView(
-      physics: const NeverScrollableScrollPhysics(),
-      headerSliverBuilder: (context, innerBoxIsScrolled) {
-        return <Widget>[
-          appBar(innerBoxIsScrolled),
-        ];
-      },
-      body: TabBarView(
-        controller: _tabController,
-        children: [
-          const RecipesTabPage(),
-          Container(color: Colors.blue, child: const Center(child: Text('Блоги'))),
-          Container(color: Colors.red, child: const Center(child: Text('Чат'))),
-        ],
-      ),
-    );
+    return FutureBuilder(
+        future: loader(),
+        builder: ((context, snapshot) {
+          if (snapshot.hasData) {
+            return NestedScrollView(
+              physics: const NeverScrollableScrollPhysics(),
+              headerSliverBuilder: (context, innerBoxIsScrolled) {
+                return <Widget>[
+                  appBar(innerBoxIsScrolled),
+                ];
+              },
+              body: TabBarView(
+                controller: _tabController,
+                children: [
+                  const RecipesTabPage(),
+                  Container(),
+                  Container(),
+                ],
+              ),
+            );
+          } else {
+            return Center(
+              child: CircularProgressIndicator(
+                color: AppColors.primaryLight.shade100,
+              ),
+            );
+          }
+        }));
   }
 
   SliverAppBar appBar(bool innerBoxIsScrolled) {
     return SliverAppBar(
       automaticallyImplyLeading: false,
+      pinned: true,
       floating: true,
       forceElevated: innerBoxIsScrolled,
       actions: const [SizedBox.shrink()],
       centerTitle: false,
       title: Row(children: [
-        SvgPicture.asset(
-          Assets.icons.appLogo,
-          height: 35,
-          width: 35,
-        ),
+        SvgPicture.asset(Assets.icons.appLogo, height: 35, width: 35),
         const SizedBox(
           width: 5,
         ),
@@ -84,6 +98,8 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
     return TabBar(
       padding: const EdgeInsets.symmetric(horizontal: 10),
       controller: _tabController,
+      labelStyle: AppTextStyles.b4Medium,
+      unselectedLabelStyle: AppTextStyles.b4Medium,
       indicator: UnderlineTabIndicator(
         borderSide: BorderSide(width: 4.0, color: AppColors.primaryLight),
       ),
