@@ -54,7 +54,7 @@ class UserPrefrencesPage extends StatelessWidget {
             title: "Эти продукты я вообще не ем",
             elements: [
               PrefrencesProductsContainer(
-                [
+                elements:[
                   ProductItem(title: "Пшеничная мука"),
                   ProductItem(title: "Сливочное масло"),
                   ProductItem(title: "Куриное яйцо"),
@@ -66,7 +66,7 @@ class UserPrefrencesPage extends StatelessWidget {
             title: "Эти продукты я не предпочитаю (могу есть только в маленьких дозах как составная часть блюда)",
             elements: [
               PrefrencesProductsContainer(
-                [
+                elements:[
                   ProductItem(title: "Ванилин"),
                 ],
               )

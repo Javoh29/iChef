@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:ichef/config/constants/app_colors.dart';
 import 'package:ichef/config/constants/app_decorations.dart';
@@ -17,9 +18,8 @@ class CalendarPage extends StatefulWidget {
   State<CalendarPage> createState() => _CalendarPageState();
 }
 
-class _CalendarPageState extends State<CalendarPage>
-    with SingleTickerProviderStateMixin {
-  late DateTime dateTime;
+class _CalendarPageState extends State<CalendarPage> with SingleTickerProviderStateMixin {
+  DateTime? dateTime;
   String dateFormat = '';
 
   @override
@@ -35,7 +35,9 @@ class _CalendarPageState extends State<CalendarPage>
     return NestedScrollView(
       physics: const NeverScrollableScrollPhysics(),
       headerSliverBuilder: (context, innerBoxIsScrolled) {
-        return <Widget>[appBar(innerBoxIsScrolled)];
+        return <Widget>[
+          appBar(innerBoxIsScrolled),
+        ];
       },
       body: const RecipesTabPage(),
     );
@@ -43,9 +45,9 @@ class _CalendarPageState extends State<CalendarPage>
 
   SliverAppBar appBar(bool innerBoxIsScrolled) {
     return SliverAppBar(
+      automaticallyImplyLeading: false,
       pinned: true,
       floating: true,
-      automaticallyImplyLeading: false,
       forceElevated: innerBoxIsScrolled,
       actions: const [SizedBox.shrink()],
       centerTitle: false,
@@ -70,8 +72,7 @@ class _CalendarPageState extends State<CalendarPage>
           child: Padding(
             padding: const EdgeInsets.only(left: 20.0),
             child: Text(
-              dateFormat.substring(0, 1).toUpperCase() +
-                  dateFormat.substring(1),
+              dateFormat.substring(0, 1).toUpperCase() + dateFormat.substring(1),
               style: AppTextStyles.b5Regular.copyWith(
                 fontWeight: FontWeight.w500,
               ),

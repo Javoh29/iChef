@@ -17,6 +17,9 @@ dependencies:
   flutter_slidable: ^2.0.0
   intl: ^0.17.0
   modal_bottom_sheet: ^2.1.0
+  flick_video_player: ^0.5.0
+  visibility_detector: ^0.3.3
+  video_player: ^2.4.7
   dotted_border: ^2.0.0+2
 
 dev_dependencies:
@@ -34,6 +37,9 @@ flutter:
     - assets/icons/menu_icons/
     - assets/icons/recipe_info_icons/
     - assets/images/
+    - assets/images/flour_brands/
+    - assets/images/flour_salers/
+    - assets/videos/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

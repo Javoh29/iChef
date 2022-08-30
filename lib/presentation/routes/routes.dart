@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:ichef/presentation/pages/home/recipe_info_page.dart';
 import 'package:ichef/presentation/pages/home/recipe_step_page.dart';
 import 'package:ichef/presentation/pages/main/main_page.dart';
+import 'package:ichef/presentation/pages/product/product_info_page.dart';
 import 'package:ichef/presentation/pages/settings/user_prefrences_page.dart';
 import 'package:ichef/presentation/pages/shopping_list/shopping_list.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 import '../pages/calendar/generation_menu_page.dart';
+import '../pages/home/recipe_replace_page.dart';
 
 class Routes {
   static const main = '/';
@@ -15,15 +17,16 @@ class Routes {
   static const userPrefrencesPage = '/userPrefrencesPage';
   static const generationMenuPage = '/generationMenuPage';
   static const shoppingListPage = '/shoppingListPage';
+  static const recipeReplacePage = '/recipeReplacePage';
+  static const productPage = '/productPage';
 
   static Route<dynamic> generateRoute(RouteSettings routeSettings) {
     try {
-      final Map<String, dynamic>? args =
-          routeSettings.arguments as Map<String, dynamic>?;
+      final Map<String, dynamic>? args = routeSettings.arguments as Map<String, dynamic>?;
       args ?? <String, dynamic>{};
       switch (routeSettings.name) {
         case main:
-          return MaterialPageRoute(
+          return MaterialWithModalsPageRoute(
             settings: routeSettings,
             builder: (_) => const MainPage(),
           );
@@ -52,10 +55,20 @@ class Routes {
               stepsLength: args?['stepsLength'],
             ),
           );
+        case recipeReplacePage:
+          return MaterialPageRoute(
+            settings: routeSettings,
+            builder: (_) => const RecipeReplacePage(),
+          );
         case shoppingListPage:
           return MaterialPageRoute(
             settings: routeSettings,
             builder: (_) => const ShoppingListPage(),
+          );
+        case productPage:
+          return MaterialPageRoute(
+            settings: routeSettings,
+            builder: (_) => const ProductInfoPage(),
           );
         default:
           return MaterialPageRoute(
