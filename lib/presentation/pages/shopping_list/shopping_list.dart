@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:ichef/presentation/pages/shopping_list/widgets/shopping_list_app_bar.dart';
-import 'package:ichef/presentation/pages/shopping_list/widgets/shopping_list_item.dart';
-import 'package:ichef/presentation/pages/shopping_list/widgets/sliver_app_bar_widget.dart';
+import 'package:ichef/presentation/pages/shopping_list/components/shopping_list_app_bar.dart';
+import 'package:ichef/presentation/pages/shopping_list/components/shopping_list_item.dart';
+import 'package:ichef/presentation/pages/shopping_list/components/sliver_app_bar_widget.dart';
 
 import '../../../config/constants/app_colors.dart';
 import '../../../config/constants/app_decorations.dart';

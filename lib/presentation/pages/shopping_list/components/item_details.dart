@@ -3,8 +3,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:ichef/presentation/pages/shopping_list/widgets/shipping_model.dart';
-import 'package:ichef/presentation/pages/shopping_list/widgets/slidable_btn.dart';
+import 'package:ichef/presentation/pages/shopping_list/components/shipping_model.dart';
+import 'package:ichef/presentation/pages/shopping_list/components/slidable_btn.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 import '../../../../config/constants/app_colors.dart';
