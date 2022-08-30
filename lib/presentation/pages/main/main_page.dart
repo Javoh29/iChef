@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ichef/presentation/components/filter_end_drawer.dart';
+import 'package:ichef/presentation/widgets/filter_drawer_widget.dart';
 import 'package:ichef/presentation/pages/cart/cart_page.dart';
 import 'package:ichef/presentation/pages/favorites/favorites_page.dart';
 import 'package:ichef/presentation/pages/home/home_page.dart';
@@ -31,7 +31,7 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      endDrawer: const FilterEndDrawer(),
+      endDrawer: const FilterDrawerWidget(),
       endDrawerEnableOpenDragGesture: false,
       body: Stack(
         children: [
