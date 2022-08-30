@@ -123,6 +123,10 @@ class _Icons extends _AssetsHolder {
 
   String get twoPerson => '$basePath/ic_two_person.svg';
 
+  String get bell => '$basePath/ic_bell.svg';
+
+  String get contact => '$basePath/ic_contact.svg';
+
 }
 
 class _Images extends _AssetsHolder {
@@ -142,7 +146,7 @@ class _Images extends _AssetsHolder {
 
   String get recipeMedovik => "$basePath/img_classic_medovik.png";
 
-  String get recipePrepaireOne => "$basePath/im_prepaire_one.png";
+  String get recipePrepaireOne => "$basePath/img_prepaire_one.png";
 
   String get flourImg => "$basePath/img_flour.png";
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ichef/config/constants/assets.dart';
+import 'package:ichef/data/models/user_model.dart';
 
 import '../../data/models/recipe_model.dart';
 import '../../presentation/components/ingridient_detail_container.dart';
@@ -328,3 +329,42 @@ List<String> types = [
   "Ужин",
   "Ямча",
 ];
+
+List<UserModel> users = [
+  UserModel(
+    username: "Ирина Волкова",
+    userImage: Assets.images.userAvatar5,
+    job: "Шеф-повар ресторана Temantoga",
+    bio: '''Шеф-повар ресторана Temantoga
+текстовое описание которые сам пишет,
+может даже сайт указать''',
+    followers: "45,6 тыс",
+    following: "4,8 тыс",
+  ),
+  UserModel(
+    username: "Ирина Волкова",
+    userImage: Assets.images.userAvatar5,
+    job: "Шеф-повар ресторана Temantoga",
+    bio: '''Шеф-повар ресторана Temantoga
+текстовое описание которые сам пишет,
+может даже сайт указать''',
+    followers: "45,6 тыс",
+    following: "4,8 тыс",
+  ),
+  UserModel(
+    username: "Ирина Волкова",
+    userImage: Assets.images.userAvatar5,
+    job: "Шеф-повар ресторана Temantoga",
+    bio: '''Шеф-повар ресторана Temantoga
+текстовое описание которые сам пишет,
+может даже сайт указать''',
+    followers: "45,6 тыс",
+    following: "4,8 тыс",
+  ),
+];
+
+  List profileTabList = [
+    'Рецепты',
+    'Блоги',
+    'Чат',
+  ];
