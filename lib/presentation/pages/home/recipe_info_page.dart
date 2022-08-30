@@ -257,7 +257,7 @@ class _RecipeInfoPageState extends State<RecipeInfoPage> {
   //#recipe type button
   Widget recipeTypeButton(String recipeType) {
     return TextButton(
-      onPressed: () {},
+      onPressed: () => Navigator.pushNamed(context, Routes.productPage),
       style: AppDecorations.buttonStyle(
         bgColor: AppColors.primaryLight.shade50,
         padding: const EdgeInsets.symmetric(horizontal: 15),

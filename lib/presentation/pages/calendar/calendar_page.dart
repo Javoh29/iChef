@@ -16,7 +16,6 @@ class CalendarPage extends StatefulWidget {
 }
 
 class _CalendarPageState extends State<CalendarPage> with SingleTickerProviderStateMixin {
-  late final TabController _tabController = TabController(length: 3, vsync: this);
   DateTime? dateTime;
   String dateFormat = '';
 
@@ -25,7 +24,6 @@ class _CalendarPageState extends State<CalendarPage> with SingleTickerProviderSt
     super.initState();
     initializeDateFormatting('RU', null);
     dateFormat = DateFormat('MMMM yyyy', 'RU').format(dateTime ?? DateTime.now());
-    _tabController.addListener(() => setState(() {}));
   }
 
   @override
@@ -37,14 +35,7 @@ class _CalendarPageState extends State<CalendarPage> with SingleTickerProviderSt
           appBar(innerBoxIsScrolled),
         ];
       },
-      body: TabBarView(
-        controller: _tabController,
-        children: const [
-          RecipesTabPage(),
-          RecipesTabPage(),
-          RecipesTabPage(),
-        ],
-      ),
+      body: const RecipesTabPage(),
     );
   }
 
