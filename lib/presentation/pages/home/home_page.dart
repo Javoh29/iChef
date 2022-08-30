@@ -5,7 +5,6 @@ import 'package:ichef/config/constants/app_decorations.dart';
 import 'package:ichef/config/constants/app_text_styles.dart';
 import 'package:ichef/config/constants/assets.dart';
 import 'package:ichef/presentation/pages/home/recipes_tab_page.dart';
-import 'package:ichef/presentation/pages/settings/user_prefrences_page.dart';
 
 import '../../components/custom_badge.dart';
 
