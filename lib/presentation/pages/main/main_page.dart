@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:ichef/presentation/routes/routes.dart';
 import 'package:ichef/presentation/widgets/filter_drawer_widget.dart';
-import 'package:ichef/presentation/pages/cart/cart_page.dart';
 import 'package:ichef/presentation/pages/favorites/favorites_page.dart';
 import 'package:ichef/presentation/pages/home/home_page.dart';
 import 'package:ichef/presentation/pages/recipes/recipes_page.dart';
@@ -23,7 +23,6 @@ class _MainPageState extends State<MainPage> {
     const RecipesPage(),
     const FavoritesPage(),
     const CalendarPage(),
-    const CartPage(),
     const SettingsPage()
   ];
   int _selectedIndex = 0;
@@ -47,7 +46,13 @@ class _MainPageState extends State<MainPage> {
           ),
           BottomNavBar(
             selectedIndex: _selectedIndex,
-            onTap: (index) => _pageController.jumpToPage(index),
+            onTap: (index) {
+              if (index == 4) {
+                Navigator.pushNamed(context, Routes.shoppingListPage);
+              } else {
+                _pageController.jumpToPage(index);
+              }
+            },
           ),
         ],
       ),

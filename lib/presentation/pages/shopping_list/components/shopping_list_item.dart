@@ -2,7 +2,7 @@ import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:ichef/config/constants/app_colors.dart';
-import 'package:ichef/presentation/pages/shopping_list/widgets/shipping_model.dart';
+import 'package:ichef/presentation/pages/shopping_list/components/shipping_model.dart';
 
 import '../../../../config/constants/app_decorations.dart';
 import '../../../../config/constants/app_text_styles.dart';
