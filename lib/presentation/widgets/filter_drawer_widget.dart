@@ -5,21 +5,27 @@ import 'package:ichef/presentation/components/custom_badge.dart';
 import '../../config/constants/app_colors.dart';
 import '../../config/constants/app_decorations.dart';
 import '../../config/constants/local_data.dart';
-import 'filter_types_container.dart';
-import 'prefrences_info_container.dart';
-import 'prefrences_products_container.dart';
-import 'product_item.dart';
-import 'select_options.dart';
+import '../components/filter_types_container.dart';
+import '../components/prefrences_info_container.dart';
+import '../components/prefrences_products_container.dart';
+import '../components/product_item.dart';
+import '../components/select_options.dart';
 
-class FilterEndDrawer extends StatefulWidget {
-  const FilterEndDrawer({Key? key}) : super(key: key);
+class FilterDrawerWidget extends StatefulWidget {
+  const FilterDrawerWidget({Key? key}) : super(key: key);
 
   @override
-  State<FilterEndDrawer> createState() => _FilterEndDrawerState();
+  State<FilterDrawerWidget> createState() => _FilterDrawerWidgetState();
 }
 
-class _FilterEndDrawerState extends State<FilterEndDrawer> {
+class _FilterDrawerWidgetState extends State<FilterDrawerWidget> {
   final PageController _pageController = PageController();
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Drawer(

@@ -31,25 +31,6 @@ class SettingsPage extends StatelessWidget {
             style: AppTextStyles.h5.copyWith(color: AppColors.baseLight.shade100),
           ),
         ),
-        const SizedBox(
-          height: 10,
-        ),
-        TextButton(
-          onPressed: () => Navigator.pushNamed(context, Routes.dishReplaceMentPage),
-          style: AppDecorations.buttonStyle(),
-          child: Text(
-            'Recipe Replace',
-            style: AppTextStyles.h5.copyWith(color: AppColors.baseLight.shade100),
-          ),
-        ),
-        TextButton(
-          onPressed: () => Navigator.pushNamed(context, Routes.dishReplaceMentPage),
-          style: AppDecorations.buttonStyle(),
-          child: Text(
-            'Dish Replacement',
-            style: AppTextStyles.h5.copyWith(color: AppColors.baseLight.shade100),
-          ),
-        ),
       ],
     );
   }
