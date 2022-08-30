@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 import '../../../../config/constants/app_colors.dart';
 import '../../../../config/constants/app_decorations.dart';
 import '../../../../config/constants/app_text_styles.dart';
-import '../../../../config/constants/assets.dart';
 
 // ignore: must_be_immutable
 class DiscountContainer extends StatelessWidget {

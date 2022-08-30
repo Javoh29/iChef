@@ -3,11 +3,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:ichef/presentation/pages/product/components/discount_container.dart';
 
 import '../../../config/constants/app_colors.dart';
-import '../../../config/constants/app_decorations.dart';
 import '../../../config/constants/app_text_styles.dart';
 import '../../../config/constants/assets.dart';
-import '../../../config/constants/local_data.dart';
-import 'components/brand_and_saler_container.dart';
 import 'components/product_buy_component.dart';
 import 'components/product_subs.dart';
 
