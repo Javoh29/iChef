@@ -218,6 +218,40 @@ List<Widget> secondIngredientsRazdel = const [
   ),
 ];
 
+List brandImages = [
+  Assets.images.brand3,
+  Assets.images.brand2,
+  Assets.images.brand1,
+];
+
+List brandNames = [
+  "Molino Gra...",
+  "Предпортовая",
+  "Мелькомбинат",
+];
+
+List brandPrices = [
+  "98",
+  "65",
+  "69.99",
+];
+
+List salerImages = [
+  Assets.images.saler2,
+  Assets.images.saler1,
+  Assets.images.saler3,
+];
+
+List salerNames = [
+  "Окей",
+  "Лента",
+  "Eldorado",
+];
+
+List salerPrices = [
+  "98",
+  "88",
+  "102",
 List<String> folders = [
   "Понравилось",
   "Приготовлено",

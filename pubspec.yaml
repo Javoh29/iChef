@@ -37,6 +37,8 @@ flutter:
     - assets/icons/menu_icons/
     - assets/icons/recipe_info_icons/
     - assets/images/
+    - assets/images/flour_brands/
+    - assets/images/flour_salers/
     - assets/videos/
 
   # An image asset can refer to one or more resolution-specific "variants", see
