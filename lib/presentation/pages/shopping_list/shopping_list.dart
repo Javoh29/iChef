@@ -1,6 +1,6 @@
-import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:ichef/presentation/pages/shopping_list/widgets/shopping_list_app_bar.dart';
 import 'package:ichef/presentation/pages/shopping_list/widgets/shopping_list_item.dart';
 import 'package:ichef/presentation/pages/shopping_list/widgets/sliver_app_bar_widget.dart';
 
@@ -27,7 +27,7 @@ class _ShoppingListPageState extends State<ShoppingListPage> {
             SliverAppBarWidget(
               innerBoxIsScrolled: innerBoxIsScrolled,
               leading: IconButton(
-                onPressed: () {},
+                onPressed: () => Navigator.pop(context),
                 icon: SvgPicture.asset(
                   Assets.icons.back,
                   height: 20,
@@ -49,24 +49,19 @@ class _ShoppingListPageState extends State<ShoppingListPage> {
                   ),
                 ),
               ],
+              bottom:  const ShoppingListAppBar(),
             ),
+
           ];
         },
         body: Stack(
           alignment: Alignment.bottomCenter,
           children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Column(
-                children: const [
-                  ListTileTheme(
-                    data: ListTileThemeData(dense: true),
-                    child: ShoppingListItem(
-                      title:
-                          'Пицца с куриными колбасками, ветчиной, гриб...Пицца с куриными колбасками, ветчиной, гриб...',
-                    ),
-                  ),
-                ],
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20),
+              child: ShoppingListItem(
+                title:
+                    'Пицца с куриными колбасками, ветчиной, гриб...Пицца с куриными колбасками, ветчиной, гриб...',
               ),
             ),
             Container(

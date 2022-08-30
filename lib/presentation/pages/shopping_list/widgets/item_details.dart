@@ -54,7 +54,10 @@ class _ShoppingItemDetailsState extends State<ShoppingItemDetails> {
                       icon: Assets.icons.check,
                       leftRadius: 10,
                       rightRadius: 0,
-                      onTap: () {},
+                      onTap: () {
+                        setState(() {});
+                        modelList[index].isCheck = true;
+                      },
                     ),
                   ],
                 ),
@@ -80,7 +83,11 @@ class _ShoppingItemDetailsState extends State<ShoppingItemDetails> {
                       rightRadius: 0,
                       color: AppColors.primaryLight.shade100,
                       icon: Assets.icons.edit,
-                      onTap: () {},
+                      onTap: () {
+                        setState(() {
+                          modelList[index].isShowEdit = true;
+                        });
+                      },
                     ),
                     SlidableBtnWidget(
                       leftRadius: 0,
@@ -96,7 +103,10 @@ class _ShoppingItemDetailsState extends State<ShoppingItemDetails> {
                     ),
                   ],
                 ),
-                child: ItemWidget(model: modelList[index])),
+                child: ItemWidget(
+                  model: modelList[index],
+                  showEdit: modelList[index].isShowEdit,
+                )),
           ),
         ),
       ),
@@ -105,67 +115,70 @@ class _ShoppingItemDetailsState extends State<ShoppingItemDetails> {
 }
 
 class ItemWidget extends StatefulWidget {
-  const ItemWidget({Key? key, required this.model}) : super(key: key);
+  const ItemWidget({Key? key, required this.model, required this.showEdit})
+      : super(key: key);
   final ShippingModel model;
+  final bool showEdit;
 
   @override
   State<ItemWidget> createState() => _ItemWidgetState();
 }
 
 class _ItemWidgetState extends State<ItemWidget> {
-  TextEditingController counterController = TextEditingController();
-  MaskTextInputFormatter maskFormatter = MaskTextInputFormatter(mask: '##');
   Timer? timer;
   int _count = 1;
+  BoxDecoration decoration = AppDecorations.defDecor;
+  TextEditingController counterController = TextEditingController();
+  MaskTextInputFormatter maskFormatter = MaskTextInputFormatter(mask: '##');
 
   @override
   void initState() {
-    counterController.text = '1';
+    counterController.text = widget.model.count.toString();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    decoration = widget.model.isDeleted
+        ? AppDecorations.defDecor.copyWith(color: AppColors.deletedItem)
+        : widget.model.isCheck
+            ? AppDecorations.defDecor
+                .copyWith(color: AppColors.primaryLight.shade50)
+            : AppDecorations.defDecor;
+
     return Container(
       alignment: Alignment.center,
-      padding: EdgeInsets.only(
-        left: 10,
-        right: 10,
-        bottom: widget.model.subTitle != null ? 6 : 0,
-      ),
-      decoration: widget.model.isDeleted
-          ? AppDecorations.defDecor.copyWith(color: AppColors.deletedItem)
-          : AppDecorations.defDecor,
+      padding: const EdgeInsets.symmetric(horizontal: 10),
+      decoration: decoration,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Expanded(
-                child: TextButton(
-                  onPressed: () {},
-                  style: AppDecorations.buttonStyle(
-                    bgColor: widget.model.isDeleted
-                        ? AppColors.deletedItem
-                        : AppColors.primaryLight.shade50,
-                    border: BorderSide(
-                      width: 1,
-                      color: widget.model.isDeleted
-                          ? AppColors.deletedItemBorder
-                          : AppColors.primaryLight.shade100,
-                    ),
+              TextButton(
+                onPressed: () {},
+                style: AppDecorations.buttonStyle(
+                  bgColor: widget.model.isDeleted
+                      ? AppColors.deletedItem
+                      : AppColors.primaryLight.shade50,
+                  border: BorderSide(
+                    width: 1,
+                    color: widget.model.isDeleted
+                        ? AppColors.deletedItemBorder
+                        : AppColors.primaryLight.shade100,
                   ),
-                  child: Text(
-                    widget.model.title,
-                    style: AppTextStyles.b4Medium.copyWith(
-                      color: widget.model.isDeleted
-                          ? AppColors.deletedItemBorder
-                          : AppColors.primaryLight.shade100,
-                    ),
+                ),
+                child: Text(
+                  widget.model.title,
+                  style: AppTextStyles.b4Medium.copyWith(
+                    color: widget.model.isDeleted
+                        ? AppColors.deletedItemBorder
+                        : AppColors.primaryLight.shade100,
                   ),
                 ),
               ),
+              const Spacer(),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
@@ -183,48 +196,56 @@ class _ItemWidgetState extends State<ItemWidget> {
                   ),
                 ],
               ),
-              Container(
-                height: 28,
-                margin: const EdgeInsets.only(left: 12),
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 14, vertical: 3),
-                decoration: BoxDecoration(
-                    color: const Color(0xffE5E7EB),
-                    borderRadius: BorderRadius.circular(6)),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    btnIncOrDec(icon: Assets.icons.removeBlack, isInc: false),
-                    Container(
-                      width: 20,
-                      alignment: Alignment.center,
+              widget.showEdit
+                  ? Container(
+                      height: 28,
+                      margin: const EdgeInsets.only(left: 12),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 14, vertical: 3),
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(25),
+                          color: const Color(0xffE5E7EB),
+                          borderRadius: BorderRadius.circular(6)),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          btnIncOrDec(
+                              icon: Assets.icons.removeBlack, isInc: false),
+                          Container(
+                            width: 20,
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(25),
+                            ),
+                            margin: const EdgeInsets.symmetric(horizontal: 10),
+                            child: TextFormField(
+                              inputFormatters: [maskFormatter],
+                              cursorColor: Colors.black,
+                              textAlign: TextAlign.center,
+                              controller: counterController,
+                              style: AppTextStyles.b3DemiBold
+                                  .copyWith(fontSize: 12),
+                              maxLines: 1,
+                              keyboardType: TextInputType.number,
+                              decoration: const InputDecoration(
+                                border: InputBorder.none,
+                              ),
+                            ),
+                          ),
+                          btnIncOrDec(icon: Assets.icons.addBlack),
+                        ],
                       ),
-                      margin: const EdgeInsets.symmetric(horizontal: 10),
-                      child: TextFormField(
-                        inputFormatters: [maskFormatter],
-                        cursorColor: Colors.black,
-                        textAlign: TextAlign.center,
-                        controller: counterController,
-                        style: AppTextStyles.b3DemiBold.copyWith(fontSize: 12),
-                        maxLines: 1,
-                        keyboardType: TextInputType.number,
-                        decoration:
-                            const InputDecoration(border: InputBorder.none),
-                      ),
-                    ),
-                    btnIncOrDec(icon: Assets.icons.addBlack),
-                  ],
-                ),
-              ),
+                    )
+                  : Container(),
             ],
           ),
           widget.model.subTitle != null
-              ? Text(
-                  '${widget.model.subTitle}',
-                  style: AppTextStyles.b4Regular
-                      .copyWith(color: AppColors.metalColor.shade50),
+              ? Padding(
+                  padding: const EdgeInsets.only(bottom: 6.0),
+                  child: Text(
+                    '${widget.model.subTitle}',
+                    style: AppTextStyles.b4Regular
+                        .copyWith(color: AppColors.metalColor.shade50),
+                  ),
                 )
               : Container(),
         ],

@@ -72,6 +72,8 @@ class _ShoppingListItemState extends State<ShoppingListItem> {
   List<ShippingModel> list = [
     ShippingModel(
         isDeleted: false,
+        isCheck: false,
+        isShowEdit: false,
         title: 'Соль',
         count: 10,
         price: 129,
@@ -80,6 +82,8 @@ class _ShoppingListItemState extends State<ShoppingListItem> {
         id: 1),
     ShippingModel(
         isDeleted: false,
+        isCheck: false,
+        isShowEdit: false,
         title: 'Корица',
         count: 10,
         price: 129,
@@ -87,6 +91,8 @@ class _ShoppingListItemState extends State<ShoppingListItem> {
         id: 1),
     ShippingModel(
         isDeleted: false,
+        isCheck: false,
+        isShowEdit: false,
         title: 'Соль',
         count: 10,
         price: 129,
@@ -94,6 +100,8 @@ class _ShoppingListItemState extends State<ShoppingListItem> {
         id: 1),
     ShippingModel(
         isDeleted: false,
+        isCheck: false,
+        isShowEdit: false,
         title: 'Корица',
         count: 10,
         price: 129,
@@ -101,6 +109,8 @@ class _ShoppingListItemState extends State<ShoppingListItem> {
         id: 1),
     ShippingModel(
         isDeleted: false,
+        isCheck: false,
+        isShowEdit: false,
         title: 'Соль',
         count: 10,
         price: 129,

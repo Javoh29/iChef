@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+
 
 class ShippingModel {
   final String title;
@@ -7,14 +7,16 @@ class ShippingModel {
   final int price;
   final int weight;
   final int id;
-  // final TextEditingController controller;
   bool isDeleted = false;
+  bool isCheck = false;
+  bool isShowEdit = false;
 
   ShippingModel(
       {required this.title,
       this.subTitle,
       required this.isDeleted,
-      // this.controller,
+      required this.isCheck,
+      required this.isShowEdit,
       required this.count,
       required this.price,
       required this.weight,
