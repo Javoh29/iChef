@@ -109,9 +109,6 @@ class _Icons extends _AssetsHolder {
   
   String get filter => '$basePath/ic_filter.svg';
 
-  String get up => '$basePath/ic_up.svg';
-  
-  String get down => '$basePath/ic_down.svg';
 }
 
 class _Images extends _AssetsHolder {
