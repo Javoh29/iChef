@@ -20,9 +20,8 @@ class CustomBadge extends StatelessWidget {
       margin: const EdgeInsets.only(left: 3),
       decoration: AppDecorations.defDecor.copyWith(color: isActive ? AppColors.primaryLight : null),
       child: Text(text,
-          style: AppTextStyles.b4Medium.copyWith(
-            color: isActive ? AppColors.baseLight.shade100 : AppColors.metalColor,
-          )),
+          style: AppTextStyles.b4Medium
+              .copyWith(color: isActive ? AppColors.baseLight.shade100 : AppColors.metalColor, fontSize: 11)),
     );
   }
 }
