@@ -252,6 +252,7 @@ List salerPrices = [
   "98",
   "88",
   "102",
+];
 List<String> folders = [
   "Понравилось",
   "Приготовлено",
