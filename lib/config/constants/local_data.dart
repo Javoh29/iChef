@@ -333,7 +333,7 @@ List<String> types = [
 List<UserModel> users = [
   UserModel(
     username: "Ирина Волкова",
-    userImage: Assets.images.userAvatar5,
+    userImage: Assets.images.userAvatar1,
     job: "Шеф-повар ресторана Temantoga",
     bio: '''Шеф-повар ресторана Temantoga
 текстовое описание которые сам пишет,
@@ -343,7 +343,7 @@ List<UserModel> users = [
   ),
   UserModel(
     username: "Ирина Волкова",
-    userImage: Assets.images.userAvatar5,
+    userImage: Assets.images.userAvatar2,
     job: "Шеф-повар ресторана Temantoga",
     bio: '''Шеф-повар ресторана Temantoga
 текстовое описание которые сам пишет,
@@ -353,7 +353,7 @@ List<UserModel> users = [
   ),
   UserModel(
     username: "Ирина Волкова",
-    userImage: Assets.images.userAvatar5,
+    userImage: Assets.images.userAvatar3,
     job: "Шеф-повар ресторана Temantoga",
     bio: '''Шеф-повар ресторана Temantoga
 текстовое описание которые сам пишет,

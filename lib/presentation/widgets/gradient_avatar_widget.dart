@@ -36,12 +36,12 @@ class GradientAvatarWidget extends StatelessWidget {
           ),
         ),
         child: Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(borderRadius - 2),
-            color: AppColors.baseLight.shade100,
-          ),
-          child: Image(
-            image: AssetImage(avatarPath),
+          padding: const EdgeInsets.all(2),
+          decoration:
+              BoxDecoration(borderRadius: BorderRadius.circular(borderRadius - 2), color: AppColors.baseLight.shade100),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(size / 2),
+            child: Image.asset(avatarPath),
           ),
         ),
       ),
