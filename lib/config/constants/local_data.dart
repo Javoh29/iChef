@@ -363,8 +363,35 @@ List<UserModel> users = [
   ),
 ];
 
-  List profileTabList = [
-    'Рецепты',
-    'Блоги',
-    'Чат',
-  ];
+List profileTabList = [
+  'Рецепты',
+  'Блоги',
+  'Чат',
+];
+
+List<Map> foodTypes = [
+  {
+    "imagePath": Assets.icons.foodOne,
+    "name": "Завтр...",
+  },
+  {
+    "imagePath": Assets.icons.foodTwo,
+    "name": "Мясные б...",
+  },
+  {
+    "imagePath": Assets.icons.foodThree,
+    "name": "Сувид",
+  },
+  {
+    "imagePath": Assets.icons.foodFour,
+    "name": "Выпечка",
+  },
+  {
+    "imagePath": Assets.icons.foodFive,
+    "name": "Грузинс...",
+  },
+  {
+    "imagePath": Assets.icons.foodSix,
+    "name": "Сувид",
+  },
+];
