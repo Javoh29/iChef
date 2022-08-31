@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:ichef/config/constants/app_colors.dart';
 import 'package:ichef/config/constants/app_decorations.dart';
 import 'package:ichef/config/constants/app_text_styles.dart';
 import 'package:ichef/config/constants/assets.dart';
-import 'package:ichef/presentation/pages/home/recipes_tab_page.dart';
+import 'package:ichef/presentation/pages/calendar/components/calendar_tab_page.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 
-import 'components/calendar_widget.dart';
+import '../../routes/routes.dart';
 
 class CalendarPage extends StatefulWidget {
   const CalendarPage({Key? key}) : super(key: key);
@@ -18,9 +17,12 @@ class CalendarPage extends StatefulWidget {
   State<CalendarPage> createState() => _CalendarPageState();
 }
 
-class _CalendarPageState extends State<CalendarPage> with SingleTickerProviderStateMixin {
-  DateTime? dateTime;
+class _CalendarPageState extends State<CalendarPage>
+    with SingleTickerProviderStateMixin {
+  late DateTime dateTime;
   String dateFormat = '';
+  late final TabController _tabController =
+      TabController(length: 7, vsync: this);
 
   @override
   void initState() {
@@ -28,6 +30,7 @@ class _CalendarPageState extends State<CalendarPage> with SingleTickerProviderSt
     dateTime = DateTime.now();
     initializeDateFormatting('RU', null);
     dateFormat = DateFormat('MMMM yyyy', 'RU').format(dateTime);
+    _tabController.addListener(() => setState(() {}));
   }
 
   @override
@@ -39,7 +42,13 @@ class _CalendarPageState extends State<CalendarPage> with SingleTickerProviderSt
           appBar(innerBoxIsScrolled),
         ];
       },
-      body: const RecipesTabPage(),
+      body: TabBarView(
+        controller: _tabController,
+        children: List.generate(
+          7,
+          (index) => const CalendarTabPage(),
+        ),
+      ),
     );
   }
 
@@ -53,7 +62,8 @@ class _CalendarPageState extends State<CalendarPage> with SingleTickerProviderSt
       centerTitle: false,
       title: Row(children: [
         TextButton(
-          onPressed: () {},
+          onPressed: () =>
+              Navigator.pushNamed(context, Routes.generationMenuPage),
           style: AppDecorations.buttonStyle(
             bgColor: AppColors.baseLight.shade100,
             border: BorderSide(
@@ -72,7 +82,8 @@ class _CalendarPageState extends State<CalendarPage> with SingleTickerProviderSt
           child: Padding(
             padding: const EdgeInsets.only(left: 20.0),
             child: Text(
-              dateFormat.substring(0, 1).toUpperCase() + dateFormat.substring(1),
+              dateFormat.substring(0, 1).toUpperCase() +
+                  dateFormat.substring(1),
               style: AppTextStyles.b5Regular.copyWith(
                 fontWeight: FontWeight.w500,
               ),
@@ -82,6 +93,7 @@ class _CalendarPageState extends State<CalendarPage> with SingleTickerProviderSt
         GestureDetector(
           onTap: () {
             setState(() {});
+            _tabController.animateTo(0);
             dateTime = changeDate(false);
             dateFormat = DateFormat('MMMM yyyy', 'RU').format(dateTime);
           },
@@ -97,6 +109,7 @@ class _CalendarPageState extends State<CalendarPage> with SingleTickerProviderSt
           child: GestureDetector(
             onTap: () {
               setState(() {});
+              _tabController.animateTo(0);
               dateTime = changeDate(true);
               dateFormat = DateFormat('MMMM yyyy', 'RU').format(dateTime);
             },
@@ -112,7 +125,10 @@ class _CalendarPageState extends State<CalendarPage> with SingleTickerProviderSt
           ),
         ),
       ]),
-      bottom: CalendarWidget(date: dateTime),
+      bottom: PreferredSize(
+        preferredSize: const Size.fromHeight(58),
+        child: tabBar(),
+      ),
     );
   }
 
@@ -120,5 +136,40 @@ class _CalendarPageState extends State<CalendarPage> with SingleTickerProviderSt
     return isAdd
         ? dateTime.add(const Duration(days: 7))
         : dateTime.subtract(const Duration(days: 7));
+  }
+
+  TabBar tabBar() {
+    return TabBar(
+      padding: const EdgeInsets.symmetric(horizontal: 5),
+      controller: _tabController,
+      indicator: UnderlineTabIndicator(
+        borderSide: BorderSide(width: 4.0, color: AppColors.primaryLight),
+      ),
+      tabs: List.generate(
+        7,
+        (index) {
+          return Tab(
+            height: 32,
+            child: Column(
+              children: [
+                Text(
+                  '${dateTime.add(Duration(days: index)).day}',
+                  style: AppTextStyles.b5DemiBold.copyWith(
+                      fontWeight: FontWeight.w700,
+                      color: AppColors.primaryLight),
+                ),
+                Text(
+                  DateFormat('EE', 'RU').format(
+                    dateTime.add(Duration(days: index)),
+                  ),
+                  style: AppTextStyles.b4Regular
+                      .copyWith(color: AppColors.metalColor.shade40),
+                ),
+              ],
+            ),
+          );
+        },
+      ),
+    );
   }
 }

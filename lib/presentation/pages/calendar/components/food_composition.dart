@@ -31,28 +31,22 @@ class _FoodCompositionState extends State<FoodComposition> {
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12),
           border: Border.all(color: AppColors.metalColor.shade30)),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          ListView.builder(
-            padding: const EdgeInsets.all(10),
-            itemCount: 5,
-            shrinkWrap: true,
-            scrollDirection: Axis.horizontal,
-            itemBuilder: (context, index) {
-              return InkWell(
-                onTap: () => setState(() => selected = index),
-                child: FoodCompositionItems(
-                  count: 1,
-                  icon: index == 0 ? Assets.icons.twoPerson : null,
-                  isActive: selected == index,
-                  type: index != 0 ? '${types[index - 1]}' : '',
-                ),
-              );
-            },
-          ),
-        ],
+      child: ListView.builder(
+        padding: const EdgeInsets.all(10),
+        itemCount: 5,
+        shrinkWrap: true,
+        scrollDirection: Axis.horizontal,
+        itemBuilder: (context, index) {
+          return InkWell(
+            onTap: () => setState(() => selected = index),
+            child: FoodCompositionItems(
+              count: 100,
+              icon: index == 0 ? Assets.icons.twoPerson : null,
+              isActive: selected == index,
+              type: index != 0 ? '${types[index - 1]}' : '',
+            ),
+          );
+        },
       ),
     );
   }
