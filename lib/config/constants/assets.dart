@@ -139,6 +139,9 @@ class _Icons extends _AssetsHolder {
 
   String get foodSix => '$basePath/ic_food_six.png';
 
+  String get send => '$basePath/ic_send.svg';
+
+
 
 }
 
