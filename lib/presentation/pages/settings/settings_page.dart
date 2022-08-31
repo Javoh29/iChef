@@ -31,14 +31,6 @@ class SettingsPage extends StatelessWidget {
             style: AppTextStyles.h5.copyWith(color: AppColors.baseLight.shade100),
           ),
         ),
-        TextButton(
-          onPressed: () => Navigator.pushNamed(context, Routes.profilePage),
-          style: AppDecorations.buttonStyle(),
-          child: Text(
-            'Profile',
-            style: AppTextStyles.h5.copyWith(color: AppColors.baseLight.shade100),
-          ),
-        ),
       ],
     );
   }

@@ -36,18 +36,18 @@ class BorderGradientWidget extends StatelessWidget {
           ),
         ),
         child: Container(
-          decoration: BoxDecoration(
+          padding: const EdgeInsets.all(2),
+          decoration:
+              BoxDecoration(borderRadius: BorderRadius.circular(borderRadius - 2), color: AppColors.baseLight.shade100),
+          child: ClipRRect(
             borderRadius: BorderRadius.circular(borderRadius - 2),
-            color: AppColors.baseLight.shade100,
-          ),
-          child: Image(
-            image: AssetImage(avatarPath),
+            child: Image.asset(avatarPath),
           ),
         ),
       ),
       Positioned(
         top: 5,
-        right: 10,
+        right: 0,
         child: badgeText != null
             ? CustomBadge(
                 text: badgeText ?? '',

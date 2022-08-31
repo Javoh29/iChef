@@ -8,6 +8,7 @@ import '../../../config/constants/local_data.dart';
 import '../../components/custom_badge.dart';
 import '../../components/profile_card.dart';
 import '../../components/recipe_item.dart';
+import '../../widgets/border_gradient_widget.dart';
 import '../../widgets/gradient_avatar_widget.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -132,29 +133,26 @@ class _ProfilePageState extends State<ProfilePage> with TickerProviderStateMixin
         shrinkWrap: true,
         scrollDirection: Axis.horizontal,
         children: List.generate(
-          10,
+          foodTypes.length,
           (index) {
             return Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                GradientAvatarWidget(
+                BorderGradientWidget(
                   colors: const [
                     Color(0xff2934D0),
                     Color(0xffEB47BD),
                   ],
-                  avatarPath: users[0].userImage ?? "",
+                  avatarPath: foodTypes[index]['imagePath'] ?? "",
                   size: 48,
                   borderRadius: 16,
-                  margin: const EdgeInsets.only(right: 22, top: 10),
+                  margin: const EdgeInsets.only(right: 12, left: 12, top: 10),
                   badgeText: '7',
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 8),
-                  child: Text(
-                    'Сувид',
-                    style: AppTextStyles.b4Regular,
-                  ),
+                Text(
+                  foodTypes[index]['name'] ?? "",
+                  style: AppTextStyles.b4Regular,
                 )
               ],
             );
