@@ -9,7 +9,6 @@ import '../../components/custom_badge.dart';
 import '../../components/profile_card.dart';
 import '../../components/recipe_item.dart';
 import '../../widgets/border_gradient_widget.dart';
-import '../../widgets/gradient_avatar_widget.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({Key? key}) : super(key: key);
@@ -25,6 +24,12 @@ class _ProfilePageState extends State<ProfilePage> with TickerProviderStateMixin
   void initState() {
     super.initState();
     _tabController.addListener(() => setState(() {}));
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
   }
 
   @override

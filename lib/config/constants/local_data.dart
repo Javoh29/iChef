@@ -361,6 +361,26 @@ List<UserModel> users = [
     followers: "45,6 тыс",
     following: "4,8 тыс",
   ),
+  UserModel(
+    username: "Ирина Волкова",
+    userImage: Assets.images.userAvatar4,
+    job: "Шеф-повар ресторана Temantoga",
+    bio: '''Шеф-повар ресторана Temantoga
+текстовое описание которые сам пишет,
+может даже сайт указать''',
+    followers: "45,6 тыс",
+    following: "4,8 тыс",
+  ),
+  UserModel(
+    username: "Ирина Волкова",
+    userImage: Assets.images.userAvatar5,
+    job: "Шеф-повар ресторана Temantoga",
+    bio: '''Шеф-повар ресторана Temantoga
+текстовое описание которые сам пишет,
+может даже сайт указать''',
+    followers: "45,6 тыс",
+    following: "4,8 тыс",
+  ),
 ];
 
 List profileTabList = [
