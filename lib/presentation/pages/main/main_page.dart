@@ -39,9 +39,7 @@ class _MainPageState extends State<MainPage> {
             controller: _pageController,
             children: pages,
             onPageChanged: (index) {
-              setState(() {
-                _selectedIndex = index;
-              });
+              setState(() {});
             },
           ),
           BottomNavBar(
@@ -50,6 +48,7 @@ class _MainPageState extends State<MainPage> {
               if (index == 4) {
                 Navigator.pushNamed(context, Routes.shoppingListPage);
               } else {
+                _selectedIndex = index;
                 _pageController.jumpToPage(index);
               }
             },
