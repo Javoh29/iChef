@@ -166,55 +166,55 @@ Cut the bell pepper into rings (it is better to choose three different colors - 
 ];
 List<Widget> firstIngredientsRazdel = const [
   IngridientDetailContainer(
-    isActive: false,
     title: "Пшеничная мука",
     addInfo: "Manitoba 400",
-    data: "400 г, 3 шт",
+    data: "400 г",
+    data2: "400 г",
   ),
   SizedBox(
     height: 5,
   ),
   IngridientDetailContainer(
-    isActive: false,
     title: "Сливочное масло",
     addInfo: "",
-    data: "400 г, 3 шт",
+    data: "400 г",
+    data2: "250 г",
   ),
 ];
 
 List<Widget> secondIngredientsRazdel = const [
   IngridientDetailContainer(
-    isActive: true,
     title: "Куриное яйцо",
     addInfo: "C0",
     data: "400 г, 3 шт",
+    data2: "30 г, 3 шт",
   ),
   SizedBox(
     height: 5,
   ),
   IngridientDetailContainer(
-    isActive: true,
     title: "Тыква",
     addInfo: "",
     data: "400 г, 3 шт",
+    data2: "900 г",
   ),
   SizedBox(
     height: 5,
   ),
   IngridientDetailContainer(
-    isActive: false,
     title: "Корица",
     addInfo: "KOTANYI целая",
     data: "400 г, 3 шт",
+    data2: "3 г",
   ),
   SizedBox(
     height: 5,
   ),
   IngridientDetailContainer(
-    isActive: false,
     title: "Соль",
     addInfo: "",
     data: "400 г, 3 шт",
+    data2: "3 г, 0.5 ч. л.",
   ),
 ];
 
