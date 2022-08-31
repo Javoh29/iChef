@@ -17,8 +17,10 @@ class FavoritesPage extends StatefulWidget {
   State<FavoritesPage> createState() => _FavoritesPageState();
 }
 
-class _FavoritesPageState extends State<FavoritesPage> with SingleTickerProviderStateMixin {
-  late final TabController _tabController = TabController(length: 4, vsync: this);
+class _FavoritesPageState extends State<FavoritesPage>
+    with SingleTickerProviderStateMixin {
+  late final TabController _tabController =
+      TabController(length: 4, vsync: this);
   List tabList = [
     'Понравилось',
     'К готовке',
@@ -45,16 +47,16 @@ class _FavoritesPageState extends State<FavoritesPage> with SingleTickerProvider
         controller: _tabController,
         children: [
           FavoritesTabPage(
-            listRecipes: listRecipes,
+            listImages: favImagesTab1,
           ),
           FavoritesTabPage(
-            listRecipes: listRecipes,
+            listImages: favImagesTab2,
           ),
           FavoritesTabPage(
-            listRecipes: listRecipes,
+            listImages: favImagesTab1,
           ),
           FavoritesTabPage(
-            listRecipes: listRecipes,
+            listImages: favImagesTab2,
           ),
         ],
       ),
@@ -129,7 +131,8 @@ class _FavoritesPageState extends State<FavoritesPage> with SingleTickerProvider
       isScrollable: true,
       padding: const EdgeInsets.symmetric(horizontal: 5),
       controller: _tabController,
-      unselectedLabelStyle: AppTextStyles.b5Regular.copyWith(color: AppColors.metalColor.shade50),
+      unselectedLabelStyle:
+          AppTextStyles.b5Regular.copyWith(color: AppColors.metalColor.shade50),
       labelStyle: AppTextStyles.b5Regular.copyWith(color: AppColors.baseLight),
       indicator: UnderlineTabIndicator(
         borderSide: BorderSide(width: 4.0, color: AppColors.primaryLight),
@@ -171,62 +174,65 @@ class BottomSheetModel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(20),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          title != null
-              ? Padding(
-                  padding: const EdgeInsets.only(bottom: 20.0),
-                  child: AppBar(
-                    elevation: 0,
-                    leadingWidth: 34,
-                    toolbarHeight: 36,
-                    leading: Container(
-                      width: 34,
-                      height: 34,
-                      decoration: AppDecorations.defDecor.copyWith(
-                        borderRadius: BorderRadius.circular(50),
-                      ),
-                      child: IconButton(
-                        splashRadius: 1,
-                        onPressed: () {
-                          debugPrint('OnTap');
-                        },
-                        icon: SvgPicture.asset(
-                          '$leadingIcon',
-                          fit: BoxFit.none,
+    return Material(
+      child: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            title != null
+                ? Padding(
+                    padding: const EdgeInsets.only(bottom: 20.0),
+                    child: AppBar(
+                      elevation: 0,
+                      leadingWidth: 34,
+                      toolbarHeight: 36,
+                      leading: Container(
+                        width: 34,
+                        height: 34,
+                        decoration: AppDecorations.defDecor.copyWith(
+                          borderRadius: BorderRadius.circular(50),
+                        ),
+                        child: IconButton(
+                          splashRadius: 1,
+                          onPressed: () {
+                            debugPrint('OnTap');
+                          },
+                          icon: SvgPicture.asset(
+                            '$leadingIcon',
+                            fit: BoxFit.none,
+                          ),
                         ),
                       ),
-                    ),
-                    title: Text(
-                      '$title',
-                      style: AppTextStyles.b5DemiBold.copyWith(
-                        fontWeight: FontWeight.w700,
+                      title: Text(
+                        '$title',
+                        style: AppTextStyles.b5DemiBold.copyWith(
+                          fontWeight: FontWeight.w700,
+                        ),
                       ),
-                    ),
-                    actions: actions ??
-                        [
-                          TextButton(
-                            onPressed: () {},
-                            style: AppDecorations.buttonStyle(
-                              padding: const EdgeInsets.symmetric(horizontal: 15),
-                              borderRadius: 12,
-                            ),
-                            child: Text(
-                              'Добавить',
-                              style: AppTextStyles.b4Medium.copyWith(
-                                color: AppColors.baseLight.shade100,
+                      actions: actions ??
+                          [
+                            TextButton(
+                              onPressed: () {},
+                              style: AppDecorations.buttonStyle(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 15),
+                                borderRadius: 12,
                               ),
-                            ),
-                          )
-                        ],
-                  ),
-                )
-              : Container(),
-          children
-        ],
+                              child: Text(
+                                'Добавить',
+                                style: AppTextStyles.b4Medium.copyWith(
+                                  color: AppColors.baseLight.shade100,
+                                ),
+                              ),
+                            )
+                          ],
+                    ),
+                  )
+                : Container(),
+            children
+          ],
+        ),
       ),
     );
   }
