@@ -15,9 +15,7 @@ import '../../widgets/bottom_textfield_widget.dart';
 import '../../widgets/chat_comment_widget.dart';
 
 class RecipeStep extends StatefulWidget {
-  const RecipeStep(
-      {required this.currentStep, required this.stepsLength, Key? key})
-      : super(key: key);
+  const RecipeStep({required this.currentStep, required this.stepsLength, Key? key}) : super(key: key);
   final int currentStep;
   final int stepsLength;
 
@@ -29,6 +27,7 @@ class _RecipeStepState extends State<RecipeStep> {
   final PanelController _panelController = PanelController();
   final ScrollController _scrollController = ScrollController();
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
+  late final PageController _pageController;
   late int currentStep;
   late int stepsLength;
   bool isVisible = true;
@@ -38,6 +37,7 @@ class _RecipeStepState extends State<RecipeStep> {
     super.initState();
     currentStep = widget.currentStep;
     stepsLength = widget.stepsLength;
+    _pageController = PageController(initialPage: currentStep-1);
     _scrollController.addListener(() {
       if (_scrollController.offset < -50) {
         if (_panelController.isPanelOpen) {
@@ -50,6 +50,7 @@ class _RecipeStepState extends State<RecipeStep> {
   @override
   void dispose() {
     _scrollController.dispose();
+    _pageController.dispose();
     super.dispose();
   }
 
@@ -60,85 +61,90 @@ class _RecipeStepState extends State<RecipeStep> {
       key: _scaffoldKey,
       endDrawer: const IngredientsDrawer(),
       endDrawerEnableOpenDragGesture: false,
-      body: Stack(
-        children: [
-          SlidingUpPanel(
-            onPanelClosed: () {
-              setState(() {
-                isVisible = true;
-              });
-            },
-            onPanelOpened: () {
-              setState(() {
-                isVisible = false;
-              });
-            },
-            color: Colors.transparent,
-            minHeight: size.height * 0.3,
-            maxHeight: size.height,
-            boxShadow: List.empty(),
-            controller: _panelController,
-            panel: recipeInfo(),
-            body: Stack(
-              children: [
-                Container(
-                  height: size.height * 0.8,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage(Assets.images.recipePrepaireOne),
-                      fit: BoxFit.fill,
+      body: PageView(
+        controller: _pageController,
+        children: List.generate(
+          stepsLength,
+          (index) => Stack(
+            children: [
+              SlidingUpPanel(
+                onPanelClosed: () {
+                  setState(() {
+                    isVisible = true;
+                  });
+                },
+                onPanelOpened: () {
+                  setState(() {
+                    isVisible = false;
+                  });
+                },
+                color: Colors.transparent,
+                minHeight: size.height * 0.3,
+                maxHeight: size.height,
+                boxShadow: List.empty(),
+                controller: _panelController,
+                panel: recipeInfo(index + 1),
+                body: Stack(
+                  children: [
+                    Container(
+                      height: size.height * 0.8,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage(Assets.images.recipePrepaireOne),
+                          fit: BoxFit.fill,
+                        ),
+                      ),
+                    ),
+                    SafeArea(
+                      child: Align(
+                        alignment: const Alignment(0.9, -1.0),
+                        child: IconButtonAction(
+                          onTap: () {
+                            _scaffoldKey.currentState?.openEndDrawer();
+                          },
+                          icon: Assets.icons.ingredients,
+                          lable: '7',
+                          height: 32,
+                          borderRadius: 12,
+                          isActive: true,
+                          textStyle: AppTextStyles.b4DemiBold.copyWith(color: AppColors.primaryLight.shade100),
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              Visibility(
+                visible: isVisible,
+                child: bottomNavigation(index + 1),
+              ),
+              Visibility(
+                visible: !isVisible,
+                child: BottomTextFiledWidget(
+                  mLeading: IconButton(
+                    onPressed: () {},
+                    icon: SvgPicture.asset(
+                      Assets.icons.add,
+                      color: AppColors.metalColor.shade100,
+                    ),
+                  ),
+                  mTrailing: IconButton(
+                    onPressed: () {},
+                    icon: SvgPicture.asset(
+                      Assets.icons.share,
+                      color: AppColors.metalColor.shade100,
                     ),
                   ),
                 ),
-                SafeArea(
-                  child: Align(
-                    alignment: const Alignment(0.9, -1.0),
-                    child: IconButtonAction(
-                      onTap: () {
-                        _scaffoldKey.currentState?.openEndDrawer();
-                      },
-                      icon: Assets.icons.ingredients,
-                      lable: '7',
-                      height: 32,
-                      borderRadius: 12,
-                      isActive: true,
-                      textStyle: AppTextStyles.b4DemiBold
-                          .copyWith(color: AppColors.primaryLight.shade100),
-                    ),
-                  ),
-                )
-              ],
-            ),
-          ),
-          Visibility(
-            visible: isVisible,
-            child: bottomNavigation(),
-          ),
-          Visibility(
-            visible: !isVisible,
-            child: BottomTextFiledWidget(
-              mLeading: IconButton(
-                onPressed: () {},
-                icon: SvgPicture.asset(
-                  Assets.icons.add,
-                  color: AppColors.metalColor.shade100,
-                ),
               ),
-              mTrailing: IconButton(
-                onPressed: () {},
-                icon: SvgPicture.asset(
-                  Assets.icons.share,
-                  color: AppColors.metalColor.shade100,
-                ),
-              ),
-            ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }
 
-  Widget bottomNavigation() {
+  Widget bottomNavigation(index) {
     return Positioned(
       bottom: 0,
       left: 0,
@@ -158,17 +164,18 @@ class _RecipeStepState extends State<RecipeStep> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            currentStep != 1
+            index != 1
                 ? SvgCircleButton(
                     size: 42,
                     icon: Assets.icons.backArrow,
                     iconColor: AppColors.metalColor.shade100,
                     iconSize: 14,
                     mOnTap: () {
-                      if (currentStep != 1) {
-                        setState(() {
-                          currentStep--;
-                        });
+                      if (index != 1) {
+                        _pageController.previousPage(
+                          curve: Curves.easeIn,
+                          duration: const Duration(milliseconds: 400),
+                        );
                       }
                     })
                 : const SizedBox(
@@ -180,16 +187,17 @@ class _RecipeStepState extends State<RecipeStep> {
               icon: Assets.icons.cancel,
               mOnTap: () => Navigator.pop(context),
             ),
-            currentStep != stepsLength
+            index != stepsLength
                 ? SvgCircleButton(
                     size: 42,
                     icon: Assets.icons.nextArrow,
                     iconSize: 14,
                     mOnTap: () {
-                      if (currentStep != stepsLength) {
-                        setState(() {
-                          currentStep++;
-                        });
+                      if (index != stepsLength) {
+                        _pageController.nextPage(
+                          curve: Curves.easeIn,
+                          duration: const Duration(milliseconds: 400),
+                        );
                       }
                     })
                 : const SizedBox(
@@ -202,22 +210,20 @@ class _RecipeStepState extends State<RecipeStep> {
     );
   }
 
-  Widget recipeInfo() {
-    String currentStepName = currentStep == 1
+  Widget recipeInfo(index) {
+    String currentStepName = index == 1
         ? "Начать"
-        : stepsLength > currentStep
+        : stepsLength > index
             ? "•••"
             : "Завершить";
-    Color currentStepBgColor = currentStep == stepsLength
-        ? AppColors.accentLight
-        : AppColors.primaryLight;
-    Widget currentStepIcon = currentStep == 1
+    Color currentStepBgColor = index == stepsLength ? AppColors.accentLight : AppColors.primaryLight;
+    Widget currentStepIcon = index == 1
         ? Icon(
             Icons.arrow_forward_ios,
             color: AppColors.baseLight.shade100,
             size: 16,
           )
-        : currentStep < stepsLength
+        : index < stepsLength
             ? Image(
                 image: AssetImage(
                   Assets.icons.coffee,
@@ -240,9 +246,7 @@ class _RecipeStepState extends State<RecipeStep> {
             ),
             child: ListView(
               padding: EdgeInsets.zero,
-              physics: isVisible
-                  ? const NeverScrollableScrollPhysics()
-                  : const BouncingScrollPhysics(),
+              physics: isVisible ? const NeverScrollableScrollPhysics() : const BouncingScrollPhysics(),
               shrinkWrap: true,
               controller: _scrollController,
               children: [
@@ -282,9 +286,8 @@ class _RecipeStepState extends State<RecipeStep> {
             mPadding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
             mMargin: const EdgeInsets.only(top: 10),
             widget: Text(
-              '$currentStep из $stepsLength',
-              style: AppTextStyles.b3Medium
-                  .copyWith(color: AppColors.baseLight.shade100),
+              '$index из $stepsLength',
+              style: AppTextStyles.b3Medium.copyWith(color: AppColors.baseLight.shade100),
             ),
           ),
         ),
@@ -293,26 +296,23 @@ class _RecipeStepState extends State<RecipeStep> {
           right: 20,
           child: TextButton.icon(
             onPressed: () {
-              if (currentStep == stepsLength) {
+              if (index == stepsLength) {
                 Navigator.pop(context);
               } else {
-                setState(() {
-                  currentStep++;
-                });
+                _pageController.nextPage(
+                  curve: Curves.easeIn,
+                  duration: const Duration(milliseconds: 400),
+                );
               }
             },
-            style: AppDecorations.buttonStyle(
-                    padding: const EdgeInsets.symmetric(horizontal: 12),
-                    borderRadius: 12)
+            style: AppDecorations.buttonStyle(padding: const EdgeInsets.symmetric(horizontal: 12), borderRadius: 12)
                 .copyWith(
               backgroundColor: MaterialStateProperty.all(currentStepBgColor),
-              overlayColor:
-                  MaterialStateProperty.all(AppColors.baseLight.shade20),
+              overlayColor: MaterialStateProperty.all(AppColors.baseLight.shade20),
             ),
             icon: Text(
               currentStepName,
-              style: AppTextStyles.b3Medium
-                  .copyWith(color: AppColors.baseLight.shade100),
+              style: AppTextStyles.b3Medium.copyWith(color: AppColors.baseLight.shade100),
             ),
             label: currentStepIcon,
           ),

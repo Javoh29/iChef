@@ -123,6 +123,26 @@ class _Icons extends _AssetsHolder {
 
   String get twoPerson => '$basePath/ic_two_person.svg';
 
+  String get bell => '$basePath/ic_bell.svg';
+
+  String get contact => '$basePath/ic_contact.svg';
+
+  String get foodOne => '$basePath/ic_food_one.png';
+
+  String get foodTwo => '$basePath/ic_food_two.png';
+
+  String get foodThree => '$basePath/ic_food_three.png';
+
+  String get foodFour => '$basePath/ic_food_four.png';
+
+  String get foodFive => '$basePath/ic_food_five.png';
+
+  String get foodSix => '$basePath/ic_food_six.png';
+
+  String get send => '$basePath/ic_send.svg';
+
+
+
 }
 
 class _Images extends _AssetsHolder {
