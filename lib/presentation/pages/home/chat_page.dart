@@ -31,7 +31,8 @@ class _ChatPageState extends State<ChatPage> {
                     isOwner: userComment["isOwner"],
                   );
                 },
-              )
+              ),
+              const SizedBox(height: 100),
             ],
           ),
           const BottomTextFiledWidget(),

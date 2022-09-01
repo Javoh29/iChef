@@ -27,7 +27,7 @@ class _RecipeStepState extends State<RecipeStep> {
   final PanelController _panelController = PanelController();
   final ScrollController _scrollController = ScrollController();
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
-  final PageController _pageController = PageController();
+  late final PageController _pageController;
   late int currentStep;
   late int stepsLength;
   bool isVisible = true;
@@ -37,6 +37,7 @@ class _RecipeStepState extends State<RecipeStep> {
     super.initState();
     currentStep = widget.currentStep;
     stepsLength = widget.stepsLength;
+    _pageController = PageController(initialPage: currentStep-1);
     _scrollController.addListener(() {
       if (_scrollController.offset < -50) {
         if (_panelController.isPanelOpen) {
@@ -49,7 +50,6 @@ class _RecipeStepState extends State<RecipeStep> {
   @override
   void dispose() {
     _scrollController.dispose();
-    _panelController.close();
     _pageController.dispose();
     super.dispose();
   }
@@ -83,7 +83,7 @@ class _RecipeStepState extends State<RecipeStep> {
                 maxHeight: size.height,
                 boxShadow: List.empty(),
                 controller: _panelController,
-                panel: recipeInfo(),
+                panel: recipeInfo(index + 1),
                 body: Stack(
                   children: [
                     Container(
@@ -116,7 +116,7 @@ class _RecipeStepState extends State<RecipeStep> {
               ),
               Visibility(
                 visible: isVisible,
-                child: bottomNavigation(),
+                child: bottomNavigation(index + 1),
               ),
               Visibility(
                 visible: !isVisible,
@@ -144,7 +144,7 @@ class _RecipeStepState extends State<RecipeStep> {
     );
   }
 
-  Widget bottomNavigation() {
+  Widget bottomNavigation(index) {
     return Positioned(
       bottom: 0,
       left: 0,
@@ -164,21 +164,18 @@ class _RecipeStepState extends State<RecipeStep> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            currentStep != 1
+            index != 1
                 ? SvgCircleButton(
                     size: 42,
                     icon: Assets.icons.backArrow,
                     iconColor: AppColors.metalColor.shade100,
                     iconSize: 14,
                     mOnTap: () {
-                      if (currentStep != 1) {
+                      if (index != 1) {
                         _pageController.previousPage(
                           curve: Curves.easeIn,
-                          duration: const Duration(milliseconds: 300),
+                          duration: const Duration(milliseconds: 400),
                         );
-                        setState(() {
-                          currentStep--;
-                        });
                       }
                     })
                 : const SizedBox(
@@ -190,20 +187,17 @@ class _RecipeStepState extends State<RecipeStep> {
               icon: Assets.icons.cancel,
               mOnTap: () => Navigator.pop(context),
             ),
-            currentStep != stepsLength
+            index != stepsLength
                 ? SvgCircleButton(
                     size: 42,
                     icon: Assets.icons.nextArrow,
                     iconSize: 14,
                     mOnTap: () {
-                      if (currentStep != stepsLength) {
+                      if (index != stepsLength) {
                         _pageController.nextPage(
                           curve: Curves.easeIn,
-                          duration: const Duration(milliseconds: 300),
+                          duration: const Duration(milliseconds: 400),
                         );
-                        setState(() {
-                          currentStep++;
-                        });
                       }
                     })
                 : const SizedBox(
@@ -216,20 +210,20 @@ class _RecipeStepState extends State<RecipeStep> {
     );
   }
 
-  Widget recipeInfo() {
-    String currentStepName = currentStep == 1
+  Widget recipeInfo(index) {
+    String currentStepName = index == 1
         ? "Начать"
-        : stepsLength > currentStep
+        : stepsLength > index
             ? "•••"
             : "Завершить";
-    Color currentStepBgColor = currentStep == stepsLength ? AppColors.accentLight : AppColors.primaryLight;
-    Widget currentStepIcon = currentStep == 1
+    Color currentStepBgColor = index == stepsLength ? AppColors.accentLight : AppColors.primaryLight;
+    Widget currentStepIcon = index == 1
         ? Icon(
             Icons.arrow_forward_ios,
             color: AppColors.baseLight.shade100,
             size: 16,
           )
-        : currentStep < stepsLength
+        : index < stepsLength
             ? Image(
                 image: AssetImage(
                   Assets.icons.coffee,
@@ -292,7 +286,7 @@ class _RecipeStepState extends State<RecipeStep> {
             mPadding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
             mMargin: const EdgeInsets.only(top: 10),
             widget: Text(
-              '$currentStep из $stepsLength',
+              '$index из $stepsLength',
               style: AppTextStyles.b3Medium.copyWith(color: AppColors.baseLight.shade100),
             ),
           ),
@@ -302,16 +296,13 @@ class _RecipeStepState extends State<RecipeStep> {
           right: 20,
           child: TextButton.icon(
             onPressed: () {
-              if (currentStep == stepsLength) {
+              if (index == stepsLength) {
                 Navigator.pop(context);
               } else {
                 _pageController.nextPage(
                   curve: Curves.easeIn,
-                  duration: const Duration(milliseconds: 300),
+                  duration: const Duration(milliseconds: 400),
                 );
-                setState(() {
-                  currentStep++;
-                });
               }
             },
             style: AppDecorations.buttonStyle(padding: const EdgeInsets.symmetric(horizontal: 12), borderRadius: 12)

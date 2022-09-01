@@ -124,6 +124,12 @@ List<Map> recipeSteps = [
     "stepName": "Soften the onion",
     "stepContext":
         "Cut the bell pepper into rings (it is better to choose three different colors - it looks more colorful), after removing the seeds. Cut the onion into half rings, grate the garlic on a fine grater.",
+  },
+  {
+    "stepNumber": "Шаг 6",
+    "stepName": "Soften the onion",
+    "stepContext":
+        "Cut the bell pepper into rings (it is better to choose three different colors - it looks more colorful), after removing the seeds. Cut the onion into half rings, grate the garlic on a fine grater.",
   }
 ];
 
