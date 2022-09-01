@@ -56,18 +56,11 @@ class _ShoppingListPageState extends State<ShoppingListPage> {
         body: Stack(
           alignment: Alignment.bottomCenter,
           children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Column(
-                children: const [
-                  ListTileTheme(
-                    data: ListTileThemeData(dense: true),
-                    child: ShoppingListItem(
-                      title:
-                          'Пицца с куриными колбасками, ветчиной, гриб...Пицца с куриными колбасками, ветчиной, гриб...',
-                    ),
-                  ),
-                ],
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20),
+              child: ShoppingListItem(
+                title:
+                    'Пицца с куриными колбасками, ветчиной, гриб...Пицца с куриными колбасками, ветчиной, гриб...',
               ),
             ),
             Container(

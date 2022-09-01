@@ -40,6 +40,8 @@ flutter:
     - assets/images/flour_brands/
     - assets/images/flour_salers/
     - assets/videos/
+    - assets/images/favorite_images/
+    - assets/images/favorite_images/tab2/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

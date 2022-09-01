@@ -6,6 +6,7 @@ import 'package:ichef/config/constants/assets.dart';
 import 'package:ichef/presentation/pages/home/recipes_tab_page.dart';
 
 import '../../components/custom_badge.dart';
+import 'chat_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -48,7 +49,7 @@ class _HomePageState extends State<HomePage>
                 children: [
                   const RecipesTabPage(),
                   Container(),
-                  Container(),
+                  const ChatPage(),
                 ],
               ),
             );
@@ -66,6 +67,7 @@ class _HomePageState extends State<HomePage>
     return SliverAppBar(
       automaticallyImplyLeading: false,
       pinned: true,
+      snap: true,
       floating: true,
       forceElevated: innerBoxIsScrolled,
       actions: const [SizedBox.shrink()],
