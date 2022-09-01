@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -20,11 +18,8 @@ class SlidableBtnWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
+    return GestureDetector(
       onTap: onTap,
-      borderRadius: BorderRadius.horizontal(
-          left: Radius.circular(leftRadius),
-          right: Radius.circular(rightRadius)),
       child: Container(
         width: MediaQuery.of(context).size.width / 7,
         height: 87,
