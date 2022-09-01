@@ -7,6 +7,7 @@ import 'package:ichef/presentation/pages/home/recipes_tab_page.dart';
 import 'package:ichef/presentation/pages/product/product_info_page.dart';
 
 import '../../components/custom_badge.dart';
+import 'chat_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -47,7 +48,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                 children: [
                   const RecipesTabPage(),
                   Container(),
-                  Container(),
+                  const ChatPage(),
                 ],
               ),
             );
