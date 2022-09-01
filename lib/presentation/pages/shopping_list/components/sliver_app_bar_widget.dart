@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+
 class SliverAppBarWidget extends StatelessWidget {
   const SliverAppBarWidget({
     Key? key,
     required this.innerBoxIsScrolled,
     this.leading,
     this.title,
-    this.actions, this.bottom,
+    this.actions,
+    this.bottom,
   }) : super(key: key);
   final bool innerBoxIsScrolled;
   final Widget? leading;
@@ -18,13 +20,14 @@ class SliverAppBarWidget extends StatelessWidget {
     return SliverAppBar(
       pinned: true,
       elevation: 0,
+      snap: true,
       floating: true,
       forceElevated: innerBoxIsScrolled,
       automaticallyImplyLeading: false,
       leading: leading,
       title: title,
       actions: actions,
-      bottom: bottom ,
+      bottom: bottom,
     );
   }
 }

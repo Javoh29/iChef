@@ -6,32 +6,27 @@ import '../../config/constants/app_text_styles.dart';
 
 class IngridientDetailContainer extends StatelessWidget {
   const IngridientDetailContainer({
-    required this.isActive,
     required this.title,
     required this.addInfo,
     required this.data,
+    required this.data2,
     Key? key,
   }) : super(key: key);
 
-  final bool isActive;
   final String title;
   final String addInfo;
   final String data;
+  final String data2;
 
   @override
   Widget build(BuildContext context) {
-    return CheckboxListTile(
-      value: isActive,
-      tileColor: isActive ? AppColors.primaryLight.shade50 : AppColors.metalColor.shade10,
+    return ListTile(
+      horizontalTitleGap: 100,
+      tileColor: AppColors.metalColor.shade10,
       contentPadding: const EdgeInsets.symmetric(horizontal: 5),
-      side: BorderSide(color: AppColors.metalColor.shade30, width: 2),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12),
       ),
-      checkboxShape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10),
-      ),
-      controlAffinity: ListTileControlAffinity.leading,
       title: TextButton(
         onPressed: () {},
         style: AppDecorations.buttonStyle(
@@ -53,11 +48,19 @@ class IngridientDetailContainer extends StatelessWidget {
               ),
             )
           : null,
-      secondary: Text(
-        data,
-        style: AppTextStyles.b5DemiBold,
+      trailing: RichText(
+        textAlign: TextAlign.right,
+        text: TextSpan(
+          text: data,
+          style: AppTextStyles.b5DemiBold,
+          children: [
+            TextSpan(
+              text: "\n$data2",
+              style: AppTextStyles.b4Regular,
+            ),
+          ],
+        ),
       ),
-      onChanged: (value) {},
     );
   }
 }

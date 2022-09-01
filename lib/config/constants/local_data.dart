@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ichef/config/constants/assets.dart';
+import 'package:ichef/data/models/user_model.dart';
 
 import '../../data/models/recipe_model.dart';
 import '../../presentation/components/ingridient_detail_container.dart';
@@ -123,6 +124,12 @@ List<Map> recipeSteps = [
     "stepName": "Soften the onion",
     "stepContext":
         "Cut the bell pepper into rings (it is better to choose three different colors - it looks more colorful), after removing the seeds. Cut the onion into half rings, grate the garlic on a fine grater.",
+  },
+  {
+    "stepNumber": "Шаг 6",
+    "stepName": "Soften the onion",
+    "stepContext":
+        "Cut the bell pepper into rings (it is better to choose three different colors - it looks more colorful), after removing the seeds. Cut the onion into half rings, grate the garlic on a fine grater.",
   }
 ];
 
@@ -163,58 +170,85 @@ List<Map> userComments = [
 Cut the bell pepper into rings (it is better to choose three different colors - it looks more colorful), after removing the seeds. Cut the onion into half rings, grate the garlic on a fine grater.''',
     "isOwner": false
   },
+  {
+    "userName": "Надежда Румянцева",
+    "userImage": Assets.images.userAvatar3,
+    "lastSeen": "2 м назад",
+    "time": "Ср 18, 13:49",
+    "chatText": "Cut the bell",
+    "isOwner": false
+  },
+  {
+    "userName": "Анна Матюнина",
+    "userImage": Assets.images.userAvatar4,
+    "lastSeen": "5 м назад",
+    "time": "Ср 18, 13:49",
+    "chatText":
+        "Cut the bell pepper into rings (it is better to choose three different colors - it looks more colorful)",
+    "isOwner": true
+  },
+  {
+    "userName": "Александра Кадира",
+    "userImage": Assets.images.userAvatar5,
+    "lastSeen": "2 м назад",
+    "time": "Ср 18, 13:49",
+    "chatText":
+        '''Cut the bell pepper into rings (it is better to choose three different colors - it looks more colorful), after removing the seeds. Cut the onion into half rings, grate the garlic on a fine grater.
+Cut the bell pepper into rings (it is better to choose three different colors - it looks more colorful), after removing the seeds. Cut the onion into half rings, grate the garlic on a fine grater.''',
+    "isOwner": false
+  },
 ];
 List<Widget> firstIngredientsRazdel = const [
   IngridientDetailContainer(
-    isActive: false,
     title: "Пшеничная мука",
     addInfo: "Manitoba 400",
-    data: "400 г, 3 шт",
+    data: "400 г",
+    data2: "400 г",
   ),
   SizedBox(
     height: 5,
   ),
   IngridientDetailContainer(
-    isActive: false,
     title: "Сливочное масло",
     addInfo: "",
-    data: "400 г, 3 шт",
+    data: "400 г",
+    data2: "250 г",
   ),
 ];
 
 List<Widget> secondIngredientsRazdel = const [
   IngridientDetailContainer(
-    isActive: true,
     title: "Куриное яйцо",
     addInfo: "C0",
     data: "400 г, 3 шт",
+    data2: "30 г, 3 шт",
   ),
   SizedBox(
     height: 5,
   ),
   IngridientDetailContainer(
-    isActive: true,
     title: "Тыква",
     addInfo: "",
     data: "400 г, 3 шт",
+    data2: "900 г",
   ),
   SizedBox(
     height: 5,
   ),
   IngridientDetailContainer(
-    isActive: false,
     title: "Корица",
     addInfo: "KOTANYI целая",
     data: "400 г, 3 шт",
+    data2: "3 г",
   ),
   SizedBox(
     height: 5,
   ),
   IngridientDetailContainer(
-    isActive: false,
     title: "Соль",
     addInfo: "",
     data: "400 г, 3 шт",
+    data2: "3 г, 0.5 ч. л.",
   ),
 ];
 
@@ -225,7 +259,7 @@ List brandImages = [
 ];
 
 List brandNames = [
-  "Molino Gra...",
+  "Molino Grassi Manitoba 00",
   "Предпортовая",
   "Мелькомбинат",
 ];
@@ -317,7 +351,6 @@ Map<String, dynamic> mockData = {
     }
   ]
 };
-
 List<String> types = [
   "Завтрак",
   "Континентальный завтрак",
@@ -365,4 +398,89 @@ List<String> favImagesTab2 = [
   'assets/images/favorite_images/tab2/tab2.17.jpg',
   'assets/images/favorite_images/tab2/tab2.18.jpg',
   'assets/images/favorite_images/tab2/tab2.19.jpg',
+];
+List<UserModel> users = [
+  UserModel(
+    username: "Ирина Волкова",
+    userImage: Assets.images.userAvatar1,
+    job: "Шеф-повар ресторана Temantoga",
+    bio: '''Шеф-повар ресторана Temantoga
+текстовое описание которые сам пишет,
+может даже сайт указать''',
+    followers: "45,6 тыс",
+    following: "4,8 тыс",
+  ),
+  UserModel(
+    username: "Ирина Волкова",
+    userImage: Assets.images.userAvatar2,
+    job: "Шеф-повар ресторана Temantoga",
+    bio: '''Шеф-повар ресторана Temantoga
+текстовое описание которые сам пишет,
+может даже сайт указать''',
+    followers: "45,6 тыс",
+    following: "4,8 тыс",
+  ),
+  UserModel(
+    username: "Ирина Волкова",
+    userImage: Assets.images.userAvatar3,
+    job: "Шеф-повар ресторана Temantoga",
+    bio: '''Шеф-повар ресторана Temantoga
+текстовое описание которые сам пишет,
+может даже сайт указать''',
+    followers: "45,6 тыс",
+    following: "4,8 тыс",
+  ),
+  UserModel(
+    username: "Ирина Волкова",
+    userImage: Assets.images.userAvatar4,
+    job: "Шеф-повар ресторана Temantoga",
+    bio: '''Шеф-повар ресторана Temantoga
+текстовое описание которые сам пишет,
+может даже сайт указать''',
+    followers: "45,6 тыс",
+    following: "4,8 тыс",
+  ),
+  UserModel(
+    username: "Ирина Волкова",
+    userImage: Assets.images.userAvatar5,
+    job: "Шеф-повар ресторана Temantoga",
+    bio: '''Шеф-повар ресторана Temantoga
+текстовое описание которые сам пишет,
+может даже сайт указать''',
+    followers: "45,6 тыс",
+    following: "4,8 тыс",
+  ),
+];
+
+List profileTabList = [
+  'Рецепты',
+  'Блоги',
+  'Чат',
+];
+
+List<Map> foodTypes = [
+  {
+    "imagePath": Assets.icons.foodOne,
+    "name": "Завтр...",
+  },
+  {
+    "imagePath": Assets.icons.foodTwo,
+    "name": "Мясные б...",
+  },
+  {
+    "imagePath": Assets.icons.foodThree,
+    "name": "Сувид",
+  },
+  {
+    "imagePath": Assets.icons.foodFour,
+    "name": "Выпечка",
+  },
+  {
+    "imagePath": Assets.icons.foodFive,
+    "name": "Грузинс...",
+  },
+  {
+    "imagePath": Assets.icons.foodSix,
+    "name": "Сувид",
+  },
 ];

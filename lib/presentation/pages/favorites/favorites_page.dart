@@ -40,7 +40,7 @@ class _FavoritesPageState extends State<FavoritesPage>
       physics: const NeverScrollableScrollPhysics(),
       headerSliverBuilder: (context, innerBoxIsScrolled) {
         return <Widget>[
-          appBar(innerBoxIsScrolled),
+          appBar(innerBoxIsScrolled, context),
         ];
       },
       body: TabBarView(
@@ -63,9 +63,10 @@ class _FavoritesPageState extends State<FavoritesPage>
     );
   }
 
-  SliverAppBar appBar(bool innerBoxIsScrolled) {
+  SliverAppBar appBar(bool innerBoxIsScrolled, BuildContext context) {
     return SliverAppBar(
       pinned: true,
+      snap: true,
       floating: true,
       centerTitle: true,
       automaticallyImplyLeading: false,
@@ -90,8 +91,6 @@ class _FavoritesPageState extends State<FavoritesPage>
               topRadius: const Radius.circular(30),
               builder: (context) {
                 return BottomSheetModel(
-                  leadingIcon: Assets.icons.bSheetClose,
-                  title: 'Новый раздел',
                   children: Column(
                     children: [
                       BSheetItemWidget(

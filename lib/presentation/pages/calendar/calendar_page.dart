@@ -17,8 +17,7 @@ class CalendarPage extends StatefulWidget {
   State<CalendarPage> createState() => _CalendarPageState();
 }
 
-class _CalendarPageState extends State<CalendarPage>
-    with SingleTickerProviderStateMixin {
+class _CalendarPageState extends State<CalendarPage> with SingleTickerProviderStateMixin {
   late DateTime dateTime;
   String dateFormat = '';
   late final TabController _tabController =
@@ -56,6 +55,7 @@ class _CalendarPageState extends State<CalendarPage>
     return SliverAppBar(
       automaticallyImplyLeading: false,
       pinned: true,
+      snap: true,
       floating: true,
       forceElevated: innerBoxIsScrolled,
       actions: const [SizedBox.shrink()],
@@ -133,9 +133,7 @@ class _CalendarPageState extends State<CalendarPage>
   }
 
   DateTime changeDate(bool isAdd) {
-    return isAdd
-        ? dateTime.add(const Duration(days: 7))
-        : dateTime.subtract(const Duration(days: 7));
+    return isAdd ? dateTime.add(const Duration(days: 7)) : dateTime.subtract(const Duration(days: 7));
   }
 
   TabBar tabBar() {

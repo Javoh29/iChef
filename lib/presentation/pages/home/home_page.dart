@@ -4,9 +4,9 @@ import 'package:ichef/config/constants/app_colors.dart';
 import 'package:ichef/config/constants/app_text_styles.dart';
 import 'package:ichef/config/constants/assets.dart';
 import 'package:ichef/presentation/pages/home/recipes_tab_page.dart';
-import 'package:ichef/presentation/pages/product/product_info_page.dart';
 
 import '../../components/custom_badge.dart';
+import 'chat_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -15,8 +15,10 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin {
-  late final TabController _tabController = TabController(length: 3, vsync: this);
+class _HomePageState extends State<HomePage>
+    with SingleTickerProviderStateMixin {
+  late final TabController _tabController =
+      TabController(length: 3, vsync: this);
 
   @override
   void initState() {
@@ -47,7 +49,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                 children: [
                   const RecipesTabPage(),
                   Container(),
-                  Container(),
+                  const ChatPage(),
                 ],
               ),
             );
@@ -65,6 +67,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
     return SliverAppBar(
       automaticallyImplyLeading: false,
       pinned: true,
+      snap: true,
       floating: true,
       forceElevated: innerBoxIsScrolled,
       actions: const [SizedBox.shrink()],
