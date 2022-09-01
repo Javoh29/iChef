@@ -204,7 +204,7 @@ class _ActionPaneState extends State<ActionPane> implements RatioConfigurator {
 
     // Otherwise we close the the Slidable.
     controller!.close();
-    widget.onClose!();
+    widget.onClose != null ? widget.onClose!() : null;
   }
 
   void handleRatioChanged() {

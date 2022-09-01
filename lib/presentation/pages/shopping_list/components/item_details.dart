@@ -70,6 +70,7 @@ class _ShoppingItemDetailsState extends State<ShoppingItemDetails> {
                   ],
                 ),
                 endActionPane: ActionPane(
+                  onClose: () {},
                   extentRatio: 0.325,
                   dragDismissible: true,
                   motion: const ScrollMotion(),

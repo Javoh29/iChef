@@ -75,7 +75,7 @@ class ScrollMotion extends StatelessWidget {
     final startOffset = Offset(paneData.alignment.x, paneData.alignment.y);
 
     final animation = controller.animation
-        .drive(CurveTween(curve: Interval(0, paneData.extentRatio,curve: Curves.bounceInOut)))
+        .drive(CurveTween(curve: Interval(0, paneData.extentRatio)))
         .drive(Tween(begin: startOffset, end: Offset.zero));
 
     return SlideTransition(
