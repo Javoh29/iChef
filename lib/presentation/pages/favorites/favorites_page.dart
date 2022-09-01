@@ -66,6 +66,7 @@ class _FavoritesPageState extends State<FavoritesPage>
   SliverAppBar appBar(bool innerBoxIsScrolled, BuildContext context) {
     return SliverAppBar(
       pinned: true,
+      snap: true,
       floating: true,
       centerTitle: true,
       automaticallyImplyLeading: false,

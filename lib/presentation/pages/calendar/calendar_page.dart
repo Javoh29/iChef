@@ -46,6 +46,7 @@ class _CalendarPageState extends State<CalendarPage> with SingleTickerProviderSt
     return SliverAppBar(
       automaticallyImplyLeading: false,
       pinned: true,
+      snap: true,
       floating: true,
       forceElevated: innerBoxIsScrolled,
       actions: const [SizedBox.shrink()],
@@ -71,7 +72,8 @@ class _CalendarPageState extends State<CalendarPage> with SingleTickerProviderSt
           child: Padding(
             padding: const EdgeInsets.only(left: 20.0),
             child: Text(
-              dateFormat.substring(0, 1).toUpperCase() + dateFormat.substring(1),
+              dateFormat.substring(0, 1).toUpperCase() +
+                  dateFormat.substring(1),
               style: AppTextStyles.b5Regular.copyWith(
                 fontWeight: FontWeight.w500,
               ),
