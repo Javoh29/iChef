@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ichef/presentation/pages/home/profile_page.dart';
 import 'package:ichef/presentation/pages/home/recipe_info_page.dart';
 import 'package:ichef/presentation/pages/home/recipe_step_page.dart';
 import 'package:ichef/presentation/pages/main/main_page.dart';
@@ -19,6 +20,7 @@ class Routes {
   static const shoppingListPage = '/shoppingListPage';
   static const recipeReplacePage = '/recipeReplacePage';
   static const productPage = '/productPage';
+  static const profilePage = '/profilePage';
 
   static Route<dynamic> generateRoute(RouteSettings routeSettings) {
     try {
@@ -69,6 +71,11 @@ class Routes {
           return MaterialPageRoute(
             settings: routeSettings,
             builder: (_) => const ProductInfoPage(),
+          );
+        case profilePage:
+          return MaterialPageRoute(
+            settings: routeSettings,
+            builder: (_) => const ProfilePage(),
           );
         default:
           return MaterialPageRoute(

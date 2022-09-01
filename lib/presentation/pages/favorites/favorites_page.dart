@@ -40,30 +40,30 @@ class _FavoritesPageState extends State<FavoritesPage>
       physics: const NeverScrollableScrollPhysics(),
       headerSliverBuilder: (context, innerBoxIsScrolled) {
         return <Widget>[
-          appBar(innerBoxIsScrolled),
+          appBar(innerBoxIsScrolled, context),
         ];
       },
       body: TabBarView(
         controller: _tabController,
         children: [
           FavoritesTabPage(
-            listRecipes: listRecipes,
+            listImages: favImagesTab1,
           ),
           FavoritesTabPage(
-            listRecipes: listRecipes,
+            listImages: favImagesTab2,
           ),
           FavoritesTabPage(
-            listRecipes: listRecipes,
+            listImages: favImagesTab1,
           ),
           FavoritesTabPage(
-            listRecipes: listRecipes,
+            listImages: favImagesTab2,
           ),
         ],
       ),
     );
   }
 
-  SliverAppBar appBar(bool innerBoxIsScrolled) {
+  SliverAppBar appBar(bool innerBoxIsScrolled, BuildContext context) {
     return SliverAppBar(
       pinned: true,
       snap: true,
@@ -91,8 +91,6 @@ class _FavoritesPageState extends State<FavoritesPage>
               topRadius: const Radius.circular(30),
               builder: (context) {
                 return BottomSheetModel(
-                  leadingIcon: Assets.icons.bSheetClose,
-                  title: 'Новый раздел',
                   children: Column(
                     children: [
                       BSheetItemWidget(
@@ -175,63 +173,65 @@ class BottomSheetModel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(20),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          title != null
-              ? Padding(
-                  padding: const EdgeInsets.only(bottom: 20.0),
-                  child: AppBar(
-                    elevation: 0,
-                    leadingWidth: 34,
-                    toolbarHeight: 36,
-                    leading: Container(
-                      width: 34,
-                      height: 34,
-                      decoration: AppDecorations.defDecor.copyWith(
-                        borderRadius: BorderRadius.circular(50),
-                      ),
-                      child: IconButton(
-                        splashRadius: 1,
-                        onPressed: () {
-                          debugPrint('OnTap');
-                        },
-                        icon: SvgPicture.asset(
-                          '$leadingIcon',
-                          fit: BoxFit.none,
+    return Material(
+      child: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            title != null
+                ? Padding(
+                    padding: const EdgeInsets.only(bottom: 20.0),
+                    child: AppBar(
+                      elevation: 0,
+                      leadingWidth: 34,
+                      toolbarHeight: 36,
+                      leading: Container(
+                        width: 34,
+                        height: 34,
+                        decoration: AppDecorations.defDecor.copyWith(
+                          borderRadius: BorderRadius.circular(50),
+                        ),
+                        child: IconButton(
+                          splashRadius: 1,
+                          onPressed: () {
+                            debugPrint('OnTap');
+                          },
+                          icon: SvgPicture.asset(
+                            '$leadingIcon',
+                            fit: BoxFit.none,
+                          ),
                         ),
                       ),
-                    ),
-                    title: Text(
-                      '$title',
-                      style: AppTextStyles.b5DemiBold.copyWith(
-                        fontWeight: FontWeight.w700,
+                      title: Text(
+                        '$title',
+                        style: AppTextStyles.b5DemiBold.copyWith(
+                          fontWeight: FontWeight.w700,
+                        ),
                       ),
-                    ),
-                    actions: actions ??
-                        [
-                          TextButton(
-                            onPressed: () {},
-                            style: AppDecorations.buttonStyle(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 15),
-                              borderRadius: 12,
-                            ),
-                            child: Text(
-                              'Добавить',
-                              style: AppTextStyles.b4Medium.copyWith(
-                                color: AppColors.baseLight.shade100,
+                      actions: actions ??
+                          [
+                            TextButton(
+                              onPressed: () {},
+                              style: AppDecorations.buttonStyle(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 15),
+                                borderRadius: 12,
                               ),
-                            ),
-                          )
-                        ],
-                  ),
-                )
-              : Container(),
-          children
-        ],
+                              child: Text(
+                                'Добавить',
+                                style: AppTextStyles.b4Medium.copyWith(
+                                  color: AppColors.baseLight.shade100,
+                                ),
+                              ),
+                            )
+                          ],
+                    ),
+                  )
+                : Container(),
+            children
+          ],
+        ),
       ),
     );
   }

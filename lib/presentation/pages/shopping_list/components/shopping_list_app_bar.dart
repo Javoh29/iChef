@@ -1,4 +1,3 @@
-
 // ignore: must_be_immutable
 import 'package:flutter/material.dart';
 
@@ -7,7 +6,7 @@ import '../../../../config/constants/app_decorations.dart';
 import '../../../../config/constants/app_text_styles.dart';
 
 class ShoppingListAppBar extends StatefulWidget implements PreferredSizeWidget {
-  const   ShoppingListAppBar({Key? key}) : super(key: key);
+  const ShoppingListAppBar({Key? key}) : super(key: key);
 
   @override
   State<ShoppingListAppBar> createState() => _ShoppingListAppBarState();
@@ -25,6 +24,7 @@ class _ShoppingListAppBarState extends State<ShoppingListAppBar> {
     '4',
     '5',
   ];
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -35,7 +35,8 @@ class _ShoppingListAppBarState extends State<ShoppingListAppBar> {
         children: [
           Text(
             'Сортировка',
-            style: AppTextStyles.b4Regular.copyWith(color: AppColors.metalColor.shade40),
+            style: AppTextStyles.b4Regular
+                .copyWith(color: AppColors.metalColor.shade40),
           ),
           const SizedBox(width: 6),
           Expanded(
