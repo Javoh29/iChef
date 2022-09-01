@@ -15,7 +15,8 @@ class CalendarPage extends StatefulWidget {
   State<CalendarPage> createState() => _CalendarPageState();
 }
 
-class _CalendarPageState extends State<CalendarPage> with SingleTickerProviderStateMixin {
+class _CalendarPageState extends State<CalendarPage>
+    with SingleTickerProviderStateMixin {
   DateTime? dateTime;
   String dateFormat = '';
 
@@ -23,7 +24,8 @@ class _CalendarPageState extends State<CalendarPage> with SingleTickerProviderSt
   void initState() {
     super.initState();
     initializeDateFormatting('RU', null);
-    dateFormat = DateFormat('MMMM yyyy', 'RU').format(dateTime ?? DateTime.now());
+    dateFormat =
+        DateFormat('MMMM yyyy', 'RU').format(dateTime ?? DateTime.now());
   }
 
   @override
@@ -43,6 +45,7 @@ class _CalendarPageState extends State<CalendarPage> with SingleTickerProviderSt
     return SliverAppBar(
       automaticallyImplyLeading: false,
       pinned: true,
+      snap: true,
       floating: true,
       forceElevated: innerBoxIsScrolled,
       actions: const [SizedBox.shrink()],
@@ -68,7 +71,8 @@ class _CalendarPageState extends State<CalendarPage> with SingleTickerProviderSt
           child: Padding(
             padding: const EdgeInsets.only(left: 20.0),
             child: Text(
-              dateFormat.substring(0, 1).toUpperCase() + dateFormat.substring(1),
+              dateFormat.substring(0, 1).toUpperCase() +
+                  dateFormat.substring(1),
               style: AppTextStyles.b5Regular.copyWith(
                 fontWeight: FontWeight.w500,
               ),
@@ -154,20 +158,24 @@ class _CalendarWidgetState extends State<CalendarWidget> {
                   children: [
                     Text(
                       '${DateTime.now().add(Duration(days: index)).day}',
-                      style:
-                          AppTextStyles.b5DemiBold.copyWith(fontWeight: FontWeight.w700, color: AppColors.primaryLight),
+                      style: AppTextStyles.b5DemiBold.copyWith(
+                          fontWeight: FontWeight.w700,
+                          color: AppColors.primaryLight),
                     ),
                     Text(
                       DateFormat('EE', 'RU').format(
                         DateTime.now().add(Duration(days: index)),
                       ),
-                      style: AppTextStyles.b4Regular.copyWith(color: AppColors.metalColor.shade40),
+                      style: AppTextStyles.b4Regular
+                          .copyWith(color: AppColors.metalColor.shade40),
                     ),
                     Container(
                       height: 4,
                       margin: const EdgeInsets.only(top: 4),
                       width: MediaQuery.of(context).size.width / 7,
-                      color: selIndex == index ? AppColors.primaryLight : Colors.transparent,
+                      color: selIndex == index
+                          ? AppColors.primaryLight
+                          : Colors.transparent,
                     ),
                   ],
                 ),
@@ -195,20 +203,23 @@ class _FoodCompositionState extends State<FoodComposition> {
       margin: const EdgeInsets.all(12),
       padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(12), border: Border.all(color: AppColors.metalColor.shade30)),
+          borderRadius: BorderRadius.circular(12),
+          border: Border.all(color: AppColors.metalColor.shade30)),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Container(
-            decoration: AppDecorations.defDecor
-                .copyWith(color: AppColors.primaryLight, borderRadius: BorderRadius.circular(12)),
+            decoration: AppDecorations.defDecor.copyWith(
+                color: AppColors.primaryLight,
+                borderRadius: BorderRadius.circular(12)),
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
             child: Row(
               children: [
                 SvgPicture.asset(Assets.icons.twoPerson),
                 Text(
                   '3',
-                  style: AppTextStyles.b4Medium.copyWith(color: AppColors.baseLight.shade100),
+                  style: AppTextStyles.b4Medium
+                      .copyWith(color: AppColors.baseLight.shade100),
                 )
               ],
             ),

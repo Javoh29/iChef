@@ -17,8 +17,10 @@ class FavoritesPage extends StatefulWidget {
   State<FavoritesPage> createState() => _FavoritesPageState();
 }
 
-class _FavoritesPageState extends State<FavoritesPage> with SingleTickerProviderStateMixin {
-  late final TabController _tabController = TabController(length: 4, vsync: this);
+class _FavoritesPageState extends State<FavoritesPage>
+    with SingleTickerProviderStateMixin {
+  late final TabController _tabController =
+      TabController(length: 4, vsync: this);
   List tabList = [
     'Понравилось',
     'К готовке',
@@ -64,6 +66,7 @@ class _FavoritesPageState extends State<FavoritesPage> with SingleTickerProvider
   SliverAppBar appBar(bool innerBoxIsScrolled) {
     return SliverAppBar(
       pinned: true,
+      snap: true,
       floating: true,
       centerTitle: true,
       automaticallyImplyLeading: false,
@@ -129,7 +132,8 @@ class _FavoritesPageState extends State<FavoritesPage> with SingleTickerProvider
       isScrollable: true,
       padding: const EdgeInsets.symmetric(horizontal: 5),
       controller: _tabController,
-      unselectedLabelStyle: AppTextStyles.b5Regular.copyWith(color: AppColors.metalColor.shade50),
+      unselectedLabelStyle:
+          AppTextStyles.b5Regular.copyWith(color: AppColors.metalColor.shade50),
       labelStyle: AppTextStyles.b5Regular.copyWith(color: AppColors.baseLight),
       indicator: UnderlineTabIndicator(
         borderSide: BorderSide(width: 4.0, color: AppColors.primaryLight),
@@ -211,7 +215,8 @@ class BottomSheetModel extends StatelessWidget {
                           TextButton(
                             onPressed: () {},
                             style: AppDecorations.buttonStyle(
-                              padding: const EdgeInsets.symmetric(horizontal: 15),
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 15),
                               borderRadius: 12,
                             ),
                             child: Text(

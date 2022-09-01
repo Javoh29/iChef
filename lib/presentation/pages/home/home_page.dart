@@ -15,8 +15,10 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin {
-  late final TabController _tabController = TabController(length: 3, vsync: this);
+class _HomePageState extends State<HomePage>
+    with SingleTickerProviderStateMixin {
+  late final TabController _tabController =
+      TabController(length: 3, vsync: this);
 
   @override
   void initState() {
@@ -65,6 +67,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
     return SliverAppBar(
       automaticallyImplyLeading: false,
       pinned: true,
+      snap: true,
       floating: true,
       forceElevated: innerBoxIsScrolled,
       actions: const [SizedBox.shrink()],
