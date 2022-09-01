@@ -4,7 +4,6 @@ import 'package:ichef/config/constants/app_colors.dart';
 import 'package:ichef/config/constants/app_text_styles.dart';
 import 'package:ichef/config/constants/assets.dart';
 import 'package:ichef/presentation/pages/home/recipes_tab_page.dart';
-import 'package:ichef/presentation/pages/product/product_info_page.dart';
 
 import '../../components/custom_badge.dart';
 import 'chat_page.dart';

@@ -259,7 +259,7 @@ List brandImages = [
 ];
 
 List brandNames = [
-  "Molino Gra...",
+  "Molino Grassi Manitoba 00",
   "Предпортовая",
   "Мелькомбинат",
 ];
