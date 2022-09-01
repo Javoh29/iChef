@@ -1,8 +1,10 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:flutter_custom_slidable/action_pane_motions.dart';
+import 'package:flutter_custom_slidable/auto_close_behavior.dart';
+import 'package:flutter_custom_slidable/slidable.dart';
 import 'package:ichef/presentation/pages/shopping_list/components/shipping_model.dart';
 import 'package:ichef/presentation/pages/shopping_list/components/slidable_btn.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
@@ -26,6 +28,8 @@ class _ShoppingItemDetailsState extends State<ShoppingItemDetails> {
   List<ShippingModel> modelList = [];
   late ShippingModel model;
 
+  // late SlidableController _slidableController;
+
   @override
   void initState() {
     modelList = widget.shippingList;
@@ -40,13 +44,17 @@ class _ShoppingItemDetailsState extends State<ShoppingItemDetails> {
         (index) => Container(
           margin: const EdgeInsets.only(bottom: 5),
           child: SlidableAutoCloseBehavior(
-            closeWhenOpened: true,
             child: Slidable(
                 closeOnScroll: true,
-                direction: Axis.horizontal,
                 key: UniqueKey(),
                 startActionPane: ActionPane(
+                  onClose: () {
+                    setState(() {});
+                    modelList[index].isCheck = true;
+                  },
+                  key: UniqueKey(),
                   extentRatio: 0.165,
+                  openThreshold: 0.99999999999999,
                   motion: const BehindMotion(),
                   children: [
                     SlidableBtnWidget(
@@ -62,6 +70,7 @@ class _ShoppingItemDetailsState extends State<ShoppingItemDetails> {
                   ],
                 ),
                 endActionPane: ActionPane(
+                  onClose: () {},
                   extentRatio: 0.325,
                   dragDismissible: true,
                   motion: const ScrollMotion(),
@@ -69,6 +78,7 @@ class _ShoppingItemDetailsState extends State<ShoppingItemDetails> {
                     closeOnCancel: true,
                     motion: const ScrollMotion(),
                     confirmDismiss: () async => true,
+                    dismissThreshold: 0.9999999999999999,
                     onDismissed: () {
                       setState(() {
                         model = modelList.removeAt(index);
