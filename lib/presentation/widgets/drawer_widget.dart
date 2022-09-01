@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:ichef/config/constants/app_colors.dart';
 import 'package:ichef/config/constants/assets.dart';
 import 'package:ichef/config/constants/local_data.dart';
@@ -41,14 +42,16 @@ class _IngredientsDrawerState extends State<IngredientsDrawer> {
                   "Ингредиенты ",
                   style: AppTextStyles.h5,
                 ),
-                const CustomBadge(text: "24", isActive: false),
+                const CustomBadge(text: "6", isActive: false),
                 const Spacer(),
                 TextButton(
                   onPressed: () {},
-                  style: AppDecorations.buttonStyle(padding: const EdgeInsets.symmetric(horizontal: 12)),
+                  style: AppDecorations.buttonStyle(
+                      padding: const EdgeInsets.symmetric(horizontal: 12)),
                   child: Text(
-                    "В покупки",
-                    style: AppTextStyles.b4Medium.copyWith(color: AppColors.baseLight.shade100),
+                    "В корзину",
+                    style: AppTextStyles.b4Medium
+                        .copyWith(color: AppColors.baseLight.shade100),
                   ),
                 )
               ],
@@ -85,19 +88,15 @@ class _IngredientsDrawerState extends State<IngredientsDrawer> {
               ),
               child: Row(
                 children: [
+                  Padding(
+                    padding: const EdgeInsets.only(right: 16),
+                    child: SvgPicture.asset(Assets.icons.info),
+                  ),
                   Flexible(
                     child: Text(
                       "Вычеркивайте добавленные инградиенты в процессе готовки, чтобы ничего не забыть",
                       style: AppTextStyles.b4Regular,
                     ),
-                  ),
-                  CupertinoSwitch(
-                    value: isSwitch,
-                    onChanged: (value) {
-                      setState(() {
-                        isSwitch = value;
-                      });
-                    },
                   ),
                 ],
               ),
@@ -109,17 +108,6 @@ class _IngredientsDrawerState extends State<IngredientsDrawer> {
             CustomExpandTile(
               title: "Название раздела",
               elements: secondIngredientsRazdel,
-            ),
-            TextButton(
-              style: AppDecorations.buttonStyle(
-                bgColor: AppColors.primaryLight.shade50,
-                padding: const EdgeInsets.symmetric(vertical: 12),
-              ),
-              onPressed: () {},
-              child: Text(
-                "Добавить",
-                style: AppTextStyles.b5Regular,
-              ),
             ),
           ],
         ),
