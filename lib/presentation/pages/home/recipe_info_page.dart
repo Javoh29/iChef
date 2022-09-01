@@ -393,7 +393,7 @@ class _RecipeInfoPageState extends State<RecipeInfoPage> {
           child: TextButton.icon(
             onPressed: () => Navigator.pushNamed(context, Routes.recipeStepPage, arguments: {
               "currentStep": 1,
-              "stepsLength": recipeSteps.length + 1,
+              "stepsLength": recipeSteps.length,
             }),
             style: AppDecorations.buttonStyle(
               padding: const EdgeInsets.symmetric(horizontal: 12),
