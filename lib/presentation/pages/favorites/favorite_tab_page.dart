@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
 class FavoritesTabPage extends StatelessWidget {
-  const FavoritesTabPage({Key? key, required this.listRecipes}) : super(key: key);
-  final List listRecipes;
+  const FavoritesTabPage({Key? key, required this.listImages})
+      : super(key: key);
+  final List listImages;
 
   @override
   Widget build(BuildContext context) {
@@ -19,19 +20,13 @@ class FavoritesTabPage extends StatelessWidget {
           padding: EdgeInsets.zero,
           itemBuilder: (context, index) {
             return GestureDetector(
-              // onTap: () => Navigator.pushNamed(
-              //   context,
-              //   Routes.recipeInfoPage,
-              //   arguments: {'recipe_model': listRecipes[index]},
-              // ),
               child: Image.asset(
-                listRecipes[index].recipeVideoPoster ?? '',
-                width: double.infinity,
+                listImages[index] ?? '',
                 fit: BoxFit.cover,
               ),
             );
           },
-          itemCount: listRecipes.length,
+          itemCount: listImages.length,
         ),
       ),
     );

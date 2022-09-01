@@ -47,16 +47,16 @@ class _FavoritesPageState extends State<FavoritesPage>
         controller: _tabController,
         children: [
           FavoritesTabPage(
-            listRecipes: listRecipes,
+            listImages: favImagesTab1,
           ),
           FavoritesTabPage(
-            listRecipes: listRecipes,
+            listImages: favImagesTab2,
           ),
           FavoritesTabPage(
-            listRecipes: listRecipes,
+            listImages: favImagesTab1,
           ),
           FavoritesTabPage(
-            listRecipes: listRecipes,
+            listImages: favImagesTab2,
           ),
         ],
       ),
