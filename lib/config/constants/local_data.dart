@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ichef/config/constants/assets.dart';
+import 'package:ichef/data/models/user_model.dart';
 
 import '../../data/models/recipe_model.dart';
 import '../../presentation/components/ingridient_detail_container.dart';
@@ -60,152 +61,8 @@ List<RecipeModel> listRecipes = [
   RecipeModel(
       userName: "Ирина Волкова",
       userAvatar: Assets.images.userAvatar1,
-      recipeVideo: Assets.images.recipeMedovik,
-      categoryName: "Temantoga",
-      recipeName: "Классический медовик",
-      recipeTime: "1.5ч",
-      recipeView: "32K",
-      likeCount: 14,
-      commentCount: 135,
-      variationCount: 23,
-      ingredientCount: 7),
-  RecipeModel(
-      userName: "Павел Антипов",
-      userAvatar: Assets.images.userAvatar2,
-      recipeVideo: Assets.images.recipeChicken,
-      categoryName: "Баклажан",
-      recipeName: "Запеченная курица",
-      recipeTime: "1.5ч",
-      recipeView: "32K",
-      likeCount: 10,
-      commentCount: 99,
-      variationCount: 14,
-      ingredientCount: 5),
-  RecipeModel(
-      userName: "Ирина Волкова",
-      userAvatar: Assets.images.userAvatar1,
-      recipeVideo: Assets.images.recipeMedovik,
-      categoryName: "Temantoga",
-      recipeName: "Классический медовик",
-      recipeTime: "1.5ч",
-      recipeView: "32K",
-      likeCount: 14,
-      commentCount: 135,
-      variationCount: 23,
-      ingredientCount: 7),
-  RecipeModel(
-      userName: "Павел Антипов",
-      userAvatar: Assets.images.userAvatar2,
-      recipeVideo: Assets.images.recipeChicken,
-      categoryName: "Баклажан",
-      recipeName: "Запеченная курица",
-      recipeTime: "1.5ч",
-      recipeView: "32K",
-      likeCount: 10,
-      commentCount: 99,
-      variationCount: 14,
-      ingredientCount: 5),
-  RecipeModel(
-      userName: "Ирина Волкова",
-      userAvatar: Assets.images.userAvatar1,
-      recipeVideo: Assets.images.recipeMedovik,
-      categoryName: "Temantoga",
-      recipeName: "Классический медовик",
-      recipeTime: "1.5ч",
-      recipeView: "32K",
-      likeCount: 14,
-      commentCount: 135,
-      variationCount: 23,
-      ingredientCount: 7),
-  RecipeModel(
-      userName: "Павел Антипов",
-      userAvatar: Assets.images.userAvatar2,
-      recipeVideo: Assets.images.recipeChicken,
-      categoryName: "Баклажан",
-      recipeName: "Запеченная курица",
-      recipeTime: "1.5ч",
-      recipeView: "32K",
-      likeCount: 10,
-      commentCount: 99,
-      variationCount: 14,
-      ingredientCount: 5),
-  RecipeModel(
-      userName: "Ирина Волкова",
-      userAvatar: Assets.images.userAvatar1,
-      recipeVideo: Assets.images.recipeMedovik,
-      categoryName: "Temantoga",
-      recipeName: "Классический медовик",
-      recipeTime: "1.5ч",
-      recipeView: "32K",
-      likeCount: 14,
-      commentCount: 135,
-      variationCount: 23,
-      ingredientCount: 7),
-  RecipeModel(
-      userName: "Павел Антипов",
-      userAvatar: Assets.images.userAvatar2,
-      recipeVideo: Assets.images.recipeChicken,
-      categoryName: "Баклажан",
-      recipeName: "Запеченная курица",
-      recipeTime: "1.5ч",
-      recipeView: "32K",
-      likeCount: 10,
-      commentCount: 99,
-      variationCount: 14,
-      ingredientCount: 5),
-  RecipeModel(
-      userName: "Ирина Волкова",
-      userAvatar: Assets.images.userAvatar1,
-      recipeVideo: Assets.images.recipeMedovik,
-      categoryName: "Temantoga",
-      recipeName: "Классический медовик",
-      recipeTime: "1.5ч",
-      recipeView: "32K",
-      likeCount: 14,
-      commentCount: 135,
-      variationCount: 23,
-      ingredientCount: 7),
-  RecipeModel(
-      userName: "Павел Антипов",
-      userAvatar: Assets.images.userAvatar2,
-      recipeVideo: Assets.images.recipeChicken,
-      categoryName: "Баклажан",
-      recipeName: "Запеченная курица",
-      recipeTime: "1.5ч",
-      recipeView: "32K",
-      likeCount: 10,
-      commentCount: 99,
-      variationCount: 14,
-      ingredientCount: 5),
-  RecipeModel(
-      userName: "Ирина Волкова",
-      userAvatar: Assets.images.userAvatar1,
-      recipeVideo: Assets.images.recipeMedovik,
-      categoryName: "Temantoga",
-      recipeName: "Классический медовик",
-      recipeTime: "1.5ч",
-      recipeView: "32K",
-      likeCount: 14,
-      commentCount: 135,
-      variationCount: 23,
-      ingredientCount: 7),
-  RecipeModel(
-      userName: "Павел Антипов",
-      userAvatar: Assets.images.userAvatar2,
-      recipeVideo: Assets.images.recipeChicken,
-      categoryName: "Баклажан",
-      recipeName: "Запеченная курица",
-      recipeTime: "1.5ч",
-      recipeView: "32K",
-      likeCount: 10,
-      commentCount: 99,
-      variationCount: 14,
-      ingredientCount: 5),
-  RecipeModel(
-      userName: "Ирина Волкова",
-      userAvatar: Assets.images.userAvatar1,
       recipeVideo: 'assets/videos/video5.mp4',
-      recipeVideoPoster: "assets/images/img_classic_medovik.png",
+      recipeVideoPoster: "assets/images/img_chicken.png",
       categoryName: "Temantoga",
       recipeName: "Классический медовик",
       recipeTime: "1.5ч",
@@ -267,6 +124,12 @@ List<Map> recipeSteps = [
     "stepName": "Soften the onion",
     "stepContext":
         "Cut the bell pepper into rings (it is better to choose three different colors - it looks more colorful), after removing the seeds. Cut the onion into half rings, grate the garlic on a fine grater.",
+  },
+  {
+    "stepNumber": "Шаг 6",
+    "stepName": "Soften the onion",
+    "stepContext":
+        "Cut the bell pepper into rings (it is better to choose three different colors - it looks more colorful), after removing the seeds. Cut the onion into half rings, grate the garlic on a fine grater.",
   }
 ];
 
@@ -280,6 +143,33 @@ Cut the bell pepper into rings (it is better to choose three different colors - 
 Cut the bell pepper into rings (it is better to choose three different colors - it looks more colorful), after removing the seeds. Cut the onion into half rings, grate the garlic on a fine grater.''';
 
 List<Map> userComments = [
+  {
+    "userName": "Надежда Румянцева",
+    "userImage": Assets.images.userAvatar3,
+    "lastSeen": "2 м назад",
+    "time": "Ср 18, 13:49",
+    "chatText": "Cut the bell",
+    "isOwner": false
+  },
+  {
+    "userName": "Анна Матюнина",
+    "userImage": Assets.images.userAvatar4,
+    "lastSeen": "5 м назад",
+    "time": "Ср 18, 13:49",
+    "chatText":
+        "Cut the bell pepper into rings (it is better to choose three different colors - it looks more colorful)",
+    "isOwner": true
+  },
+  {
+    "userName": "Александра Кадира",
+    "userImage": Assets.images.userAvatar5,
+    "lastSeen": "2 м назад",
+    "time": "Ср 18, 13:49",
+    "chatText":
+        '''Cut the bell pepper into rings (it is better to choose three different colors - it looks more colorful), after removing the seeds. Cut the onion into half rings, grate the garlic on a fine grater.
+Cut the bell pepper into rings (it is better to choose three different colors - it looks more colorful), after removing the seeds. Cut the onion into half rings, grate the garlic on a fine grater.''',
+    "isOwner": false
+  },
   {
     "userName": "Надежда Румянцева",
     "userImage": Assets.images.userAvatar3,
@@ -362,6 +252,41 @@ List<Widget> secondIngredientsRazdel = const [
   ),
 ];
 
+List brandImages = [
+  Assets.images.brand3,
+  Assets.images.brand2,
+  Assets.images.brand1,
+];
+
+List brandNames = [
+  "Molino Gra...",
+  "Предпортовая",
+  "Мелькомбинат",
+];
+
+List brandPrices = [
+  "98",
+  "65",
+  "69.99",
+];
+
+List salerImages = [
+  Assets.images.saler2,
+  Assets.images.saler1,
+  Assets.images.saler3,
+];
+
+List salerNames = [
+  "Окей",
+  "Лента",
+  "Eldorado",
+];
+
+List salerPrices = [
+  "98",
+  "88",
+  "102",
+];
 List<String> folders = [
   "Понравилось",
   "Приготовлено",
@@ -426,3 +351,99 @@ Map<String, dynamic> mockData = {
     }
   ]
 };
+List<String> types = [
+  "Завтрак",
+  "Континентальный завтрак",
+  "Бранч",
+  "Ланч",
+  "Обед",
+  "Полдник",
+  "Ужин",
+  "Ямча",
+];
+
+List<UserModel> users = [
+  UserModel(
+    username: "Ирина Волкова",
+    userImage: Assets.images.userAvatar1,
+    job: "Шеф-повар ресторана Temantoga",
+    bio: '''Шеф-повар ресторана Temantoga
+текстовое описание которые сам пишет,
+может даже сайт указать''',
+    followers: "45,6 тыс",
+    following: "4,8 тыс",
+  ),
+  UserModel(
+    username: "Ирина Волкова",
+    userImage: Assets.images.userAvatar2,
+    job: "Шеф-повар ресторана Temantoga",
+    bio: '''Шеф-повар ресторана Temantoga
+текстовое описание которые сам пишет,
+может даже сайт указать''',
+    followers: "45,6 тыс",
+    following: "4,8 тыс",
+  ),
+  UserModel(
+    username: "Ирина Волкова",
+    userImage: Assets.images.userAvatar3,
+    job: "Шеф-повар ресторана Temantoga",
+    bio: '''Шеф-повар ресторана Temantoga
+текстовое описание которые сам пишет,
+может даже сайт указать''',
+    followers: "45,6 тыс",
+    following: "4,8 тыс",
+  ),
+  UserModel(
+    username: "Ирина Волкова",
+    userImage: Assets.images.userAvatar4,
+    job: "Шеф-повар ресторана Temantoga",
+    bio: '''Шеф-повар ресторана Temantoga
+текстовое описание которые сам пишет,
+может даже сайт указать''',
+    followers: "45,6 тыс",
+    following: "4,8 тыс",
+  ),
+  UserModel(
+    username: "Ирина Волкова",
+    userImage: Assets.images.userAvatar5,
+    job: "Шеф-повар ресторана Temantoga",
+    bio: '''Шеф-повар ресторана Temantoga
+текстовое описание которые сам пишет,
+может даже сайт указать''',
+    followers: "45,6 тыс",
+    following: "4,8 тыс",
+  ),
+];
+
+List profileTabList = [
+  'Рецепты',
+  'Блоги',
+  'Чат',
+];
+
+List<Map> foodTypes = [
+  {
+    "imagePath": Assets.icons.foodOne,
+    "name": "Завтр...",
+  },
+  {
+    "imagePath": Assets.icons.foodTwo,
+    "name": "Мясные б...",
+  },
+  {
+    "imagePath": Assets.icons.foodThree,
+    "name": "Сувид",
+  },
+  {
+    "imagePath": Assets.icons.foodFour,
+    "name": "Выпечка",
+  },
+  {
+    "imagePath": Assets.icons.foodFive,
+    "name": "Грузинс...",
+  },
+  {
+    "imagePath": Assets.icons.foodSix,
+    "name": "Сувид",
+  },
+];

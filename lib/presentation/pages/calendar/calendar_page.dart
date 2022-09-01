@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:ichef/config/constants/app_colors.dart';
 import 'package:ichef/config/constants/app_decorations.dart';
@@ -9,8 +8,6 @@ import 'package:ichef/presentation/pages/home/recipes_tab_page.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 
-import '../../components/custom_badge.dart';
-
 class CalendarPage extends StatefulWidget {
   const CalendarPage({Key? key}) : super(key: key);
 
@@ -18,10 +15,7 @@ class CalendarPage extends StatefulWidget {
   State<CalendarPage> createState() => _CalendarPageState();
 }
 
-class _CalendarPageState extends State<CalendarPage>
-    with SingleTickerProviderStateMixin {
-  late final TabController _tabController =
-      TabController(length: 3, vsync: this);
+class _CalendarPageState extends State<CalendarPage> with SingleTickerProviderStateMixin {
   DateTime? dateTime;
   String dateFormat = '';
 
@@ -29,9 +23,7 @@ class _CalendarPageState extends State<CalendarPage>
   void initState() {
     super.initState();
     initializeDateFormatting('RU', null);
-    dateFormat =
-        DateFormat('MMMM yyyy', 'RU').format(dateTime ?? DateTime.now());
-    _tabController.addListener(() => setState(() {}));
+    dateFormat = DateFormat('MMMM yyyy', 'RU').format(dateTime ?? DateTime.now());
   }
 
   @override
@@ -43,15 +35,7 @@ class _CalendarPageState extends State<CalendarPage>
           appBar(innerBoxIsScrolled),
         ];
       },
-      body: TabBarView(
-        controller: _tabController,
-        children: [
-          const RecipesTabPage(),
-          Container(
-              color: Colors.blue, child: const Center(child: Text('Блоги'))),
-          Container(color: Colors.red, child: const Center(child: Text('Чат'))),
-        ],
-      ),
+      body: const RecipesTabPage(),
     );
   }
 
@@ -84,8 +68,7 @@ class _CalendarPageState extends State<CalendarPage>
           child: Padding(
             padding: const EdgeInsets.only(left: 20.0),
             child: Text(
-              dateFormat.substring(0, 1).toUpperCase() +
-                  dateFormat.substring(1),
+              dateFormat.substring(0, 1).toUpperCase() + dateFormat.substring(1),
               style: AppTextStyles.b5Regular.copyWith(
                 fontWeight: FontWeight.w500,
               ),
@@ -141,7 +124,7 @@ class CalendarWidget extends StatefulWidget implements PreferredSizeWidget {
   State<CalendarWidget> createState() => _CalendarWidgetState();
 
   @override
-  Size get preferredSize => const Size.fromHeight(136);
+  Size get preferredSize => const Size.fromHeight(138);
 }
 
 class _CalendarWidgetState extends State<CalendarWidget> {
@@ -171,24 +154,20 @@ class _CalendarWidgetState extends State<CalendarWidget> {
                   children: [
                     Text(
                       '${DateTime.now().add(Duration(days: index)).day}',
-                      style: AppTextStyles.b5DemiBold.copyWith(
-                          fontWeight: FontWeight.w700,
-                          color: AppColors.primaryLight),
+                      style:
+                          AppTextStyles.b5DemiBold.copyWith(fontWeight: FontWeight.w700, color: AppColors.primaryLight),
                     ),
                     Text(
                       DateFormat('EE', 'RU').format(
                         DateTime.now().add(Duration(days: index)),
                       ),
-                      style: AppTextStyles.b4Regular
-                          .copyWith(color: AppColors.metalColor.shade40),
+                      style: AppTextStyles.b4Regular.copyWith(color: AppColors.metalColor.shade40),
                     ),
                     Container(
                       height: 4,
                       margin: const EdgeInsets.only(top: 4),
                       width: MediaQuery.of(context).size.width / 7,
-                      color: selIndex == index
-                          ? AppColors.primaryLight
-                          : Colors.transparent,
+                      color: selIndex == index ? AppColors.primaryLight : Colors.transparent,
                     ),
                   ],
                 ),
@@ -216,23 +195,20 @@ class _FoodCompositionState extends State<FoodComposition> {
       margin: const EdgeInsets.all(12),
       padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(12),
-          border: Border.all(color: AppColors.metalColor.shade30)),
+          borderRadius: BorderRadius.circular(12), border: Border.all(color: AppColors.metalColor.shade30)),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Container(
-            decoration: AppDecorations.defDecor.copyWith(
-                color: AppColors.primaryLight,
-                borderRadius: BorderRadius.circular(12)),
+            decoration: AppDecorations.defDecor
+                .copyWith(color: AppColors.primaryLight, borderRadius: BorderRadius.circular(12)),
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
             child: Row(
               children: [
                 SvgPicture.asset(Assets.icons.twoPerson),
                 Text(
                   '3',
-                  style: AppTextStyles.b4Medium
-                      .copyWith(color: AppColors.baseLight.shade100),
+                  style: AppTextStyles.b4Medium.copyWith(color: AppColors.baseLight.shade100),
                 )
               ],
             ),

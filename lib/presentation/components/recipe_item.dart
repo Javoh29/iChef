@@ -6,6 +6,7 @@ import '../../config/constants/app_text_styles.dart';
 import '../../config/constants/assets.dart';
 import '../../core/utils/flick_multi_manager.dart';
 import '../../core/utils/flick_multi_player.dart';
+import '../routes/routes.dart';
 import 'icon_button_action.dart';
 
 class RecipeItem extends StatelessWidget {
@@ -23,31 +24,41 @@ class RecipeItem extends StatelessWidget {
         Stack(
           alignment: Alignment.bottomLeft,
           children: [
-            Padding(
-              padding: const EdgeInsets.only(bottom: 17),
-              child: ClipRRect(
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(borderRadius ?? 35), topRight: Radius.circular(borderRadius ?? 35)),
-                child: AspectRatio(
-                  aspectRatio: 3 / 4,
-                  child: FlickMultiPlayer(
-                    url: model.recipeVideo!,
-                    flickMultiManager: flickMultiManager,
-                    image: model.recipeVideoPoster,
+            GestureDetector(
+              onTap: () => Navigator.pushNamed(
+                context,
+                Routes.recipeInfoPage,
+                arguments: {'recipe_model': model},
+              ),
+              child: Padding(
+                padding: const EdgeInsets.only(bottom: 17),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(borderRadius ?? 35), topRight: Radius.circular(borderRadius ?? 35)),
+                  child: AspectRatio(
+                    aspectRatio: 3 / 4,
+                    child: FlickMultiPlayer(
+                      url: model.recipeVideo!,
+                      flickMultiManager: flickMultiManager,
+                      image: model.recipeVideoPoster,
+                    ),
                   ),
                 ),
               ),
             ),
-            Container(
-              height: 34,
-              width: 34,
-              margin: const EdgeInsets.only(left: 15),
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                border: Border.all(color: AppColors.baseLight.shade100, width: 2),
-                image: DecorationImage(
-                  image: AssetImage(model.userAvatar!),
-                  fit: BoxFit.cover,
+            GestureDetector(
+              onTap: () => Navigator.pushNamed(context, Routes.profilePage),
+              child: Container(
+                height: 34,
+                width: 34,
+                margin: const EdgeInsets.only(left: 15),
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  border: Border.all(color: AppColors.baseLight.shade100, width: 2),
+                  image: DecorationImage(
+                    image: AssetImage(model.userAvatar!),
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
             ),
@@ -56,20 +67,23 @@ class RecipeItem extends StatelessWidget {
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15),
-          child: RichText(
-            text: TextSpan(
-              text: model.userName,
-              style: AppTextStyles.b4Regular.copyWith(color: AppColors.metalColor.shade100),
-              children: [
-                TextSpan(
-                  text: ' · ',
-                  style: AppTextStyles.b4Regular.copyWith(color: AppColors.metalColor.shade50),
-                  children: [
-                    TextSpan(text: model.categoryName),
-                  ],
-                ),
-                TextSpan(text: '\n${model.recipeName}', style: AppTextStyles.h4)
-              ],
+          child: GestureDetector(
+            onTap: () => Navigator.pushNamed(context, Routes.profilePage),
+            child: RichText(
+              text: TextSpan(
+                text: model.userName,
+                style: AppTextStyles.b4Regular.copyWith(color: AppColors.metalColor.shade100),
+                children: [
+                  TextSpan(
+                    text: ' · ',
+                    style: AppTextStyles.b4Regular.copyWith(color: AppColors.metalColor.shade50),
+                    children: [
+                      TextSpan(text: model.categoryName),
+                    ],
+                  ),
+                  TextSpan(text: '\n${model.recipeName}', style: AppTextStyles.h4)
+                ],
+              ),
             ),
           ),
         ),

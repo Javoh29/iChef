@@ -230,8 +230,8 @@ class _RecipeInfoPageState extends State<RecipeInfoPage> {
               children: List.generate(recipeSteps.length, ((index) {
                 return RecipeStepCard(
                     size: size,
-                    currentStep: index + 1,
-                    stepsLength: recipeSteps.length + 1,
+                    currentStep: index+1,
+                    stepsLength: recipeSteps.length,
                     stepNumber: recipeSteps[index]['stepNumber'],
                     stepName: recipeSteps[index]['stepName'],
                     stepContext: recipeSteps[index]['stepContext']);
@@ -257,7 +257,7 @@ class _RecipeInfoPageState extends State<RecipeInfoPage> {
   //#recipe type button
   Widget recipeTypeButton(String recipeType) {
     return TextButton(
-      onPressed: () {},
+      onPressed: () => Navigator.pushNamed(context, Routes.productPage),
       style: AppDecorations.buttonStyle(
         bgColor: AppColors.primaryLight.shade50,
         padding: const EdgeInsets.symmetric(horizontal: 15),
@@ -393,7 +393,7 @@ class _RecipeInfoPageState extends State<RecipeInfoPage> {
           child: TextButton.icon(
             onPressed: () => Navigator.pushNamed(context, Routes.recipeStepPage, arguments: {
               "currentStep": 1,
-              "stepsLength": recipeSteps.length + 1,
+              "stepsLength": recipeSteps.length,
             }),
             style: AppDecorations.buttonStyle(
               padding: const EdgeInsets.symmetric(horizontal: 12),

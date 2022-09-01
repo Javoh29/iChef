@@ -1,13 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:ichef/presentation/components/recipe_item.dart';
-import 'package:ichef/presentation/routes/routes.dart';
-
-import '../../../config/constants/local_data.dart';
-import 'favorites_item.dart';
 
 class FavoritesTabPage extends StatelessWidget {
-  const FavoritesTabPage({Key? key, required this.listRecipes})
-      : super(key: key);
+  const FavoritesTabPage({Key? key, required this.listRecipes}) : super(key: key);
   final List listRecipes;
 
   @override
@@ -31,7 +25,7 @@ class FavoritesTabPage extends StatelessWidget {
               //   arguments: {'recipe_model': listRecipes[index]},
               // ),
               child: Image.asset(
-                listRecipes[index].recipeVideo ?? '',
+                listRecipes[index].recipeVideoPoster ?? '',
                 width: double.infinity,
                 fit: BoxFit.cover,
               ),

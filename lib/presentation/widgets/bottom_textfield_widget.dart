@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:ichef/config/constants/app_text_styles.dart';
 
 import '../../config/constants/app_colors.dart';
+import '../../config/constants/assets.dart';
 
 class BottomTextFiledWidget extends StatelessWidget {
   const BottomTextFiledWidget({
     Key? key,
-    required this.mLeading,
-    required this.mTrailing,
+    this.mLeading,
+    this.mTrailing,
   }) : super(key: key);
 
   final Widget? mLeading;
@@ -24,7 +26,14 @@ class BottomTextFiledWidget extends StatelessWidget {
         padding: const EdgeInsets.only(bottom: 20, top: 10),
         child: ListTile(
           contentPadding: EdgeInsets.zero,
-          leading: mLeading,
+          leading: mLeading ??
+              IconButton(
+                onPressed: () {},
+                icon: SvgPicture.asset(
+                  Assets.icons.add,
+                  color: AppColors.metalColor.shade100,
+                ),
+              ),
           title: Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(12),
@@ -43,7 +52,14 @@ class BottomTextFiledWidget extends StatelessWidget {
               ),
             ),
           ),
-          trailing: mTrailing,
+          trailing: mTrailing ??
+              IconButton(
+                onPressed: () {},
+                icon: SvgPicture.asset(
+                  Assets.icons.send,
+                  color: AppColors.metalColor.shade100,
+                ),
+              ),
         ),
       ),
     );

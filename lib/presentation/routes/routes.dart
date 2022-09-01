@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:ichef/presentation/pages/home/profile_page.dart';
 import 'package:ichef/presentation/pages/home/recipe_info_page.dart';
 import 'package:ichef/presentation/pages/home/recipe_step_page.dart';
 import 'package:ichef/presentation/pages/main/main_page.dart';
+import 'package:ichef/presentation/pages/product/product_info_page.dart';
 import 'package:ichef/presentation/pages/settings/user_prefrences_page.dart';
 import 'package:ichef/presentation/pages/shopping_list/shopping_list.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
@@ -16,8 +18,10 @@ class Routes {
   static const userPrefrencesPage = '/userPrefrencesPage';
   static const generationMenuPage = '/generationMenuPage';
   static const shoppingListPage = '/shoppingListPage';
-  static const dishReplaceMentPage = '/dishReplaceMentPage';
-  
+  static const recipeReplacePage = '/recipeReplacePage';
+  static const productPage = '/productPage';
+  static const profilePage = '/profilePage';
+
   static Route<dynamic> generateRoute(RouteSettings routeSettings) {
     try {
       final Map<String, dynamic>? args = routeSettings.arguments as Map<String, dynamic>?;
@@ -53,7 +57,7 @@ class Routes {
               stepsLength: args?['stepsLength'],
             ),
           );
-        case dishReplaceMentPage:
+        case recipeReplacePage:
           return MaterialPageRoute(
             settings: routeSettings,
             builder: (_) => const RecipeReplacePage(),
@@ -62,6 +66,16 @@ class Routes {
           return MaterialPageRoute(
             settings: routeSettings,
             builder: (_) => const ShoppingListPage(),
+          );
+        case productPage:
+          return MaterialPageRoute(
+            settings: routeSettings,
+            builder: (_) => const ProductInfoPage(),
+          );
+        case profilePage:
+          return MaterialPageRoute(
+            settings: routeSettings,
+            builder: (_) => const ProfilePage(),
           );
         default:
           return MaterialPageRoute(
