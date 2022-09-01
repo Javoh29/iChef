@@ -1,27 +1,22 @@
 import 'package:flutter/widgets.dart';
-import 'package:flutter_custom_slidable/controller.dart';
-import 'package:flutter_custom_slidable/dismissible_pane_motions.dart';
-import 'package:flutter_custom_slidable/slidable.dart';
 
-import 'package:flutter_svg/svg.dart';
-
-import '../../config/constants/app_colors.dart';
-import '../../config/constants/app_text_styles.dart';
-import '../../config/constants/assets.dart';
+import 'controller.dart';
+import 'dismissible_pane_motions.dart';
+import 'slidable.dart';
 
 const double _kDismissThreshold = 0.75;
 const Duration _kDismissalDuration = Duration(milliseconds: 300);
 const Duration _kResizeDuration = Duration(milliseconds: 300);
 
-/// Signature used by [DismissiblePaneWidget] to give the application an opportunity
+/// Signature used by [DismissiblePane] to give the application an opportunity
 /// to confirm or veto a dismiss gesture.
 ///
-/// Used by [DismissiblePaneWidget.confirmDismiss].
+/// Used by [DismissiblePane.confirmDismiss].
 typedef ConfirmDismissCallback = Future<bool> Function();
 
 /// A widget wich controls how a [Slidable] dismisses.
-class DismissiblePaneWidget extends StatefulWidget {
-  /// Creates a [DismissiblePaneWidget].
+class DismissiblePane extends StatefulWidget {
+  /// Creates a [DismissiblePane].
   ///
   /// The [onDismissed], [dismissThreshold], [dismissalDuration],
   /// [resizeDuration], [closeOnCancel], and [motion] arguments must not be
@@ -30,7 +25,7 @@ class DismissiblePaneWidget extends StatefulWidget {
   /// The [dismissThreshold] must be between 0 and 1 (both exclusives).
   ///
   /// You must set the key of the enclosing [Slidable] to use this widget.
-  const DismissiblePaneWidget({
+  const DismissiblePane({
     Key? key,
     required this.onDismissed,
     this.dismissThreshold = _kDismissThreshold,
@@ -82,10 +77,10 @@ class DismissiblePaneWidget extends StatefulWidget {
   final Widget motion;
 
   @override
-  _DismissiblePaneWidgetState createState() => _DismissiblePaneWidgetState();
+  _DismissiblePaneState createState() => _DismissiblePaneState();
 }
 
-class _DismissiblePaneWidgetState extends State<DismissiblePaneWidget> {
+class _DismissiblePaneState extends State<DismissiblePane> {
   CustomSlidableController? controller;
 
   @override
@@ -131,8 +126,6 @@ class _DismissiblePaneWidgetState extends State<DismissiblePaneWidget> {
 
     if (endGesture is OpeningGesture ||
         endGesture is StillGesture && position >= widget.dismissThreshold) {
-      debugPrint(position.toString());
-      debugPrint(widget.dismissThreshold.toString());
       bool canDismiss = true;
       if (widget.confirmDismiss != null) {
         canDismiss = await widget.confirmDismiss!();
@@ -153,34 +146,6 @@ class _DismissiblePaneWidgetState extends State<DismissiblePaneWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: const BoxDecoration(
-        color: AppColors.accentLight,
-        borderRadius: BorderRadius.horizontal(
-          right: Radius.circular(10),
-        ),
-      ),
-      child: Stack(
-        clipBehavior: Clip.none,
-        alignment: Alignment.centerRight,
-        children: [
-          widget.motion,
-          Row(
-            children: [
-              const Spacer(),
-              Text(
-                'Удалить',
-                style: AppTextStyles.b4DemiBold
-                    .copyWith(color: AppColors.baseLight.shade100),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                child: SvgPicture.asset(Assets.icons.trash),
-              ),
-            ],
-          )
-        ],
-      ),
-    );
+    return widget.motion;
   }
 }

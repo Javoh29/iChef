@@ -72,13 +72,15 @@ class _ShoppingListPageState extends State<ShoppingListPage> {
                   Container(
                     height: 50,
                     width: double.infinity,
-                    margin: const EdgeInsets.only(left: 10, right: 10, bottom: 10),
+                    margin:
+                        const EdgeInsets.only(left: 10, right: 10, bottom: 10),
                     child: TextButton(
                       onPressed: () {},
                       style: AppDecorations.buttonStyle(borderRadius: 12),
                       child: Text(
                         'Заказать доставку',
-                        style: AppTextStyles.h7.copyWith(color: AppColors.baseLight.shade100),
+                        style: AppTextStyles.h7
+                            .copyWith(color: AppColors.baseLight.shade100),
                       ),
                     ),
                   ),
