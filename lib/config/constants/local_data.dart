@@ -351,7 +351,6 @@ Map<String, dynamic> mockData = {
     }
   ]
 };
-
 List<String> types = [
   "Завтрак",
   "Континентальный завтрак",
