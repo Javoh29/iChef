@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:ichef/config/constants/app_colors.dart';
 import 'package:ichef/config/constants/app_decorations.dart';
@@ -19,7 +18,7 @@ class CalendarPage extends StatefulWidget {
 }
 
 class _CalendarPageState extends State<CalendarPage> with SingleTickerProviderStateMixin {
-  DateTime? dateTime;
+  late DateTime dateTime;
   String dateFormat = '';
 
   @override
@@ -117,8 +116,6 @@ class _CalendarPageState extends State<CalendarPage> with SingleTickerProviderSt
   }
 
   DateTime changeDate(bool isAdd) {
-    return isAdd
-        ? dateTime.add(const Duration(days: 7))
-        : dateTime.subtract(const Duration(days: 7));
+    return isAdd ? dateTime.add(const Duration(days: 7)) : dateTime.subtract(const Duration(days: 7));
   }
 }

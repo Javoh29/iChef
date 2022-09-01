@@ -398,7 +398,7 @@ List<String> favImagesTab2 = [
   'assets/images/favorite_images/tab2/tab2.17.jpg',
   'assets/images/favorite_images/tab2/tab2.18.jpg',
   'assets/images/favorite_images/tab2/tab2.19.jpg',
-  ];
+];
 List<UserModel> users = [
   UserModel(
     username: "Ирина Волкова",
