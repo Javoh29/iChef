@@ -105,10 +105,11 @@ class _IngredientsDrawerState extends State<IngredientsDrawer> {
               title: "Название раздела",
               elements: firstIngredientsRazdel,
             ),
-            CustomExpandTile(
-              title: "Название раздела",
-              elements: secondIngredientsRazdel,
-            ),
+            const SizedBox(height: 80)
+            // CustomExpandTile(
+            //   title: "Название раздела",
+            //   elements: secondIngredientsRazdel,
+            // ),
           ],
         ),
       ),

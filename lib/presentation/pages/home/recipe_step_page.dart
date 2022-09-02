@@ -19,7 +19,11 @@ import '../../widgets/chat_comment_widget.dart';
 
 class RecipeStep extends StatefulWidget {
   const RecipeStep(
-      {required this.currentStep, required this.model, required this.stepsLength, required this.seekToTime, Key? key})
+      {required this.currentStep,
+      required this.model,
+      required this.stepsLength,
+      required this.seekToTime,
+      Key? key})
       : super(key: key);
   final int currentStep;
   final int stepsLength;
@@ -104,15 +108,15 @@ class _RecipeStepState extends State<RecipeStep> {
                         height: size.height * 0.8,
                         decoration: BoxDecoration(
                           image: DecorationImage(
-                            image: AssetImage(Assets.images.recipePrepaireOne),
+                            image: AssetImage(widget.model.recipeSteps[index]['stepImage']),
                             fit: BoxFit.fill,
                           ),
                         ),
                         child: FlickMultiPlayer(
-                          url: widget.model.recipeVideo!,
+                          url: widget.model.recipeSteps[index]['stepVideo']!,
                           flickMultiManager: flickMultiManager,
-                          image: widget.model.recipeVideoPoster,
-                          seekToTime: widget.seekToTime,
+                          image: widget.model.recipeSteps[index]['stepImage'],
+                          seekToTime: const Duration(seconds: 0),
                         ),
                       ),
                       SafeArea(
@@ -127,7 +131,8 @@ class _RecipeStepState extends State<RecipeStep> {
                             height: 32,
                             borderRadius: 12,
                             isActive: true,
-                            textStyle: AppTextStyles.b4DemiBold.copyWith(color: AppColors.primaryLight.shade100),
+                            textStyle: AppTextStyles.b4DemiBold.copyWith(
+                                color: AppColors.primaryLight.shade100),
                           ),
                         ),
                       )
@@ -139,7 +144,7 @@ class _RecipeStepState extends State<RecipeStep> {
           ),
           Visibility(
             visible: isVisible,
-            child: bottomNavigation(currentStep+1),
+            child: bottomNavigation(currentStep + 1),
           ),
           Visibility(
             visible: !isVisible,
@@ -237,7 +242,8 @@ class _RecipeStepState extends State<RecipeStep> {
         : stepsLength > index
             ? "•••"
             : "Завершить";
-    Color currentStepBgColor = index == stepsLength ? AppColors.accentLight : AppColors.primaryLight;
+    Color currentStepBgColor =
+        index == stepsLength ? AppColors.accentLight : AppColors.primaryLight;
     Widget currentStepIcon = index == 1
         ? Icon(
             Icons.arrow_forward_ios,
@@ -267,18 +273,20 @@ class _RecipeStepState extends State<RecipeStep> {
             ),
             child: ListView(
               padding: EdgeInsets.zero,
-              physics: isVisible ? const NeverScrollableScrollPhysics() : const BouncingScrollPhysics(),
+              physics: isVisible
+                  ? const NeverScrollableScrollPhysics()
+                  : const BouncingScrollPhysics(),
               shrinkWrap: true,
               controller: _scrollController,
               children: [
                 Text(
-                  stepName,
+                  widget.model.recipeSteps[index - 1]['stepName'],
                   textAlign: TextAlign.center,
                   style: AppTextStyles.h7,
                 ),
                 const SizedBox(height: 20),
                 Text(
-                  stepContext,
+                  widget.model.recipeSteps[index - 1]['stepContext'],
                   style: AppTextStyles.h5,
                 ),
                 const SizedBox(height: 30),
@@ -308,7 +316,8 @@ class _RecipeStepState extends State<RecipeStep> {
             mMargin: const EdgeInsets.only(top: 10),
             widget: Text(
               '$index из $stepsLength',
-              style: AppTextStyles.b3Medium.copyWith(color: AppColors.baseLight.shade100),
+              style: AppTextStyles.b3Medium
+                  .copyWith(color: AppColors.baseLight.shade100),
             ),
           ),
         ),
@@ -326,14 +335,18 @@ class _RecipeStepState extends State<RecipeStep> {
                 );
               }
             },
-            style: AppDecorations.buttonStyle(padding: const EdgeInsets.symmetric(horizontal: 12), borderRadius: 12)
+            style: AppDecorations.buttonStyle(
+                    padding: const EdgeInsets.symmetric(horizontal: 12),
+                    borderRadius: 12)
                 .copyWith(
               backgroundColor: MaterialStateProperty.all(currentStepBgColor),
-              overlayColor: MaterialStateProperty.all(AppColors.baseLight.shade20),
+              overlayColor:
+                  MaterialStateProperty.all(AppColors.baseLight.shade20),
             ),
             icon: Text(
               currentStepName,
-              style: AppTextStyles.b3Medium.copyWith(color: AppColors.baseLight.shade100),
+              style: AppTextStyles.b3Medium
+                  .copyWith(color: AppColors.baseLight.shade100),
             ),
             label: currentStepIcon,
           ),
