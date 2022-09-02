@@ -4,6 +4,8 @@ import 'package:ichef/presentation/pages/home/recipe_info_page.dart';
 import 'package:ichef/presentation/pages/home/recipe_step_page.dart';
 import 'package:ichef/presentation/pages/main/main_page.dart';
 import 'package:ichef/presentation/pages/product/product_info_page.dart';
+import 'package:ichef/presentation/pages/product/product_sale_page.dart';
+import 'package:ichef/presentation/pages/product/product_without_image_page.dart';
 import 'package:ichef/presentation/pages/settings/user_prefrences_page.dart';
 import 'package:ichef/presentation/pages/shopping_list/shopping_list.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
@@ -22,10 +24,13 @@ class Routes {
   static const recipeReplacePage = '/recipeReplacePage';
   static const productPage = '/productPage';
   static const profilePage = '/profilePage';
+  static const productSalePage = '/productSalePage';
+  static const productWithoutImagePage = '/profileWithoutImagePage';
 
   static Route<dynamic> generateRoute(RouteSettings routeSettings) {
     try {
-      final Map<String, dynamic>? args = routeSettings.arguments as Map<String, dynamic>?;
+      final Map<String, dynamic>? args =
+          routeSettings.arguments as Map<String, dynamic>?;
       args ?? <String, dynamic>{};
       switch (routeSettings.name) {
         case main:
@@ -76,6 +81,19 @@ class Routes {
             settings: routeSettings,
             builder: (_) => const ProductInfoPage(),
           );
+
+        case productSalePage:
+          return MaterialPageRoute(
+            settings: routeSettings,
+            builder: (_) => const ProductSalePage(),
+          );
+
+        case productWithoutImagePage:
+          return MaterialPageRoute(
+            settings: routeSettings,
+            builder: (_) => const ProductWithoutImagePage(),
+          );
+
         case profilePage:
           return MaterialPageRoute(
             settings: routeSettings,
