@@ -57,6 +57,8 @@ class Routes {
             builder: (_) => RecipeStep(
               currentStep: args?['currentStep'],
               stepsLength: args?['stepsLength'],
+              model: args?['recipeModel'],
+              seekToTime: args?['seekToTime'],
             ),
           );
         case recipeReplacePage:
