@@ -229,15 +229,23 @@ class _RecipeInfoPageState extends State<RecipeInfoPage> {
           Container(
             padding: const EdgeInsets.all(20),
             child: Column(
-              children: List.generate(recipeSteps.length, ((index) {
-                return RecipeStepCard(
+              children: List.generate(
+                recipeSteps.length,
+                ((index) {
+                  return RecipeStepCard(
                     size: size,
                     currentStep: index + 1,
                     stepsLength: recipeSteps.length,
                     stepNumber: recipeSteps[index]['stepNumber'],
                     stepName: recipeSteps[index]['stepName'],
-                    stepContext: recipeSteps[index]['stepContext']);
-              })),
+                    stepContext: recipeSteps[index]['stepContext'],
+                    model: widget.model,
+                    seekToTime: widget.seekToTime,
+                  );
+                }),
+              )..add(
+                  const SizedBox(height: 30),
+                ),
             ),
           ),
         ],
@@ -397,6 +405,8 @@ class _RecipeInfoPageState extends State<RecipeInfoPage> {
             onPressed: () => MyApp.navigatorKey.currentState?.pushNamed(Routes.recipeStepPage, arguments: {
               "currentStep": 1,
               "stepsLength": recipeSteps.length,
+              "recipeModel": model,
+              "seekToTime": widget.seekToTime,
             }),
             style: AppDecorations.buttonStyle(
               padding: const EdgeInsets.symmetric(horizontal: 12),

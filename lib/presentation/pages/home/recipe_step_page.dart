@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ichef/config/constants/assets.dart';
+import 'package:ichef/data/models/recipe_model.dart';
 import 'package:ichef/presentation/components/blured_panel.dart';
 import 'package:ichef/presentation/widgets/drawer_widget.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
@@ -9,21 +10,28 @@ import '../../../config/constants/app_colors.dart';
 import '../../../config/constants/app_decorations.dart';
 import '../../../config/constants/app_text_styles.dart';
 import '../../../config/constants/local_data.dart';
+import '../../../core/utils/flick_multi_manager.dart';
+import '../../../core/utils/flick_multi_player.dart';
 import '../../components/icon_button_action.dart';
 import '../../components/svg_circle_button.dart';
 import '../../widgets/bottom_textfield_widget.dart';
 import '../../widgets/chat_comment_widget.dart';
 
 class RecipeStep extends StatefulWidget {
-  const RecipeStep({required this.currentStep, required this.stepsLength, Key? key}) : super(key: key);
+  const RecipeStep(
+      {required this.currentStep, required this.model, required this.stepsLength, required this.seekToTime, Key? key})
+      : super(key: key);
   final int currentStep;
   final int stepsLength;
+  final RecipeModel model;
+  final Duration seekToTime;
 
   @override
   State<RecipeStep> createState() => _RecipeStepState();
 }
 
 class _RecipeStepState extends State<RecipeStep> {
+  final FlickMultiManager flickMultiManager = FlickMultiManager();
   final PanelController _panelController = PanelController();
   final ScrollController _scrollController = ScrollController();
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
@@ -100,6 +108,12 @@ class _RecipeStepState extends State<RecipeStep> {
                             fit: BoxFit.fill,
                           ),
                         ),
+                        child: FlickMultiPlayer(
+                          url: widget.model.recipeVideo!,
+                          flickMultiManager: flickMultiManager,
+                          image: widget.model.recipeVideoPoster,
+                          seekToTime: widget.seekToTime,
+                        ),
                       ),
                       SafeArea(
                         child: Align(
@@ -116,7 +130,7 @@ class _RecipeStepState extends State<RecipeStep> {
                             textStyle: AppTextStyles.b4DemiBold.copyWith(color: AppColors.primaryLight.shade100),
                           ),
                         ),
-                      )
+                      ),
                     ],
                   ),
                 );
@@ -125,7 +139,7 @@ class _RecipeStepState extends State<RecipeStep> {
           ),
           Visibility(
             visible: isVisible,
-            child: bottomNavigation(currentStep),
+            child: bottomNavigation(currentStep+1),
           ),
           Visibility(
             visible: !isVisible,

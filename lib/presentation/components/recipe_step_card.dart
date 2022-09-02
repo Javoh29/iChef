@@ -5,6 +5,7 @@ import 'package:ichef/config/constants/app_decorations.dart';
 import 'package:ichef/config/constants/app_text_styles.dart';
 import 'package:ichef/config/constants/assets.dart';
 
+import '../../data/models/recipe_model.dart';
 import '../../main.dart';
 import '../routes/routes.dart';
 
@@ -17,6 +18,8 @@ class RecipeStepCard extends StatelessWidget {
     required this.stepContext,
     required this.currentStep,
     required this.stepsLength,
+    required this.model,
+    required this.seekToTime,
   }) : super(key: key);
 
   final Size size;
@@ -25,6 +28,8 @@ class RecipeStepCard extends StatelessWidget {
   final String stepContext;
   final int currentStep;
   final int stepsLength;
+  final RecipeModel model;
+  final Duration seekToTime;
 
   @override
   Widget build(BuildContext context) {
@@ -79,6 +84,8 @@ class RecipeStepCard extends StatelessWidget {
                 onTap: () => MyApp.navigatorKey.currentState?.pushNamed(Routes.recipeStepPage, arguments: {
                   "currentStep": currentStep,
                   "stepsLength": stepsLength,
+                  "recipeModel": model,
+              "seekToTime": seekToTime,
                 }),
                 child: Container(
                   width: 27,
