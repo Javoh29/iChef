@@ -11,6 +11,7 @@ import 'package:ichef/presentation/pages/product/product_without_image_page.dart
 
 import '../../components/custom_badge.dart';
 import '../../components/recipe_item.dart';
+import '../home/chat_page.dart';
 import 'components/brand_and_saler_container.dart';
 
 class ProductInfoPage extends StatefulWidget {
@@ -138,48 +139,40 @@ class _ProductInfoPageState extends State<ProductInfoPage>
                       itemCount: 3,
                     ),
                   ),
-                  TabBar(
-                    padding: const EdgeInsets.symmetric(horizontal: 10),
-                    controller: _tabController,
-                    unselectedLabelStyle: AppTextStyles.b5Regular
-                        .copyWith(color: AppColors.metalColor.shade50),
-                    labelStyle: AppTextStyles.b5Regular
-                        .copyWith(color: AppColors.baseLight),
-                    indicator: UnderlineTabIndicator(
-                      borderSide:
-                          BorderSide(width: 4.0, color: AppColors.primaryLight),
-                    ),
-                    tabs: List.generate(
-                      profileTabList.length,
-                      (index) {
-                        return Tab(
-                          height: 20,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(profileTabList[index]),
-                              CustomBadge(
-                                text: '24K',
-                                isActive: _tabController.index == index,
-                              ),
-                            ],
-                          ),
-                        );
-                      },
-                    ),
-                  ),
                 ],
               ),
             ),
-            // TabBarView(
-            //   controller: _tabController,
-            //   children: [
-            //     myListViews(),
-            //     myListViews(),
-            //     const ChatPage(),
-            //   ],
-            // ),
-            myListViews()
+            TabBar(
+              padding: const EdgeInsets.symmetric(horizontal: 5),
+              controller: _tabController,
+              unselectedLabelStyle: AppTextStyles.b5Regular
+                  .copyWith(color: AppColors.metalColor.shade50),
+              labelStyle:
+                  AppTextStyles.b5Regular.copyWith(color: AppColors.baseLight),
+              indicator: UnderlineTabIndicator(
+                borderSide:
+                    BorderSide(width: 4.0, color: AppColors.primaryLight),
+              ),
+              tabs: List.generate(
+                profileTabList.length,
+                (index) {
+                  return Tab(
+                    height: 20,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(profileTabList[index]),
+                        CustomBadge(
+                          text: '24K',
+                          isActive: _tabController.index == index,
+                        ),
+                      ],
+                    ),
+                  );
+                },
+              ),
+            ),
+            myListViews(),
           ],
         ),
       ),

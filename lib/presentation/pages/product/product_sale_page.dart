@@ -6,13 +6,36 @@ import 'package:ichef/config/constants/assets.dart';
 import 'package:ichef/config/constants/local_data.dart';
 import 'package:ichef/presentation/pages/product/components/product_composition_container.dart';
 
+import '../../components/custom_badge.dart';
+import '../../components/recipe_item.dart';
 import 'components/brand_and_saler_container.dart';
 import 'components/product_buy_component.dart';
 import 'components/product_subs.dart';
 
 // ignore: must_be_immutable
-class ProductSalePage extends StatelessWidget {
+class ProductSalePage extends StatefulWidget {
   const ProductSalePage({Key? key}) : super(key: key);
+
+  @override
+  State<ProductSalePage> createState() => _ProductSalePageState();
+}
+
+class _ProductSalePageState extends State<ProductSalePage>
+    with TickerProviderStateMixin {
+  late final TabController _tabController =
+      TabController(length: 3, vsync: this);
+
+  @override
+  void initState() {
+    super.initState();
+    _tabController.addListener(() => setState(() {}));
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -111,8 +134,52 @@ class ProductSalePage extends StatelessWidget {
               ],
             ),
           ),
+          TabBar(
+            padding: const EdgeInsets.symmetric(horizontal: 5),
+            controller: _tabController,
+            unselectedLabelStyle: AppTextStyles.b5Regular
+                .copyWith(color: AppColors.metalColor.shade50),
+            labelStyle:
+                AppTextStyles.b5Regular.copyWith(color: AppColors.baseLight),
+            indicator: UnderlineTabIndicator(
+              borderSide: BorderSide(width: 4.0, color: AppColors.primaryLight),
+            ),
+            tabs: List.generate(
+              profileTabList.length,
+              (index) {
+                return Tab(
+                  height: 20,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(profileTabList[index]),
+                      CustomBadge(
+                        text: '24K',
+                        isActive: _tabController.index == index,
+                      ),
+                    ],
+                  ),
+                );
+              },
+            ),
+          ),
+          myListViews(),
         ],
       ),
+    );
+  }
+
+  Widget myListViews() {
+    return Column(
+      children: [
+        // horizontal listview
+        ...List.generate(
+          listRecipes.length,
+          (index) => RecipeItem(
+            model: listRecipes[index],
+          ),
+        ),
+      ],
     );
   }
 }
