@@ -130,7 +130,7 @@ class _RecipeStepState extends State<RecipeStep> {
                             textStyle: AppTextStyles.b4DemiBold.copyWith(color: AppColors.primaryLight.shade100),
                           ),
                         ),
-                      )
+                      ),
                     ],
                   ),
                 );
