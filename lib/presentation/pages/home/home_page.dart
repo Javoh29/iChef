@@ -1,24 +1,25 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:ichef/config/constants/app_colors.dart';
 import 'package:ichef/config/constants/app_text_styles.dart';
 import 'package:ichef/config/constants/assets.dart';
 import 'package:ichef/presentation/pages/home/recipes_tab_page.dart';
+import 'package:ichef/presentation/widgets/drawer_widget.dart';
 
 import '../../components/custom_badge.dart';
 import 'chat_page.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+  const HomePage({required this.openFilter, Key? key}) : super(key: key);
+  final Function() openFilter;
 
   @override
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage>
-    with SingleTickerProviderStateMixin {
-  late final TabController _tabController =
-      TabController(length: 3, vsync: this);
+class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin {
+  late final TabController _tabController = TabController(length: 3, vsync: this);
 
   @override
   void initState() {
@@ -33,34 +34,38 @@ class _HomePageState extends State<HomePage>
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-        future: loader(),
-        builder: ((context, snapshot) {
-          if (snapshot.hasData) {
-            return NestedScrollView(
-              physics: const NeverScrollableScrollPhysics(),
-              headerSliverBuilder: (context, innerBoxIsScrolled) {
-                return <Widget>[
-                  appBar(innerBoxIsScrolled),
-                ];
-              },
-              body: TabBarView(
-                controller: _tabController,
-                children: [
-                  const RecipesTabPage(),
-                  Container(),
-                  const ChatPage(),
-                ],
-              ),
-            );
-          } else {
-            return Center(
-              child: CircularProgressIndicator(
-                color: AppColors.primaryLight.shade100,
-              ),
-            );
-          }
-        }));
+    return Scaffold(
+      endDrawer: const IngredientsDrawer(),
+      endDrawerEnableOpenDragGesture: false,
+      body: FutureBuilder(
+          future: loader(),
+          builder: ((context, snapshot) {
+            if (snapshot.hasData) {
+              return NestedScrollView(
+                physics: const NeverScrollableScrollPhysics(),
+                headerSliverBuilder: (context, innerBoxIsScrolled) {
+                  return <Widget>[
+                    appBar(innerBoxIsScrolled),
+                  ];
+                },
+                body: TabBarView(
+                  controller: _tabController,
+                  children: [
+                    const RecipesTabPage(),
+                    Container(),
+                    const ChatPage(),
+                  ],
+                ),
+              );
+            } else {
+              return Center(
+                child: CircularProgressIndicator(
+                  color: AppColors.primaryLight.shade100,
+                ),
+              );
+            }
+          })),
+    );
   }
 
   SliverAppBar appBar(bool innerBoxIsScrolled) {
@@ -72,28 +77,27 @@ class _HomePageState extends State<HomePage>
       forceElevated: innerBoxIsScrolled,
       actions: const [SizedBox.shrink()],
       centerTitle: false,
-      title: Row(children: [
-        SvgPicture.asset(Assets.icons.appLogo, height: 35, width: 35),
-        const SizedBox(
-          width: 5,
-        ),
-        Expanded(
-          child: Text(
-            'iChef Expert',
-            style: AppTextStyles.h3.copyWith(fontSize: 22),
-          ),
-        ),
-        IconButton(
-          onPressed: () {
-            Scaffold.of(context).openEndDrawer();
-          },
-          icon: SvgPicture.asset(
-            Assets.icons.filter,
-            height: 22,
-            width: 22,
-          ),
-        )
-      ]),
+      title: Column(
+        children: [
+          Row(children: [
+            const Flexible(
+                child: CupertinoSearchTextField(
+              prefixIcon: Padding(
+                padding: EdgeInsets.only(left: 5, top: 5, right: 5),
+                child: Icon(CupertinoIcons.search),
+              ),
+            )),
+            IconButton(
+              onPressed: widget.openFilter,
+              icon: SvgPicture.asset(
+                Assets.icons.filter,
+                height: 22,
+                width: 22,
+              ),
+            )
+          ]),
+        ],
+      ),
       bottom: tabBar(),
     );
   }

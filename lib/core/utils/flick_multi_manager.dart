@@ -37,6 +37,14 @@ class FlickMultiManager {
     _activeManager?.flickControlManager?.pause();
   }
 
+  Future<Duration?> getTime() async {
+    return await _activeManager?.flickVideoManager?.videoPlayerController?.position;
+  }
+
+  seekTime(Duration time) {
+    _activeManager?.flickControlManager?.seekTo(time);
+  }
+
   play([FlickManager? flickManager]) {
     if (flickManager != null) {
       _activeManager?.flickControlManager?.pause();

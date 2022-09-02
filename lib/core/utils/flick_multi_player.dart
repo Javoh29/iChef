@@ -8,11 +8,13 @@ import 'flick_multi_manager.dart';
 import 'portrait_controls.dart';
 
 class FlickMultiPlayer extends StatefulWidget {
-  const FlickMultiPlayer({Key? key, required this.url, this.image, required this.flickMultiManager}) : super(key: key);
+  const FlickMultiPlayer({Key? key, required this.url, this.image, required this.flickMultiManager, this.seekToTime})
+      : super(key: key);
 
   final String url;
   final String? image;
   final FlickMultiManager flickMultiManager;
+  final Duration? seekToTime;
 
   @override
   State<FlickMultiPlayer> createState() => _FlickMultiPlayerState();
@@ -23,10 +25,10 @@ class _FlickMultiPlayerState extends State<FlickMultiPlayer> {
 
   @override
   void initState() {
+    super.initState();
     flickManager = FlickManager(videoPlayerController: VideoPlayerController.asset(widget.url), autoPlay: false);
     widget.flickMultiManager.init(flickManager);
     flickManager.flickControlManager?.mute();
-    super.initState();
   }
 
   @override
@@ -42,6 +44,9 @@ class _FlickMultiPlayerState extends State<FlickMultiPlayer> {
       onVisibilityChanged: (visiblityInfo) {
         if (visiblityInfo.visibleFraction > 0.9) {
           widget.flickMultiManager.play(flickManager);
+          if (widget.seekToTime != null) {
+            widget.flickMultiManager.seekTime(widget.seekToTime!);
+          }
         }
       },
       child: FlickVideoPlayer(

@@ -37,7 +37,7 @@ class _RecipeStepState extends State<RecipeStep> {
     super.initState();
     currentStep = widget.currentStep;
     stepsLength = widget.stepsLength;
-    _pageController = PageController(initialPage: currentStep-1);
+    _pageController = PageController(initialPage: currentStep - 1);
     _scrollController.addListener(() {
       if (_scrollController.offset < -50) {
         if (_panelController.isPanelOpen) {
@@ -61,85 +61,92 @@ class _RecipeStepState extends State<RecipeStep> {
       key: _scaffoldKey,
       endDrawer: const IngredientsDrawer(),
       endDrawerEnableOpenDragGesture: false,
-      body: PageView(
-        controller: _pageController,
-        children: List.generate(
-          stepsLength,
-          (index) => Stack(
-            children: [
-              SlidingUpPanel(
-                onPanelClosed: () {
-                  setState(() {
-                    isVisible = true;
-                  });
-                },
-                onPanelOpened: () {
-                  setState(() {
-                    isVisible = false;
-                  });
-                },
-                color: Colors.transparent,
-                minHeight: size.height * 0.3,
-                maxHeight: size.height,
-                boxShadow: List.empty(),
-                controller: _panelController,
-                panel: recipeInfo(index + 1),
-                body: Stack(
-                  children: [
-                    Container(
-                      height: size.height * 0.8,
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage(Assets.images.recipePrepaireOne),
-                          fit: BoxFit.fill,
+      body: Stack(
+        children: [
+          PageView(
+            controller: _pageController,
+            onPageChanged: (index) {
+              setState(() {
+                currentStep = index;
+              });
+            },
+            children: List.generate(
+              stepsLength,
+              (index) {
+                return SlidingUpPanel(
+                  onPanelClosed: () {
+                    setState(() {
+                      isVisible = true;
+                    });
+                  },
+                  onPanelOpened: () {
+                    setState(() {
+                      isVisible = false;
+                    });
+                  },
+                  color: Colors.transparent,
+                  minHeight: size.height * 0.3,
+                  maxHeight: size.height,
+                  boxShadow: List.empty(),
+                  controller: _panelController,
+                  panel: recipeInfo(index + 1),
+                  body: Stack(
+                    children: [
+                      Container(
+                        height: size.height * 0.8,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: AssetImage(Assets.images.recipePrepaireOne),
+                            fit: BoxFit.fill,
+                          ),
                         ),
                       ),
-                    ),
-                    SafeArea(
-                      child: Align(
-                        alignment: const Alignment(0.9, -1.0),
-                        child: IconButtonAction(
-                          onTap: () {
-                            _scaffoldKey.currentState?.openEndDrawer();
-                          },
-                          icon: Assets.icons.ingredients,
-                          lable: '7',
-                          height: 32,
-                          borderRadius: 12,
-                          isActive: true,
-                          textStyle: AppTextStyles.b4DemiBold.copyWith(color: AppColors.primaryLight.shade100),
+                      SafeArea(
+                        child: Align(
+                          alignment: const Alignment(0.9, -1.0),
+                          child: IconButtonAction(
+                            onTap: () {
+                              _scaffoldKey.currentState?.openEndDrawer();
+                            },
+                            icon: Assets.icons.ingredients,
+                            lable: '7',
+                            height: 32,
+                            borderRadius: 12,
+                            isActive: true,
+                            textStyle: AppTextStyles.b4DemiBold.copyWith(color: AppColors.primaryLight.shade100),
+                          ),
                         ),
-                      ),
-                    )
-                  ],
-                ),
-              ),
-              Visibility(
-                visible: isVisible,
-                child: bottomNavigation(index + 1),
-              ),
-              Visibility(
-                visible: !isVisible,
-                child: BottomTextFiledWidget(
-                  mLeading: IconButton(
-                    onPressed: () {},
-                    icon: SvgPicture.asset(
-                      Assets.icons.add,
-                      color: AppColors.metalColor.shade100,
-                    ),
+                      )
+                    ],
                   ),
-                  mTrailing: IconButton(
-                    onPressed: () {},
-                    icon: SvgPicture.asset(
-                      Assets.icons.share,
-                      color: AppColors.metalColor.shade100,
-                    ),
-                  ),
-                ),
-              ),
-            ],
+                );
+              },
+            ),
           ),
-        ),
+          Visibility(
+            visible: isVisible,
+            child: bottomNavigation(currentStep),
+          ),
+          Visibility(
+            visible: !isVisible,
+            child: BottomTextFiledWidget(
+              mLeading: IconButton(
+                onPressed: () {},
+                icon: SvgPicture.asset(
+                  Assets.icons.add,
+                  color: AppColors.metalColor.shade100,
+                ),
+              ),
+              mTrailing: IconButton(
+                onPressed: () {},
+                icon: SvgPicture.asset(
+                  Assets.icons.share,
+                  color: AppColors.metalColor.shade100,
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

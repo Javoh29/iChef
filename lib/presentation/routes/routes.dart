@@ -13,6 +13,7 @@ import '../pages/home/recipe_replace_page.dart';
 
 class Routes {
   static const main = '/';
+  static const homePage = '/homePage';
   static const recipeInfoPage = '/recipeInfoPage';
   static const recipeStepPage = '/recipeStepPage';
   static const userPrefrencesPage = '/userPrefrencesPage';
@@ -37,6 +38,7 @@ class Routes {
             settings: routeSettings,
             builder: (_) => RecipeInfoPage(
               model: args?['recipe_model'],
+              seekToTime: args?['seek_to_time'],
             ),
           );
         case userPrefrencesPage:

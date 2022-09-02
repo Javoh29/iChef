@@ -20,17 +20,6 @@ class SettingsPage extends StatelessWidget {
             style: AppTextStyles.h5.copyWith(color: AppColors.baseLight.shade100),
           ),
         ),
-        const SizedBox(
-          height: 10,
-        ),
-        TextButton(
-          onPressed: () => Navigator.pushNamed(context, Routes.generationMenuPage),
-          style: AppDecorations.buttonStyle(),
-          child: Text(
-            'Generation Menu',
-            style: AppTextStyles.h5.copyWith(color: AppColors.baseLight.shade100),
-          ),
-        ),
       ],
     );
   }

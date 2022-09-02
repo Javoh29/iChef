@@ -5,6 +5,7 @@ import 'package:ichef/config/constants/app_decorations.dart';
 import 'package:ichef/config/constants/app_text_styles.dart';
 import 'package:ichef/config/constants/assets.dart';
 
+import '../../main.dart';
 import '../routes/routes.dart';
 
 class RecipeStepCard extends StatelessWidget {
@@ -75,7 +76,7 @@ class RecipeStepCard extends StatelessWidget {
                 ),
               ),
               GestureDetector(
-                onTap: () => Navigator.pushNamed(context, Routes.recipeStepPage, arguments: {
+                onTap: () => MyApp.navigatorKey.currentState?.pushNamed(Routes.recipeStepPage, arguments: {
                   "currentStep": currentStep,
                   "stepsLength": stepsLength,
                 }),

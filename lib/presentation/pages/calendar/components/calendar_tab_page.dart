@@ -87,46 +87,47 @@ class CalendarTabItems extends StatelessWidget {
             Routes.recipeInfoPage,
             arguments: {'recipe_model': listRecipes[index]},
           ),
-          child: RecipeItem(model: listRecipes[index], listAdditional: [
-            Positioned(
-                top: 20,
-                left: 20,
-                right: 20,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    BluredPanel(
-                      mHeight: 36,
-                      mPadding: const EdgeInsets.symmetric(
-                        horizontal: 9,
-                        vertical: 10,
+          child: RecipeItem(
+            model: listRecipes[index],
+            listAdditional: [
+              Positioned(
+                  top: 20,
+                  left: 20,
+                  right: 20,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      BluredPanel(
+                        mHeight: 36,
+                        mPadding: const EdgeInsets.symmetric(
+                          horizontal: 9,
+                          vertical: 10,
+                        ),
+                        mBorderRadius: 12,
+                        widget: Row(
+                          children: const [
+                            FoodComText(count: '56', type: 'Б'),
+                            FoodComText(count: '63', type: 'Ж'),
+                            FoodComText(count: '56', type: 'У'),
+                            FoodComText(count: '343', type: 'Ккал'),
+                          ],
+                        ),
                       ),
-                      mBorderRadius: 12,
-                      widget: Row(
-                        children: const [
-                          FoodComText(count: '56', type: 'Б'),
-                          FoodComText(count: '63', type: 'Ж'),
-                          FoodComText(count: '56', type: 'У'),
-                          FoodComText(count: '343', type: 'Ккал'),
-                        ],
+                      GestureDetector(
+                        onTap: () => Navigator.pushNamed(context, Routes.recipeReplacePage),
+                        child: BluredPanel(
+                            mHeight: 36,
+                            mPadding: const EdgeInsets.symmetric(horizontal: 9, vertical: 10),
+                            mBorderRadius: 12,
+                            widget: Text(
+                              'Заменить',
+                              style: AppTextStyles.b4Medium.copyWith(color: AppColors.baseLight.shade100),
+                            )),
                       ),
-                    ),
-                    GestureDetector(
-                      onTap: () {},
-                      child: BluredPanel(
-                          mHeight: 36,
-                          mPadding: const EdgeInsets.symmetric(
-                              horizontal: 9, vertical: 10),
-                          mBorderRadius: 12,
-                          widget: Text(
-                            'Заменить',
-                            style: AppTextStyles.b4Medium
-                                .copyWith(color: AppColors.baseLight.shade100),
-                          )),
-                    ),
-                  ],
-                ))
-          ]),
+                    ],
+                  ))
+            ],
+          ),
         );
       },
       separatorBuilder: (context, index) => const SizedBox(height: 10),
@@ -151,8 +152,7 @@ class FoodComText extends StatelessWidget {
       child: RichText(
         text: TextSpan(
           text: count,
-          style: AppTextStyles.b4Medium
-              .copyWith(color: AppColors.baseLight.shade100),
+          style: AppTextStyles.b4Medium.copyWith(color: AppColors.baseLight.shade100),
           children: [
             TextSpan(
               text: ' $type',

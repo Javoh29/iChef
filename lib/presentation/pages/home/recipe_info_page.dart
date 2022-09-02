@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:ichef/config/constants/app_decorations.dart';
+import 'package:ichef/main.dart';
 import 'package:ichef/presentation/components/recipe_item.dart';
 import 'package:ichef/presentation/components/recipe_step_card.dart';
 import 'package:ichef/presentation/widgets/drawer_widget.dart';
@@ -19,8 +20,9 @@ import '../../routes/routes.dart';
 import '../../widgets/scale_widget.dart';
 
 class RecipeInfoPage extends StatefulWidget {
-  const RecipeInfoPage({required this.model, Key? key}) : super(key: key);
+  const RecipeInfoPage({required this.model, required this.seekToTime, Key? key}) : super(key: key);
   final RecipeModel model;
+  final Duration seekToTime;
 
   @override
   State<RecipeInfoPage> createState() => _RecipeInfoPageState();
@@ -230,7 +232,7 @@ class _RecipeInfoPageState extends State<RecipeInfoPage> {
               children: List.generate(recipeSteps.length, ((index) {
                 return RecipeStepCard(
                     size: size,
-                    currentStep: index+1,
+                    currentStep: index + 1,
                     stepsLength: recipeSteps.length,
                     stepNumber: recipeSteps[index]['stepNumber'],
                     stepName: recipeSteps[index]['stepName'],
@@ -257,7 +259,7 @@ class _RecipeInfoPageState extends State<RecipeInfoPage> {
   //#recipe type button
   Widget recipeTypeButton(String recipeType) {
     return TextButton(
-      onPressed: () => Navigator.pushNamed(context, Routes.productPage),
+      onPressed: () => MyApp.navigatorKey.currentState?.pushNamed(Routes.productPage),
       style: AppDecorations.buttonStyle(
         bgColor: AppColors.primaryLight.shade50,
         padding: const EdgeInsets.symmetric(horizontal: 15),
@@ -276,6 +278,7 @@ class _RecipeInfoPageState extends State<RecipeInfoPage> {
     return RecipeItem(
       model: model,
       borderRadius: 0,
+      seekToTime: widget.seekToTime,
       listAdditional: [
         Positioned(
           top: 10,
@@ -391,7 +394,7 @@ class _RecipeInfoPageState extends State<RecipeInfoPage> {
           bottom: 30,
           right: 20,
           child: TextButton.icon(
-            onPressed: () => Navigator.pushNamed(context, Routes.recipeStepPage, arguments: {
+            onPressed: () => MyApp.navigatorKey.currentState?.pushNamed(Routes.recipeStepPage, arguments: {
               "currentStep": 1,
               "stepsLength": recipeSteps.length,
             }),

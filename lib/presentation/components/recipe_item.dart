@@ -10,11 +10,13 @@ import '../routes/routes.dart';
 import 'icon_button_action.dart';
 
 class RecipeItem extends StatelessWidget {
-  RecipeItem({required this.model, this.borderRadius, this.listAdditional, Key? key}) : super(key: key);
+  RecipeItem({required this.model, this.borderRadius, this.listAdditional, this.seekToTime, Key? key})
+      : super(key: key);
   final RecipeModel model;
   final double? borderRadius;
   final List<Widget>? listAdditional;
   final FlickMultiManager flickMultiManager = FlickMultiManager();
+  final Duration? seekToTime;
 
   @override
   Widget build(BuildContext context) {
@@ -25,11 +27,15 @@ class RecipeItem extends StatelessWidget {
           alignment: Alignment.bottomLeft,
           children: [
             GestureDetector(
-              onTap: () => Navigator.pushNamed(
-                context,
-                Routes.recipeInfoPage,
-                arguments: {'recipe_model': model},
-              ),
+              onTap: () {
+                flickMultiManager.getTime().then((value) {
+                  Navigator.pushNamed(
+                    context,
+                    Routes.recipeInfoPage,
+                    arguments: {'recipe_model': model, 'seek_to_time': value},
+                  );
+                });
+              },
               child: Padding(
                 padding: const EdgeInsets.only(bottom: 17),
                 child: ClipRRect(
@@ -41,6 +47,7 @@ class RecipeItem extends StatelessWidget {
                       url: model.recipeVideo!,
                       flickMultiManager: flickMultiManager,
                       image: model.recipeVideoPoster,
+                      seekToTime: seekToTime,
                     ),
                   ),
                 ),
