@@ -12,8 +12,7 @@ import 'components/product_subs.dart';
 
 // ignore: must_be_immutable
 class ProductSalePage extends StatelessWidget {
-  ProductSalePage({required this.productName, Key? key}) : super(key: key);
-  String productName;
+  const ProductSalePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +45,7 @@ class ProductSalePage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  productName,
+                  "Molino Grassi Manitoba 00",
                   style: AppTextStyles.h8
                       .copyWith(color: AppColors.metalColor.shade90),
                 ),
