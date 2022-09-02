@@ -178,7 +178,7 @@ class _RecipeInfoPageState extends State<RecipeInfoPage> {
                           ),
                         ),
                         label: Text(
-                          '00:18:49',
+                          '${widget.model.recipeTime}',
                           style: AppTextStyles.h5.copyWith(
                             color: AppColors.metalColor.shade50,
                           ),
@@ -229,9 +229,11 @@ class _RecipeInfoPageState extends State<RecipeInfoPage> {
                 Padding(
                   padding: const EdgeInsets.only(right: 20),
                   child: Text(
-                    recipeText,
-                    style: AppTextStyles.h5
-                        .copyWith(color: AppColors.metalColor.shade70),
+                    '${widget.model.recipeDesc}',
+                    style: AppTextStyles.h5.copyWith(
+                      color: AppColors.metalColor.shade70,
+                    ),
+
                   ),
                 ),
               ],
@@ -241,25 +243,23 @@ class _RecipeInfoPageState extends State<RecipeInfoPage> {
           Container(
             padding: const EdgeInsets.all(20),
             child: Column(
-              children: List.generate(
-                recipeSteps.length,
-                ((index) {
-                  return RecipeStepCard(
-                    size: size,
-                    currentStep: index + 1,
-                    stepsLength: recipeSteps.length,
-                    stepNumber: recipeSteps[index]['stepNumber'],
-                    stepName: recipeSteps[index]['stepName'],
-                    stepContext: recipeSteps[index]['stepContext'],
-                    model: widget.model,
-                    seekToTime: widget.seekToTime,
-                  );
-                }),
-              )..add(
-                  const SizedBox(height: 30),
-                ),
+              children:
+                  List.generate(widget.model.recipeSteps.length, ((index) {
+                return RecipeStepCard(
+                  size: size,
+                  stepImage: widget.model.recipeSteps[index]['stepImage'],
+                  currentStep: index + 1,
+                  stepsLength: widget.model.recipeSteps.length,
+                  stepNumber: widget.model.recipeSteps[index]['stepNumber'],
+                  stepName: widget.model.recipeSteps[index]['stepName'],
+                  stepContext: widget.model.recipeSteps[index]['stepContext'],
+                  model: widget.model,
+                  seekToTime: widget.seekToTime,
+                );
+              })),
             ),
           ),
+          const SizedBox(height: 60),
         ],
       ),
     );
@@ -430,7 +430,7 @@ class _RecipeInfoPageState extends State<RecipeInfoPage> {
             onPressed: () => MyApp.navigatorKey.currentState
                 ?.pushNamed(Routes.recipeStepPage, arguments: {
               "currentStep": 1,
-              "stepsLength": recipeSteps.length,
+              "stepsLength": widget.model.recipeSteps.length,
               "recipeModel": model,
               "seekToTime": widget.seekToTime,
             }),
