@@ -107,8 +107,8 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
 
       padding: const EdgeInsets.symmetric(horizontal: 10),
       controller: _tabController,
-      labelStyle: AppTextStyles.b4Medium,
-      unselectedLabelStyle: AppTextStyles.b4Medium,
+      labelStyle: AppTextStyles.b3Medium,
+      unselectedLabelStyle: AppTextStyles.b5Medium,
       indicator: UnderlineTabIndicator(
         borderSide: BorderSide(width: 4.0, color: AppColors.primaryLight),
       ),

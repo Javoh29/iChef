@@ -32,8 +32,9 @@ class _FlickMultiPlayerState extends State<FlickMultiPlayer> {
   void initState() {
     super.initState();
     flickManager = FlickManager(
-        videoPlayerController: VideoPlayerController.asset(widget.url),
-        autoPlay: false);
+        videoPlayerController: VideoPlayerController.asset(widget.url)..setLooping(true),
+        autoPlay: false,
+        autoInitialize: true);
     widget.flickMultiManager.init(flickManager);
     flickManager.flickControlManager?.mute();
   }
