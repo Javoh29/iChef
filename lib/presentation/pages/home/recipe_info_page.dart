@@ -234,6 +234,7 @@ class _RecipeInfoPageState extends State<RecipeInfoPage> {
                     style: AppTextStyles.h5.copyWith(
                       color: AppColors.metalColor.shade70,
                     ),
+
                   ),
                 ),
               ],
@@ -291,8 +292,16 @@ class _RecipeInfoPageState extends State<RecipeInfoPage> {
   //#recipe type button
   Widget recipeTypeButton(String recipeType) {
     return TextButton(
-      onPressed: () =>
-          MyApp.navigatorKey.currentState?.pushNamed(Routes.productPage),
+      onPressed: () {
+        if (recipeType == "Panasonic 1259") {
+          MyApp.navigatorKey.currentState
+              ?.pushNamed(Routes.productWithoutImagePage);
+        } else if (recipeType == "Без глютена") {
+          MyApp.navigatorKey.currentState?.pushNamed(Routes.productSalePage);
+        } else {
+          MyApp.navigatorKey.currentState?.pushNamed(Routes.productPage);
+        }
+      },
       style: AppDecorations.buttonStyle(
         bgColor: AppColors.primaryLight.shade50,
         padding: const EdgeInsets.symmetric(horizontal: 15),

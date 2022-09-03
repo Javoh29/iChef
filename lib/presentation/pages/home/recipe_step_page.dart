@@ -135,7 +135,7 @@ class _RecipeStepState extends State<RecipeStep> {
                                 color: AppColors.primaryLight.shade100),
                           ),
                         ),
-                      )
+                      ),
                     ],
                   ),
                 );
