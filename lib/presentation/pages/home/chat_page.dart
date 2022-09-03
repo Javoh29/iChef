@@ -12,6 +12,9 @@ class ChatPage extends StatefulWidget {
 }
 
 class _ChatPageState extends State<ChatPage> {
+  // RecipeModel model =
+  //     RecipeModel(recipeSteps: recipeSteps, userComment: userComments2);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

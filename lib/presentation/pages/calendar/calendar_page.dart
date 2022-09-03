@@ -17,7 +17,8 @@ class CalendarPage extends StatefulWidget {
   State<CalendarPage> createState() => _CalendarPageState();
 }
 
-class _CalendarPageState extends State<CalendarPage> with SingleTickerProviderStateMixin {
+class _CalendarPageState extends State<CalendarPage>
+    with SingleTickerProviderStateMixin {
   late DateTime dateTime;
   String dateFormat = '';
   late final TabController _tabController =
@@ -126,14 +127,16 @@ class _CalendarPageState extends State<CalendarPage> with SingleTickerProviderSt
         ),
       ]),
       bottom: PreferredSize(
-        preferredSize: const Size.fromHeight(58),
+        preferredSize: const Size.fromHeight(68),
         child: tabBar(),
       ),
     );
   }
 
   DateTime changeDate(bool isAdd) {
-    return isAdd ? dateTime.add(const Duration(days: 7)) : dateTime.subtract(const Duration(days: 7));
+    return isAdd
+        ? dateTime.add(const Duration(days: 7))
+        : dateTime.subtract(const Duration(days: 7));
   }
 
   TabBar tabBar() {
@@ -147,7 +150,7 @@ class _CalendarPageState extends State<CalendarPage> with SingleTickerProviderSt
         7,
         (index) {
           return Tab(
-            height: 32,
+            height: 42,
             child: Column(
               children: [
                 Text(

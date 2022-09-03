@@ -10,7 +10,6 @@ import 'package:sliding_up_panel/sliding_up_panel.dart';
 import '../../../config/constants/app_colors.dart';
 import '../../../config/constants/app_decorations.dart';
 import '../../../config/constants/app_text_styles.dart';
-import '../../../config/constants/local_data.dart';
 import '../../../core/utils/flick_multi_manager.dart';
 import '../../../core/utils/flick_multi_player.dart';
 import '../../components/icon_button_action.dart';
@@ -113,7 +112,8 @@ class _RecipeStepState extends State<RecipeStep> {
                         height: size.height * 0.8,
                         decoration: BoxDecoration(
                           image: DecorationImage(
-                            image: AssetImage(widget.model.recipeSteps[index]['stepImage']),
+                            image: AssetImage(
+                                widget.model.recipeSteps[index]['stepImage']),
                             fit: BoxFit.fill,
                           ),
                         ),

@@ -72,6 +72,7 @@ class _ProfilePageState extends State<ProfilePage> with TickerProviderStateMixin
           children: [
             // #tabbar
             TabBar(
+              isScrollable: true,
               padding: const EdgeInsets.symmetric(horizontal: 5),
               controller: _tabController,
               unselectedLabelStyle: AppTextStyles.b5Regular.copyWith(color: AppColors.metalColor.shade50),
@@ -191,5 +192,5 @@ class MySliver extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => const Size.fromHeight(145);
+  Size get preferredSize => const Size.fromHeight(152);
 }

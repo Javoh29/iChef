@@ -42,7 +42,7 @@ List<RecipeModel> listRecipes = [
   RecipeModel(
       userName: "Ирина Волкова",
       userAvatar: Assets.images.userAvatar1,
-      recipeVideo: 'assets/videos/video6.mp4',
+      recipeVideo: 'assets/videos/video1.mp4',
       recipeVideoPoster: "assets/images/favorite_images/img.png",
       categoryName: "Temantoga",
       recipeName: "Нежная и сочная свиная вырезка",
@@ -58,7 +58,7 @@ List<RecipeModel> listRecipes = [
   RecipeModel(
     userName: "Анастасия Королёва",
     userAvatar: Assets.images.userAvatar3,
-    recipeVideo: 'assets/videos/video7.mp4',
+    recipeVideo: 'assets/videos/video2.mp4',
     recipeVideoPoster: "assets/images/favorite_images/tab2/tab2.8.jpg",
     categoryName: "Шеф-повар Tramontina",
     recipeName: "Жареная курица в хрустящей панировке.",
@@ -75,7 +75,7 @@ List<RecipeModel> listRecipes = [
   RecipeModel(
       userName: "Ирина Волкова",
       userAvatar: Assets.images.userAvatar1,
-      recipeVideo: 'assets/videos/video6.mp4',
+      recipeVideo: 'assets/videos/video3.mp4',
       recipeVideoPoster: "assets/images/favorite_images/img.png",
       categoryName: "Temantoga",
       recipeName: "Нежная и сочная свиная вырезка",
@@ -91,7 +91,7 @@ List<RecipeModel> listRecipes = [
   RecipeModel(
     userName: "Анастасия Королёва",
     userAvatar: Assets.images.userAvatar3,
-    recipeVideo: 'assets/videos/video7.mp4',
+    recipeVideo: 'assets/videos/video4.mp4',
     recipeVideoPoster: "assets/images/favorite_images/tab2/tab2.8.jpg",
     categoryName: "Шеф-повар Tramontina",
     recipeName: "Жареная курица в хрустящей панировке.",
@@ -108,7 +108,7 @@ List<RecipeModel> listRecipes = [
   RecipeModel(
       userName: "Ирина Волкова",
       userAvatar: Assets.images.userAvatar1,
-      recipeVideo: 'assets/videos/video6.mp4',
+      recipeVideo: 'assets/videos/video5.mp4',
       recipeVideoPoster: "assets/images/favorite_images/img.png",
       categoryName: "Temantoga",
       recipeName: "Нежная и сочная свиная вырезка",
@@ -121,56 +121,6 @@ List<RecipeModel> listRecipes = [
       userComment: userComments,
       recipeDesc: recipeText,
       ingredientCount: 7),
-  RecipeModel(
-    userName: "Анастасия Королёва",
-    userAvatar: Assets.images.userAvatar3,
-    recipeVideo: 'assets/videos/video7.mp4',
-    recipeVideoPoster: "assets/images/favorite_images/tab2/tab2.8.jpg",
-    categoryName: "Шеф-повар Tramontina",
-    recipeName: "Жареная курица в хрустящей панировке.",
-    recipeTime: "1 час - 4 час 30 мин",
-    recipeView: "32K",
-    likeCount: 10,
-    commentCount: 99,
-    variationCount: 14,
-    recipeSteps: recipeSteps2,
-    userComment: userComments2,
-    recipeDesc: recipeText2,
-    ingredientCount: 5,
-  ),
-  RecipeModel(
-      userName: "Ирина Волкова",
-      userAvatar: Assets.images.userAvatar1,
-      recipeVideo: 'assets/videos/video6.mp4',
-      recipeVideoPoster: "assets/images/favorite_images/img.png",
-      categoryName: "Temantoga",
-      recipeName: "Нежная и сочная свиная вырезка",
-      recipeTime: "1 час-2 часа 15 мин",
-      recipeView: "32K",
-      likeCount: 14,
-      commentCount: 135,
-      variationCount: 23,
-      recipeSteps: recipeSteps,
-      userComment: userComments,
-      recipeDesc: recipeText,
-      ingredientCount: 7),
-  RecipeModel(
-    userName: "Анастасия Королёва",
-    userAvatar: Assets.images.userAvatar3,
-    recipeVideo: 'assets/videos/video7.mp4',
-    recipeVideoPoster: "assets/images/favorite_images/tab2/tab2.8.jpg",
-    categoryName: "Шеф-повар Tramontina",
-    recipeName: "Жареная курица в хрустящей панировке.",
-    recipeTime: "1 час-4 час 30 мин",
-    recipeView: "32K",
-    likeCount: 10,
-    commentCount: 99,
-    variationCount: 14,
-    recipeSteps: recipeSteps2,
-    userComment: userComments2,
-    recipeDesc: recipeText2,
-    ingredientCount: 5,
-  ),
 ];
 
 List<String> infoIcons = [
@@ -204,7 +154,8 @@ List<Map> recipeSteps = [
     "stepContext":
         "Ваша свиная вырезка выглядит так же? Отлично, начинаем готовить!",
     "stepImage": "assets/images/favorite_images/img_1.png",
-    "stepVideo": "assets/videos/step_video2.mp4",
+    "stepVideo": "",
+    'stepComment': []
   },
   {
     "stepNumber": "Шаг 2",
@@ -213,6 +164,7 @@ List<Map> recipeSteps = [
         "В небольшой миске соединяем 5 частей соли с 2 частями сахара и перемешиваем.Смесь сахара и соли работает как рассол для того, чтобы пока свинина готовится, она оставалась красивой и сочной.Для приготовления травяного масла, смешиваем все инградиеты, кроме соли, и ооткладываем в сторону. Добавляем соль непосредственно перед подачей на стол.",
     "stepImage": "assets/images/favorite_images/img_4.png",
     "stepVideo": "assets/videos/step_video2.mp4",
+    'stepComment': []
   },
   {
     "stepNumber": "Шаг 3",
@@ -221,6 +173,7 @@ List<Map> recipeSteps = [
         "Приправляем вырезку смесью сахара и соли, из расчета примерно 1,5 % от веса мяса. (Это не должно быть обязательно точно).Есть важный момент! Приправляем мясо только тогда, когда готовы, чтобы сразу начать  его приготовить.Свиная вырезка очень нежная, поэтому слишком ранняя засолка сделает ее ветчиной.Помещаем термостат в воду и когда он нагреет ее до достаточной температуры, аккуратно и медленно помещаем пакет с мясом в емкость с водой.Закрепляем пакет так, чтобы он был полностью погружен в воду. Если пакет всплывает, кладем на него для утяжеления вилку или что-то другое.",
     "stepImage": "assets/images/favorite_images/img_2.png",
     "stepVideo": "assets/videos/step_video3.mp4",
+    'stepComment': []
   },
   {
     "stepNumber": "Шаг 4",
@@ -229,6 +182,7 @@ List<Map> recipeSteps = [
         "Обжариваем вырезку на сковороде гриль или гриле. На чем бы не готовили вы, убедитесь, что ваша сковорода или гриль сильно разогреты.Имейте ввиду, что вырезка получается вкусной и нежирной, поэтому ее очень легко пережарить во время обжаривания.",
     "stepImage": "assets/images/favorite_images/img_3.png",
     "stepVideo": "assets/videos/step_video4.mp4",
+    'stepComment': []
   },
   {
     "stepNumber": "Шаг 5",
@@ -237,6 +191,7 @@ List<Map> recipeSteps = [
         "Подаем на стол с приготовленным травяным маслом. Нарезаем кусочками.Наслаждаемся нежной свиной вырезкой!",
     "stepImage": "assets/images/favorite_images/img.png",
     "stepVideo": "assets/videos/step_video5.mp4",
+    'stepComment': []
   }
 ];
 List<Map> recipeSteps2 = [
@@ -247,6 +202,7 @@ List<Map> recipeSteps2 = [
         "Солим кусочки курицы. Количество соли должно быть примерно 1 процент от веса кусочков курицы или на ваше усмотрение.",
     "stepImage": "assets/images/favorite_images/tab2/tab2.17.jpg",
     "stepVideo": "assets/videos/video2/step_video1.mp4",
+    'stepComment': []
   },
   {
     "stepNumber": "Шаг 2",
@@ -255,6 +211,7 @@ List<Map> recipeSteps2 = [
         "В разные пакеты укладываем кусочки белого и темного мяса в один слой, чтобы они готовились равномерно.",
     "stepImage": "assets/images/kur_panirovke/img.png",
     "stepVideo": "assets/videos/video2/video2.mp4",
+    'stepComment': []
   },
   {
     "stepNumber": "Шаг 3",
@@ -263,6 +220,7 @@ List<Map> recipeSteps2 = [
         "Сначала начинаем готовить ножки и темное мясо. Эти кусочки курицы готовятся дольше, чем белое мясо. Куриные грудки добаляем за 1 час до подачи на стол.",
     "stepImage": "assets/images/kur_panirovke/img_1.png",
     "stepVideo": "assets/videos/video2/video_3.mp4",
+    'stepComment': []
   },
   {
     "stepNumber": "Шаг 4",
@@ -271,6 +229,7 @@ List<Map> recipeSteps2 = [
         "Смешиваем муку со специями. Вы можете использовать разные специи по своему вкусу.",
     "stepImage": "assets/images/kur_panirovke/img_2.png",
     "stepVideo": "assets/videos/video2/video3.mp4",
+    'stepComment': []
   },
   {
     "stepNumber": "Шаг 5",
@@ -279,6 +238,7 @@ List<Map> recipeSteps2 = [
         "Разрезаем куриные грудки на 2 части, чтобы кусочки были поменьше, а хрустящей корочки было побольше.",
     "stepImage": "assets/images/kur_panirovke/img_3.png",
     "stepVideo": "assets/videos/video2/video4.mp4",
+    'stepComment': []
   },
   {
     "stepNumber": "Шаг 6",
@@ -287,6 +247,7 @@ List<Map> recipeSteps2 = [
         "Располагаем миску со сливками, мукой и курицей рядом с плитой. В сковороду с толстым дном наливаем масло для жарки и нагреваем на сильном огне.",
     "stepImage": "assets/images/kur_panirovke/img_4.png",
     "stepVideo": "assets/videos/video2/set_up6.mp4",
+    'stepComment': []
   },
   {
     "stepNumber": "Шаг 7",
@@ -294,6 +255,26 @@ List<Map> recipeSteps2 = [
     "stepContext": "Обваливаем кусочки курицы в муке один или два раза.",
     "stepImage": "assets/images/kur_panirovke/img_5.png",
     "stepVideo": "assets/videos/video2/video7.mp4",
+    'stepComment': [
+      {
+        "userName": "Инна Худокормова",
+        "userImage": Assets.images.userAvatar3,
+        "lastSeen": "2 м назад",
+        "time": "12.07.2022",
+        "chatText":
+            "А я смешиваю сливки с яйцом, окунаю туда кусочки мяса и на сковородку",
+        "isOwner": false
+      },
+      {
+        "userName": "Елена Никодимова",
+        "userImage": Assets.images.userAvatar3,
+        "lastSeen": "2 м назад",
+        "time": "19.08.2008",
+        "chatText":
+            "Настя спасибо за рецепт — у меня не было сливок и я решила залить молоком- результат отличный- получилось очень вкусно",
+        "isOwner": false
+      },
+    ]
   },
   {
     "stepNumber": "Шаг 8",
@@ -303,6 +284,16 @@ List<Map> recipeSteps2 = [
         "Смешиваем муку со специями. Вы можете использовать разные специи по своему вкусу.",
     "stepImage": "assets/images/kur_panirovke/img_6.png",
     "stepVideo": "assets/videos/video2/chicken-fry.mp4",
+    'stepComment': [
+      {
+        "userName": "Глеб Симохин",
+        "userImage": Assets.images.userAvatar3,
+        "lastSeen": "2 м назад",
+        "time": "12.07.2022",
+        "chatText": "А быстро, это сколько? Секунды или минуты?",
+        "isOwner": false
+      },
+    ]
   },
   {
     "stepNumber": "Шаг 9",
@@ -312,6 +303,7 @@ List<Map> recipeSteps2 = [
         "Разрезаем куриные грудки на 2 части, чтобы кусочки были поменьше, а хрустящей корочки было побольше.",
     "stepImage": "assets/images/kur_panirovke/img_7.png",
     "stepVideo": "assets/videos/video2/oven-front.mp4",
+    'stepComment': []
   },
   {
     "stepNumber": "Шаг 10",
@@ -320,6 +312,7 @@ List<Map> recipeSteps2 = [
         "Подаем на стол горячие куриные кусочки. Так же, можно есть и холодными.",
     "stepImage": "assets/images/kur_panirovke/img_8.png",
     "stepVideo": "assets/videos/video2/video10.mp4",
+    'stepComment': []
   },
 ];
 
@@ -793,7 +786,27 @@ List<String> favImagesTab2 = [
 ];
 List<UserModel> users = [
   UserModel(
+    username: "Анастасия Королёва",
+    userImage: Assets.images.userAvatar1,
+    job: "Шеф-повар Tramontina",
+    bio: '''Шеф-повар ресторана Temantoga
+текстовое описание которые сам пишет,
+может даже сайт указать''',
+    followers: "45,6 тыс",
+    following: "4,8 тыс",
+  ),
+  UserModel(
     username: "Ирина Волкова",
+    userImage: Assets.images.userAvatar3,
+    job: "Шеф-повар ресторана Temantoga",
+    bio: '''Шеф-повар ресторана Temantoga
+текстовое описание которые сам пишет,
+может даже сайт указать''',
+    followers: "45,6 тыс",
+    following: "4,8 тыс",
+  ),
+  UserModel(
+    username: "Анастасия Королёва",
     userImage: Assets.images.userAvatar1,
     job: "Шеф-повар ресторана Temantoga",
     bio: '''Шеф-повар ресторана Temantoga
@@ -813,28 +826,8 @@ List<UserModel> users = [
     following: "4,8 тыс",
   ),
   UserModel(
-    username: "Ирина Волкова",
-    userImage: Assets.images.userAvatar3,
-    job: "Шеф-повар ресторана Temantoga",
-    bio: '''Шеф-повар ресторана Temantoga
-текстовое описание которые сам пишет,
-может даже сайт указать''',
-    followers: "45,6 тыс",
-    following: "4,8 тыс",
-  ),
-  UserModel(
-    username: "Ирина Волкова",
-    userImage: Assets.images.userAvatar4,
-    job: "Шеф-повар ресторана Temantoga",
-    bio: '''Шеф-повар ресторана Temantoga
-текстовое описание которые сам пишет,
-может даже сайт указать''',
-    followers: "45,6 тыс",
-    following: "4,8 тыс",
-  ),
-  UserModel(
-    username: "Ирина Волкова",
-    userImage: Assets.images.userAvatar5,
+    username: "Анастасия Королёва",
+    userImage: Assets.images.userAvatar1,
     job: "Шеф-повар ресторана Temantoga",
     bio: '''Шеф-повар ресторана Temantoga
 текстовое описание которые сам пишет,

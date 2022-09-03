@@ -8,7 +8,12 @@ import 'flick_multi_manager.dart';
 import 'portrait_controls.dart';
 
 class FlickMultiPlayer extends StatefulWidget {
-  const FlickMultiPlayer({Key? key, required this.url, this.image, required this.flickMultiManager, this.seekToTime})
+  const FlickMultiPlayer(
+      {Key? key,
+      required this.url,
+      this.image,
+      required this.flickMultiManager,
+      this.seekToTime})
       : super(key: key);
 
   final String url;
@@ -52,37 +57,45 @@ class _FlickMultiPlayerState extends State<FlickMultiPlayer> {
           }
         }
       },
-      child: FlickVideoPlayer(
-        flickManager: flickManager,
-        flickVideoWithControls: FlickVideoWithControls(
-          videoFit: BoxFit.cover,
-          playerLoadingFallback: Positioned.fill(
-            child: Stack(
-              children: <Widget>[
-                Positioned.fill(
-                  child: Image.asset(
-                    widget.image!,
-                    fit: BoxFit.cover,
+      child: widget.url.isNotEmpty
+          ? FlickVideoPlayer(
+              flickManager: flickManager,
+              flickVideoWithControls: FlickVideoWithControls(
+                videoFit: BoxFit.cover,
+                playerLoadingFallback: Positioned.fill(
+                  child: Stack(
+                    children: <Widget>[
+                      Positioned.fill(
+                        child: Image.asset(
+                          widget.image!,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      Positioned(
+                        right: 10,
+                        top: 10,
+                        child: Icon(
+                          CupertinoIcons.play_fill,
+                          size: 20,
+                          color: AppColors.baseLight.shade100,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-                Positioned(
-                  right: 10,
-                  top: 10,
-                  child: Icon(
-                    CupertinoIcons.play_fill,
-                    size: 20,
-                    color: AppColors.baseLight.shade100,
-                  ),
+                controls: FeedPlayerPortraitControls(
+                  flickMultiManager: widget.flickMultiManager,
+                  flickManager: flickManager,
                 ),
-              ],
+              ),
+            )
+          : SizedBox(
+              width: MediaQuery.of(context).size.width,
+              child: Image.asset(
+                widget.image!,
+                fit: BoxFit.cover,
+              ),
             ),
-          ),
-          controls: FeedPlayerPortraitControls(
-            flickMultiManager: widget.flickMultiManager,
-            flickManager: flickManager,
-          ),
-        ),
-      ),
     );
   }
 }

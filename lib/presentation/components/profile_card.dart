@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:ichef/config/constants/app_colors.dart';
@@ -41,10 +42,16 @@ class ProfileCard extends StatelessWidget {
                     model.username ?? '',
                     style: AppTextStyles.h8,
                   ),
-                  Text(
-                    model.job ?? '',
-                    style: AppTextStyles.b4DemiBold
-                        .copyWith(fontWeight: FontWeight.w400, color: AppColors.metalColor.shade50),
+                  Container(
+                    // padding: EdgeInsets.symmetric(horizontal: 1),
+                    width: MediaQuery.of(context).size.width / 1.45,
+                    child: Text(
+                      model.job ?? '',
+                      style: AppTextStyles.b4DemiBold.copyWith(
+                          fontWeight: FontWeight.w400,
+                          color: AppColors.metalColor.shade50),
+                      maxLines: 2,
+                    ),
                   ),
                 ],
               ),
@@ -55,8 +62,9 @@ class ProfileCard extends StatelessWidget {
             padding: const EdgeInsets.symmetric(vertical: 12),
             child: Text(
               model.bio ?? '',
-              style:
-                  AppTextStyles.b4DemiBold.copyWith(fontWeight: FontWeight.w400, color: AppColors.metalColor.shade50),
+              style: AppTextStyles.b4DemiBold.copyWith(
+                  fontWeight: FontWeight.w400,
+                  color: AppColors.metalColor.shade50),
             ),
           ),
 
@@ -68,8 +76,11 @@ class ProfileCard extends StatelessWidget {
                 style: AppDecorations.buttonStyle(
                   borderRadius: 12,
                   bgColor: AppColors.baseLight,
-                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-                ).copyWith(overlayColor: MaterialStateProperty.all(AppColors.baseLight.shade20)),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+                ).copyWith(
+                    overlayColor:
+                        MaterialStateProperty.all(AppColors.baseLight.shade20)),
                 onPressed: () {},
                 icon: SvgPicture.asset(
                   Assets.icons.contact,
@@ -77,7 +88,8 @@ class ProfileCard extends StatelessWidget {
                 ),
                 label: Text(
                   'Подписаться',
-                  style: AppTextStyles.b4Medium.copyWith(color: AppColors.baseLight.shade100),
+                  style: AppTextStyles.b4Medium
+                      .copyWith(color: AppColors.baseLight.shade100),
                 ),
               ),
               TextButton.icon(
@@ -85,9 +97,11 @@ class ProfileCard extends StatelessWidget {
                 icon: SvgPicture.asset(
                   Assets.icons.contact,
                 ),
-                label: Text(
+                style: TextButton.styleFrom(fixedSize: Size.fromWidth(MediaQuery.of(context).size.width/4)),
+                label: AutoSizeText(
                   model.followers ?? '',
                   style: AppTextStyles.h8,
+                  maxLines: 1,
                 ),
               ),
               TextButton.icon(
