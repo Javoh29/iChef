@@ -49,7 +49,7 @@ class _RecipeStepState extends State<RecipeStep> {
     super.initState();
     currentStep = widget.currentStep;
     stepsLength = widget.stepsLength;
-    _pageController = PageController(initialPage: currentStep - 1);
+    _pageController = PageController(initialPage: currentStep);
     _scrollController.addListener(() {
       if (_scrollController.offset < -50) {
         if (_panelController.isPanelOpen) {
@@ -101,7 +101,7 @@ class _RecipeStepState extends State<RecipeStep> {
                   maxHeight: size.height,
                   boxShadow: List.empty(),
                   controller: _panelController,
-                  panel: recipeInfo(index + 1),
+                  panel: recipeInfo(index),
                   body: Stack(
                     children: [
                       Container(
@@ -144,7 +144,7 @@ class _RecipeStepState extends State<RecipeStep> {
           ),
           Visibility(
             visible: isVisible,
-            child: bottomNavigation(currentStep + 1),
+            child: bottomNavigation(currentStep),
           ),
           Visibility(
             visible: !isVisible,
@@ -190,14 +190,14 @@ class _RecipeStepState extends State<RecipeStep> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            index != 1
+            index != 0
                 ? SvgCircleButton(
                     size: 42,
                     icon: Assets.icons.backArrow,
                     iconColor: AppColors.metalColor.shade100,
                     iconSize: 14,
                     mOnTap: () {
-                      if (index != 1) {
+                      if (index != 0) {
                         _pageController.previousPage(
                           curve: Curves.easeIn,
                           duration: const Duration(milliseconds: 400),
@@ -213,13 +213,13 @@ class _RecipeStepState extends State<RecipeStep> {
               icon: Assets.icons.cancel,
               mOnTap: () => Navigator.pop(context),
             ),
-            index != stepsLength
+            index+1 != stepsLength
                 ? SvgCircleButton(
                     size: 42,
                     icon: Assets.icons.nextArrow,
                     iconSize: 14,
                     mOnTap: () {
-                      if (index != stepsLength) {
+                      if (index+1 != stepsLength) {
                         _pageController.nextPage(
                           curve: Curves.easeIn,
                           duration: const Duration(milliseconds: 400),
@@ -237,20 +237,20 @@ class _RecipeStepState extends State<RecipeStep> {
   }
 
   Widget recipeInfo(index) {
-    String currentStepName = index == 1
+    String currentStepName = index == 0
         ? "Начать"
-        : stepsLength > index
+        : stepsLength > index+1
             ? "•••"
             : "Завершить";
     Color currentStepBgColor =
-        index == stepsLength ? AppColors.accentLight : AppColors.primaryLight;
-    Widget currentStepIcon = index == 1
+        index+1 == stepsLength ? AppColors.accentLight : AppColors.primaryLight;
+    Widget currentStepIcon = index == 0
         ? Icon(
             Icons.arrow_forward_ios,
             color: AppColors.baseLight.shade100,
             size: 16,
           )
-        : index < stepsLength
+        : index+1 < stepsLength
             ? Image(
                 image: AssetImage(
                   Assets.icons.coffee,
@@ -280,13 +280,13 @@ class _RecipeStepState extends State<RecipeStep> {
               controller: _scrollController,
               children: [
                 Text(
-                  widget.model.recipeSteps[index - 1]['stepName'],
+                  widget.model.recipeSteps[index]['stepName'],
                   textAlign: TextAlign.center,
                   style: AppTextStyles.h7,
                 ),
                 const SizedBox(height: 20),
                 Text(
-                  widget.model.recipeSteps[index - 1]['stepContext'],
+                  widget.model.recipeSteps[index]['stepContext'],
                   style: AppTextStyles.h5,
                 ),
                 const SizedBox(height: 30),
@@ -315,7 +315,7 @@ class _RecipeStepState extends State<RecipeStep> {
             mPadding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
             mMargin: const EdgeInsets.only(top: 10),
             widget: Text(
-              '$index из $stepsLength',
+              '${index+1} из $stepsLength',
               style: AppTextStyles.b3Medium
                   .copyWith(color: AppColors.baseLight.shade100),
             ),
@@ -326,7 +326,7 @@ class _RecipeStepState extends State<RecipeStep> {
           right: 20,
           child: TextButton.icon(
             onPressed: () {
-              if (index == stepsLength) {
+              if (index+1 == stepsLength) {
                 Navigator.pop(context);
               } else {
                 _pageController.nextPage(
