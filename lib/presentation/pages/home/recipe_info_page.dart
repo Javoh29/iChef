@@ -250,6 +250,7 @@ class _RecipeInfoPageState extends State<RecipeInfoPage> {
           ListView.builder(
               shrinkWrap: true,
               padding: const EdgeInsets.all(20),
+              physics: const NeverScrollableScrollPhysics(),
               itemCount: widget.model.userComment.length,
               itemBuilder: (context, index) => ChatCommentWidget(
                     userName: widget.model.userComment[index]["userName"],
@@ -423,8 +424,7 @@ class _RecipeInfoPageState extends State<RecipeInfoPage> {
           bottom: 30,
           right: 20,
           child: TextButton.icon(
-            onPressed: () => MyApp.navigatorKey.currentState
-                ?.pushNamed(Routes.recipeStepPage, arguments: {
+            onPressed: () => MyApp.navigatorKey.currentState?.pushNamed(Routes.recipeStepPage, arguments: {
               "currentStep": 0,
               "stepsLength": widget.model.recipeSteps.length,
               "recipeModel": model,
