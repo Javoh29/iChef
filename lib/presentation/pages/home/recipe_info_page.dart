@@ -235,7 +235,7 @@ class _RecipeInfoPageState extends State<RecipeInfoPage> {
                 return RecipeStepCard(
                   size: size,
                   stepImage: widget.model.recipeSteps[index]['stepImage'],
-                  currentStep: index + 1,
+                  currentStep: index,
                   stepsLength: widget.model.recipeSteps.length,
                   stepNumber: widget.model.recipeSteps[index]['stepNumber'],
                   stepName: widget.model.recipeSteps[index]['stepName'],
@@ -410,11 +410,13 @@ class _RecipeInfoPageState extends State<RecipeInfoPage> {
           bottom: 30,
           right: 20,
           child: TextButton.icon(
-            onPressed: () => MyApp.navigatorKey.currentState?.pushNamed(Routes.recipeStepPage, arguments: {
-              "currentStep": 1,
+            onPressed: () => MyApp.navigatorKey.currentState
+                ?.pushNamed(Routes.recipeStepPage, arguments: {
+              "currentStep": 0,
               "stepsLength": widget.model.recipeSteps.length,
               "recipeModel": model,
               "seekToTime": widget.seekToTime,
+              "pageIndex": 0,
             }),
             style: AppDecorations.buttonStyle(
               padding: const EdgeInsets.symmetric(horizontal: 12),

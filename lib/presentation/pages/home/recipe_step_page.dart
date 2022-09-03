@@ -67,6 +67,7 @@ class _RecipeStepState extends State<RecipeStep> {
             controller: _pageController,
             onPageChanged: (index) {
               setState(() {
+                isVisible = true;
                 currentStep = index;
               });
             },
@@ -146,7 +147,7 @@ class _RecipeStepState extends State<RecipeStep> {
           ),
           Visibility(
             visible: isVisible,
-            child: bottomNavigation(currentStep + 1),
+            child: bottomNavigation(currentStep),
           ),
           Visibility(
             visible: !isVisible,
@@ -192,14 +193,14 @@ class _RecipeStepState extends State<RecipeStep> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            index != 1
+            index != 0
                 ? SvgCircleButton(
                     size: 42,
                     icon: Assets.icons.backArrow,
                     iconColor: AppColors.metalColor.shade100,
                     iconSize: 14,
                     mOnTap: () {
-                      if (index != 1) {
+                      if (index != 0) {
                         _pageController.previousPage(
                           curve: Curves.easeIn,
                           duration: const Duration(milliseconds: 400),
@@ -215,13 +216,13 @@ class _RecipeStepState extends State<RecipeStep> {
               icon: Assets.icons.cancel,
               mOnTap: () => Navigator.pop(context),
             ),
-            index != stepsLength
+            index + 1 != stepsLength
                 ? SvgCircleButton(
                     size: 42,
                     icon: Assets.icons.nextArrow,
                     iconSize: 14,
                     mOnTap: () {
-                      if (index != stepsLength) {
+                      if (index + 1 != stepsLength) {
                         _pageController.nextPage(
                           curve: Curves.easeIn,
                           duration: const Duration(milliseconds: 400),
