@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ichef/config/constants/assets.dart';
 import 'package:ichef/data/models/recipe_model.dart';
 import 'package:ichef/presentation/components/blured_panel.dart';
+import 'package:ichef/presentation/pages/home/components/recipe_step_info_panel.dart';
 import 'package:ichef/presentation/widgets/drawer_widget.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
@@ -19,11 +20,7 @@ import '../../widgets/chat_comment_widget.dart';
 
 class RecipeStep extends StatefulWidget {
   const RecipeStep(
-      {required this.currentStep,
-      required this.model,
-      required this.stepsLength,
-      required this.seekToTime,
-      Key? key})
+      {required this.currentStep, required this.model, required this.stepsLength, required this.seekToTime, Key? key})
       : super(key: key);
   final int currentStep;
   final int stepsLength;
@@ -37,7 +34,6 @@ class RecipeStep extends StatefulWidget {
 class _RecipeStepState extends State<RecipeStep> {
   final FlickMultiManager flickMultiManager = FlickMultiManager();
   final PanelController _panelController = PanelController();
-  final ScrollController _scrollController = ScrollController();
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
   late final PageController _pageController;
   late int currentStep;
@@ -50,18 +46,10 @@ class _RecipeStepState extends State<RecipeStep> {
     currentStep = widget.currentStep;
     stepsLength = widget.stepsLength;
     _pageController = PageController(initialPage: currentStep - 1);
-    _scrollController.addListener(() {
-      if (_scrollController.offset < -50) {
-        if (_panelController.isPanelOpen) {
-          _panelController.close();
-        }
-      }
-    });
   }
 
   @override
   void dispose() {
-    _scrollController.dispose();
     _pageController.dispose();
     super.dispose();
   }
@@ -101,7 +89,23 @@ class _RecipeStepState extends State<RecipeStep> {
                   maxHeight: size.height,
                   boxShadow: List.empty(),
                   controller: _panelController,
-                  panel: recipeInfo(index + 1),
+                  panel: RecipeStepInfoPanel(
+                      index: index + 1,
+                      stepsLength: stepsLength,
+                      isVisible: isVisible,
+                      onNextPage: () {
+                        _pageController.nextPage(
+                          curve: Curves.easeIn,
+                          duration: const Duration(milliseconds: 400),
+                        );
+                      },
+                      onPanelClose: () {
+                        if (_panelController.isPanelOpen) {
+                          _panelController.close();
+                        }
+                      },
+                      stepName: widget.model.recipeSteps[index]['stepName'],
+                      stepContext: widget.model.recipeSteps[index]['stepContext']),
                   body: Stack(
                     children: [
                       Container(
@@ -116,7 +120,6 @@ class _RecipeStepState extends State<RecipeStep> {
                           url: widget.model.recipeSteps[index]['stepVideo']!,
                           flickMultiManager: flickMultiManager,
                           image: widget.model.recipeSteps[index]['stepImage'],
-                          seekToTime: const Duration(seconds: 0),
                         ),
                       ),
                       SafeArea(
@@ -131,8 +134,7 @@ class _RecipeStepState extends State<RecipeStep> {
                             height: 32,
                             borderRadius: 12,
                             isActive: true,
-                            textStyle: AppTextStyles.b4DemiBold.copyWith(
-                                color: AppColors.primaryLight.shade100),
+                            textStyle: AppTextStyles.b4DemiBold.copyWith(color: AppColors.primaryLight.shade100),
                           ),
                         ),
                       ),
@@ -233,125 +235,6 @@ class _RecipeStepState extends State<RecipeStep> {
           ],
         ),
       ),
-    );
-  }
-
-  Widget recipeInfo(index) {
-    String currentStepName = index == 1
-        ? "Начать"
-        : stepsLength > index
-            ? "•••"
-            : "Завершить";
-    Color currentStepBgColor =
-        index == stepsLength ? AppColors.accentLight : AppColors.primaryLight;
-    Widget currentStepIcon = index == 1
-        ? Icon(
-            Icons.arrow_forward_ios,
-            color: AppColors.baseLight.shade100,
-            size: 16,
-          )
-        : index < stepsLength
-            ? Image(
-                image: AssetImage(
-                  Assets.icons.coffee,
-                ),
-                width: 16,
-              )
-            : const SizedBox.shrink();
-    return Stack(
-      children: [
-        Container(
-          padding: const EdgeInsets.only(top: 25),
-          child: Container(
-            padding: const EdgeInsets.all(30),
-            decoration: BoxDecoration(
-              color: AppColors.baseLight.shade100,
-              borderRadius: const BorderRadius.only(
-                topLeft: Radius.circular(35),
-                topRight: Radius.circular(35),
-              ),
-            ),
-            child: ListView(
-              padding: EdgeInsets.zero,
-              physics: isVisible
-                  ? const NeverScrollableScrollPhysics()
-                  : const BouncingScrollPhysics(),
-              shrinkWrap: true,
-              controller: _scrollController,
-              children: [
-                Text(
-                  widget.model.recipeSteps[index - 1]['stepName'],
-                  textAlign: TextAlign.center,
-                  style: AppTextStyles.h7,
-                ),
-                const SizedBox(height: 20),
-                Text(
-                  widget.model.recipeSteps[index - 1]['stepContext'],
-                  style: AppTextStyles.h5,
-                ),
-                const SizedBox(height: 30),
-                ...userComments.map(
-                  (userComment) {
-                    return ChatCommentWidget(
-                      userName: userComment["userName"],
-                      userImage: userComment["userImage"],
-                      lastSeen: userComment["lastSeen"],
-                      time: userComment["time"],
-                      chatText: userComment["chatText"],
-                      isOwner: userComment["isOwner"],
-                    );
-                  },
-                ),
-                const SizedBox(height: 50),
-              ],
-            ),
-          ),
-        ),
-        Align(
-          alignment: Alignment.topCenter,
-          child: BluredPanel(
-            mBorderRadius: 20,
-            mHeight: 30,
-            mPadding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-            mMargin: const EdgeInsets.only(top: 10),
-            widget: Text(
-              '$index из $stepsLength',
-              style: AppTextStyles.b3Medium
-                  .copyWith(color: AppColors.baseLight.shade100),
-            ),
-          ),
-        ),
-        Positioned(
-          top: 0,
-          right: 20,
-          child: TextButton.icon(
-            onPressed: () {
-              if (index == stepsLength) {
-                Navigator.pop(context);
-              } else {
-                _pageController.nextPage(
-                  curve: Curves.easeIn,
-                  duration: const Duration(milliseconds: 400),
-                );
-              }
-            },
-            style: AppDecorations.buttonStyle(
-                    padding: const EdgeInsets.symmetric(horizontal: 12),
-                    borderRadius: 12)
-                .copyWith(
-              backgroundColor: MaterialStateProperty.all(currentStepBgColor),
-              overlayColor:
-                  MaterialStateProperty.all(AppColors.baseLight.shade20),
-            ),
-            icon: Text(
-              currentStepName,
-              style: AppTextStyles.b3Medium
-                  .copyWith(color: AppColors.baseLight.shade100),
-            ),
-            label: currentStepIcon,
-          ),
-        ),
-      ],
     );
   }
 }

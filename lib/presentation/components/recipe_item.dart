@@ -11,17 +11,14 @@ import 'icon_button_action.dart';
 
 class RecipeItem extends StatelessWidget {
   RecipeItem(
-      {required this.model,
-      this.borderRadius,
-      this.listAdditional,
-      this.seekToTime,
-      Key? key})
+      {required this.model, this.borderRadius, this.listAdditional, this.seekToTime, this.isTap = true, Key? key})
       : super(key: key);
   final RecipeModel model;
   final double? borderRadius;
   final List<Widget>? listAdditional;
   final FlickMultiManager flickMultiManager = FlickMultiManager();
   final Duration? seekToTime;
+  final bool isTap;
 
   @override
   Widget build(BuildContext context) {
@@ -33,20 +30,21 @@ class RecipeItem extends StatelessWidget {
           children: [
             GestureDetector(
               onTap: () {
-                flickMultiManager.getTime().then((value) {
-                  Navigator.pushNamed(
-                    context,
-                    Routes.recipeInfoPage,
-                    arguments: {'recipe_model': model, 'seek_to_time': value},
-                  );
-                });
+                if (isTap) {
+                  flickMultiManager.getTime().then((value) {
+                    Navigator.pushNamed(
+                      context,
+                      Routes.recipeInfoPage,
+                      arguments: {'recipe_model': model, 'seek_to_time': value},
+                    );
+                  });
+                }
               },
               child: Padding(
                 padding: const EdgeInsets.only(bottom: 17),
                 child: ClipRRect(
                   borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(borderRadius ?? 35),
-                      topRight: Radius.circular(borderRadius ?? 35)),
+                      topLeft: Radius.circular(borderRadius ?? 35), topRight: Radius.circular(borderRadius ?? 35)),
                   child: AspectRatio(
                     aspectRatio: 3 / 4,
                     child: FlickMultiPlayer(
@@ -67,8 +65,7 @@ class RecipeItem extends StatelessWidget {
                 margin: const EdgeInsets.only(left: 15),
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  border:
-                      Border.all(color: AppColors.baseLight.shade100, width: 2),
+                  border: Border.all(color: AppColors.baseLight.shade100, width: 2),
                   image: DecorationImage(
                     image: AssetImage(model.userAvatar!),
                     fit: BoxFit.cover,
@@ -86,19 +83,16 @@ class RecipeItem extends StatelessWidget {
             child: RichText(
               text: TextSpan(
                 text: model.userName,
-                style: AppTextStyles.b4Regular
-                    .copyWith(color: AppColors.metalColor.shade100),
+                style: AppTextStyles.b4Regular.copyWith(color: AppColors.metalColor.shade100),
                 children: [
                   TextSpan(
                     text: ' · ',
-                    style: AppTextStyles.b4Regular
-                        .copyWith(color: AppColors.metalColor.shade50),
+                    style: AppTextStyles.b4Regular.copyWith(color: AppColors.metalColor.shade50),
                     children: [
                       TextSpan(text: model.categoryName),
                     ],
                   ),
-                  TextSpan(
-                      text: '\n${model.recipeName}', style: AppTextStyles.h4)
+                  TextSpan(text: '\n${model.recipeName}', style: AppTextStyles.h4)
                 ],
               ),
             ),
@@ -138,8 +132,7 @@ class RecipeItem extends StatelessWidget {
                 height: 32,
                 borderRadius: 12,
                 isActive: true,
-                textStyle: AppTextStyles.b4DemiBold
-                    .copyWith(color: AppColors.primaryLight.shade100),
+                textStyle: AppTextStyles.b4DemiBold.copyWith(color: AppColors.primaryLight.shade100),
               )
             ],
           ),
