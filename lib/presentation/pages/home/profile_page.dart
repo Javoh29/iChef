@@ -18,8 +18,10 @@ class ProfilePage extends StatefulWidget {
   State<ProfilePage> createState() => _ProfilePageState();
 }
 
-class _ProfilePageState extends State<ProfilePage> with TickerProviderStateMixin {
-  late final TabController _tabController = TabController(length: 3, vsync: this);
+class _ProfilePageState extends State<ProfilePage>
+    with TickerProviderStateMixin {
+  late final TabController _tabController =
+      TabController(length: 3, vsync: this);
 
   @override
   void initState() {
@@ -72,12 +74,16 @@ class _ProfilePageState extends State<ProfilePage> with TickerProviderStateMixin
           children: [
             // #tabbar
             TabBar(
+              isScrollable: true,
               padding: const EdgeInsets.symmetric(horizontal: 10),
               controller: _tabController,
-              unselectedLabelStyle: AppTextStyles.b5Regular.copyWith(color: AppColors.metalColor.shade50),
-              labelStyle: AppTextStyles.b5Regular.copyWith(color: AppColors.baseLight),
+              unselectedLabelStyle: AppTextStyles.b5Regular
+                  .copyWith(color: AppColors.metalColor.shade50),
+              labelStyle:
+                  AppTextStyles.b5Regular.copyWith(color: AppColors.baseLight),
               indicator: UnderlineTabIndicator(
-                borderSide: BorderSide(width: 4.0, color: AppColors.primaryLight),
+                borderSide:
+                    BorderSide(width: 4.0, color: AppColors.primaryLight),
               ),
               tabs: List.generate(
                 profileTabList.length,
@@ -191,5 +197,5 @@ class MySliver extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => const Size.fromHeight(145);
+  Size get preferredSize => const Size.fromHeight(152);
 }

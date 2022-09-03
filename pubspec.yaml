@@ -20,6 +20,7 @@ dependencies:
   visibility_detector: ^0.3.3
   video_player: ^2.4.7
   dotted_border: ^2.0.0+2
+  auto_size_text: ^3.0.0
   flutter_custom_slidable:
     path: ./custom_slidable
 
@@ -41,8 +42,10 @@ flutter:
     - assets/images/flour_brands/
     - assets/images/flour_salers/
     - assets/videos/
+    - assets/videos/video2/
     - assets/images/favorite_images/
     - assets/images/favorite_images/tab2/
+    - assets/images/kur_panirovke/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

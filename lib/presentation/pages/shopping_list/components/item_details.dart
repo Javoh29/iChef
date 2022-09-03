@@ -49,8 +49,19 @@ class _ShoppingItemDetailsState extends State<ShoppingItemDetails> {
                 key: UniqueKey(),
                 startActionPane: ActionPane(
                   onClose: () {
-                    setState(() {});
-                    modelList[index].isCheck = true;
+                    WidgetsBinding.instance.addPostFrameCallback((_) {
+                      setState(() {});
+                      modelList[index].isCheck = !modelList[index].isCheck;
+                      if (modelList[index].isCheck) {
+                        model = modelList.removeAt(index);
+                        modelList.add(model);
+                      } else {
+                        model = modelList.removeAt(index);
+                        modelList.insert(
+                            model.id <= index ? model.id : modelList.length - 1,
+                            model);
+                      }
+                    });
                   },
                   key: UniqueKey(),
                   extentRatio: 0.165,
@@ -64,7 +75,7 @@ class _ShoppingItemDetailsState extends State<ShoppingItemDetails> {
                       rightRadius: 0,
                       onTap: () {
                         setState(() {});
-                        modelList[index].isCheck = true;
+                        modelList[index].isCheck = !modelList[index].isCheck;
                       },
                     ),
                   ],
@@ -82,8 +93,9 @@ class _ShoppingItemDetailsState extends State<ShoppingItemDetails> {
                     onDismissed: () {
                       setState(() {
                         model = modelList.removeAt(index);
-                        model.isDeleted = true;
-                        modelList.add(model);
+
+                        // model.isDeleted = true;
+                        // modelList.add(model);
                       });
                     },
                   ),
@@ -95,7 +107,8 @@ class _ShoppingItemDetailsState extends State<ShoppingItemDetails> {
                       icon: Assets.icons.edit,
                       onTap: () {
                         setState(() {
-                          modelList[index].isShowEdit = true;
+                          modelList[index].isShowEdit =
+                              modelList[index].isShowEdit;
                         });
                       },
                     ),
@@ -107,8 +120,8 @@ class _ShoppingItemDetailsState extends State<ShoppingItemDetails> {
                       onTap: () {
                         setState(() {});
                         model = modelList.removeAt(index);
-                        model.isDeleted = true;
-                        modelList.add(model);
+                        // model.isDeleted = true;
+                        // modelList.add(model);
                       },
                     ),
                   ],
@@ -149,12 +162,10 @@ class _ItemWidgetState extends State<ItemWidget> {
 
   @override
   Widget build(BuildContext context) {
-    decoration = widget.model.isDeleted
-        ? AppDecorations.defDecor.copyWith(color: AppColors.deletedItem)
-        : widget.model.isCheck
-            ? AppDecorations.defDecor
-                .copyWith(color: AppColors.primaryLight.shade50)
-            : AppDecorations.defDecor;
+    decoration = widget.model.isCheck
+        ? AppDecorations.defDecor
+            .copyWith(color: AppColors.primaryLight.shade50)
+        : AppDecorations.defDecor;
 
     return Container(
       alignment: Alignment.center,
@@ -169,22 +180,16 @@ class _ItemWidgetState extends State<ItemWidget> {
               TextButton(
                 onPressed: () {},
                 style: AppDecorations.buttonStyle(
-                  bgColor: widget.model.isDeleted
-                      ? AppColors.deletedItem
-                      : AppColors.primaryLight.shade50,
+                  bgColor: AppColors.primaryLight.shade50,
                   border: BorderSide(
                     width: 1,
-                    color: widget.model.isDeleted
-                        ? AppColors.deletedItemBorder
-                        : AppColors.primaryLight.shade100,
+                    color: AppColors.primaryLight.shade100,
                   ),
                 ),
                 child: Text(
                   widget.model.title,
                   style: AppTextStyles.b4Medium.copyWith(
-                    color: widget.model.isDeleted
-                        ? AppColors.deletedItemBorder
-                        : AppColors.primaryLight.shade100,
+                    color: AppColors.primaryLight.shade100,
                   ),
                 ),
               ),

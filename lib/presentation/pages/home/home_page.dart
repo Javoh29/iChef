@@ -104,6 +104,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
 
   TabBar tabBar() {
     return TabBar(
+
       padding: const EdgeInsets.symmetric(horizontal: 10),
       controller: _tabController,
       labelStyle: AppTextStyles.b4Medium,

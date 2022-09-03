@@ -1,12 +1,10 @@
-
-
 class ShippingModel {
   final String title;
   final String? subTitle;
   final int count;
   final int price;
   final int weight;
-  final int id;
+  int id;
   bool isDeleted = false;
   bool isCheck = false;
   bool isShowEdit = false;

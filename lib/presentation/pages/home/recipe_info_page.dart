@@ -17,6 +17,7 @@ import '../../../data/models/recipe_model.dart';
 import '../../components/blured_panel.dart';
 import '../../components/custom_bottom_sheet.dart';
 import '../../routes/routes.dart';
+import '../../widgets/chat_comment_widget.dart';
 import '../../widgets/scale_widget.dart';
 
 class RecipeInfoPage extends StatefulWidget {
@@ -258,6 +259,18 @@ class _RecipeInfoPageState extends State<RecipeInfoPage> {
               })),
             ),
           ),
+          ListView.builder(
+              shrinkWrap: true,
+              padding: const EdgeInsets.all(20),
+              itemCount: widget.model.userComment.length,
+              itemBuilder: (context, index) => ChatCommentWidget(
+                    userName: widget.model.userComment[index]["userName"],
+                    userImage: widget.model.userComment[index]["userImage"],
+                    lastSeen: widget.model.userComment[index]["lastSeen"],
+                    time: widget.model.userComment[index]["time"],
+                    chatText: widget.model.userComment[index]["chatText"],
+                    isOwner: widget.model.userComment[index]["isOwner"],
+                  )),
           const SizedBox(height: 60),
         ],
       ),

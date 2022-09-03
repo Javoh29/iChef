@@ -9,7 +9,6 @@ import 'package:sliding_up_panel/sliding_up_panel.dart';
 import '../../../config/constants/app_colors.dart';
 import '../../../config/constants/app_decorations.dart';
 import '../../../config/constants/app_text_styles.dart';
-import '../../../config/constants/local_data.dart';
 import '../../../core/utils/flick_multi_manager.dart';
 import '../../../core/utils/flick_multi_player.dart';
 import '../../components/icon_button_action.dart';
@@ -108,7 +107,8 @@ class _RecipeStepState extends State<RecipeStep> {
                         height: size.height * 0.8,
                         decoration: BoxDecoration(
                           image: DecorationImage(
-                            image: AssetImage(widget.model.recipeSteps[index]['stepImage']),
+                            image: AssetImage(
+                                widget.model.recipeSteps[index]['stepImage']),
                             fit: BoxFit.fill,
                           ),
                         ),
@@ -290,18 +290,30 @@ class _RecipeStepState extends State<RecipeStep> {
                   style: AppTextStyles.h5,
                 ),
                 const SizedBox(height: 30),
-                ...userComments.map(
-                  (userComment) {
-                    return ChatCommentWidget(
-                      userName: userComment["userName"],
-                      userImage: userComment["userImage"],
-                      lastSeen: userComment["lastSeen"],
-                      time: userComment["time"],
-                      chatText: userComment["chatText"],
-                      isOwner: userComment["isOwner"],
-                    );
-                  },
-                ),
+                (widget.model.recipeSteps[index - 1]['stepComment'] as List)
+                        .isNotEmpty
+                    ? ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: (widget.model.recipeSteps[index - 1]
+                                ['stepComment'] as List)
+                            .length,
+                        itemBuilder: (context, ind) {
+                          return ChatCommentWidget(
+                            userName: widget.model.recipeSteps[index - 1]
+                                ['stepComment'][ind]["userName"],
+                            userImage: widget.model.recipeSteps[index - 1]
+                                ['stepComment'][ind]["userImage"],
+                            lastSeen: widget.model.recipeSteps[index - 1]
+                                ['stepComment'][ind]["lastSeen"],
+                            time: widget.model.recipeSteps[index - 1]
+                                ['stepComment'][ind]["time"],
+                            chatText: widget.model.recipeSteps[index - 1]
+                                ['stepComment'][ind]["chatText"],
+                            isOwner: widget.model.recipeSteps[index - 1]
+                                ['stepComment'][ind]["isOwner"],
+                          );
+                        })
+                    : Container(),
                 const SizedBox(height: 50),
               ],
             ),
