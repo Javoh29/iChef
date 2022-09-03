@@ -33,7 +33,7 @@ class RecipeStep extends StatefulWidget {
 
 class _RecipeStepState extends State<RecipeStep> {
   final FlickMultiManager flickMultiManager = FlickMultiManager();
-  final PanelController _panelController = PanelController();
+  late final List<PanelController> _listPanelControllers = List.generate(stepsLength, (index) => PanelController());
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
   late final PageController _pageController;
   late int currentStep;
@@ -89,7 +89,7 @@ class _RecipeStepState extends State<RecipeStep> {
                   minHeight: size.height * 0.3,
                   maxHeight: size.height,
                   boxShadow: List.empty(),
-                  controller: _panelController,
+                  controller: _listPanelControllers[index],
                   panel: RecipeStepInfoPanel(
                       index: index + 1,
                       stepsLength: stepsLength,
@@ -101,8 +101,8 @@ class _RecipeStepState extends State<RecipeStep> {
                         );
                       },
                       onPanelClose: () {
-                        if (_panelController.isPanelOpen) {
-                          _panelController.close();
+                        if (_listPanelControllers[index].isPanelOpen) {
+                          _listPanelControllers[index].close();
                         }
                       },
                       stepName: widget.model.recipeSteps[index]['stepName'],
