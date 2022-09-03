@@ -433,6 +433,7 @@ class _RecipeInfoPageState extends State<RecipeInfoPage> {
               "stepsLength": widget.model.recipeSteps.length,
               "recipeModel": model,
               "seekToTime": widget.seekToTime,
+              "pageIndex": 0,
             }),
             style: AppDecorations.buttonStyle(
               padding: const EdgeInsets.symmetric(horizontal: 12),
