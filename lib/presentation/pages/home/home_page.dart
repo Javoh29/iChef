@@ -4,6 +4,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:ichef/config/constants/app_colors.dart';
 import 'package:ichef/config/constants/app_text_styles.dart';
 import 'package:ichef/config/constants/assets.dart';
+import 'package:ichef/config/constants/local_data.dart';
+import 'package:ichef/data/models/recipe_model.dart';
 import 'package:ichef/presentation/pages/home/recipes_tab_page.dart';
 import 'package:ichef/presentation/widgets/drawer_widget.dart';
 
@@ -26,45 +28,28 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
     super.initState();
     _tabController.addListener(() => setState(() {}));
   }
-
-  Future<bool> loader() async {
-    await Future.delayed(const Duration(seconds: 1));
-    return true;
-  }
-
+final RecipeModel model  = RecipeModel(recipeSteps: recipeSteps, userComment: userComments, drawer: nejnayaDrawerModel);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      endDrawer: const IngredientsDrawer(),
+      endDrawer:  IngredientsDrawer(),
       endDrawerEnableOpenDragGesture: false,
-      body: FutureBuilder(
-          future: loader(),
-          builder: ((context, snapshot) {
-            if (snapshot.hasData) {
-              return NestedScrollView(
-                physics: const NeverScrollableScrollPhysics(),
-                headerSliverBuilder: (context, innerBoxIsScrolled) {
-                  return <Widget>[
-                    appBar(innerBoxIsScrolled),
-                  ];
-                },
-                body: TabBarView(
-                  controller: _tabController,
-                  children: [
-                    const RecipesTabPage(),
-                    Container(),
-                    const ChatPage(),
-                  ],
-                ),
-              );
-            } else {
-              return Center(
-                child: CircularProgressIndicator(
-                  color: AppColors.primaryLight.shade100,
-                ),
-              );
-            }
-          })),
+      body: NestedScrollView(
+        physics: const NeverScrollableScrollPhysics(),
+        headerSliverBuilder: (context, innerBoxIsScrolled) {
+          return <Widget>[
+            appBar(innerBoxIsScrolled),
+          ];
+        },
+        body: TabBarView(
+          controller: _tabController,
+          children: [
+            const RecipesTabPage(),
+            Container(),
+            const ChatPage(),
+          ],
+        ),
+      ),
     );
   }
 
@@ -104,7 +89,6 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
 
   TabBar tabBar() {
     return TabBar(
-
       padding: const EdgeInsets.symmetric(horizontal: 10),
       controller: _tabController,
       labelStyle: AppTextStyles.b3Medium,

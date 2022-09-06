@@ -21,6 +21,7 @@ List<RecipeModel> listRecipes = [
       recipeDesc: recipeText,
       recipeSteps: recipeSteps,
       userComment: userComments,
+      drawer: nejnayaDrawerModel,
       ingredientCount: 7),
   RecipeModel(
     userName: "Анастасия Королёва",
@@ -38,6 +39,7 @@ List<RecipeModel> listRecipes = [
     userComment: userComments2,
     recipeDesc: recipeText2,
     ingredientCount: 5,
+    drawer: jarenayaDrawerModel,
   ),
   RecipeModel(
       userName: "Ирина Волкова",
@@ -54,6 +56,7 @@ List<RecipeModel> listRecipes = [
       recipeSteps: recipeSteps,
       userComment: userComments,
       recipeDesc: recipeText,
+      drawer: nejnayaDrawerModel,
       ingredientCount: 7),
   RecipeModel(
     userName: "Анастасия Королёва",
@@ -70,6 +73,7 @@ List<RecipeModel> listRecipes = [
     recipeSteps: recipeSteps2,
     userComment: userComments2,
     recipeDesc: recipeText2,
+    drawer: jarenayaDrawerModel,
     ingredientCount: 5,
   ),
   RecipeModel(
@@ -87,6 +91,7 @@ List<RecipeModel> listRecipes = [
       userComment: userComments,
       variationCount: 23,
       recipeDesc: recipeText,
+      drawer: nejnayaDrawerModel,
       ingredientCount: 7),
   RecipeModel(
     userName: "Анастасия Королёва",
@@ -103,6 +108,7 @@ List<RecipeModel> listRecipes = [
     recipeSteps: recipeSteps2,
     userComment: userComments2,
     recipeDesc: recipeText2,
+    drawer: jarenayaDrawerModel,
     ingredientCount: 5,
   ),
   RecipeModel(
@@ -120,6 +126,7 @@ List<RecipeModel> listRecipes = [
       recipeSteps: recipeSteps,
       userComment: userComments,
       recipeDesc: recipeText,
+      drawer: nejnayaDrawerModel,
       ingredientCount: 7),
 ];
 
@@ -489,6 +496,14 @@ List<Map> userComments2 = [
   },
 ];
 
+List<Map> nejnayaDrawerModel = [
+  {"title": 'Ингредиенты', 'items': firstIngredientsRazdel},
+  {"title": 'Для травяного масла', 'items': firstIngredientsRazdel},
+];
+List<Map> jarenayaDrawerModel = [
+  {"title": 'Ингредиенты', 'items': secondIngredientsRazdel}
+];
+
 List<Widget> secondIngredientsRazdel = const [
   IngridientDetailContainer(
     title: "Части курицы",
@@ -554,18 +569,14 @@ List<Widget> firstIngredientsRazdel = const [
     data: "550г",
     data2: "",
   ),
-  SizedBox(
-    height: 5,
-  ),
+  SizedBox(height: 5),
   IngridientDetailContainer(
     title: "Соль",
     addInfo: "",
     data: "5 ч.л.",
     data2: "",
   ),
-  SizedBox(
-    height: 5,
-  ),
+  SizedBox(height: 5),
   IngridientDetailContainer(
     title: "Сахар",
     addInfo: "",
