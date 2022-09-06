@@ -16,6 +16,7 @@ class RecipeItem extends StatelessWidget {
       this.listAdditional,
       this.seekToTime,
       this.isTap = true,
+      this.openDrawer,
       Key? key})
       : super(key: key);
   final RecipeModel model;
@@ -24,6 +25,7 @@ class RecipeItem extends StatelessWidget {
   final FlickMultiManager flickMultiManager = FlickMultiManager();
   final Duration? seekToTime;
   final bool isTap;
+  final Function()? openDrawer;
 
   @override
   Widget build(BuildContext context) {
@@ -49,8 +51,7 @@ class RecipeItem extends StatelessWidget {
                 padding: const EdgeInsets.only(bottom: 17),
                 child: ClipRRect(
                   borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(borderRadius ?? 35),
-                      topRight: Radius.circular(borderRadius ?? 35)),
+                      topLeft: Radius.circular(borderRadius ?? 35), topRight: Radius.circular(borderRadius ?? 35)),
                   child: AspectRatio(
                     aspectRatio: 3 / 4,
                     child: FlickMultiPlayer(
@@ -71,8 +72,7 @@ class RecipeItem extends StatelessWidget {
                 margin: const EdgeInsets.only(left: 15),
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  border:
-                      Border.all(color: AppColors.baseLight.shade100, width: 2),
+                  border: Border.all(color: AppColors.baseLight.shade100, width: 2),
                   image: DecorationImage(
                     image: AssetImage(model.userAvatar!),
                     fit: BoxFit.cover,
@@ -90,19 +90,16 @@ class RecipeItem extends StatelessWidget {
             child: RichText(
               text: TextSpan(
                 text: model.userName,
-                style: AppTextStyles.b4Regular
-                    .copyWith(color: AppColors.metalColor.shade100),
+                style: AppTextStyles.b4Regular.copyWith(color: AppColors.metalColor.shade100),
                 children: [
                   TextSpan(
                     text: ' · ',
-                    style: AppTextStyles.b4Regular
-                        .copyWith(color: AppColors.metalColor.shade50),
+                    style: AppTextStyles.b4Regular.copyWith(color: AppColors.metalColor.shade50),
                     children: [
                       TextSpan(text: model.categoryName),
                     ],
                   ),
-                  TextSpan(
-                      text: '\n${model.recipeName}', style: AppTextStyles.h4)
+                  TextSpan(text: '\n${model.recipeName}', style: AppTextStyles.h4)
                 ],
               ),
             ),
@@ -134,16 +131,16 @@ class RecipeItem extends StatelessWidget {
               ),
               const Spacer(),
               IconButtonAction(
-                onTap: () {
-                  Scaffold.of(context).openEndDrawer();
-                },
+                onTap: openDrawer ??
+                    () {
+                      Scaffold.of(context).openEndDrawer();
+                    },
                 icon: Assets.icons.ingredients,
                 lable: '7',
                 height: 32,
                 borderRadius: 12,
                 isActive: true,
-                textStyle: AppTextStyles.b4DemiBold
-                    .copyWith(color: AppColors.primaryLight.shade100),
+                textStyle: AppTextStyles.b4DemiBold.copyWith(color: AppColors.primaryLight.shade100),
               )
             ],
           ),
