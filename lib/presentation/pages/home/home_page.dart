@@ -27,44 +27,27 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
     _tabController.addListener(() => setState(() {}));
   }
 
-  Future<bool> loader() async {
-    await Future.delayed(const Duration(seconds: 1));
-    return true;
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       endDrawer: const IngredientsDrawer(),
       endDrawerEnableOpenDragGesture: false,
-      body: FutureBuilder(
-          future: loader(),
-          builder: ((context, snapshot) {
-            if (snapshot.hasData) {
-              return NestedScrollView(
-                physics: const NeverScrollableScrollPhysics(),
-                headerSliverBuilder: (context, innerBoxIsScrolled) {
-                  return <Widget>[
-                    appBar(innerBoxIsScrolled),
-                  ];
-                },
-                body: TabBarView(
-                  controller: _tabController,
-                  children: [
-                    const RecipesTabPage(),
-                    Container(),
-                    const ChatPage(),
-                  ],
-                ),
-              );
-            } else {
-              return Center(
-                child: CircularProgressIndicator(
-                  color: AppColors.primaryLight.shade100,
-                ),
-              );
-            }
-          })),
+      body: NestedScrollView(
+        physics: const NeverScrollableScrollPhysics(),
+        headerSliverBuilder: (context, innerBoxIsScrolled) {
+          return <Widget>[
+            appBar(innerBoxIsScrolled),
+          ];
+        },
+        body: TabBarView(
+          controller: _tabController,
+          children: [
+            const RecipesTabPage(),
+            Container(),
+            const ChatPage(),
+          ],
+        ),
+      ),
     );
   }
 
@@ -104,7 +87,6 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
 
   TabBar tabBar() {
     return TabBar(
-
       padding: const EdgeInsets.symmetric(horizontal: 10),
       controller: _tabController,
       labelStyle: AppTextStyles.b3Medium,

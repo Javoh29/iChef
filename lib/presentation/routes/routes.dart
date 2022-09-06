@@ -8,13 +8,15 @@ import 'package:ichef/presentation/pages/product/product_sale_page.dart';
 import 'package:ichef/presentation/pages/product/product_without_image_page.dart';
 import 'package:ichef/presentation/pages/settings/user_prefrences_page.dart';
 import 'package:ichef/presentation/pages/shopping_list/shopping_list.dart';
+import 'package:ichef/presentation/pages/splash/splash_page.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 import '../pages/calendar/generation_menu_page.dart';
 import '../pages/home/recipe_replace_page.dart';
 
 class Routes {
-  static const main = '/';
+  static const splashPage = '/';
+  static const mainPage = '/mainPage';
   static const homePage = '/homePage';
   static const recipeInfoPage = '/recipeInfoPage';
   static const recipeStepPage = '/recipeStepPage';
@@ -29,11 +31,15 @@ class Routes {
 
   static Route<dynamic> generateRoute(RouteSettings routeSettings) {
     try {
-      final Map<String, dynamic>? args =
-          routeSettings.arguments as Map<String, dynamic>?;
+      final Map<String, dynamic>? args = routeSettings.arguments as Map<String, dynamic>?;
       args ?? <String, dynamic>{};
       switch (routeSettings.name) {
-        case main:
+        case splashPage:
+          return MaterialWithModalsPageRoute(
+            settings: routeSettings,
+            builder: (_) => const SplashPage(),
+          );
+        case mainPage:
           return MaterialWithModalsPageRoute(
             settings: routeSettings,
             builder: (_) => const MainPage(),
