@@ -17,6 +17,7 @@ import '../../../data/models/recipe_model.dart';
 import '../../components/blured_panel.dart';
 import '../../components/custom_bottom_sheet.dart';
 import '../../routes/routes.dart';
+import '../../widgets/chat_comment_widget.dart';
 import '../../widgets/scale_widget.dart';
 
 class RecipeInfoPage extends StatefulWidget {
@@ -167,7 +168,7 @@ class _RecipeInfoPageState extends State<RecipeInfoPage> {
                           ),
                         ),
                         label: Text(
-                          '00:18:49',
+                          '${widget.model.recipeTime}',
                           style: AppTextStyles.h5.copyWith(
                             color: AppColors.metalColor.shade50,
                           ),
@@ -218,8 +219,10 @@ class _RecipeInfoPageState extends State<RecipeInfoPage> {
                 Padding(
                   padding: const EdgeInsets.only(right: 20),
                   child: Text(
-                    recipeText,
-                    style: AppTextStyles.h5.copyWith(color: AppColors.metalColor.shade70),
+                    '${widget.model.recipeDesc}',
+                    style: AppTextStyles.h5.copyWith(
+                      color: AppColors.metalColor.shade70,
+                    ),
                   ),
                 ),
               ],
@@ -229,17 +232,35 @@ class _RecipeInfoPageState extends State<RecipeInfoPage> {
           Container(
             padding: const EdgeInsets.all(20),
             child: Column(
-              children: List.generate(recipeSteps.length, ((index) {
+              children: List.generate(widget.model.recipeSteps.length, ((index) {
                 return RecipeStepCard(
-                    size: size,
-                    currentStep: index + 1,
-                    stepsLength: recipeSteps.length,
-                    stepNumber: recipeSteps[index]['stepNumber'],
-                    stepName: recipeSteps[index]['stepName'],
-                    stepContext: recipeSteps[index]['stepContext']);
+                  size: size,
+                  stepImage: widget.model.recipeSteps[index]['stepImage'],
+                  currentStep: index,
+                  stepsLength: widget.model.recipeSteps.length,
+                  stepNumber: widget.model.recipeSteps[index]['stepNumber'],
+                  stepName: widget.model.recipeSteps[index]['stepName'],
+                  stepContext: widget.model.recipeSteps[index]['stepContext'],
+                  model: widget.model,
+                  seekToTime: widget.seekToTime,
+                );
               })),
             ),
           ),
+          ListView.builder(
+              shrinkWrap: true,
+              padding: const EdgeInsets.all(20),
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: widget.model.userComment.length,
+              itemBuilder: (context, index) => ChatCommentWidget(
+                    userName: widget.model.userComment[index]["userName"],
+                    userImage: widget.model.userComment[index]["userImage"],
+                    lastSeen: widget.model.userComment[index]["lastSeen"],
+                    time: widget.model.userComment[index]["time"],
+                    chatText: widget.model.userComment[index]["chatText"],
+                    isOwner: widget.model.userComment[index]["isOwner"],
+                  )),
+          const SizedBox(height: 60),
         ],
       ),
     );
@@ -259,7 +280,15 @@ class _RecipeInfoPageState extends State<RecipeInfoPage> {
   //#recipe type button
   Widget recipeTypeButton(String recipeType) {
     return TextButton(
-      onPressed: () => MyApp.navigatorKey.currentState?.pushNamed(Routes.productPage),
+      onPressed: () {
+        if (recipeType == "Panasonic 1259") {
+          MyApp.navigatorKey.currentState?.pushNamed(Routes.productWithoutImagePage);
+        } else if (recipeType == "Без глютена") {
+          MyApp.navigatorKey.currentState?.pushNamed(Routes.productSalePage);
+        } else {
+          MyApp.navigatorKey.currentState?.pushNamed(Routes.productPage);
+        }
+      },
       style: AppDecorations.buttonStyle(
         bgColor: AppColors.primaryLight.shade50,
         padding: const EdgeInsets.symmetric(horizontal: 15),
@@ -279,6 +308,7 @@ class _RecipeInfoPageState extends State<RecipeInfoPage> {
       model: model,
       borderRadius: 0,
       seekToTime: widget.seekToTime,
+      isTap: false,
       listAdditional: [
         Positioned(
           top: 10,
@@ -395,8 +425,11 @@ class _RecipeInfoPageState extends State<RecipeInfoPage> {
           right: 20,
           child: TextButton.icon(
             onPressed: () => MyApp.navigatorKey.currentState?.pushNamed(Routes.recipeStepPage, arguments: {
-              "currentStep": 1,
-              "stepsLength": recipeSteps.length,
+              "currentStep": 0,
+              "stepsLength": widget.model.recipeSteps.length,
+              "recipeModel": model,
+              "seekToTime": widget.seekToTime,
+              "pageIndex": 0,
             }),
             style: AppDecorations.buttonStyle(
               padding: const EdgeInsets.symmetric(horizontal: 12),

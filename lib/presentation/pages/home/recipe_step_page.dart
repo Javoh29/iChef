@@ -1,31 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ichef/config/constants/assets.dart';
-import 'package:ichef/presentation/components/blured_panel.dart';
+import 'package:ichef/data/models/recipe_model.dart';
+import 'package:ichef/presentation/pages/home/components/recipe_step_info_panel.dart';
 import 'package:ichef/presentation/widgets/drawer_widget.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
 import '../../../config/constants/app_colors.dart';
-import '../../../config/constants/app_decorations.dart';
 import '../../../config/constants/app_text_styles.dart';
-import '../../../config/constants/local_data.dart';
+import '../../../core/utils/flick_multi_manager.dart';
+import '../../../core/utils/flick_multi_player.dart';
 import '../../components/icon_button_action.dart';
 import '../../components/svg_circle_button.dart';
 import '../../widgets/bottom_textfield_widget.dart';
-import '../../widgets/chat_comment_widget.dart';
 
 class RecipeStep extends StatefulWidget {
-  const RecipeStep({required this.currentStep, required this.stepsLength, Key? key}) : super(key: key);
+  const RecipeStep(
+      {required this.currentStep, required this.model, required this.stepsLength, required this.seekToTime, Key? key})
+      : super(key: key);
   final int currentStep;
   final int stepsLength;
+  final RecipeModel model;
+  final Duration seekToTime;
 
   @override
   State<RecipeStep> createState() => _RecipeStepState();
 }
 
 class _RecipeStepState extends State<RecipeStep> {
-  final PanelController _panelController = PanelController();
-  final ScrollController _scrollController = ScrollController();
+  final FlickMultiManager flickMultiManager = FlickMultiManager();
+  late final List<PanelController> _listPanelControllers = List.generate(stepsLength, (index) => PanelController());
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
   late final PageController _pageController;
   late int currentStep;
@@ -38,18 +42,10 @@ class _RecipeStepState extends State<RecipeStep> {
     currentStep = widget.currentStep;
     stepsLength = widget.stepsLength;
     _pageController = PageController(initialPage: currentStep - 1);
-    _scrollController.addListener(() {
-      if (_scrollController.offset < -50) {
-        if (_panelController.isPanelOpen) {
-          _panelController.close();
-        }
-      }
-    });
   }
 
   @override
   void dispose() {
-    _scrollController.dispose();
     _pageController.dispose();
     super.dispose();
   }
@@ -67,6 +63,7 @@ class _RecipeStepState extends State<RecipeStep> {
             controller: _pageController,
             onPageChanged: (index) {
               setState(() {
+                isVisible = true;
                 currentStep = index;
               });
             },
@@ -88,17 +85,39 @@ class _RecipeStepState extends State<RecipeStep> {
                   minHeight: size.height * 0.3,
                   maxHeight: size.height,
                   boxShadow: List.empty(),
-                  controller: _panelController,
-                  panel: recipeInfo(index + 1),
+                  controller: _listPanelControllers[index],
+                  panel: RecipeStepInfoPanel(
+                      index: index + 1,
+                      stepsLength: stepsLength,
+                      isVisible: isVisible,
+                      onNextPage: () {
+                        _pageController.nextPage(
+                          curve: Curves.easeIn,
+                          duration: const Duration(milliseconds: 400),
+                        );
+                      },
+                      onPanelClose: () {
+                        if (_listPanelControllers[index].isPanelOpen) {
+                          _listPanelControllers[index].close();
+                        }
+                      },
+                      stepName: widget.model.recipeSteps[index]['stepName'],
+                      stepContext: widget.model.recipeSteps[index]['stepContext']),
                   body: Stack(
                     children: [
                       Container(
                         height: size.height * 0.8,
                         decoration: BoxDecoration(
                           image: DecorationImage(
-                            image: AssetImage(Assets.images.recipePrepaireOne),
+                            image: AssetImage(
+                                widget.model.recipeSteps[index]['stepImage']),
                             fit: BoxFit.fill,
                           ),
+                        ),
+                        child: FlickMultiPlayer(
+                          url: widget.model.recipeSteps[index]['stepVideo']!,
+                          flickMultiManager: flickMultiManager,
+                          image: widget.model.recipeSteps[index]['stepImage'],
                         ),
                       ),
                       SafeArea(
@@ -116,7 +135,7 @@ class _RecipeStepState extends State<RecipeStep> {
                             textStyle: AppTextStyles.b4DemiBold.copyWith(color: AppColors.primaryLight.shade100),
                           ),
                         ),
-                      )
+                      ),
                     ],
                   ),
                 );
@@ -171,14 +190,14 @@ class _RecipeStepState extends State<RecipeStep> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            index != 1
+            index != 0
                 ? SvgCircleButton(
                     size: 42,
                     icon: Assets.icons.backArrow,
                     iconColor: AppColors.metalColor.shade100,
                     iconSize: 14,
                     mOnTap: () {
-                      if (index != 1) {
+                      if (index != 0) {
                         _pageController.previousPage(
                           curve: Curves.easeIn,
                           duration: const Duration(milliseconds: 400),
@@ -194,13 +213,13 @@ class _RecipeStepState extends State<RecipeStep> {
               icon: Assets.icons.cancel,
               mOnTap: () => Navigator.pop(context),
             ),
-            index != stepsLength
+            index + 1 != stepsLength
                 ? SvgCircleButton(
                     size: 42,
                     icon: Assets.icons.nextArrow,
                     iconSize: 14,
                     mOnTap: () {
-                      if (index != stepsLength) {
+                      if (index + 1 != stepsLength) {
                         _pageController.nextPage(
                           curve: Curves.easeIn,
                           duration: const Duration(milliseconds: 400),
@@ -214,117 +233,6 @@ class _RecipeStepState extends State<RecipeStep> {
           ],
         ),
       ),
-    );
-  }
-
-  Widget recipeInfo(index) {
-    String currentStepName = index == 1
-        ? "Начать"
-        : stepsLength > index
-            ? "•••"
-            : "Завершить";
-    Color currentStepBgColor = index == stepsLength ? AppColors.accentLight : AppColors.primaryLight;
-    Widget currentStepIcon = index == 1
-        ? Icon(
-            Icons.arrow_forward_ios,
-            color: AppColors.baseLight.shade100,
-            size: 16,
-          )
-        : index < stepsLength
-            ? Image(
-                image: AssetImage(
-                  Assets.icons.coffee,
-                ),
-                width: 16,
-              )
-            : const SizedBox.shrink();
-    return Stack(
-      children: [
-        Container(
-          padding: const EdgeInsets.only(top: 25),
-          child: Container(
-            padding: const EdgeInsets.all(30),
-            decoration: BoxDecoration(
-              color: AppColors.baseLight.shade100,
-              borderRadius: const BorderRadius.only(
-                topLeft: Radius.circular(35),
-                topRight: Radius.circular(35),
-              ),
-            ),
-            child: ListView(
-              padding: EdgeInsets.zero,
-              physics: isVisible ? const NeverScrollableScrollPhysics() : const BouncingScrollPhysics(),
-              shrinkWrap: true,
-              controller: _scrollController,
-              children: [
-                Text(
-                  stepName,
-                  textAlign: TextAlign.center,
-                  style: AppTextStyles.h7,
-                ),
-                const SizedBox(height: 20),
-                Text(
-                  stepContext,
-                  style: AppTextStyles.h5,
-                ),
-                const SizedBox(height: 30),
-                ...userComments.map(
-                  (userComment) {
-                    return ChatCommentWidget(
-                      userName: userComment["userName"],
-                      userImage: userComment["userImage"],
-                      lastSeen: userComment["lastSeen"],
-                      time: userComment["time"],
-                      chatText: userComment["chatText"],
-                      isOwner: userComment["isOwner"],
-                    );
-                  },
-                ),
-                const SizedBox(height: 50),
-              ],
-            ),
-          ),
-        ),
-        Align(
-          alignment: Alignment.topCenter,
-          child: BluredPanel(
-            mBorderRadius: 20,
-            mHeight: 30,
-            mPadding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-            mMargin: const EdgeInsets.only(top: 10),
-            widget: Text(
-              '$index из $stepsLength',
-              style: AppTextStyles.b3Medium.copyWith(color: AppColors.baseLight.shade100),
-            ),
-          ),
-        ),
-        Positioned(
-          top: 0,
-          right: 20,
-          child: TextButton.icon(
-            onPressed: () {
-              if (index == stepsLength) {
-                Navigator.pop(context);
-              } else {
-                _pageController.nextPage(
-                  curve: Curves.easeIn,
-                  duration: const Duration(milliseconds: 400),
-                );
-              }
-            },
-            style: AppDecorations.buttonStyle(padding: const EdgeInsets.symmetric(horizontal: 12), borderRadius: 12)
-                .copyWith(
-              backgroundColor: MaterialStateProperty.all(currentStepBgColor),
-              overlayColor: MaterialStateProperty.all(AppColors.baseLight.shade20),
-            ),
-            icon: Text(
-              currentStepName,
-              style: AppTextStyles.b3Medium.copyWith(color: AppColors.baseLight.shade100),
-            ),
-            label: currentStepIcon,
-          ),
-        ),
-      ],
     );
   }
 }

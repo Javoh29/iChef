@@ -1,5 +1,3 @@
-
-
 class ShippingModel {
   final String title;
   final String? subTitle;

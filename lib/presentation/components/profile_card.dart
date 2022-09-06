@@ -81,6 +81,7 @@ class ProfileCard extends StatelessWidget {
                 label: Text(
                   model.followers ?? '',
                   style: AppTextStyles.h8,
+                  maxLines: 1,
                 ),
               ),
               TextButton.icon(

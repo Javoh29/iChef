@@ -85,10 +85,14 @@ class CalendarTabItems extends StatelessWidget {
           onTap: () => Navigator.pushNamed(
             context,
             Routes.recipeInfoPage,
-            arguments: {'recipe_model': listRecipes[index]},
+            arguments: {
+              'recipe_model': listRecipes[index],
+              'seek_to_time': const Duration(seconds: 0),
+            },
           ),
           child: RecipeItem(
             model: listRecipes[index],
+            seekToTime: const Duration(seconds: 0),
             listAdditional: [
               Positioned(
                   top: 20,
@@ -114,14 +118,17 @@ class CalendarTabItems extends StatelessWidget {
                         ),
                       ),
                       GestureDetector(
-                        onTap: () => Navigator.pushNamed(context, Routes.recipeReplacePage),
+                        onTap: () => Navigator.pushNamed(
+                            context, Routes.recipeReplacePage),
                         child: BluredPanel(
                             mHeight: 36,
-                            mPadding: const EdgeInsets.symmetric(horizontal: 9, vertical: 10),
+                            mPadding: const EdgeInsets.symmetric(
+                                horizontal: 9, vertical: 10),
                             mBorderRadius: 12,
                             widget: Text(
                               'Заменить',
-                              style: AppTextStyles.b4Medium.copyWith(color: AppColors.baseLight.shade100),
+                              style: AppTextStyles.b4Medium.copyWith(
+                                  color: AppColors.baseLight.shade100),
                             )),
                       ),
                     ],
@@ -152,7 +159,8 @@ class FoodComText extends StatelessWidget {
       child: RichText(
         text: TextSpan(
           text: count,
-          style: AppTextStyles.b4Medium.copyWith(color: AppColors.baseLight.shade100),
+          style: AppTextStyles.b4Medium
+              .copyWith(color: AppColors.baseLight.shade100),
           children: [
             TextSpan(
               text: ' $type',

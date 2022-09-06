@@ -89,7 +89,7 @@ class _ShoppingItemDetailsState extends State<ShoppingItemDetails> {
                     closeOnCancel: true,
                     motion: const ScrollMotion(),
                     confirmDismiss: () async => true,
-                    dismissThreshold: 0.999999,
+                    dismissThreshold: 0.9999999999999999,
                     onDismissed: () {
                       setState(() {
                         model = modelList.removeAt(index);

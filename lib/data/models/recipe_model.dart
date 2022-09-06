@@ -7,10 +7,13 @@ class RecipeModel {
   String? recipeName;
   String? recipeTime;
   String? recipeView;
+  String? recipeDesc;
   int? likeCount;
   int? commentCount;
   int? ingredientCount;
   int? variationCount;
+  List<Map> recipeSteps;
+  List<Map> userComment;
 
   RecipeModel({
     this.recipeVideo,
@@ -25,6 +28,9 @@ class RecipeModel {
     this.commentCount,
     this.ingredientCount,
     this.variationCount,
+    this.recipeDesc,
+    required this.recipeSteps,
+    required this.userComment,
   });
 
   factory RecipeModel.fromJson(Map<String, dynamic> json) => RecipeModel(
@@ -38,6 +44,9 @@ class RecipeModel {
         commentCount: json['comment_count'] as int?,
         ingredientCount: json['ingredient_count'] as int?,
         variationCount: json['variation_count'] as int?,
+        recipeDesc: json['recipe_desc'] as String?,
+        recipeSteps: json['recipe_steps'] as List<Map>,
+        userComment: json['user_comment'] as List<Map>,
       );
 
   Map<String, dynamic> toJson() => {
@@ -51,6 +60,7 @@ class RecipeModel {
         'comment_count': commentCount,
         'ingredient_count': ingredientCount,
         'variation_count': variationCount,
+        'recipe_desc': recipeDesc,
       };
 
   RecipeModel copyWith({
@@ -76,6 +86,8 @@ class RecipeModel {
       commentCount: commentCount ?? this.commentCount,
       ingredientCount: ingredientCount ?? this.ingredientCount,
       variationCount: variationCount ?? this.variationCount,
+      recipeSteps: [],
+      userComment: [],
     );
   }
 

@@ -9,67 +9,117 @@ List<RecipeModel> listRecipes = [
   RecipeModel(
       userName: "Ирина Волкова",
       userAvatar: Assets.images.userAvatar1,
-      recipeVideo: 'assets/videos/video1.mp4',
-      recipeVideoPoster: "assets/images/img_classic_medovik.png",
+      recipeVideo: 'assets/videos/video6.mp4',
+      recipeVideoPoster: "assets/images/favorite_images/img.png",
       categoryName: "Temantoga",
-      recipeName: "Классический медовик",
-      recipeTime: "1.5ч",
+      recipeName: "Нежная и сочная свиная вырезка",
+      recipeTime: "1 час - 2 часа 15 мин",
       recipeView: "32K",
       likeCount: 14,
       commentCount: 135,
       variationCount: 23,
+      recipeDesc: recipeText,
+      recipeSteps: recipeSteps,
+      userComment: userComments,
       ingredientCount: 7),
   RecipeModel(
-      userName: "Павел Антипов",
-      userAvatar: Assets.images.userAvatar2,
-      recipeVideo: 'assets/videos/video2.mp4',
-      recipeVideoPoster: "assets/images/img_chicken.png",
-      categoryName: "Баклажан",
-      recipeName: "Запеченная курица",
-      recipeTime: "1.5ч",
+    userName: "Анастасия Королёва",
+    userAvatar: Assets.images.userAvatar3,
+    recipeVideo: 'assets/videos/video7.mp4',
+    recipeVideoPoster: "assets/images/favorite_images/tab2/tab2.8.jpg",
+    categoryName: "Шеф-повар Tramontina",
+    recipeName: "Жареная курица в хрустящей панировке.",
+    recipeTime: "1 час - 4 час 30 мин",
+    recipeView: "32K",
+    likeCount: 10,
+    commentCount: 99,
+    variationCount: 14,
+    recipeSteps: recipeSteps2,
+    userComment: userComments2,
+    recipeDesc: recipeText2,
+    ingredientCount: 5,
+  ),
+  RecipeModel(
+      userName: "Ирина Волкова",
+      userAvatar: Assets.images.userAvatar1,
+      recipeVideo: 'assets/videos/video1.mp4',
+      recipeVideoPoster: "assets/images/favorite_images/img.png",
+      categoryName: "Temantoga",
+      recipeName: "Нежная и сочная свиная вырезка",
+      recipeTime: "1 час - 2 часа 15 мин",
       recipeView: "32K",
-      likeCount: 10,
-      commentCount: 99,
-      variationCount: 14,
-      ingredientCount: 5),
+      likeCount: 14,
+      commentCount: 135,
+      variationCount: 23,
+      recipeSteps: recipeSteps,
+      userComment: userComments,
+      recipeDesc: recipeText,
+      ingredientCount: 7),
+  RecipeModel(
+    userName: "Анастасия Королёва",
+    userAvatar: Assets.images.userAvatar3,
+    recipeVideo: 'assets/videos/video2.mp4',
+    recipeVideoPoster: "assets/images/favorite_images/tab2/tab2.8.jpg",
+    categoryName: "Шеф-повар Tramontina",
+    recipeName: "Жареная курица в хрустящей панировке.",
+    recipeTime: "1 час - 4 час 30 мин",
+    recipeView: "32K",
+    likeCount: 10,
+    commentCount: 99,
+    variationCount: 14,
+    recipeSteps: recipeSteps2,
+    userComment: userComments2,
+    recipeDesc: recipeText2,
+    ingredientCount: 5,
+  ),
   RecipeModel(
       userName: "Ирина Волкова",
       userAvatar: Assets.images.userAvatar1,
       recipeVideo: 'assets/videos/video3.mp4',
-      recipeVideoPoster: "assets/images/img_classic_medovik.png",
+      recipeVideoPoster: "assets/images/favorite_images/img.png",
       categoryName: "Temantoga",
-      recipeName: "Классический медовик",
-      recipeTime: "1.5ч",
+      recipeName: "Нежная и сочная свиная вырезка",
+      recipeTime: "1 час- 2 часа 15 мин",
       recipeView: "32K",
       likeCount: 14,
       commentCount: 135,
+      recipeSteps: recipeSteps,
+      userComment: userComments,
       variationCount: 23,
+      recipeDesc: recipeText,
       ingredientCount: 7),
   RecipeModel(
-      userName: "Павел Антипов",
-      userAvatar: Assets.images.userAvatar2,
-      recipeVideo: 'assets/videos/video4.mp4',
-      recipeVideoPoster: "assets/images/img_chicken.png",
-      categoryName: "Баклажан",
-      recipeName: "Запеченная курица",
-      recipeTime: "1.5ч",
-      recipeView: "32K",
-      likeCount: 10,
-      commentCount: 99,
-      variationCount: 14,
-      ingredientCount: 5),
+    userName: "Анастасия Королёва",
+    userAvatar: Assets.images.userAvatar3,
+    recipeVideo: 'assets/videos/video4.mp4',
+    recipeVideoPoster: "assets/images/favorite_images/tab2/tab2.8.jpg",
+    categoryName: "Шеф-повар Tramontina",
+    recipeName: "Жареная курица в хрустящей панировке.",
+    recipeTime: "1 час - 4 час 30 мин",
+    recipeView: "32K",
+    likeCount: 10,
+    commentCount: 99,
+    variationCount: 14,
+    recipeSteps: recipeSteps2,
+    userComment: userComments2,
+    recipeDesc: recipeText2,
+    ingredientCount: 5,
+  ),
   RecipeModel(
       userName: "Ирина Волкова",
       userAvatar: Assets.images.userAvatar1,
       recipeVideo: 'assets/videos/video5.mp4',
-      recipeVideoPoster: "assets/images/img_chicken.png",
+      recipeVideoPoster: "assets/images/favorite_images/img.png",
       categoryName: "Temantoga",
-      recipeName: "Классический медовик",
-      recipeTime: "1.5ч",
+      recipeName: "Нежная и сочная свиная вырезка",
+      recipeTime: "1 час- 2 часа 15 мин",
       recipeView: "32K",
       likeCount: 14,
       commentCount: 135,
       variationCount: 23,
+      recipeSteps: recipeSteps,
+      userComment: userComments,
+      recipeDesc: recipeText,
       ingredientCount: 7),
 ];
 
@@ -92,154 +142,417 @@ List<String> recipePath = [
   'Выпечка',
 ];
 String recipeText =
-    "Американский тыквенный пирог с корицей — классика застолья Среднего и прочего Запада, анекдотический персонаж американского быта не лишен, однако, прелести, особенно если не получать его с младых ногтей каждые два дня в качестве десерта. Тыква тоже имеет звание чуть ли не коренного жителя Америки, так как открыта была именно здесь и охотно используется жителями континента во многих блюдах по многим случаям. И все же этот пирог получается безумно вкусным, если выбрать правильную тыкву — удлиненную, с закругленным концом.";
-
+    "Представляем вам рецепт приготовления сочной и вкусной свиной вырезки.Это нежное мясо готовится в су-вид в течение 90 минут и получается именно таким, как мы любим - красивым и розовым.Приправьте этот прекрасный кусочек вырезки травяным маслом, а затем похвалите себя за создание еще одного прекрасного ужина!";
+String recipeText2 =
+    '''Когда вы жарите курицу в панировке очень легко можно недожарить куриную грудку или ножку.
+При приготовлении в sous vide вы всегда приготовите курицу до той степени готовности, как вам нравится.
+Вы можете использовать и светлое и темное мясо.''';
 List<Map> recipeSteps = [
   {
     "stepNumber": "Шаг 1",
-    "stepName": "Soften the onion",
+    "stepName": "Посмотрим, как должна выглядеть идеальная свиная вырезка!",
     "stepContext":
-        "Cut the bell pepper into rings (it is better to choose three different colors - it looks more colorful), after removing the seeds. Cut the onion into half rings, grate the garlic on a fine grater.",
+        "Ваша свиная вырезка выглядит так же? Отлично, начинаем готовить!",
+    "stepImage": "assets/images/favorite_images/img_1.png",
+    "stepVideo": "",
+    'stepComment': []
   },
   {
     "stepNumber": "Шаг 2",
-    "stepName": "Soften the onion",
+    "stepName": "Готовим смесь для мяса и готовим (по желанию) травяное масло.",
     "stepContext":
-        "Cut the bell pepper into rings (it is better to choose three different colors - it looks more colorful), after removing the seeds. Cut the onion into half rings, grate the garlic on a fine grater.",
+        "В небольшой миске соединяем 5 частей соли с 2 частями сахара и перемешиваем.Смесь сахара и соли работает как рассол для того, чтобы пока свинина готовится, она оставалась красивой и сочной.Для приготовления травяного масла, смешиваем все инградиеты, кроме соли, и ооткладываем в сторону. Добавляем соль непосредственно перед подачей на стол.",
+    "stepImage": "assets/images/favorite_images/img_4.png",
+    "stepVideo": "assets/videos/step_video2.mp4",
+    'stepComment': []
   },
   {
     "stepNumber": "Шаг 3",
-    "stepName": "Soften the onion",
+    "stepName": "Приправляем мясо и упаковываем его.",
     "stepContext":
-        "Cut the bell pepper into rings (it is better to choose three different colors - it looks more colorful), after removing the seeds. Cut the onion into half rings, grate the garlic on a fine grater.",
+        "Приправляем вырезку смесью сахара и соли, из расчета примерно 1,5 % от веса мяса. (Это не должно быть обязательно точно).Есть важный момент! Приправляем мясо только тогда, когда готовы, чтобы сразу начать  его приготовить.Свиная вырезка очень нежная, поэтому слишком ранняя засолка сделает ее ветчиной.Помещаем термостат в воду и когда он нагреет ее до достаточной температуры, аккуратно и медленно помещаем пакет с мясом в емкость с водой.Закрепляем пакет так, чтобы он был полностью погружен в воду. Если пакет всплывает, кладем на него для утяжеления вилку или что-то другое.",
+    "stepImage": "assets/images/favorite_images/img_2.png",
+    "stepVideo": "assets/videos/step_video3.mp4",
+    'stepComment': []
   },
   {
     "stepNumber": "Шаг 4",
-    "stepName": "Soften the onion",
+    "stepName": "Обжариваем кусок вырезки.",
     "stepContext":
-        "Cut the bell pepper into rings (it is better to choose three different colors - it looks more colorful), after removing the seeds. Cut the onion into half rings, grate the garlic on a fine grater.",
+        "Обжариваем вырезку на сковороде гриль или гриле. На чем бы не готовили вы, убедитесь, что ваша сковорода или гриль сильно разогреты.Имейте ввиду, что вырезка получается вкусной и нежирной, поэтому ее очень легко пережарить во время обжаривания.",
+    "stepImage": "assets/images/favorite_images/img_3.png",
+    "stepVideo": "assets/videos/step_video4.mp4",
+    'stepComment': []
   },
   {
     "stepNumber": "Шаг 5",
-    "stepName": "Soften the onion",
+    "stepName": "Серверуем",
     "stepContext":
-        "Cut the bell pepper into rings (it is better to choose three different colors - it looks more colorful), after removing the seeds. Cut the onion into half rings, grate the garlic on a fine grater.",
+        "Подаем на стол с приготовленным травяным маслом. Нарезаем кусочками.Наслаждаемся нежной свиной вырезкой!",
+    "stepImage": "assets/images/favorite_images/img.png",
+    "stepVideo": "assets/videos/step_video5.mp4",
+    'stepComment': []
+  }
+];
+List<Map> recipeSteps2 = [
+  {
+    "stepNumber": "Шаг 1",
+    "stepName": "Немного солим курицу",
+    "stepContext":
+        "Солим кусочки курицы. Количество соли должно быть примерно 1 процент от веса кусочков курицы или на ваше усмотрение.",
+    "stepImage": "assets/images/favorite_images/tab2/tab2.17.jpg",
+    "stepVideo": "assets/videos/video2/step_video1.mp4",
+    'stepComment': []
+  },
+  {
+    "stepNumber": "Шаг 2",
+    "stepName": "Упаковываем белое и темное мясо в разные пакеты.",
+    "stepContext":
+        "В разные пакеты укладываем кусочки белого и темного мяса в один слой, чтобы они готовились равномерно.",
+    "stepImage": "assets/images/kur_panirovke/img.png",
+    "stepVideo": "assets/videos/video2/video2.mp4",
+    'stepComment': []
+  },
+  {
+    "stepNumber": "Шаг 3",
+    "stepName": "Готовим.",
+    "stepContext":
+        "Сначала начинаем готовить ножки и темное мясо. Эти кусочки курицы готовятся дольше, чем белое мясо. Куриные грудки добаляем за 1 час до подачи на стол.",
+    "stepImage": "assets/images/kur_panirovke/img_1.png",
+    "stepVideo": "assets/videos/video2/video_3.mp4",
+    'stepComment': []
+  },
+  {
+    "stepNumber": "Шаг 4",
+    "stepName": "Смешиваем муку и специи",
+    "stepContext":
+        "Смешиваем муку со специями. Вы можете использовать разные специи по своему вкусу.",
+    "stepImage": "assets/images/kur_panirovke/img_2.png",
+    "stepVideo": "assets/videos/video2/video3.mp4",
+    'stepComment': []
+  },
+  {
+    "stepNumber": "Шаг 5",
+    "stepName": "Разрезаем куриные грудки.",
+    "stepContext":
+        "Разрезаем куриные грудки на 2 части, чтобы кусочки были поменьше, а хрустящей корочки было побольше.",
+    "stepImage": "assets/images/kur_panirovke/img_3.png",
+    "stepVideo": "assets/videos/video2/video4.mp4",
+    'stepComment': []
   },
   {
     "stepNumber": "Шаг 6",
-    "stepName": "Soften the onion",
+    "stepName": " Готовимся к жарке.",
     "stepContext":
-        "Cut the bell pepper into rings (it is better to choose three different colors - it looks more colorful), after removing the seeds. Cut the onion into half rings, grate the garlic on a fine grater.",
-  }
+        "Располагаем миску со сливками, мукой и курицей рядом с плитой. В сковороду с толстым дном наливаем масло для жарки и нагреваем на сильном огне.",
+    "stepImage": "assets/images/kur_panirovke/img_4.png",
+    "stepVideo": "assets/videos/video2/set_up6.mp4",
+    'stepComment': []
+  },
+  {
+    "stepNumber": "Шаг 7",
+    "stepName": "Обваливаем курицу в муке.",
+    "stepContext": "Обваливаем кусочки курицы в муке один или два раза.",
+    "stepImage": "assets/images/kur_panirovke/img_5.png",
+    "stepVideo": "assets/videos/video2/video7.mp4",
+    'stepComment': [
+      {
+        "userName": "Инна Худокормова",
+        "userImage": Assets.images.userAvatar3,
+        "lastSeen": "2 м назад",
+        "time": "12.07.2022",
+        "chatText":
+            "А я смешиваю сливки с яйцом, окунаю туда кусочки мяса и на сковородку",
+        "isOwner": false
+      },
+      {
+        "userName": "Елена Никодимова",
+        "userImage": Assets.images.userAvatar3,
+        "lastSeen": "2 м назад",
+        "time": "19.08.2008",
+        "chatText":
+            "Настя спасибо за рецепт — у меня не было сливок и я решила залить молоком- результат отличный- получилось очень вкусно",
+        "isOwner": false
+      },
+    ]
+  },
+  {
+    "stepNumber": "Шаг 8",
+    "stepName":
+        "Быстро обжариваем кусочки курицы в кипящем масле до образования корочки. После обжарки удаляем лишнее масло при помощи салфетки.",
+    "stepContext":
+        "Смешиваем муку со специями. Вы можете использовать разные специи по своему вкусу.",
+    "stepImage": "assets/images/kur_panirovke/img_6.png",
+    "stepVideo": "assets/videos/video2/chicken-fry.mp4",
+    'stepComment': [
+      {
+        "userName": "Глеб Симохин",
+        "userImage": Assets.images.userAvatar3,
+        "lastSeen": "2 м назад",
+        "time": "12.07.2022",
+        "chatText": "А быстро, это сколько? Секунды или минуты?",
+        "isOwner": false
+      },
+    ]
+  },
+  {
+    "stepNumber": "Шаг 9",
+    "stepName":
+        "Пока обжариваем кусочки курицы, обжаренные кусочки можем выложить на противень и поставить в нагретую до 95 градусов духовку.",
+    "stepContext":
+        "Разрезаем куриные грудки на 2 части, чтобы кусочки были поменьше, а хрустящей корочки было побольше.",
+    "stepImage": "assets/images/kur_panirovke/img_7.png",
+    "stepVideo": "assets/videos/video2/oven-front.mp4",
+    'stepComment': []
+  },
+  {
+    "stepNumber": "Шаг 10",
+    "stepName": "Серверуем",
+    "stepContext":
+        "Подаем на стол горячие куриные кусочки. Так же, можно есть и холодными.",
+    "stepImage": "assets/images/kur_panirovke/img_8.png",
+    "stepVideo": "assets/videos/video2/video10.mp4",
+    'stepComment': []
+  },
 ];
-
-String stepName = "Soften the onion";
-
-String stepContext =
-    '''Cut the bell pepper into rings (it is better to choose three different colors - it looks more colorful), after removing the seeds. Cut the onion into half rings, grate the garlic on a fine grater.
-Cut the bell pepper into rings (it is better to choose three different colors - it looks more colorful), after removing the seeds. Cut the onion into half rings, grate the garlic on a fine grater.Cut the bell pepper into rings (it is better to choose three different colors - it looks more colorful), after removing the seeds. Cut the onion into half rings, grate the garlic on a fine grater.
-Cut the bell pepper into rings (it is better to choose three different colors - it looks more colorful), after removing the seeds. Cut the onion into half rings, grate the garlic on a fine grater.Cut the bell pepper into rings (it is better to choose three different colors - it looks more colorful), after removing the seeds. Cut the onion into half rings, grate the garlic on a fine grater.
-Cut the bell pepper into rings (it is better to choose three different colors - it looks more colorful), after removing the seeds. Cut the onion into half rings, grate the garlic on a fine grater.Cut the bell pepper into rings (it is better to choose three different colors - it looks more colorful), after removing the seeds. Cut the onion into half rings, grate the garlic on a fine grater.
-Cut the bell pepper into rings (it is better to choose three different colors - it looks more colorful), after removing the seeds. Cut the onion into half rings, grate the garlic on a fine grater.''';
 
 List<Map> userComments = [
   {
-    "userName": "Надежда Румянцева",
+    "userName": "Антонина Васина",
     "userImage": Assets.images.userAvatar3,
     "lastSeen": "2 м назад",
-    "time": "Ср 18, 13:49",
-    "chatText": "Cut the bell",
+    "time": "17.04.2022",
+    "chatText":
+        "Спасибо, ваши рецепты помогают радовать наших любимых мужчин! А ведь они даже не догадываются, как с вашей помощью все это просто приготовить))",
     "isOwner": false
   },
   {
-    "userName": "Анна Матюнина",
+    "userName": "Алина Кашкина",
     "userImage": Assets.images.userAvatar4,
     "lastSeen": "5 м назад",
-    "time": "Ср 18, 13:49",
+    "time": "13.07.2022",
     "chatText":
-        "Cut the bell pepper into rings (it is better to choose three different colors - it looks more colorful)",
+        "ОБЯЗАТЕЛЬНО ПРИГОТОВЬТЕ ЭТО СУПЕРСКОЕ БЛЮДО!!! действительно, мясо получилось ну очень сочным и вкусным!!! к вину-идеальное блюдо!!!",
     "isOwner": true
   },
   {
-    "userName": "Александра Кадира",
+    "userName": "Татьяна Ведунова",
     "userImage": Assets.images.userAvatar5,
     "lastSeen": "2 м назад",
-    "time": "Ср 18, 13:49",
+    "time": "17.07.2022",
     "chatText":
-        '''Cut the bell pepper into rings (it is better to choose three different colors - it looks more colorful), after removing the seeds. Cut the onion into half rings, grate the garlic on a fine grater.
-Cut the bell pepper into rings (it is better to choose three different colors - it looks more colorful), after removing the seeds. Cut the onion into half rings, grate the garlic on a fine grater.''',
+        '''Девочки только что приготовила мяско супер получилось сочное вкусное!!! Семья в восторге!!!''',
     "isOwner": false
   },
   {
-    "userName": "Надежда Румянцева",
+    "userName": "Ирина Кракомяко.",
     "userImage": Assets.images.userAvatar3,
     "lastSeen": "2 м назад",
-    "time": "Ср 18, 13:49",
-    "chatText": "Cut the bell",
+    "time": "20.07.2022",
+    "chatText":
+        "Вчера готовила это мясо-получилось очень вкусно!!! Съели все за один вечер.Сегодня опять его готовила, но уже добавила картофель крупными кусками, чтобы сразу с гарниром было!!! Настенька, спасибо большое за рецепт. Поедем на море-приготовлю такое мяско в дорогу!!!",
     "isOwner": false
   },
   {
-    "userName": "Анна Матюнина",
+    "userName": "Зулька",
     "userImage": Assets.images.userAvatar4,
     "lastSeen": "5 м назад",
-    "time": "Ср 18, 13:49",
-    "chatText":
-        "Cut the bell pepper into rings (it is better to choose three different colors - it looks more colorful)",
+    "time": "27.07.2022",
+    "chatText": "Всё гениальное просто, а ещё и вкусно! Спасибо за рецептик",
     "isOwner": true
   },
   {
-    "userName": "Александра Кадира",
+    "userName": "Оля Финоченова",
     "userImage": Assets.images.userAvatar5,
     "lastSeen": "2 м назад",
-    "time": "Ср 18, 13:49",
+    "time": "29.07.2022",
     "chatText":
-        '''Cut the bell pepper into rings (it is better to choose three different colors - it looks more colorful), after removing the seeds. Cut the onion into half rings, grate the garlic on a fine grater.
-Cut the bell pepper into rings (it is better to choose three different colors - it looks more colorful), after removing the seeds. Cut the onion into half rings, grate the garlic on a fine grater.''',
+        '''Поистенне шикарно Ирина ты просто кулинарная фея, такие шедевры))) спасибо большое)''',
+    "isOwner": false
+  },
+  {
+    "userName": "Ольга Егорова",
+    "userImage": Assets.images.userAvatar5,
+    "lastSeen": "2 м назад",
+    "time": "05.08.2022",
+    "chatText": '''Очень очень вкусно.Всем рекомендую''',
     "isOwner": false
   },
 ];
-List<Widget> firstIngredientsRazdel = const [
-  IngridientDetailContainer(
-    title: "Пшеничная мука",
-    addInfo: "Manitoba 400",
-    data: "400 г",
-    data2: "400 г",
-  ),
-  SizedBox(
-    height: 5,
-  ),
-  IngridientDetailContainer(
-    title: "Сливочное масло",
-    addInfo: "",
-    data: "400 г",
-    data2: "250 г",
-  ),
+List<Map> userComments2 = [
+  {
+    "userName": "utro_na_more",
+    "userImage": Assets.images.userAvatar3,
+    "lastSeen": "2 м назад",
+    "time": "03.01.2022",
+    "chatText":
+        "спасибо. все получилось очень нежно. гости все съели за пару минут)",
+    "isOwner": false
+  },
+  {
+    "userName": "княгиня",
+    "userImage": Assets.images.userAvatar4,
+    "lastSeen": "5 м назад",
+    "time": "15.01.2022",
+    "chatText":
+        "Приготовила из филе куры, немного из свинины (корейка, предварительно отбив). Безусловно. из куры лучше, но и свинина неплохо. Спасибо!",
+    "isOwner": true
+  },
+  {
+    "userName": "gvenevra",
+    "userImage": Assets.images.userAvatar5,
+    "lastSeen": "2 м назад",
+    "time": "23.01.2022",
+    "chatText":
+        '''Спасибо за вкусный рецепт! Готовлю так уже 2 месяца, и никак не можем насладится необычайно вкусным блюдом. Оно теперь одно из самых любимых блюд нашей семьи!''',
+    "isOwner": false
+  },
+  {
+    "userName": "Диана Винокурова",
+    "userImage": Assets.images.userAvatar3,
+    "lastSeen": "2 м назад",
+    "time": "27.01.2022",
+    "chatText":
+        "Вчера сделала, очень вкусно получилось, а жарить быстро, минут 5 на сильном огне если)))))))))))))))",
+    "isOwner": false
+  },
+  {
+    "userName": "Евгения Тарасова",
+    "userImage": Assets.images.userAvatar4,
+    "lastSeen": "5 м назад",
+    "time": "15.02.2022",
+    "chatText": "Вчера приготовила очень понравилось! Спасибо за рецепт!",
+    "isOwner": true
+  },
+  {
+    "userName": "Ирина Осокина",
+    "userImage": Assets.images.userAvatar5,
+    "lastSeen": "2 м назад",
+    "time": "15.06.2022",
+    "chatText":
+        '''Попробовав этот рецепт, только так стала гововить курицу — это очень вкусно, и детям нравится.''',
+    "isOwner": false
+  },
+  {
+    "userName": "Настя Гончарная",
+    "userImage": Assets.images.userAvatar5,
+    "lastSeen": "2 м назад",
+    "time": "21.10.2022",
+    "chatText": '''Настя, спасибо за рецепт! просто и оччень вкусно!!!''',
+    "isOwner": false
+  },
+  {
+    "userName": "Мышечка Викуся",
+    "userImage": Assets.images.userAvatar5,
+    "lastSeen": "2 м назад",
+    "time": "21.10.2022",
+    "chatText": '''Сегодня буду делать — думаю все получиться!''',
+    "isOwner": false
+  },
+  {
+    "userName": "Abracadabra",
+    "userImage": Assets.images.userAvatar5,
+    "lastSeen": "2 м назад",
+    "time": "24.10.2022",
+    "chatText":
+        '''Спасибо огромное, настолько вкусно что просто слов не хватает. Не могу остановится, пора прятать тарерку:-)))''',
+    "isOwner": false
+  },
+  {
+    "userName": "marijka",
+    "userImage": Assets.images.userAvatar5,
+    "lastSeen": "2 м назад",
+    "time": "26.10.2022",
+    "chatText":
+        '''Получилось обалденно вкусно! Моя маленькая дочка уплетала такую курочку за обе щеки.
+''',
+    "isOwner": false
+  },
+  {
+    "userName": "Иляна",
+    "userImage": Assets.images.userAvatar5,
+    "lastSeen": "2 м назад",
+    "time": "06.11.2022",
+    "chatText":
+        '''спасибо большое! вся семья уплетала за обе щеки...я назвала это блюдо-пища Богов!''',
+    "isOwner": false
+  },
+  {
+    "userName": "elena strekoza",
+    "userImage": Assets.images.userAvatar5,
+    "lastSeen": "2 м назад",
+    "time": "08.11.2022",
+    "chatText":
+        '''Обязательно сделаю сегодня! Не сомневаюсь, что будет очень вкусно, готовила по другим Вашим рецептам--нравиться абсолютно всё!!!
+В курицу всегда добавляю мяту, получается очень свеженько, советую!!!''',
+    "isOwner": false
+  },
 ];
 
 List<Widget> secondIngredientsRazdel = const [
   IngridientDetailContainer(
-    title: "Куриное яйцо",
-    addInfo: "C0",
-    data: "400 г, 3 шт",
-    data2: "30 г, 3 шт",
-  ),
-  SizedBox(
-    height: 5,
-  ),
-  IngridientDetailContainer(
-    title: "Тыква",
+    title: "Части курицы",
     addInfo: "",
-    data: "400 г, 3 шт",
-    data2: "900 г",
+    data: "1800 гр",
+    data2: "",
   ),
-  SizedBox(
-    height: 5,
-  ),
+  SizedBox(height: 5),
   IngridientDetailContainer(
-    title: "Корица",
-    addInfo: "KOTANYI целая",
-    data: "400 г, 3 шт",
-    data2: "3 г",
+    title: "Соль",
+    addInfo: "",
+    data: "",
+    data2: "",
+  ),
+  SizedBox(height: 5),
+  IngridientDetailContainer(
+    title: "Перец ",
+    addInfo: "",
+    data: "14 гр (по желанию)",
+    data2: "",
+  ),
+  SizedBox(height: 5),
+  IngridientDetailContainer(
+    title: "Паприка",
+    addInfo: "",
+    data: "25 гр (по желанию)",
+    data2: "",
+  ),
+  SizedBox(height: 5),
+  IngridientDetailContainer(
+    title: "Луковый порошек",
+    addInfo: "",
+    data: "20 гр (по желанию)",
+    data2: "",
+  ),
+  SizedBox(height: 5),
+  IngridientDetailContainer(
+    title: "Обезжиренные сливки",
+    addInfo: "",
+    data: "500 гр",
+    data2: "",
+  ),
+  SizedBox(height: 5),
+  IngridientDetailContainer(
+    title: "Мука",
+    addInfo: "",
+    data: "750 гр",
+    data2: "",
+  ),
+  SizedBox(height: 5),
+  IngridientDetailContainer(
+    title: "Масло для жарки",
+    addInfo: "",
+    data: "2 литра",
+    data2: "",
+  ),
+];
+
+List<Widget> firstIngredientsRazdel = const [
+  IngridientDetailContainer(
+    title: "Свиная вырезка",
+    addInfo: "",
+    data: "550г",
+    data2: "",
   ),
   SizedBox(
     height: 5,
@@ -247,8 +560,80 @@ List<Widget> secondIngredientsRazdel = const [
   IngridientDetailContainer(
     title: "Соль",
     addInfo: "",
+    data: "5 ч.л.",
+    data2: "",
+  ),
+  SizedBox(
+    height: 5,
+  ),
+  IngridientDetailContainer(
+    title: "Сахар",
+    addInfo: "",
+    data: "2 ч.л.",
+    data2: "",
+  ),
+  SizedBox(height: 5),
+  IngridientDetailContainer(
+    title: "Соль",
+    addInfo: "",
     data: "400 г, 3 шт",
-    data2: "3 г, 0.5 ч. л.",
+    data2: "",
+  ),
+  SizedBox(height: 5),
+  IngridientDetailContainer(
+    title: "Петрушка",
+    addInfo: "",
+    data: "30 гр",
+    data2: "",
+  ),
+  SizedBox(height: 5),
+  IngridientDetailContainer(
+    title: "Соль",
+    addInfo: "",
+    data: "30 гр",
+    data2: "",
+  ),
+  SizedBox(height: 5),
+  IngridientDetailContainer(
+    title: "Зеленый лук ",
+    addInfo: "",
+    data: "30 гр",
+    data2: "",
+  ),
+  SizedBox(height: 5),
+  IngridientDetailContainer(
+    title: "Чеснок",
+    addInfo: "",
+    data: "2 гp",
+    data2: "",
+  ),
+  SizedBox(height: 5),
+  IngridientDetailContainer(
+    title: "Лук шалот",
+    addInfo: "",
+    data: "10 гр",
+    data2: "",
+  ),
+  SizedBox(height: 5),
+  IngridientDetailContainer(
+    title: "Оливковое масло ",
+    addInfo: "",
+    data: "150 г",
+    data2: "",
+  ),
+  SizedBox(height: 5),
+  IngridientDetailContainer(
+    title: "Перец чили",
+    addInfo: "",
+    data: "5 гр",
+    data2: "",
+  ),
+  SizedBox(height: 5),
+  IngridientDetailContainer(
+    title: "Соль ",
+    addInfo: "",
+    data: "10 гр",
+    data2: "",
   ),
 ];
 
@@ -401,9 +786,9 @@ List<String> favImagesTab2 = [
 ];
 List<UserModel> users = [
   UserModel(
-    username: "Ирина Волкова",
+    username: "Анастасия Королёва",
     userImage: Assets.images.userAvatar1,
-    job: "Шеф-повар ресторана Temantoga",
+    job: "Шеф-повар Tramontina",
     bio: '''Шеф-повар ресторана Temantoga
 текстовое описание которые сам пишет,
 может даже сайт указать''',
@@ -412,7 +797,17 @@ List<UserModel> users = [
   ),
   UserModel(
     username: "Ирина Волкова",
-    userImage: Assets.images.userAvatar2,
+    userImage: Assets.images.userAvatar3,
+    job: "Шеф-повар ресторана Temantoga",
+    bio: '''Шеф-повар ресторана Temantoga
+текстовое описание которые сам пишет,
+может даже сайт указать''',
+    followers: "45,6 тыс",
+    following: "4,8 тыс",
+  ),
+  UserModel(
+    username: "Анастасия Королёва",
+    userImage: Assets.images.userAvatar1,
     job: "Шеф-повар ресторана Temantoga",
     bio: '''Шеф-повар ресторана Temantoga
 текстовое описание которые сам пишет,
@@ -431,18 +826,8 @@ List<UserModel> users = [
     following: "4,8 тыс",
   ),
   UserModel(
-    username: "Ирина Волкова",
-    userImage: Assets.images.userAvatar4,
-    job: "Шеф-повар ресторана Temantoga",
-    bio: '''Шеф-повар ресторана Temantoga
-текстовое описание которые сам пишет,
-может даже сайт указать''',
-    followers: "45,6 тыс",
-    following: "4,8 тыс",
-  ),
-  UserModel(
-    username: "Ирина Волкова",
-    userImage: Assets.images.userAvatar5,
+    username: "Анастасия Королёва",
+    userImage: Assets.images.userAvatar1,
     job: "Шеф-повар ресторана Temantoga",
     bio: '''Шеф-повар ресторана Temantoga
 текстовое описание которые сам пишет,
