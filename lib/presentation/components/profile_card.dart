@@ -248,7 +248,7 @@ class ProfileCard extends StatelessWidget {
               ElevatedButton(
                 onPressed: () {},
                 style: AppDecorations.buttonStyle().copyWith(
-                    fixedSize: MaterialStatePropertyAll(
+                    fixedSize: MaterialStateProperty.all(
                         Size(MediaQuery.of(context).size.width, 48))),
                 child: Text(
                   'Добавить новый бизнес-аккаунт',

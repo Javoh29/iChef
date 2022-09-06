@@ -13,12 +13,9 @@ import '../../data/models/recipe_model.dart';
 import '../components/custom_expand_tile.dart';
 
 class IngredientsDrawer extends StatefulWidget {
-  IngredientsDrawer({Key? key, this.model}) : super(key: key);
+  const IngredientsDrawer({Key? key, required this.model}) : super(key: key);
 
-  RecipeModel? model = RecipeModel(
-      recipeSteps: recipeSteps,
-      userComment: userComments,
-      drawer: nejnayaDrawerModel);
+  final RecipeModel model;
 
   @override
   State<IngredientsDrawer> createState() => _IngredientsDrawerState();
@@ -52,12 +49,10 @@ class _IngredientsDrawerState extends State<IngredientsDrawer> {
                 const Spacer(),
                 TextButton(
                   onPressed: () {},
-                  style: AppDecorations.buttonStyle(
-                      padding: const EdgeInsets.symmetric(horizontal: 12)),
+                  style: AppDecorations.buttonStyle(padding: const EdgeInsets.symmetric(horizontal: 12)),
                   child: Text(
                     "В корзину",
-                    style: AppTextStyles.b4Medium
-                        .copyWith(color: AppColors.baseLight.shade100),
+                    style: AppTextStyles.b4Medium.copyWith(color: AppColors.baseLight.shade100),
                   ),
                 )
               ],

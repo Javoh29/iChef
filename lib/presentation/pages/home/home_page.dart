@@ -22,17 +22,22 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin {
   late final TabController _tabController = TabController(length: 3, vsync: this);
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
 
   @override
   void initState() {
     super.initState();
     _tabController.addListener(() => setState(() {}));
   }
-final RecipeModel model  = RecipeModel(recipeSteps: recipeSteps, userComment: userComments, drawer: nejnayaDrawerModel);
+
+  RecipeModel model = RecipeModel(recipeSteps: recipeSteps, userComment: userComments, drawer: nejnayaDrawerModel);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      endDrawer:  IngredientsDrawer(),
+      key: _scaffoldKey,
+      endDrawer: IngredientsDrawer(
+        model: model,
+      ),
       endDrawerEnableOpenDragGesture: false,
       body: NestedScrollView(
         physics: const NeverScrollableScrollPhysics(),
@@ -44,7 +49,14 @@ final RecipeModel model  = RecipeModel(recipeSteps: recipeSteps, userComment: us
         body: TabBarView(
           controller: _tabController,
           children: [
-            const RecipesTabPage(),
+            RecipesTabPage(
+              callBack: (index) {
+                setState(() {
+                  model = listRecipes[index];
+                });
+                _scaffoldKey.currentState?.openEndDrawer();
+              },
+            ),
             Container(),
             const ChatPage(),
           ],
