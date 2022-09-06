@@ -43,9 +43,8 @@ class ProfileCard extends StatelessWidget {
             padding: const EdgeInsets.symmetric(vertical: 12),
             child: Text(
               model.bio ?? '',
-              style: AppTextStyles.b4DemiBold.copyWith(
-                  fontWeight: FontWeight.w400,
-                  color: AppColors.metalColor.shade50),
+              style:
+                  AppTextStyles.b4DemiBold.copyWith(fontWeight: FontWeight.w400, color: AppColors.metalColor.shade50),
             ),
           ),
 
@@ -57,11 +56,8 @@ class ProfileCard extends StatelessWidget {
                 style: AppDecorations.buttonStyle(
                   borderRadius: 12,
                   bgColor: AppColors.baseLight,
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-                ).copyWith(
-                    overlayColor:
-                        MaterialStateProperty.all(AppColors.baseLight.shade20)),
+                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+                ).copyWith(overlayColor: MaterialStateProperty.all(AppColors.baseLight.shade20)),
                 onPressed: () {},
                 icon: SvgPicture.asset(
                   Assets.icons.contact,
@@ -69,8 +65,7 @@ class ProfileCard extends StatelessWidget {
                 ),
                 label: Text(
                   'Подписаться',
-                  style: AppTextStyles.b4Medium
-                      .copyWith(color: AppColors.baseLight.shade100),
+                  style: AppTextStyles.b4Medium.copyWith(color: AppColors.baseLight.shade100),
                 ),
               ),
               TextButton.icon(
@@ -167,44 +162,32 @@ class ProfileCard extends StatelessWidget {
                                   ),
                                   Container(
                                     height: 62,
-                                    margin: const EdgeInsets.only(
-                                        top: 25, bottom: 20),
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 10),
+                                    margin: const EdgeInsets.only(top: 25, bottom: 20),
+                                    padding: const EdgeInsets.symmetric(horizontal: 10),
                                     decoration: AppDecorations.defDecor,
                                     child: Row(
                                       children: [
                                         Container(
                                           height: 24,
                                           padding: const EdgeInsets.all(5),
-                                          margin:
-                                              const EdgeInsets.only(right: 15),
+                                          margin: const EdgeInsets.only(right: 15),
                                           decoration: BoxDecoration(
-                                              shape: BoxShape.circle,
-                                              color:
-                                                  AppColors.baseLight.shade100),
-                                          child: SvgPicture.asset(
-                                              Assets.icons.star),
+                                              shape: BoxShape.circle, color: AppColors.baseLight.shade100),
+                                          child: SvgPicture.asset(Assets.icons.star),
                                         ),
                                         Expanded(
                                           child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
+                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            mainAxisAlignment: MainAxisAlignment.center,
                                             children: [
                                               Text(
                                                 'Тариф',
                                                 style: AppTextStyles.b4Regular
-                                                    .copyWith(
-                                                        color: AppColors
-                                                            .metalColor
-                                                            .shade50),
+                                                    .copyWith(color: AppColors.metalColor.shade50),
                                               ),
                                               Text(
                                                 'Ресторан',
-                                                style: AppTextStyles.b4Regular
-                                                    .copyWith(
+                                                style: AppTextStyles.b4Regular.copyWith(
                                                   color: AppColors.primaryLight,
                                                 ),
                                               ),
@@ -213,10 +196,7 @@ class ProfileCard extends StatelessWidget {
                                         ),
                                         Text(
                                           'до 15.06.2023',
-                                          style: AppTextStyles.b5DemiBold
-                                              .copyWith(
-                                                  color: AppColors
-                                                      .metalColor.shade90),
+                                          style: AppTextStyles.b5DemiBold.copyWith(color: AppColors.metalColor.shade90),
                                         ),
                                       ],
                                     ),
@@ -247,13 +227,11 @@ class ProfileCard extends StatelessWidget {
               ),
               ElevatedButton(
                 onPressed: () {},
-                style: AppDecorations.buttonStyle().copyWith(
-                    fixedSize: MaterialStatePropertyAll(
-                        Size(MediaQuery.of(context).size.width, 48))),
+                style: AppDecorations.buttonStyle()
+                    .copyWith(fixedSize: MaterialStateProperty.all(Size(MediaQuery.of(context).size.width, 48))),
                 child: Text(
                   'Добавить новый бизнес-аккаунт',
-                  style: AppTextStyles.b4Medium
-                      .copyWith(color: AppColors.baseLight.shade100),
+                  style: AppTextStyles.b4Medium.copyWith(color: AppColors.baseLight.shade100),
                 ),
               ),
               const SizedBox(height: 60)
@@ -297,8 +275,7 @@ class UserInfoAvatarWidget extends StatelessWidget {
             : Container(
                 height: 60,
                 width: 60,
-                decoration: BoxDecoration(
-                    color: AppColors.primaryLight, shape: BoxShape.circle),
+                decoration: BoxDecoration(color: AppColors.primaryLight, shape: BoxShape.circle),
               ),
         const SizedBox(width: 12),
         // #username and job
@@ -329,9 +306,8 @@ class UserInfoAvatarWidget extends StatelessWidget {
             ),
             Text(
               subtitle,
-              style: AppTextStyles.b4DemiBold.copyWith(
-                  fontWeight: FontWeight.w400,
-                  color: AppColors.metalColor.shade50),
+              style:
+                  AppTextStyles.b4DemiBold.copyWith(fontWeight: FontWeight.w400, color: AppColors.metalColor.shade50),
             ),
           ],
         ),
@@ -412,7 +388,7 @@ class RestaurantBottomItemsList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: MediaQuery.of(context).size.width/.75,
+      height: MediaQuery.of(context).size.width / .75,
       child: ListView(
         physics: const BouncingScrollPhysics(),
         shrinkWrap: true,

@@ -16,8 +16,7 @@ import '../../../../config/constants/assets.dart';
 import '../../../widgets/dismissible_panel_widget.dart';
 
 class ShoppingItemDetails extends StatefulWidget {
-  const ShoppingItemDetails({Key? key, required this.shippingList})
-      : super(key: key);
+  const ShoppingItemDetails({Key? key, required this.shippingList}) : super(key: key);
   final List<ShippingModel> shippingList;
 
   @override
@@ -57,16 +56,14 @@ class _ShoppingItemDetailsState extends State<ShoppingItemDetails> {
                         modelList.add(model);
                       } else {
                         model = modelList.removeAt(index);
-                        modelList.insert(
-                            model.id <= index ? model.id : modelList.length - 1,
-                            model);
+                        modelList.insert(model.id <= index ? model.id : modelList.length - 1, model);
                       }
                     });
                   },
                   key: UniqueKey(),
                   extentRatio: 0.165,
-                  openThreshold: 0.99999999999999,
-                  closeThreshold: 0.99999999999999,
+                  openThreshold: 0.9,
+                  closeThreshold: 0.9,
                   motion: const BehindMotion(),
                   children: [
                     SlidableBtnWidget(
@@ -83,13 +80,15 @@ class _ShoppingItemDetailsState extends State<ShoppingItemDetails> {
                 ),
                 endActionPane: ActionPane(
                   onClose: () {},
-                  extentRatio: 0.325,
+                  extentRatio: 0.45,
+                  closeThreshold: 0.9,
+                  openThreshold: 0.9,
                   motion: const ScrollMotion(),
                   dismissible: DismissiblePaneWidget(
                     closeOnCancel: true,
                     motion: const ScrollMotion(),
                     confirmDismiss: () async => true,
-                    dismissThreshold: 0.9999999999999999,
+                    dismissThreshold: 0.1,
                     onDismissed: () {
                       setState(() {
                         model = modelList.removeAt(index);
@@ -104,8 +103,7 @@ class _ShoppingItemDetailsState extends State<ShoppingItemDetails> {
                       icon: Assets.icons.edit,
                       onTap: () {
                         setState(() {
-                          modelList[index].isShowEdit =
-                              modelList[index].isShowEdit;
+                          modelList[index].isShowEdit = modelList[index].isShowEdit;
                         });
                       },
                     ),
@@ -133,8 +131,7 @@ class _ShoppingItemDetailsState extends State<ShoppingItemDetails> {
 }
 
 class ItemWidget extends StatefulWidget {
-  const ItemWidget({Key? key, required this.model, required this.showEdit})
-      : super(key: key);
+  const ItemWidget({Key? key, required this.model, required this.showEdit}) : super(key: key);
   final ShippingModel model;
   final bool showEdit;
 
@@ -157,9 +154,8 @@ class _ItemWidgetState extends State<ItemWidget> {
 
   @override
   Widget build(BuildContext context) {
-    decoration = widget.model.isCheck
-        ? AppDecorations.defDecor.copyWith(color: AppColors.deletedItem)
-        : AppDecorations.defDecor;
+    decoration =
+        widget.model.isCheck ? AppDecorations.defDecor.copyWith(color: AppColors.deletedItem) : AppDecorations.defDecor;
 
     return Container(
       alignment: Alignment.center,
@@ -174,22 +170,16 @@ class _ItemWidgetState extends State<ItemWidget> {
               TextButton(
                 onPressed: () {},
                 style: AppDecorations.buttonStyle(
-                  bgColor: widget.model.isCheck
-                      ? AppColors.deletedItem
-                      : AppColors.primaryLight.shade50,
+                  bgColor: widget.model.isCheck ? AppColors.deletedItem : AppColors.primaryLight.shade50,
                   border: BorderSide(
                     width: 1,
-                    color: widget.model.isCheck
-                        ? AppColors.deletedItemBorder
-                        : AppColors.primaryLight.shade100,
+                    color: widget.model.isCheck ? AppColors.deletedItemBorder : AppColors.primaryLight.shade100,
                   ),
                 ),
                 child: Text(
                   widget.model.title,
                   style: AppTextStyles.b4Medium.copyWith(
-                    color: widget.model.isCheck
-                        ? AppColors.deletedItemBorder
-                        : AppColors.primaryLight.shade100,
+                    color: widget.model.isCheck ? AppColors.deletedItemBorder : AppColors.primaryLight.shade100,
                   ),
                 ),
               ),
@@ -197,8 +187,7 @@ class _ItemWidgetState extends State<ItemWidget> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  Text('${widget.model.weight} г',
-                      style: AppTextStyles.b4DemiBold),
+                  Text('${widget.model.weight} г', style: AppTextStyles.b4DemiBold),
                   Row(
                     children: [
                       Text(
@@ -215,16 +204,12 @@ class _ItemWidgetState extends State<ItemWidget> {
                   ? Container(
                       height: 28,
                       margin: const EdgeInsets.only(left: 12),
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 14, vertical: 3),
-                      decoration: BoxDecoration(
-                          color: const Color(0xffE5E7EB),
-                          borderRadius: BorderRadius.circular(6)),
+                      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 3),
+                      decoration: BoxDecoration(color: const Color(0xffE5E7EB), borderRadius: BorderRadius.circular(6)),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          btnIncOrDec(
-                              icon: Assets.icons.removeBlack, isInc: false),
+                          btnIncOrDec(icon: Assets.icons.removeBlack, isInc: false),
                           Container(
                             width: 20,
                             alignment: Alignment.center,
@@ -237,8 +222,7 @@ class _ItemWidgetState extends State<ItemWidget> {
                               cursorColor: Colors.black,
                               textAlign: TextAlign.center,
                               controller: counterController,
-                              style: AppTextStyles.b3DemiBold
-                                  .copyWith(fontSize: 12),
+                              style: AppTextStyles.b3DemiBold.copyWith(fontSize: 12),
                               maxLines: 1,
                               keyboardType: TextInputType.number,
                               decoration: const InputDecoration(
@@ -258,8 +242,7 @@ class _ItemWidgetState extends State<ItemWidget> {
                   padding: const EdgeInsets.only(bottom: 6.0),
                   child: Text(
                     '${widget.model.subTitle}',
-                    style: AppTextStyles.b4Regular
-                        .copyWith(color: AppColors.metalColor.shade50),
+                    style: AppTextStyles.b4Regular.copyWith(color: AppColors.metalColor.shade50),
                   ),
                 )
               : Container(),
