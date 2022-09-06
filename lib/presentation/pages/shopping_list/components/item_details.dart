@@ -61,7 +61,7 @@ class _ShoppingItemDetailsState extends State<ShoppingItemDetails> {
                     });
                   },
                   key: UniqueKey(),
-                  extentRatio: 0.165,
+                  extentRatio: 0.24,
                   openThreshold: 0.9,
                   closeThreshold: 0.9,
                   motion: const BehindMotion(),
