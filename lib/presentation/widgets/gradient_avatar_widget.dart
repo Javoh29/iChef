@@ -14,7 +14,7 @@ class GradientAvatarWidget extends StatelessWidget {
     this.badgeText,
   }) : super(key: key);
   final List<Color> colors;
-  final String avatarPath;
+  final Widget avatarPath;
   final double size;
   final double borderRadius;
   final EdgeInsets? margin;
@@ -41,7 +41,7 @@ class GradientAvatarWidget extends StatelessWidget {
               BoxDecoration(borderRadius: BorderRadius.circular(borderRadius - 2), color: AppColors.baseLight.shade100),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(size / 2),
-            child: Image.asset(avatarPath),
+            child: avatarPath,
           ),
         ),
       ),

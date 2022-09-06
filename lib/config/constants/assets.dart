@@ -122,6 +122,7 @@ class _Icons extends _AssetsHolder {
   String get addOutlined => '$basePath/ic_add_outlined.svg';
 
   String get twoPerson => '$basePath/ic_two_person.svg';
+
   String get addRounded => '$basePath/ic_add_rounded.svg';
 
   String get bell => '$basePath/ic_bell.svg';
@@ -141,6 +142,8 @@ class _Icons extends _AssetsHolder {
   String get foodSix => '$basePath/ic_food_six.png';
 
   String get send => '$basePath/ic_send.svg';
+
+  String get star => '$basePath/star.svg';
 }
 
 class _Images extends _AssetsHolder {

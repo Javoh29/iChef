@@ -49,12 +49,24 @@ class _ShoppingItemDetailsState extends State<ShoppingItemDetails> {
                 key: UniqueKey(),
                 startActionPane: ActionPane(
                   onClose: () {
-                    setState(() {});
-                    modelList[index].isCheck = true;
+                    WidgetsBinding.instance.addPostFrameCallback((_) {
+                      setState(() {});
+                      modelList[index].isCheck = !modelList[index].isCheck;
+                      if (modelList[index].isCheck) {
+                        model = modelList.removeAt(index);
+                        modelList.add(model);
+                      } else {
+                        model = modelList.removeAt(index);
+                        modelList.insert(
+                            model.id <= index ? model.id : modelList.length - 1,
+                            model);
+                      }
+                    });
                   },
                   key: UniqueKey(),
                   extentRatio: 0.165,
                   openThreshold: 0.99999999999999,
+                  closeThreshold: 0.99999999999999,
                   motion: const BehindMotion(),
                   children: [
                     SlidableBtnWidget(
@@ -64,7 +76,7 @@ class _ShoppingItemDetailsState extends State<ShoppingItemDetails> {
                       rightRadius: 0,
                       onTap: () {
                         setState(() {});
-                        modelList[index].isCheck = true;
+                        modelList[index].isCheck = !modelList[index].isCheck;
                       },
                     ),
                   ],
@@ -72,18 +84,15 @@ class _ShoppingItemDetailsState extends State<ShoppingItemDetails> {
                 endActionPane: ActionPane(
                   onClose: () {},
                   extentRatio: 0.325,
-                  dragDismissible: true,
                   motion: const ScrollMotion(),
                   dismissible: DismissiblePaneWidget(
                     closeOnCancel: true,
                     motion: const ScrollMotion(),
                     confirmDismiss: () async => true,
-                    dismissThreshold: 0.9999999999999999,
+                    dismissThreshold: 0.999999,
                     onDismissed: () {
                       setState(() {
                         model = modelList.removeAt(index);
-                        model.isDeleted = true;
-                        modelList.add(model);
                       });
                     },
                   ),
@@ -95,7 +104,8 @@ class _ShoppingItemDetailsState extends State<ShoppingItemDetails> {
                       icon: Assets.icons.edit,
                       onTap: () {
                         setState(() {
-                          modelList[index].isShowEdit = true;
+                          modelList[index].isShowEdit =
+                              modelList[index].isShowEdit;
                         });
                       },
                     ),
@@ -107,8 +117,6 @@ class _ShoppingItemDetailsState extends State<ShoppingItemDetails> {
                       onTap: () {
                         setState(() {});
                         model = modelList.removeAt(index);
-                        model.isDeleted = true;
-                        modelList.add(model);
                       },
                     ),
                   ],
@@ -149,12 +157,9 @@ class _ItemWidgetState extends State<ItemWidget> {
 
   @override
   Widget build(BuildContext context) {
-    decoration = widget.model.isDeleted
+    decoration = widget.model.isCheck
         ? AppDecorations.defDecor.copyWith(color: AppColors.deletedItem)
-        : widget.model.isCheck
-            ? AppDecorations.defDecor
-                .copyWith(color: AppColors.primaryLight.shade50)
-            : AppDecorations.defDecor;
+        : AppDecorations.defDecor;
 
     return Container(
       alignment: Alignment.center,
@@ -169,12 +174,12 @@ class _ItemWidgetState extends State<ItemWidget> {
               TextButton(
                 onPressed: () {},
                 style: AppDecorations.buttonStyle(
-                  bgColor: widget.model.isDeleted
+                  bgColor: widget.model.isCheck
                       ? AppColors.deletedItem
                       : AppColors.primaryLight.shade50,
                   border: BorderSide(
                     width: 1,
-                    color: widget.model.isDeleted
+                    color: widget.model.isCheck
                         ? AppColors.deletedItemBorder
                         : AppColors.primaryLight.shade100,
                   ),
@@ -182,7 +187,7 @@ class _ItemWidgetState extends State<ItemWidget> {
                 child: Text(
                   widget.model.title,
                   style: AppTextStyles.b4Medium.copyWith(
-                    color: widget.model.isDeleted
+                    color: widget.model.isCheck
                         ? AppColors.deletedItemBorder
                         : AppColors.primaryLight.shade100,
                   ),
