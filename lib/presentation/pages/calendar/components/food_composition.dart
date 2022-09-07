@@ -15,11 +15,27 @@ class FoodComposition extends StatefulWidget {
 
 class _FoodCompositionState extends State<FoodComposition> {
   int selected = 0;
-  List types = [
-    'Б',
-    'Ж',
-    'У',
-    'Ккал',
+  List<Map> composition = [
+    {
+      'type': '',
+      'number': 3,
+    },
+    {
+      'type': 'Б',
+      'number': 63,
+    },
+    {
+      'type': 'Ж',
+      'number': 62,
+    },
+    {
+      'type': 'У',
+      'number': 126,
+    },
+    {
+      'type': 'Ккал',
+      'number': 1309,
+    }
   ];
 
   @override
@@ -40,10 +56,10 @@ class _FoodCompositionState extends State<FoodComposition> {
           return InkWell(
             onTap: () => setState(() => selected = index),
             child: FoodCompositionItems(
-              count: 100,
+              count: composition[index]['number'],
               icon: index == 0 ? Assets.icons.twoPerson : null,
               isActive: selected == index,
-              type: index != 0 ? '${types[index - 1]}' : '',
+              type: '${composition[index]['type']}',
             ),
           );
         },

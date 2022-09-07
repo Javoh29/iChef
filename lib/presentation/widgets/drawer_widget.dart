@@ -1,9 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:ichef/config/constants/app_colors.dart';
 import 'package:ichef/config/constants/assets.dart';
-import 'package:ichef/config/constants/local_data.dart';
 import 'package:ichef/presentation/components/custom_badge.dart';
 import 'package:ichef/presentation/components/dropdown_with_icon.dart';
 
@@ -49,10 +47,12 @@ class _IngredientsDrawerState extends State<IngredientsDrawer> {
                 const Spacer(),
                 TextButton(
                   onPressed: () {},
-                  style: AppDecorations.buttonStyle(padding: const EdgeInsets.symmetric(horizontal: 12)),
+                  style: AppDecorations.buttonStyle(
+                      padding: const EdgeInsets.symmetric(horizontal: 12)),
                   child: Text(
                     "В корзину",
-                    style: AppTextStyles.b4Medium.copyWith(color: AppColors.baseLight.shade100),
+                    style: AppTextStyles.b4Medium
+                        .copyWith(color: AppColors.baseLight.shade100),
                   ),
                 )
               ],
@@ -104,10 +104,11 @@ class _IngredientsDrawerState extends State<IngredientsDrawer> {
             ),
             ListView.builder(
               shrinkWrap: true,
-              itemCount: widget.model?.drawer.length,
+              itemCount: widget.model.drawer.length,
               itemBuilder: (context, index) => CustomExpandTile(
-                title: widget.model?.drawer[index]['title'] ?? '',
-                elements: widget.model?.drawer[index]['items'] ?? [],
+                id: index + 1,
+                title: widget.model.drawer[index]['title'] ?? '',
+                elements: widget.model.drawer[index]['items'] ?? [],
               ),
             ),
             // CustomExpandTile(

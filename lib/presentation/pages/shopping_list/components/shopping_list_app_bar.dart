@@ -19,7 +19,7 @@ class _ShoppingListAppBarState extends State<ShoppingListAppBar> {
   String? _dropdownValue = 'По рецепту';
   var items = [
     'По рецепту',
-    '2',
+    'По отделам',
     '3',
     '4',
     '5',
