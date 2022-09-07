@@ -46,73 +46,52 @@ class ProfileCard extends StatelessWidget {
               style:
                   AppTextStyles.b4DemiBold.copyWith(fontWeight: FontWeight.w400, color: AppColors.metalColor.shade50),
             ),
-        BSheetItemWidget(
-          title: 'Авторизоваться на веб-версию',
-          onTap: () {},
-          haveLeading: false,
-          haveTrailing: false,
-        ),
-      ],
-    );
-  }
-}
-
-class RestaurantBottomItemsList extends StatelessWidget {
-  const RestaurantBottomItemsList({Key? key}) : super(key: key);
+          ),
 
           // #follow, following and followers
-          SizedBox(
-            height: 40,
-            child: ListView(
-              shrinkWrap: true,
-              scrollDirection: Axis.horizontal,
-              children: [
-                TextButton.icon(
-                  style: AppDecorations.buttonStyle(
-                    borderRadius: 12,
-                    bgColor: AppColors.baseLight,
-                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-                  ).copyWith(overlayColor: MaterialStateProperty.all(AppColors.baseLight.shade20)),
-                  onPressed: () {},
-                  icon: SvgPicture.asset(
-                    Assets.icons.contact,
-                    color: AppColors.baseLight.shade100,
-                  ),
-                  label: Text(
-                    'Подписаться',
-                    style: AppTextStyles.b4Medium.copyWith(color: AppColors.baseLight.shade100),
-                  ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              TextButton.icon(
+                style: AppDecorations.buttonStyle(
+                  borderRadius: 12,
+                  bgColor: AppColors.baseLight,
+                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+                ).copyWith(overlayColor: MaterialStateProperty.all(AppColors.baseLight.shade20)),
+                onPressed: () {},
+                icon: SvgPicture.asset(
+                  Assets.icons.contact,
+                  color: AppColors.baseLight.shade100,
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
-                  child: TextButton.icon(
-                    onPressed: () {},
-                    icon: SvgPicture.asset(
-                      Assets.icons.contact,
-                    ),
-                    style: TextButton.styleFrom(fixedSize: Size.fromWidth(MediaQuery.of(context).size.width / 4)),
-                    label: AutoSizeText(
-                      model.followers ?? '',
-                      style: AppTextStyles.h8,
-                      maxLines: 1,
-                    ),
-                  ),
+                label: Text(
+                  'Подписаться',
+                  style: AppTextStyles.b4Medium.copyWith(color: AppColors.baseLight.shade100),
                 ),
-                TextButton.icon(
-                  onPressed: () {},
-                  icon: SvgPicture.asset(
-                    Assets.icons.recipeView,
-                    color: AppColors.metalColor.shade100,
-                  ),
-                  label: Text(
-                    model.following ?? '',
-                    style: AppTextStyles.h8,
-                  ),
+              ),
+              TextButton.icon(
+                onPressed: () {},
+                icon: SvgPicture.asset(
+                  Assets.icons.contact,
                 ),
-              ],
-            ),
+                label: Text(
+                  model.followers ?? '',
+                  style: AppTextStyles.h8,
+                  maxLines: 1,
+                ),
+              ),
+              TextButton.icon(
+                onPressed: () {},
+                icon: SvgPicture.asset(
+                  Assets.icons.recipeView,
+                  color: AppColors.metalColor.shade100,
+                ),
+                label: Text(
+                  model.following ?? '',
+                  style: AppTextStyles.h8,
+                ),
+              ),
+            ],
           ),
-          const SizedBox(height: 60)
         ],
       ),
     );
