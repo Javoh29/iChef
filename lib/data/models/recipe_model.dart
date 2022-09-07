@@ -14,6 +14,7 @@ class RecipeModel {
   int? variationCount;
   List<Map> recipeSteps;
   List<Map> userComment;
+  List<Map> drawer;
 
   RecipeModel({
     this.recipeVideo,
@@ -31,6 +32,7 @@ class RecipeModel {
     this.recipeDesc,
     required this.recipeSteps,
     required this.userComment,
+    required this.drawer,
   });
 
   factory RecipeModel.fromJson(Map<String, dynamic> json) => RecipeModel(
@@ -47,6 +49,7 @@ class RecipeModel {
         recipeDesc: json['recipe_desc'] as String?,
         recipeSteps: json['recipe_steps'] as List<Map>,
         userComment: json['user_comment'] as List<Map>,
+        drawer: json['drawer'] as List<Map>,
       );
 
   Map<String, dynamic> toJson() => {
@@ -74,6 +77,7 @@ class RecipeModel {
     int? commentCount,
     int? ingredientCount,
     int? variationCount,
+    List<Map>? drawer,
   }) {
     return RecipeModel(
       recipeVideo: recipeVideo ?? this.recipeVideo,
@@ -88,6 +92,7 @@ class RecipeModel {
       variationCount: variationCount ?? this.variationCount,
       recipeSteps: [],
       userComment: [],
+      drawer: drawer ?? this.drawer,
     );
   }
 

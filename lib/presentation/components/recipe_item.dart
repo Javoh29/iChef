@@ -11,7 +11,13 @@ import 'icon_button_action.dart';
 
 class RecipeItem extends StatelessWidget {
   RecipeItem(
-      {required this.model, this.borderRadius, this.listAdditional, this.seekToTime, this.isTap = true, Key? key})
+      {required this.model,
+      this.borderRadius,
+      this.listAdditional,
+      this.seekToTime,
+      this.isTap = true,
+      this.openDrawer,
+      Key? key})
       : super(key: key);
   final RecipeModel model;
   final double? borderRadius;
@@ -19,6 +25,7 @@ class RecipeItem extends StatelessWidget {
   final FlickMultiManager flickMultiManager = FlickMultiManager();
   final Duration? seekToTime;
   final bool isTap;
+  final Function()? openDrawer;
 
   @override
   Widget build(BuildContext context) {
@@ -124,9 +131,10 @@ class RecipeItem extends StatelessWidget {
               ),
               const Spacer(),
               IconButtonAction(
-                onTap: () {
-                  Scaffold.of(context).openEndDrawer();
-                },
+                onTap: openDrawer ??
+                    () {
+                      Scaffold.of(context).openEndDrawer();
+                    },
                 icon: Assets.icons.ingredients,
                 lable: '7',
                 height: 32,

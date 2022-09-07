@@ -55,7 +55,7 @@ class _RecipeStepState extends State<RecipeStep> {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       key: _scaffoldKey,
-      endDrawer: const IngredientsDrawer(),
+      endDrawer: IngredientsDrawer(model: widget.model),
       endDrawerEnableOpenDragGesture: false,
       body: Stack(
         children: [
