@@ -29,7 +29,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
     super.initState();
     _tabController.addListener(() => setState(() {}));
   }
-
+  
   RecipeModel model = RecipeModel(recipeSteps: recipeSteps, userComment: userComments, drawer: nejnayaDrawerModel);
   @override
   Widget build(BuildContext context) {

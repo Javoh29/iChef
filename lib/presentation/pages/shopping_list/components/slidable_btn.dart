@@ -21,13 +21,11 @@ class SlidableBtnWidget extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        width: MediaQuery.of(context).size.width / 7,
+        width: MediaQuery.of(context).size.width / 5,
         height: 87,
         decoration: BoxDecoration(
           color: color,
-          borderRadius: BorderRadius.horizontal(
-              left: Radius.circular(leftRadius),
-              right: Radius.circular(rightRadius)),
+          borderRadius: BorderRadius.horizontal(left: Radius.circular(leftRadius), right: Radius.circular(rightRadius)),
         ),
         child: SvgPicture.asset(
           icon,
