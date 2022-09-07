@@ -71,7 +71,6 @@ class _ShoppingListItemState extends State<ShoppingListItem> {
 
   List<ShippingModel> list = [
     ShippingModel(
-        isDeleted: false,
         isCheck: false,
         isShowEdit: false,
         title: 'Пшеничная мука',
@@ -81,7 +80,6 @@ class _ShoppingListItemState extends State<ShoppingListItem> {
         subTitle: 'Manitoba 400',
         id: 0),
     ShippingModel(
-        isDeleted: false,
         isCheck: false,
         isShowEdit: false,
         title: 'Пшеничная мука',
@@ -91,7 +89,6 @@ class _ShoppingListItemState extends State<ShoppingListItem> {
         subTitle: 'Набор конфет Merci ассорти горький шоколад 250г',
         id: 1),
     ShippingModel(
-        isDeleted: false,
         isCheck: false,
         isShowEdit: false,
         title: 'Сливочное масло',
@@ -101,7 +98,6 @@ class _ShoppingListItemState extends State<ShoppingListItem> {
         subTitle: '82%',
         id: 2),
     ShippingModel(
-        isDeleted: false,
         isCheck: false,
         isShowEdit: false,
         title: 'Куриное яйцо',
@@ -111,7 +107,6 @@ class _ShoppingListItemState extends State<ShoppingListItem> {
         subTitle: 'C0',
         id: 3),
     ShippingModel(
-        isDeleted: false,
         isCheck: false,
         isShowEdit: false,
         title: 'Соль',

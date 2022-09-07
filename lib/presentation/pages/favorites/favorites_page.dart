@@ -96,22 +96,22 @@ class _FavoritesPageState extends State<FavoritesPage>
                       BSheetItemWidget(
                         title: 'Переименовать папку',
                         onTap: () {},
-                        leading: Assets.icons.variation,
+                        leading: SvgPicture.asset(Assets.icons.variation),
                       ),
                       BSheetItemWidget(
                         title: 'Переименовать папку',
                         onTap: () {},
-                        leading: Assets.icons.variation,
+                        leading: SvgPicture.asset(Assets.icons.variation),
                       ),
                       BSheetItemWidget(
                         title: 'Переименовать папку',
                         onTap: () {},
-                        leading: Assets.icons.variation,
+                        leading: SvgPicture.asset(Assets.icons.variation),
                       ),
                       BSheetItemWidget(
                         title: 'Переименовать папку',
                         onTap: () {},
-                        leading: Assets.icons.variation,
+                        leading: SvgPicture.asset(Assets.icons.variation),
                       ),
                     ],
                   ),
@@ -166,7 +166,7 @@ class BottomSheetModel extends StatelessWidget {
     this.leadingIcon,
     required this.children,
   }) : super(key: key);
-  final String? title;
+  final Widget? title;
   final List<Widget>? actions;
   final Widget children;
   final String? leadingIcon;
@@ -203,12 +203,7 @@ class BottomSheetModel extends StatelessWidget {
                           ),
                         ),
                       ),
-                      title: Text(
-                        '$title',
-                        style: AppTextStyles.b5DemiBold.copyWith(
-                          fontWeight: FontWeight.w700,
-                        ),
-                      ),
+                      title: title,
                       actions: actions ??
                           [
                             TextButton(
@@ -238,15 +233,20 @@ class BottomSheetModel extends StatelessWidget {
 }
 
 class BSheetItemWidget extends StatelessWidget {
-  const BSheetItemWidget({
-    Key? key,
-    this.leading,
-    required this.title,
-    required this.onTap,
-  }) : super(key: key);
-  final String? leading;
+  BSheetItemWidget(
+      {Key? key,
+      this.leading,
+      required this.title,
+      required this.onTap,
+      this.trailing,
+      this.haveLeading,
+      this.haveTrailing})
+      : super(key: key);
+  final Widget? leading;
   final String title;
   final void Function() onTap;
+  final Widget? trailing;
+  bool? haveLeading = false, haveTrailing = false;
 
   @override
   Widget build(BuildContext context) {
@@ -259,16 +259,40 @@ class BSheetItemWidget extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: Row(
           children: [
-            leading != null
+            haveLeading == true
                 ? Padding(
                     padding: const EdgeInsets.only(right: 12.0),
-                    child: SvgPicture.asset(leading ?? ''),
+                    child: leading,
                   )
-                : Container(),
-            Text(
-              title,
-              style: AppTextStyles.b5DemiBold,
-            )
+                : haveLeading == false
+                    ? Container(
+                        width: 18,
+                        height: 18,
+                        margin: const EdgeInsets.only(right: 12.0),
+                        decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: AppColors.metalColor.shade30))
+                    : Container(),
+            Expanded(
+              child: Text(
+                title,
+                style: AppTextStyles.b5DemiBold,
+              ),
+            ),
+            haveTrailing == true
+                ? Padding(
+                    padding: const EdgeInsets.only(right: 12.0),
+                    child: trailing,
+                  )
+                : haveTrailing == false
+                    ? RotatedBox(
+                        quarterTurns: 2,
+                        child: SvgPicture.asset(
+                          Assets.icons.backArrow,
+                          color: AppColors.metalColor.shade90,
+                          height: 16,
+                        ))
+                    : Container()
           ],
         ),
       ),
