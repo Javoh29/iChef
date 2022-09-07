@@ -42,16 +42,11 @@ class ProfileCard extends StatelessWidget {
                     model.username ?? '',
                     style: AppTextStyles.h8,
                   ),
-                  Container(
-                    // padding: EdgeInsets.symmetric(horizontal: 1),
-                    width: MediaQuery.of(context).size.width / 1.45,
-                    child: Text(
-                      model.job ?? '',
-                      style: AppTextStyles.b4DemiBold.copyWith(
-                          fontWeight: FontWeight.w400,
-                          color: AppColors.metalColor.shade50),
-                      maxLines: 2,
-                    ),
+                  Text(
+                    model.job ?? '',
+                    style: AppTextStyles.b4DemiBold
+                        .copyWith(fontWeight: FontWeight.w400, color: AppColors.metalColor.shade50),
+                    maxLines: 2,
                   ),
                 ],
               ),
@@ -62,60 +57,62 @@ class ProfileCard extends StatelessWidget {
             padding: const EdgeInsets.symmetric(vertical: 12),
             child: Text(
               model.bio ?? '',
-              style: AppTextStyles.b4DemiBold.copyWith(
-                  fontWeight: FontWeight.w400,
-                  color: AppColors.metalColor.shade50),
+              style:
+                  AppTextStyles.b4DemiBold.copyWith(fontWeight: FontWeight.w400, color: AppColors.metalColor.shade50),
             ),
           ),
 
           // #follow, following and followers
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              TextButton.icon(
-                style: AppDecorations.buttonStyle(
-                  borderRadius: 12,
-                  bgColor: AppColors.baseLight,
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-                ).copyWith(
-                    overlayColor:
-                        MaterialStateProperty.all(AppColors.baseLight.shade20)),
-                onPressed: () {},
-                icon: SvgPicture.asset(
-                  Assets.icons.contact,
-                  color: AppColors.baseLight.shade100,
+          SizedBox(
+            height: 40,
+            child: ListView(
+              shrinkWrap: true,
+              scrollDirection: Axis.horizontal,
+              children: [
+                TextButton.icon(
+                  style: AppDecorations.buttonStyle(
+                    borderRadius: 12,
+                    bgColor: AppColors.baseLight,
+                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+                  ).copyWith(overlayColor: MaterialStateProperty.all(AppColors.baseLight.shade20)),
+                  onPressed: () {},
+                  icon: SvgPicture.asset(
+                    Assets.icons.contact,
+                    color: AppColors.baseLight.shade100,
+                  ),
+                  label: Text(
+                    'Подписаться',
+                    style: AppTextStyles.b4Medium.copyWith(color: AppColors.baseLight.shade100),
+                  ),
                 ),
-                label: Text(
-                  'Подписаться',
-                  style: AppTextStyles.b4Medium
-                      .copyWith(color: AppColors.baseLight.shade100),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: TextButton.icon(
+                    onPressed: () {},
+                    icon: SvgPicture.asset(
+                      Assets.icons.contact,
+                    ),
+                    style: TextButton.styleFrom(fixedSize: Size.fromWidth(MediaQuery.of(context).size.width / 4)),
+                    label: AutoSizeText(
+                      model.followers ?? '',
+                      style: AppTextStyles.h8,
+                      maxLines: 1,
+                    ),
+                  ),
                 ),
-              ),
-              TextButton.icon(
-                onPressed: () {},
-                icon: SvgPicture.asset(
-                  Assets.icons.contact,
+                TextButton.icon(
+                  onPressed: () {},
+                  icon: SvgPicture.asset(
+                    Assets.icons.recipeView,
+                    color: AppColors.metalColor.shade100,
+                  ),
+                  label: Text(
+                    model.following ?? '',
+                    style: AppTextStyles.h8,
+                  ),
                 ),
-                style: TextButton.styleFrom(fixedSize: Size.fromWidth(MediaQuery.of(context).size.width/4)),
-                label: AutoSizeText(
-                  model.followers ?? '',
-                  style: AppTextStyles.h8,
-                  maxLines: 1,
-                ),
-              ),
-              TextButton.icon(
-                onPressed: () {},
-                icon: SvgPicture.asset(
-                  Assets.icons.recipeView,
-                  color: AppColors.metalColor.shade100,
-                ),
-                label: Text(
-                  model.following ?? '',
-                  style: AppTextStyles.h8,
-                ),
-              ),
-            ],
+              ],
+            ),
           ),
         ],
       ),

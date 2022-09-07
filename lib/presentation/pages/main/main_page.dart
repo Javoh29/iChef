@@ -27,6 +27,7 @@ class _MainPageState extends State<MainPage> {
     const RecipesPage(),
     const FavoritesPage(),
     const CalendarPage(),
+    const SettingsPage()
   ];
   int _selectedIndex = 0;
 
@@ -51,8 +52,6 @@ class _MainPageState extends State<MainPage> {
             onTap: (index) {
               if (index == 4) {
                 Navigator.pushNamed(context, Routes.shoppingListPage);
-              } else if (index == 5) {
-                Navigator.pushNamed(context, Routes.userPrefrencesPage);
               } else {
                 _selectedIndex = index;
                 _pageController.jumpToPage(index);

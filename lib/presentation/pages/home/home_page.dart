@@ -33,6 +33,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
       endDrawer: const IngredientsDrawer(),
       endDrawerEnableOpenDragGesture: false,
       body: NestedScrollView(
+        floatHeaderSlivers: true,
         physics: const NeverScrollableScrollPhysics(),
         headerSliverBuilder: (context, innerBoxIsScrolled) {
           return <Widget>[
@@ -54,7 +55,6 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
   SliverAppBar appBar(bool innerBoxIsScrolled) {
     return SliverAppBar(
       automaticallyImplyLeading: false,
-      pinned: true,
       snap: true,
       floating: true,
       forceElevated: innerBoxIsScrolled,
