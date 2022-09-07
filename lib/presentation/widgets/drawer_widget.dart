@@ -9,10 +9,13 @@ import 'package:ichef/presentation/components/dropdown_with_icon.dart';
 
 import '../../config/constants/app_decorations.dart';
 import '../../config/constants/app_text_styles.dart';
+import '../../data/models/recipe_model.dart';
 import '../components/custom_expand_tile.dart';
 
 class IngredientsDrawer extends StatefulWidget {
-  const IngredientsDrawer({Key? key}) : super(key: key);
+  const IngredientsDrawer({Key? key, required this.model}) : super(key: key);
+
+  final RecipeModel model;
 
   @override
   State<IngredientsDrawer> createState() => _IngredientsDrawerState();
@@ -46,12 +49,10 @@ class _IngredientsDrawerState extends State<IngredientsDrawer> {
                 const Spacer(),
                 TextButton(
                   onPressed: () {},
-                  style: AppDecorations.buttonStyle(
-                      padding: const EdgeInsets.symmetric(horizontal: 12)),
+                  style: AppDecorations.buttonStyle(padding: const EdgeInsets.symmetric(horizontal: 12)),
                   child: Text(
                     "В корзину",
-                    style: AppTextStyles.b4Medium
-                        .copyWith(color: AppColors.baseLight.shade100),
+                    style: AppTextStyles.b4Medium.copyWith(color: AppColors.baseLight.shade100),
                   ),
                 )
               ],
@@ -101,15 +102,19 @@ class _IngredientsDrawerState extends State<IngredientsDrawer> {
                 ],
               ),
             ),
-            CustomExpandTile(
-              title: "Название раздела",
-              elements: firstIngredientsRazdel,
+            ListView.builder(
+              shrinkWrap: true,
+              itemCount: widget.model?.drawer.length,
+              itemBuilder: (context, index) => CustomExpandTile(
+                title: widget.model?.drawer[index]['title'] ?? '',
+                elements: widget.model?.drawer[index]['items'] ?? [],
+              ),
             ),
-            const SizedBox(height: 80)
             // CustomExpandTile(
-            //   title: "Название раздела",
+            //   title: "Для травяного масла",
             //   elements: secondIngredientsRazdel,
             // ),
+            const SizedBox(height: 80),
           ],
         ),
       ),

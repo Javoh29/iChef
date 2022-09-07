@@ -143,6 +143,8 @@ class _Icons extends _AssetsHolder {
 
   String get send => '$basePath/ic_send.svg';
 
+  String get star => '$basePath/star.svg';
+
   String get appLogoSvg => '$basePath/app_logo_vector.svg';
 }
 

@@ -2,20 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ichef/config/constants/assets.dart';
 import 'package:ichef/data/models/recipe_model.dart';
-import 'package:ichef/presentation/components/blured_panel.dart';
 import 'package:ichef/presentation/pages/home/components/recipe_step_info_panel.dart';
 import 'package:ichef/presentation/widgets/drawer_widget.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
 import '../../../config/constants/app_colors.dart';
-import '../../../config/constants/app_decorations.dart';
 import '../../../config/constants/app_text_styles.dart';
 import '../../../core/utils/flick_multi_manager.dart';
 import '../../../core/utils/flick_multi_player.dart';
 import '../../components/icon_button_action.dart';
 import '../../components/svg_circle_button.dart';
 import '../../widgets/bottom_textfield_widget.dart';
-import '../../widgets/chat_comment_widget.dart';
 
 class RecipeStep extends StatefulWidget {
   const RecipeStep(
@@ -58,7 +55,7 @@ class _RecipeStepState extends State<RecipeStep> {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       key: _scaffoldKey,
-      endDrawer: const IngredientsDrawer(),
+      endDrawer: IngredientsDrawer(model: widget.model),
       endDrawerEnableOpenDragGesture: false,
       body: Stack(
         children: [

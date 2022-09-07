@@ -4,6 +4,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:ichef/config/constants/app_colors.dart';
 import 'package:ichef/config/constants/app_text_styles.dart';
 import 'package:ichef/config/constants/assets.dart';
+import 'package:ichef/config/constants/local_data.dart';
+import 'package:ichef/data/models/recipe_model.dart';
 import 'package:ichef/presentation/pages/home/recipes_tab_page.dart';
 import 'package:ichef/presentation/widgets/drawer_widget.dart';
 
@@ -20,17 +22,22 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin {
   late final TabController _tabController = TabController(length: 3, vsync: this);
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
 
   @override
   void initState() {
     super.initState();
     _tabController.addListener(() => setState(() {}));
   }
-
+  
+  RecipeModel model = RecipeModel(recipeSteps: recipeSteps, userComment: userComments, drawer: nejnayaDrawerModel);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      endDrawer: const IngredientsDrawer(),
+      key: _scaffoldKey,
+      endDrawer: IngredientsDrawer(
+        model: model,
+      ),
       endDrawerEnableOpenDragGesture: false,
       body: NestedScrollView(
         floatHeaderSlivers: true,
@@ -43,7 +50,14 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
         body: TabBarView(
           controller: _tabController,
           children: [
-            const RecipesTabPage(),
+            RecipesTabPage(
+              callBack: (index) {
+                setState(() {
+                  model = listRecipes[index];
+                });
+                _scaffoldKey.currentState?.openEndDrawer();
+              },
+            ),
             Container(),
             const ChatPage(),
           ],
