@@ -2,7 +2,7 @@ import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:ichef/config/constants/app_colors.dart';
-import 'package:ichef/presentation/pages/shopping_list/components/shipping_model.dart';
+import 'package:ichef/data/models/shopping_list_model.dart';
 
 import '../../../../config/constants/app_decorations.dart';
 import '../../../../config/constants/app_text_styles.dart';
@@ -12,30 +12,78 @@ import 'item_details.dart';
 class ShoppingListItem extends StatefulWidget {
   const ShoppingListItem({
     Key? key,
-    required this.title,
+    required this.sortBy,
   }) : super(key: key);
-  final String title;
+  final String sortBy;
 
   @override
   State<ShoppingListItem> createState() => _ShoppingListItemState();
 }
 
 class _ShoppingListItemState extends State<ShoppingListItem> {
+  bool sort = true;
+
   @override
   Widget build(BuildContext context) {
+    sort = widget.sortBy == 'По рецепту';
     return Column(
+      mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 10),
-          child: Text(
-            widget.title,
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
-            style: AppTextStyles.h1.copyWith(fontSize: 14),
+        Expanded(
+          child: ListView.builder(
+            padding: EdgeInsets.zero,
+            itemCount: sort ? poReseptu.length : poOtdelam.length,
+            itemBuilder: (context, index) {
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 10),
+                    child: Text(
+                      sort
+                          ? poReseptu[index]['title']
+                          : poOtdelam[index]['title'],
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: AppTextStyles.h1.copyWith(fontSize: 14),
+                    ),
+                  ),
+                  ShoppingItemDetails(
+                      shippingList: sort
+                          ? poReseptu[index]['titleListItems']
+                          : poOtdelam[index]['titleListItems']),
+                  (sort
+                          ? poReseptu[index]['subtitle'] != null
+                          : poOtdelam[index]['subtitle'] != null)
+                      ? Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 10),
+                              child: Text(
+                                sort
+                                    ? poReseptu[index]['subtitle']
+                                    : poOtdelam[index]['subtitle'],
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                style: AppTextStyles.b4Regular,
+                              ),
+                            ),
+                            ShoppingItemDetails(
+                              shippingList: sort
+                                  ? poReseptu[index]['subtitleList'] ?? []
+                                  : poReseptu[index]['subtitleList'] ?? [],
+                            ),
+                          ],
+                        )
+                      : Container(),
+                ],
+              );
+            },
           ),
         ),
-        ShoppingItemDetails(shippingList: list),
+        const SizedBox(height: 25),
         Container(
           margin: const EdgeInsets.only(top: 15),
           child: DottedBorder(
@@ -68,51 +116,4 @@ class _ShoppingListItemState extends State<ShoppingListItem> {
       ],
     );
   }
-
-  List<ShippingModel> list = [
-    ShippingModel(
-        isCheck: false,
-        isShowEdit: false,
-        title: 'Пшеничная мука',
-        count: 10,
-        price: 129,
-        weight: 34,
-        subTitle: 'Manitoba 400',
-        id: 0),
-    ShippingModel(
-        isCheck: false,
-        isShowEdit: false,
-        title: 'Пшеничная мука',
-        count: 10,
-        price: 129,
-        weight: 34,
-        subTitle: 'Набор конфет Merci ассорти горький шоколад 250г',
-        id: 1),
-    ShippingModel(
-        isCheck: false,
-        isShowEdit: false,
-        title: 'Сливочное масло',
-        count: 10,
-        price: 129,
-        weight: 34,
-        subTitle: '82%',
-        id: 2),
-    ShippingModel(
-        isCheck: false,
-        isShowEdit: false,
-        title: 'Куриное яйцо',
-        count: 10,
-        price: 129,
-        weight: 34,
-        subTitle: 'C0',
-        id: 3),
-    ShippingModel(
-        isCheck: false,
-        isShowEdit: false,
-        title: 'Соль',
-        count: 10,
-        price: 129,
-        weight: 34,
-        id: 4),
-  ];
 }

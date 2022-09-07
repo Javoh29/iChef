@@ -35,7 +35,7 @@ class _GenerationMenuPageState extends State<GenerationMenuPage> {
   void initState() {
     super.initState();
     _personController.text = '1';
-    _doseController.text = '1';
+    _doseController.text = '1800';
   }
 
   @override

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:ichef/presentation/pages/shopping_list/components/shopping_list_app_bar.dart';
 import 'package:ichef/presentation/pages/shopping_list/components/shopping_list_item.dart';
 import 'package:ichef/presentation/pages/shopping_list/components/sliver_app_bar_widget.dart';
 
@@ -17,6 +16,12 @@ class ShoppingListPage extends StatefulWidget {
 }
 
 class _ShoppingListPageState extends State<ShoppingListPage> {
+  String? _dropdownValue = 'По рецепту';
+  var items = [
+    'По рецепту',
+    'По отделам',
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,18 +54,58 @@ class _ShoppingListPageState extends State<ShoppingListPage> {
                   ),
                 ),
               ],
-              bottom: const ShoppingListAppBar(),
+              bottom: PreferredSize(
+                preferredSize: const Size.fromHeight(56),
+                child: Container(
+                  decoration: AppDecorations.defDecor,
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
+                  margin: const EdgeInsets.only(left: 20, right: 20, bottom: 8),
+                  child: Row(
+                    children: [
+                      Text(
+                        'Сортировка',
+                        style: AppTextStyles.b4Regular
+                            .copyWith(color: AppColors.metalColor.shade40),
+                      ),
+                      const SizedBox(width: 6),
+                      Expanded(
+                        child: DropdownButton<String>(
+                          isExpanded: true,
+                          underline: const SizedBox(),
+                          value: _dropdownValue,
+                          isDense: true,
+                          icon: const Icon(Icons.keyboard_arrow_down),
+                          items: items.map((String item) {
+                            return DropdownMenuItem(
+                              value: item,
+                              child: Text(
+                                item,
+                                style: AppTextStyles.b4DemiBold,
+                              ),
+                            );
+                          }).toList(),
+                          onChanged: (value) {
+                            setState(() {
+                              _dropdownValue = value;
+                            });
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
             ),
           ];
         },
         body: Stack(
           alignment: Alignment.bottomCenter,
           children: [
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
               child: ShoppingListItem(
-                title:
-                    'Пицца с куриными колбасками, ветчиной, гриб...Пицца с куриными колбасками, ветчиной, гриб...',
+                sortBy: _dropdownValue ?? '',
               ),
             ),
             Container(

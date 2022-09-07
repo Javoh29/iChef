@@ -37,6 +37,7 @@ class _ShoppingItemDetailsState extends State<ShoppingItemDetails> {
 
   @override
   Widget build(BuildContext context) {
+    modelList = widget.shippingList;
     return Column(
       children: List.generate(
         widget.shippingList.length,
@@ -103,7 +104,7 @@ class _ShoppingItemDetailsState extends State<ShoppingItemDetails> {
                       icon: Assets.icons.edit,
                       onTap: () {
                         setState(() {
-                          modelList[index].isShowEdit = modelList[index].isShowEdit;
+                          modelList[index].isShowEdit = !modelList[index].isShowEdit;
                         });
                       },
                     ),
@@ -148,7 +149,7 @@ class _ItemWidgetState extends State<ItemWidget> {
 
   @override
   void initState() {
-    counterController.text = widget.model.count.toString();
+    counterController.text = '1';
     super.initState();
   }
 
@@ -187,15 +188,17 @@ class _ItemWidgetState extends State<ItemWidget> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  Text('${widget.model.weight} г', style: AppTextStyles.b4DemiBold),
+                  Text(widget.model.weight ?? '', style: AppTextStyles.b4DemiBold),
                   Row(
                     children: [
-                      Text(
-                        '${widget.model.price} р, ${widget.model.count} шт',
-                        style: AppTextStyles.b4Regular.copyWith(
-                          color: AppColors.metalColor.shade50,
-                        ),
-                      ),
+                      widget.model.subWeight != null
+                          ? Text(
+                              '${widget.model.subWeight} г',
+                              style: AppTextStyles.b4DemiBold.copyWith(
+                                color: AppColors.metalColor.shade50,
+                              ),
+                            )
+                          : Container(),
                     ],
                   ),
                 ],
@@ -222,7 +225,7 @@ class _ItemWidgetState extends State<ItemWidget> {
                               cursorColor: Colors.black,
                               textAlign: TextAlign.center,
                               controller: counterController,
-                              style: AppTextStyles.b3DemiBold.copyWith(fontSize: 12),
+                              style: AppTextStyles.b5DemiBold,
                               maxLines: 1,
                               keyboardType: TextInputType.number,
                               decoration: const InputDecoration(

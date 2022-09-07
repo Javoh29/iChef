@@ -6,11 +6,13 @@ import '../../config/constants/app_text_styles.dart';
 // ignore: must_be_immutable
 class CustomExpandTile extends StatelessWidget {
   CustomExpandTile({
+    required this.id,
     required this.title,
     required this.elements,
     Key? key,
   }) : super(key: key);
   String title;
+  int id;
   List<Widget> elements;
 
   @override
@@ -23,7 +25,7 @@ class CustomExpandTile extends StatelessWidget {
         style: AppTextStyles.b5DemiBold,
       ),
       tilePadding: EdgeInsets.zero,
-      initiallyExpanded: true,
+      initiallyExpanded: id == 1 ? true : false,
       children: elements,
     );
   }

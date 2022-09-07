@@ -110,10 +110,10 @@ class CalendarTabItems extends StatelessWidget {
                         mBorderRadius: 12,
                         widget: Row(
                           children: const [
-                            FoodComText(count: '56', type: 'Б'),
-                            FoodComText(count: '63', type: 'Ж'),
-                            FoodComText(count: '56', type: 'У'),
-                            FoodComText(count: '343', type: 'Ккал'),
+                            FoodComText(count: '63', type: 'Б'),
+                            FoodComText(count: '62', type: 'Ж'),
+                            FoodComText(count: '126', type: 'У'),
+                            FoodComText(count: '1309', type: 'Ккал'),
                           ],
                         ),
                       ),
