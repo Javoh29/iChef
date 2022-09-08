@@ -30,8 +30,8 @@ Future<dynamic> userAccountsBottomSheet(BuildContext context, UserModel model) {
                     context: context,
                     bounce: true,
                     builder: (context) {
-                      return Column(
-                        mainAxisSize: MainAxisSize.min,
+                      return ListView(
+                        shrinkWrap: true,
                         children: [
                           BottomSheetModel(
                               children: Column(
