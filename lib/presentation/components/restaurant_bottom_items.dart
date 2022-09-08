@@ -8,7 +8,7 @@ class RestaurantBottomItemsList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: MediaQuery.of(context).size.width / .75,
+      height: MediaQuery.of(context).size.width / .93,
       child: ListView(
         physics: const BouncingScrollPhysics(),
         shrinkWrap: true,
@@ -37,29 +37,32 @@ class RestaurantBottomItemsList extends StatelessWidget {
             haveLeading: false,
             haveTrailing: false,
           ),
-          BSheetItemWidget(
-            title: 'Информация и контакты',
-            onTap: () {},
-            haveLeading: false,
-            haveTrailing: false,
+          Padding(
+            padding: const EdgeInsets.only(top: 10.0),
+            child: BSheetItemWidget(
+              title: 'Информация и контакты',
+              onTap: () {},
+              haveLeading: false,
+              haveTrailing: false,
+            ),
           ),
-          BSheetItemWidget(
-            title: 'Данные и приватность',
-            onTap: () {},
-            haveLeading: false,
-            haveTrailing: false,
+          Padding(
+            padding: const EdgeInsets.only(top: 10.0),
+            child: BSheetItemWidget(
+              title: 'Платежи и счета',
+              onTap: () {},
+              haveLeading: false,
+              haveTrailing: false,
+            ),
           ),
-          BSheetItemWidget(
-            title: 'Платежи и счета',
-            onTap: () {},
-            haveLeading: false,
-            haveTrailing: false,
-          ),
-          BSheetItemWidget(
-            title: 'Рецепты',
-            onTap: () {},
-            haveLeading: false,
-            haveTrailing: false,
+          Padding(
+            padding: const EdgeInsets.only(top: 10.0),
+            child: BSheetItemWidget(
+              title: 'Рецепты',
+              onTap: () {},
+              haveLeading: false,
+              haveTrailing: false,
+            ),
           ),
           BSheetItemWidget(
             title: 'Добавить рецепт',
@@ -73,7 +76,7 @@ class RestaurantBottomItemsList extends StatelessWidget {
             haveLeading: false,
             haveTrailing: false,
           ),
-          const SizedBox(height: 60)
+          // const SizedBox(height: 60)
         ],
       ),
     );
