@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:ichef/config/constants/local_data.dart';
-import 'package:ichef/presentation/components/user_acc_bottom_sheet.dart';
+import 'package:ichef/presentation/pages/favorites/favorites_page.dart';
 import 'package:ichef/presentation/pages/home/home_scope.dart';
+import 'package:ichef/presentation/pages/recipes/recipes_page.dart';
 import 'package:ichef/presentation/routes/routes.dart';
 import 'package:ichef/presentation/widgets/filter_drawer_widget.dart';
-import 'package:ichef/presentation/pages/favorites/favorites_page.dart';
-import 'package:ichef/presentation/pages/home/home_page.dart';
-import 'package:ichef/presentation/pages/recipes/recipes_page.dart';
-import 'package:ichef/presentation/pages/settings/settings_page.dart';
 
 import '../../components/bottom_nav_bar.dart';
+import '../../components/user_info_bottom_sheet.dart';
 import '../calendar/calendar_page.dart';
 
 class MainPage extends StatefulWidget {
@@ -54,7 +52,7 @@ class _MainPageState extends State<MainPage> {
               if (index == 4) {
                 Navigator.pushNamed(context, Routes.shoppingListPage);
               } else if (index == 5) {
-                userAccountsBottomSheet(context, users.first);
+                userInfoBottomSheet(context, users.first);
               } else {
                 _selectedIndex = index;
                 _pageController.jumpToPage(index);

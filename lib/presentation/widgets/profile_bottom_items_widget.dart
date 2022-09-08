@@ -10,6 +10,7 @@ class ProfileBottomItemsList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisSize: MainAxisSize.min,
       children: [
         BSheetItemWidget(
           title: 'Личные настройки',
@@ -19,7 +20,10 @@ class ProfileBottomItemsList extends StatelessWidget {
         ),
         BSheetItemWidget(
           title: 'Предпочтения по продуктам',
-          onTap: () => Navigator.pushNamed(context, Routes.userPrefrencesPage),
+          onTap: () {
+            Navigator.pop(context);
+            Navigator.pushNamed(context, Routes.userPrefrencesPage);
+          },
           haveLeading: false,
           haveTrailing: false,
         ),

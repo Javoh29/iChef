@@ -15,6 +15,7 @@ class RecipeModel {
   List<Map> recipeSteps;
   List<Map> userComment;
   List<Map> drawer;
+  String? timeVideo = '1.5ч';
 
   RecipeModel({
     this.recipeVideo,
@@ -31,6 +32,7 @@ class RecipeModel {
     this.variationCount,
     this.recipeDesc,
     required this.recipeSteps,
+    this.timeVideo,
     required this.userComment,
     required this.drawer,
   });
@@ -50,6 +52,7 @@ class RecipeModel {
         recipeSteps: json['recipe_steps'] as List<Map>,
         userComment: json['user_comment'] as List<Map>,
         drawer: json['drawer'] as List<Map>,
+        timeVideo: '1.5ч',
       );
 
   Map<String, dynamic> toJson() => {
