@@ -47,12 +47,10 @@ class _IngredientsDrawerState extends State<IngredientsDrawer> {
                 const Spacer(),
                 TextButton(
                   onPressed: () {},
-                  style: AppDecorations.buttonStyle(
-                      padding: const EdgeInsets.symmetric(horizontal: 12)),
+                  style: AppDecorations.buttonStyle(padding: const EdgeInsets.symmetric(horizontal: 12)),
                   child: Text(
                     "В корзину",
-                    style: AppTextStyles.b4Medium
-                        .copyWith(color: AppColors.baseLight.shade100),
+                    style: AppTextStyles.b4Medium.copyWith(color: AppColors.baseLight.shade100),
                   ),
                 )
               ],
@@ -102,15 +100,13 @@ class _IngredientsDrawerState extends State<IngredientsDrawer> {
                 ],
               ),
             ),
-            ListView.builder(
-              shrinkWrap: true,
-              itemCount: widget.model.drawer.length,
-              itemBuilder: (context, index) => CustomExpandTile(
-                id: index + 1,
-                title: widget.model.drawer[index]['title'] ?? '',
-                elements: widget.model.drawer[index]['items'] ?? [],
-              ),
-            ),
+            ...List.generate(
+                widget.model.drawer.length,
+                (index) => CustomExpandTile(
+                      id: index + 1,
+                      title: widget.model.drawer[index]['title'] ?? '',
+                      elements: widget.model.drawer[index]['items'] ?? [],
+                    )),
             // CustomExpandTile(
             //   title: "Для травяного масла",
             //   elements: secondIngredientsRazdel,

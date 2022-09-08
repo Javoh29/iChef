@@ -54,38 +54,13 @@ class UserPrefrencesPage extends StatelessWidget {
             elements: [
               PrefrencesInfoContainer(title: "Глютен", isSwitched: false),
               PrefrencesInfoContainer(title: "Лактоза", isSwitched: false),
-              PrefrencesInfoContainer(
-                  title: "Коровий белок", isSwitched: false),
-              PrefrencesInfoContainer(
-                  title: "Куриный белок", isSwitched: false),
+              PrefrencesInfoContainer(title: "Коровий белок", isSwitched: false),
+              PrefrencesInfoContainer(title: "Куриный белок", isSwitched: false),
               PrefrencesInfoContainer(title: "Орехи", isSwitched: false),
               PrefrencesInfoContainer(title: "Бобовые", isSwitched: false),
-              PrefrencesInfoContainer(
-                  title: "Красные овощи", isSwitched: false),
+              PrefrencesInfoContainer(title: "Красные овощи", isSwitched: false),
             ],
           ),
-          // CustomExpandTile(
-          //   title: "Эти продукты я вообще не ем",
-          //   elements: [
-          //     PrefrencesProductsContainer(
-          //       elements:[
-          //         ProductItem(title: "Пшеничная мука"),
-          //         ProductItem(title: "Сливочное масло"),
-          //         ProductItem(title: "Куриное яйцо"),
-          //       ],
-          //     )
-          //   ],
-          // ),
-          // CustomExpandTile(
-          //   title: "Эти продукты я не предпочитаю (могу есть только в маленьких дозах как составная часть блюда)",
-          //   elements: [
-          //     PrefrencesProductsContainer(
-          //       elements:[
-          //         ProductItem(title: "Ванилин"),
-          //       ],
-          //     )
-          //   ],
-          // )
         ],
       ),
     );
