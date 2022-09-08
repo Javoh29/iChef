@@ -30,72 +30,65 @@ Future<dynamic> userAccountsBottomSheet(BuildContext context, UserModel model) {
                     context: context,
                     bounce: true,
                     builder: (context) {
-                      return BottomSheetModel(
-                          children: Flexible(
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            UserInfoAvatarWidget(
-                              isClicked: true,
-                              avatar: null,
-                              title: 'Ресторан Temantoga',
-                              subtitle: 'Невский проспект 123',
-                              onTap: () {},
-                            ),
-                            Container(
-                              height: 62,
-                              margin:
-                                  const EdgeInsets.only(top: 25, bottom: 20),
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 10),
-                              decoration: AppDecorations.defDecor,
-                              child: Row(
-                                children: [
-                                  Container(
-                                    height: 24,
-                                    padding: const EdgeInsets.all(5),
-                                    margin: const EdgeInsets.only(right: 15),
-                                    decoration: BoxDecoration(
-                                        shape: BoxShape.circle,
-                                        color: AppColors.baseLight.shade100),
-                                    child: SvgPicture.asset(Assets.icons.star),
-                                  ),
-                                  Expanded(
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Text(
-                                          'Тариф',
-                                          style: AppTextStyles.b4Regular
-                                              .copyWith(
-                                                  color: AppColors
-                                                      .metalColor.shade50),
-                                        ),
-                                        Text(
-                                          'Ресторан',
-                                          style:
-                                              AppTextStyles.b4Regular.copyWith(
-                                            color: AppColors.primaryLight,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  Text(
-                                    'до 15.06.2023',
-                                    style: AppTextStyles.b5DemiBold.copyWith(
-                                        color: AppColors.metalColor.shade90),
-                                  ),
-                                ],
+                      return ListView(
+                        shrinkWrap: true,
+                        children: [
+                          BottomSheetModel(
+                              children: Column(
+                            children: [
+                              UserInfoAvatarWidget(
+                                isClicked: true,
+                                avatar: null,
+                                title: 'Ресторан Temantoga',
+                                subtitle: 'Невский проспект 123',
+                                onTap: () {},
                               ),
-                            ),
-                            const RestaurantBottomItemsList(),
-                          ],
-                        ),
-                      ));
+                              Container(
+                                height: 62,
+                                margin: const EdgeInsets.only(top: 25, bottom: 20),
+                                padding: const EdgeInsets.symmetric(horizontal: 10),
+                                decoration: AppDecorations.defDecor,
+                                child: Row(
+                                  children: [
+                                    Container(
+                                      height: 24,
+                                      padding: const EdgeInsets.all(5),
+                                      margin: const EdgeInsets.only(right: 15),
+                                      decoration:
+                                          BoxDecoration(shape: BoxShape.circle, color: AppColors.baseLight.shade100),
+                                      child: SvgPicture.asset(Assets.icons.star),
+                                    ),
+                                    Expanded(
+                                      child: Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        children: [
+                                          Text(
+                                            'Тариф',
+                                            style:
+                                                AppTextStyles.b4Regular.copyWith(color: AppColors.metalColor.shade50),
+                                          ),
+                                          Text(
+                                            'Ресторан',
+                                            style: AppTextStyles.b4Regular.copyWith(
+                                              color: AppColors.primaryLight,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    Text(
+                                      'до 15.06.2023',
+                                      style: AppTextStyles.b5DemiBold.copyWith(color: AppColors.metalColor.shade90),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              const RestaurantBottomItemsList(),
+                            ],
+                          )),
+                        ],
+                      );
                     },
                   );
                 },

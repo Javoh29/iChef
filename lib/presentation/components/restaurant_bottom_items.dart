@@ -7,8 +7,7 @@ class RestaurantBottomItemsList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      shrinkWrap: true,
+    return Column(
       children: [
         BSheetItemWidget(
           title: 'Настройки бренда',
