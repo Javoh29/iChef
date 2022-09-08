@@ -287,12 +287,6 @@ List<Map> poReseptu = [
     'titleListItems': list2,
     'subtitle': null,
     'subtitleList': <ShippingModel>[],
-  },
-  {
-    'title': 'Мои покупки',
-    'titleListItems': <ShippingModel>[],
-    'subtitle': null,
-    'subtitleList': <ShippingModel>[],
   }
 ];
 List<Map> poOtdelam = [
@@ -311,11 +305,5 @@ List<Map> poOtdelam = [
   {
     'title': 'Молочные продукты',
     'titleListItems': poOtdelamMolokoList,
-  },
-  {
-    'title': 'Мои покупки',
-    'titleListItems': <ShippingModel>[],
-    'subtitle': null,
-    'subtitleList': <ShippingModel>[],
   },
 ];

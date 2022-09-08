@@ -31,97 +31,107 @@ class _ShoppingListItemState extends State<ShoppingListItem> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Expanded(
-          child: ListView.builder(
+          child: ListView(
             padding: EdgeInsets.zero,
-            itemCount: sort ? poReseptu.length : poOtdelam.length,
-            itemBuilder: (context, index) {
-              return Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 10),
+            children: [
+              ...List.generate(
+                  sort ? poReseptu.length : poOtdelam.length,
+                  (index) => Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 10),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  sort
+                                      ? poReseptu[index]['title']
+                                      : poOtdelam[index]['title'],
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  style:
+                                      AppTextStyles.h1.copyWith(fontSize: 14),
+                                ),
+                                sort || index != 4
+                                    ? SvgPicture.asset(
+                                        Assets.icons.more,
+                                        color: AppColors.metalColor,
+                                      )
+                                    : Container()
+                              ],
+                            ),
+                          ),
+                          ShoppingItemDetails(
+                              shippingList: sort
+                                  ? poReseptu[index]['titleListItems']
+                                  : poOtdelam[index]['titleListItems']),
+                          (sort
+                                  ? poReseptu[index]['subtitle'] != null
+                                  : poOtdelam[index]['subtitle'] != null)
+                              ? Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 10),
+                                      child: Text(
+                                        sort
+                                            ? poReseptu[index]['subtitle']
+                                            : poOtdelam[index]['subtitle'],
+                                        maxLines: 1,
+                                        overflow: TextOverflow.ellipsis,
+                                        style: AppTextStyles.b4Regular,
+                                      ),
+                                    ),
+                                    ShoppingItemDetails(
+                                      shippingList: sort
+                                          ? poReseptu[index]['subtitleList'] ??
+                                              []
+                                          : poReseptu[index]['subtitleList'] ??
+                                              [],
+                                    ),
+                                  ],
+                                )
+                              : Container(),
+                        ],
+                      )),
+              Text(
+                'Мои покупки',
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: AppTextStyles.h1.copyWith(fontSize: 14),
+              ),
+              Container(
+                margin: const EdgeInsets.only(top: 10, bottom: 10),
+                child: DottedBorder(
+                  color: AppColors.primaryLight,
+                  dashPattern: const [2, 2],
+                  radius: const Radius.circular(10),
+                  borderType: BorderType.RRect,
+                  child: TextButton(
+                    onPressed: () {},
+                    style: AppDecorations.buttonStyle(
+                      bgColor: AppColors.baseLight.shade100,
+                      padding: const EdgeInsets.symmetric(vertical: 12),
+                    ),
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
+                        SvgPicture.asset(Assets.icons.addOutlined),
+                        const SizedBox(width: 5),
                         Text(
-                          sort
-                              ? poReseptu[index]['title']
-                              : poOtdelam[index]['title'],
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: AppTextStyles.h1.copyWith(fontSize: 14),
+                          'Новый ингредиент',
+                          style: AppTextStyles.b4Medium.copyWith(
+                            color: AppColors.primaryLight,
+                          ),
                         ),
-                        sort || index != 4
-                            ? SvgPicture.asset(
-                                Assets.icons.more,
-                                color: AppColors.metalColor,
-                              )
-                            : Container()
                       ],
                     ),
                   ),
-                  ShoppingItemDetails(
-                      shippingList: sort
-                          ? poReseptu[index]['titleListItems']
-                          : poOtdelam[index]['titleListItems']),
-                  (sort
-                          ? poReseptu[index]['subtitle'] != null
-                          : poOtdelam[index]['subtitle'] != null)
-                      ? Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 10),
-                              child: Text(
-                                sort
-                                    ? poReseptu[index]['subtitle']
-                                    : poOtdelam[index]['subtitle'],
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                                style: AppTextStyles.b4Regular,
-                              ),
-                            ),
-                            ShoppingItemDetails(
-                              shippingList: sort
-                                  ? poReseptu[index]['subtitleList'] ?? []
-                                  : poReseptu[index]['subtitleList'] ?? [],
-                            ),
-                          ],
-                        )
-                      : Container(),
-                ],
-              );
-            },
-          ),
-        ),
-        const SizedBox(height: 25),
-        Container(
-          margin: const EdgeInsets.only(top: 10),
-          child: DottedBorder(
-            color: AppColors.primaryLight,
-            dashPattern: const [2, 2],
-            radius: const Radius.circular(10),
-            borderType: BorderType.RRect,
-            child: TextButton(
-              onPressed: () {},
-              style: AppDecorations.buttonStyle(
-                bgColor: AppColors.baseLight.shade100,
-                padding: const EdgeInsets.symmetric(vertical: 12),
+                ),
               ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SvgPicture.asset(Assets.icons.addOutlined),
-                  const SizedBox(width: 5),
-                  Text(
-                    'Новый ингредиент',
-                    style: AppTextStyles.b4Medium.copyWith(
-                      color: AppColors.primaryLight,
-                    ),
-                  ),
-                ],
-              ),
-            ),
+            ],
           ),
         ),
         const SizedBox(height: 90),

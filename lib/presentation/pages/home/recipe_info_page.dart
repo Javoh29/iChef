@@ -357,7 +357,7 @@ class _RecipeInfoPageState extends State<RecipeInfoPage> {
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 5),
                         child: Text(
-                          widget.model.recipeTime ?? '',
+                          widget.model.timeVideo ?? '1.5ч',
                           style: AppTextStyles.h6,
                         ),
                       ),
