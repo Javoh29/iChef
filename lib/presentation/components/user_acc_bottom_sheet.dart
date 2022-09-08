@@ -109,11 +109,13 @@ Future<dynamic> userAccountsBottomSheet(BuildContext context, UserModel model) {
             ),
             ElevatedButton(
               onPressed: () {},
-              style: AppDecorations.buttonStyle()
-                  .copyWith(fixedSize: MaterialStateProperty.all(Size(MediaQuery.of(context).size.width, 48))),
+              style: AppDecorations.buttonStyle().copyWith(
+                  fixedSize: MaterialStateProperty.all(
+                      Size(MediaQuery.of(context).size.width, 48))),
               child: Text(
                 'Добавить новый бизнес-аккаунт',
-                style: AppTextStyles.b4Medium.copyWith(color: AppColors.baseLight.shade100),
+                style: AppTextStyles.b4Medium
+                    .copyWith(color: AppColors.baseLight.shade100),
               ),
             ),
             const SizedBox(height: 20)
