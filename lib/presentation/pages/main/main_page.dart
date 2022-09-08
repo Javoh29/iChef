@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:ichef/config/constants/local_data.dart';
+import 'package:ichef/presentation/components/user_acc_bottom_sheet.dart';
 import 'package:ichef/presentation/pages/home/home_scope.dart';
 import 'package:ichef/presentation/routes/routes.dart';
 import 'package:ichef/presentation/widgets/filter_drawer_widget.dart';
@@ -27,7 +29,6 @@ class _MainPageState extends State<MainPage> {
     const RecipesPage(),
     const FavoritesPage(),
     const CalendarPage(),
-    const SettingsPage()
   ];
   int _selectedIndex = 0;
 
@@ -52,6 +53,8 @@ class _MainPageState extends State<MainPage> {
             onTap: (index) {
               if (index == 4) {
                 Navigator.pushNamed(context, Routes.shoppingListPage);
+              } else if (index == 5) {
+                userAccountsBottomSheet(context, users.first);
               } else {
                 _selectedIndex = index;
                 _pageController.jumpToPage(index);

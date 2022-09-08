@@ -21,24 +21,27 @@ class IngridientDetailContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      horizontalTitleGap: 100,
       tileColor: AppColors.metalColor.shade10,
       contentPadding: const EdgeInsets.symmetric(horizontal: 5),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12),
       ),
-      title: TextButton(
-        onPressed: () {},
-        style: AppDecorations.buttonStyle(
-          bgColor: AppColors.primaryLight.shade50,
-          border: BorderSide(color: AppColors.primaryLight.shade100, width: 1),
-        ),
-        child: Text(
-          title,
-          style: AppTextStyles.b4Medium.copyWith(
-            color: AppColors.primaryLight.shade100,
+      title: Wrap(
+        children: [
+          TextButton(
+            onPressed: () {},
+            style: AppDecorations.buttonStyle(
+              bgColor: AppColors.primaryLight.shade50,
+              border: BorderSide(color: AppColors.primaryLight.shade100, width: 1),
+            ),
+            child: Text(
+              title,
+              style: AppTextStyles.b4Medium.copyWith(
+                color: AppColors.primaryLight.shade100,
+              ),
+            ),
           ),
-        ),
+        ],
       ),
       subtitle: addInfo.isNotEmpty
           ? Text(
