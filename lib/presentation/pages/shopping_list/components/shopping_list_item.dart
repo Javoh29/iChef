@@ -40,13 +40,24 @@ class _ShoppingListItemState extends State<ShoppingListItem> {
                 children: [
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 10),
-                    child: Text(
-                      sort
-                          ? poReseptu[index]['title']
-                          : poOtdelam[index]['title'],
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: AppTextStyles.h1.copyWith(fontSize: 14),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          sort
+                              ? poReseptu[index]['title']
+                              : poOtdelam[index]['title'],
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: AppTextStyles.h1.copyWith(fontSize: 14),
+                        ),
+                        sort || index != 4
+                            ? SvgPicture.asset(
+                                Assets.icons.more,
+                                color: AppColors.metalColor,
+                              )
+                            : Container()
+                      ],
                     ),
                   ),
                   ShoppingItemDetails(
@@ -85,7 +96,7 @@ class _ShoppingListItemState extends State<ShoppingListItem> {
         ),
         const SizedBox(height: 25),
         Container(
-          margin: const EdgeInsets.only(top: 15),
+          margin: const EdgeInsets.only(top: 10),
           child: DottedBorder(
             color: AppColors.primaryLight,
             dashPattern: const [2, 2],
@@ -113,6 +124,7 @@ class _ShoppingListItemState extends State<ShoppingListItem> {
             ),
           ),
         ),
+        const SizedBox(height: 90),
       ],
     );
   }

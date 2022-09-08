@@ -1,4 +1,3 @@
-
 import 'package:ichef/presentation/pages/shopping_list/components/shipping_model.dart';
 
 List<ShippingModel> shoppingList = [
@@ -62,7 +61,7 @@ List<ShippingModel> subtitleList = [
     title: 'Оливковое масло',
     weight: '150 мл',
     subTitle:
-    "Масло оливковое рафинированное с добавлением нерафинированного масла. Costa D'Oro S.P.A.",
+        "Масло оливковое рафинированное с добавлением нерафинированного масла. Costa D'Oro S.P.A.",
   ),
   ShippingModel(
     id: 9,
@@ -117,13 +116,6 @@ List<ShippingModel> list2 = [
     weight: '20 г',
   ),
   ShippingModel(
-    id: 16,
-    isCheck: false,
-    isShowEdit: false,
-    title: 'Луковый порошек',
-    weight: '20 г',
-  ),
-  ShippingModel(
     id: 17,
     isCheck: false,
     isShowEdit: false,
@@ -154,7 +146,6 @@ List<ShippingModel> poOtdelamMyasoList = [
     isShowEdit: true,
     title: 'Свиная вырезка',
     weight: '550 г',
-    subTitle: 'Мираторг Вырезка свиная',
   ),
   ShippingModel(
     id: 21,
@@ -181,7 +172,6 @@ List<ShippingModel> poOtdelamOvoshiList = [
     isShowEdit: true,
     title: 'Петрушка',
     weight: '30 г',
-    subTitle: 'Белая Дача',
   ),
   ShippingModel(
     id: 24,
@@ -195,7 +185,7 @@ List<ShippingModel> poOtdelamOvoshiList = [
     isCheck: false,
     isShowEdit: true,
     title: 'Чеснок',
-    weight: '2 г',
+    weight: '30 г',
   ),
   ShippingModel(
     id: 26,
@@ -216,7 +206,7 @@ List<ShippingModel> poOtdelamOvoshiList = [
     isCheck: false,
     isShowEdit: true,
     title: 'Паприка',
-    weight: '25 г',
+    weight: '30 г',
   ),
   ShippingModel(
     id: 29,
@@ -230,7 +220,7 @@ List<ShippingModel> poOtdelamOvoshiList = [
     isCheck: false,
     isShowEdit: true,
     title: 'Перец чили',
-    weight: '5 г',
+    weight: '14 г',
   ),
   ShippingModel(
     id: 31,
@@ -247,16 +237,17 @@ List<ShippingModel> poOtdelamBakaleyaList = [
     isCheck: false,
     isShowEdit: true,
     title: 'Оливковое масло',
-    weight: '150 мл',
+    weight: '500 мл',
+    subWeight: '150 мл',
     subTitle:
-    "Масло оливковое рафинированное с добавлением нерафинированного масла. Costa D'Oro S.P.A.",
+        "Масло оливковое рафинированное с добавлением нерафинированного масла. Costa D'Oro S.P.A.",
   ),
   ShippingModel(
     id: 33,
     isCheck: false,
     isShowEdit: true,
     title: 'Масло рафинированное',
-    weight: '2 л',
+    weight: '1 л',
     subTitle: 'Масло подсолнечное Слобода рафинированное',
   ),
   ShippingModel(
@@ -264,21 +255,23 @@ List<ShippingModel> poOtdelamBakaleyaList = [
     isCheck: false,
     isShowEdit: true,
     title: 'Мука',
-    weight: '750 г',
+    weight: '500 г',
   ),
   ShippingModel(
     id: 35,
     isCheck: false,
     isShowEdit: true,
     title: 'Сахар',
-    weight: '2 ч. л. 14 г',
+    weight: '1 кг',
+    subWeight: '2 ч. л.',
   ),
   ShippingModel(
     id: 36,
     isCheck: false,
     isShowEdit: true,
     title: 'Соль',
-    weight: '5 ч. л. 50 г',
+    weight: '1 г',
+    subWeight: '15 г',
   ),
 ];
 
@@ -293,7 +286,13 @@ List<Map> poReseptu = [
     'title': 'Жареная курица в хрустящей панировке:',
     'titleListItems': list2,
     'subtitle': null,
-    'subtitleList': [],
+    'subtitleList': <ShippingModel>[],
+  },
+  {
+    'title': 'Мои покупки',
+    'titleListItems': <ShippingModel>[],
+    'subtitle': null,
+    'subtitleList': <ShippingModel>[],
   }
 ];
 List<Map> poOtdelam = [
@@ -307,10 +306,16 @@ List<Map> poOtdelam = [
   },
   {
     'title': 'Бакалея',
-    'titleListItems': shoppingList,
+    'titleListItems': poOtdelamBakaleyaList,
   },
   {
     'title': 'Молочные продукты',
     'titleListItems': poOtdelamMolokoList,
+  },
+  {
+    'title': 'Мои покупки',
+    'titleListItems': <ShippingModel>[],
+    'subtitle': null,
+    'subtitleList': <ShippingModel>[],
   },
 ];

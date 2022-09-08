@@ -206,7 +206,7 @@ class _ItemWidgetState extends State<ItemWidget> {
                     children: [
                       widget.model.subWeight != null
                           ? Text(
-                              '${widget.model.subWeight} г',
+                              '${widget.model.subWeight}',
                               style: AppTextStyles.b4DemiBold.copyWith(
                                 color: AppColors.metalColor.shade50,
                               ),
@@ -284,7 +284,10 @@ class _ItemWidgetState extends State<ItemWidget> {
       },
       onTapUp: (TapUpDetails details) => timer?.cancel(),
       onTapCancel: () => timer?.cancel(),
-      child: SvgPicture.asset(icon),
+      child: Container(
+          height: 20,
+          color:  const Color(0xffE5E7EB),
+          child: SvgPicture.asset(icon)),
     );
   }
 
