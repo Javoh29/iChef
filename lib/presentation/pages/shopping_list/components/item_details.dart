@@ -82,14 +82,14 @@ class _ShoppingItemDetailsState extends State<ShoppingItemDetails> {
                 endActionPane: ActionPane(
                   onClose: () {},
                   extentRatio: 0.45,
-                  closeThreshold: 0.9,
-                  openThreshold: 0.9,
+                  closeThreshold: 0.1,
+                  openThreshold: 0.1,
                   motion: const ScrollMotion(),
                   dismissible: DismissiblePaneWidget(
                     closeOnCancel: true,
                     motion: const ScrollMotion(),
                     confirmDismiss: () async => true,
-                    dismissThreshold: 0.1,
+                    dismissThreshold: 0.9,
                     onDismissed: () {
                       setState(() {
                         model = modelList.removeAt(index);
