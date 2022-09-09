@@ -10,7 +10,8 @@ class SplashPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Future.delayed(const Duration(milliseconds: 1500), () => Navigator.pushNamed(context, Routes.mainPage));
+    Future.delayed(const Duration(milliseconds: 1500),
+        () => Navigator.pushNamedAndRemoveUntil(context, Routes.mainPage, (_) => false));
     return Scaffold(
       backgroundColor: AppColors.primaryLight,
       body: SizedBox(
