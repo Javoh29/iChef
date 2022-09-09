@@ -225,7 +225,7 @@ List<Map> recipeSteps2 = [
     "stepName": "Готовим.",
     "stepContext":
         "Сначала начинаем готовить ножки и темное мясо. Эти кусочки курицы готовятся дольше, чем белое мясо. Куриные грудки добаляем за 1 час до подачи на стол.",
-    "stepImage": "assets/images/kur_panirovke/img_1.png",
+    "stepImage": "assets/images/kur_panirovke/img_9.png",
     "stepVideo": "assets/videos/video2/video_3.mp4",
     'stepComment': []
   },
@@ -234,7 +234,7 @@ List<Map> recipeSteps2 = [
     "stepName": "Смешиваем муку и специи",
     "stepContext":
         "Смешиваем муку со специями. Вы можете использовать разные специи по своему вкусу.",
-    "stepImage": "assets/images/kur_panirovke/img_2.png",
+    "stepImage": "assets/images/kur_panirovke/img_1.png",
     "stepVideo": "assets/videos/video2/video3.mp4",
     'stepComment': []
   },
@@ -695,7 +695,7 @@ List<String> commands = [
 
 List info = [
   {
-    "amount": "56",
+    "amount": "63",
     "type": "Б",
     "status": "down",
   },
@@ -705,12 +705,12 @@ List info = [
     "status": "up",
   },
   {
-    "amount": "56",
+    "amount": "126",
     "type": "У",
     "status": "down",
   },
   {
-    "amount": "1226",
+    "amount": "1309",
     "type": "Ккал",
     "status": "up",
   },
