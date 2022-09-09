@@ -282,7 +282,7 @@ class BSheetItemWidget extends StatelessWidget {
             haveTrailing == true
                 ? Padding(
                     padding: const EdgeInsets.only(right: 12.0),
-                    child: trailing,
+                    child: trailing ?? Container(),
                   )
                 : haveTrailing == false
                     ? RotatedBox(
