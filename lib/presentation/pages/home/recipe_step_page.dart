@@ -41,7 +41,7 @@ class _RecipeStepState extends State<RecipeStep> {
     super.initState();
     currentStep = widget.currentStep;
     stepsLength = widget.stepsLength;
-    _pageController = PageController(initialPage: currentStep - 1);
+    _pageController = PageController(initialPage: currentStep);
   }
 
   @override
@@ -90,6 +90,7 @@ class _RecipeStepState extends State<RecipeStep> {
                       index: index + 1,
                       stepsLength: stepsLength,
                       isVisible: isVisible,
+                      model: widget.model,
                       onNextPage: () {
                         _pageController.nextPage(
                           curve: Curves.easeIn,

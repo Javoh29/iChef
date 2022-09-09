@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ichef/data/models/recipe_model.dart';
 
 import '../../../../config/constants/app_colors.dart';
 import '../../../../config/constants/app_decorations.dart';
@@ -17,13 +18,14 @@ class RecipeStepInfoPanel extends StatefulWidget {
       required this.onPanelClose,
       required this.stepName,
       required this.stepContext,
-      Key? key})
+      Key? key, required this.model})
       : super(key: key);
   final int index;
   final int stepsLength;
   final bool isVisible;
   final String stepName;
   final String stepContext;
+  final RecipeModel model;
   final Function() onNextPage;
   final Function() onPanelClose;
 
