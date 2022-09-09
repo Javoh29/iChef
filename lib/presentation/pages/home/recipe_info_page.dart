@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:ichef/config/constants/app_decorations.dart';
@@ -18,7 +16,9 @@ import '../../components/blured_panel.dart';
 import '../../components/custom_bottom_sheet.dart';
 import '../../routes/routes.dart';
 import '../../widgets/chat_comment_widget.dart';
+import '../../widgets/recipe_info_bottom_sheet_items.dart';
 import '../../widgets/scale_widget.dart';
+import '../favorites/favorites_page.dart';
 
 class RecipeInfoPage extends StatefulWidget {
   const RecipeInfoPage(
@@ -392,41 +392,9 @@ class _RecipeInfoPageState extends State<RecipeInfoPage> {
                       context: context,
                       backgroundColor: Colors.transparent,
                       builder: (BuildContext context) {
-                        return CustomBottomSheet(
-                          mHeight: size.height * 0.55,
-                          mPadding: const EdgeInsets.symmetric(
-                              vertical: 15, horizontal: 20),
-                          mBorderRadius: const BorderRadius.only(
-                            topLeft: Radius.circular(30),
-                            topRight: Radius.circular(30),
-                          ),
-                          mBgColor: AppColors.baseLight.shade100,
-                          mAppBar: null,
-                          mBody: SingleChildScrollView(
-                            child: Column(
-                              children: List.generate(
-                                commands.length,
-                                (index) => Container(
-                                  decoration: AppDecorations.defDecor,
-                                  margin:
-                                      const EdgeInsets.symmetric(vertical: 3),
-                                  child: ListTile(
-                                    leading: Checkbox(
-                                      onChanged: (bool? value) {},
-                                      value: Random.secure().nextBool(),
-                                      shape: const RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(10))),
-                                    ),
-                                    title: Text(
-                                      commands[index],
-                                      style: AppTextStyles.h5.copyWith(
-                                          fontWeight: FontWeight.w600),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
+                        return const BottomSheetModel(
+                          children: SingleChildScrollView(
+                            child: RecipeInfoPageBottomSheetItems(),
                           ),
                         );
                       },
