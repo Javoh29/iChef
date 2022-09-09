@@ -18,10 +18,8 @@ class ProfilePage extends StatefulWidget {
   State<ProfilePage> createState() => _ProfilePageState();
 }
 
-class _ProfilePageState extends State<ProfilePage>
-    with TickerProviderStateMixin {
-  late final TabController _tabController =
-      TabController(length: 3, vsync: this);
+class _ProfilePageState extends State<ProfilePage> with TickerProviderStateMixin {
+  late final TabController _tabController = TabController(length: 3, vsync: this);
 
   @override
   void initState() {
@@ -76,13 +74,10 @@ class _ProfilePageState extends State<ProfilePage>
             TabBar(
               padding: const EdgeInsets.symmetric(horizontal: 5),
               controller: _tabController,
-              unselectedLabelStyle: AppTextStyles.b5Regular
-                  .copyWith(color: AppColors.metalColor.shade50),
-              labelStyle:
-                  AppTextStyles.b5Regular.copyWith(color: AppColors.baseLight),
+              unselectedLabelStyle: AppTextStyles.b5Regular.copyWith(color: AppColors.metalColor.shade50),
+              labelStyle: AppTextStyles.b5Regular.copyWith(color: AppColors.baseLight),
               indicator: UnderlineTabIndicator(
-                borderSide:
-                    BorderSide(width: 4.0, color: AppColors.primaryLight),
+                borderSide: BorderSide(width: 4.0, color: AppColors.primaryLight),
               ),
               tabs: List.generate(
                 profileTabList.length,
