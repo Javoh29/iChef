@@ -6,6 +6,9 @@ import 'package:ichef/config/constants/assets.dart';
 import 'package:ichef/presentation/components/custom_expand_tile.dart';
 import 'package:ichef/presentation/components/prefrences_info_container.dart';
 
+import '../../components/prefrences_products_container.dart';
+import '../../components/product_item.dart';
+
 class UserPrefrencesPage extends StatelessWidget {
   const UserPrefrencesPage({Key? key}) : super(key: key);
 
@@ -35,7 +38,7 @@ class UserPrefrencesPage extends StatelessWidget {
         children: [
           CustomExpandTile(
             id: 1,
-            title: "Система питания/Диета (вместо слово общие)",
+            title: "Система питания/Диета",
             elements: [
               PrefrencesInfoContainer(title: "Вегатарианец", isSwitched: true),
               PrefrencesInfoContainer(title: "Веган", isSwitched: false),
@@ -61,6 +64,30 @@ class UserPrefrencesPage extends StatelessWidget {
               PrefrencesInfoContainer(title: "Красные овощи", isSwitched: false),
             ],
           ),
+          CustomExpandTile(
+            id: 3,
+            title: "Эти продукты я вообще не ем",
+            elements: [
+              PrefrencesProductsContainer(
+                elements:[
+                  ProductItem(title: "Пшеничная мука"),
+                  ProductItem(title: "Сливочное масло"),
+                  ProductItem(title: "Куриное яйцо"),
+                ],
+              )
+            ],
+          ),
+          CustomExpandTile(
+            id: 4,
+            title: "Эти продукты я не предпочитаю (могу есть только в маленьких дозах как составная часть блюда)",
+            elements: [
+              PrefrencesProductsContainer(
+                elements:[
+                  ProductItem(title: "Ванилин"),
+                ],
+              )
+            ],
+          )
         ],
       ),
     );

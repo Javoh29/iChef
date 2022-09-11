@@ -260,7 +260,7 @@ List<Map> recipeSteps2 = [
     "stepNumber": "Шаг 7",
     "stepName": "Обваливаем курицу в муке.",
     "stepContext": "Обваливаем кусочки курицы в муке один или два раза.",
-    "stepImage": "assets/images/kur_panirovke/img_5.png",
+    "stepImage": "assets/images/kur_panirovke/img_10.png",
     "stepVideo": "assets/videos/video2/video7.mp4",
     'stepComment': [
       {
