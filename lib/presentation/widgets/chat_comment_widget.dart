@@ -33,7 +33,7 @@ class _ChatCommentWidgetState extends State<ChatCommentWidget> {
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.symmetric(vertical: 10),
+          padding: const EdgeInsets.only(top: 10, bottom: 4),
           child: Row(
             children: [
               Container(
@@ -74,7 +74,6 @@ class _ChatCommentWidgetState extends State<ChatCommentWidget> {
         ),
         Container(
           width: double.infinity,
-          margin: const EdgeInsets.symmetric(vertical: 5),
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12),

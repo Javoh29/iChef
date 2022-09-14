@@ -82,7 +82,7 @@ class _RecipeStepState extends State<RecipeStep> {
                     });
                   },
                   color: Colors.transparent,
-                  minHeight: size.height * 0.3,
+                  minHeight: 235,
                   maxHeight: size.height,
                   boxShadow: List.empty(),
                   controller: _listPanelControllers[index],
@@ -110,8 +110,7 @@ class _RecipeStepState extends State<RecipeStep> {
                         height: size.height * 0.8,
                         decoration: BoxDecoration(
                           image: DecorationImage(
-                            image: AssetImage(
-                                widget.model.recipeSteps[index]['stepImage']),
+                            image: AssetImage(widget.model.recipeSteps[index]['stepImage']),
                             fit: BoxFit.fill,
                           ),
                         ),
