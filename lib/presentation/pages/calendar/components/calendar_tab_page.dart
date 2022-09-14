@@ -102,7 +102,6 @@ class CalendarTabItems extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       BluredPanel(
-                        mHeight: 36,
                         mPadding: const EdgeInsets.symmetric(
                           horizontal: 9,
                           vertical: 10,
@@ -118,17 +117,13 @@ class CalendarTabItems extends StatelessWidget {
                         ),
                       ),
                       GestureDetector(
-                        onTap: () => Navigator.pushNamed(
-                            context, Routes.recipeReplacePage),
+                        onTap: () => Navigator.pushNamed(context, Routes.recipeReplacePage),
                         child: BluredPanel(
-                            mHeight: 36,
-                            mPadding: const EdgeInsets.symmetric(
-                                horizontal: 9, vertical: 10),
+                            mPadding: const EdgeInsets.symmetric(horizontal: 9, vertical: 10),
                             mBorderRadius: 12,
                             widget: Text(
                               'Заменить',
-                              style: AppTextStyles.b4Medium.copyWith(
-                                  color: AppColors.baseLight.shade100),
+                              style: AppTextStyles.b4Medium.copyWith(color: AppColors.baseLight.shade100),
                             )),
                       ),
                     ],
@@ -159,8 +154,7 @@ class FoodComText extends StatelessWidget {
       child: RichText(
         text: TextSpan(
           text: count,
-          style: AppTextStyles.b4Medium
-              .copyWith(color: AppColors.baseLight.shade100),
+          style: AppTextStyles.b4Medium.copyWith(color: AppColors.baseLight.shade100),
           children: [
             TextSpan(
               text: ' $type',
