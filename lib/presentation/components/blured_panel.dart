@@ -9,13 +9,13 @@ class BluredPanel extends StatelessWidget {
   const BluredPanel(
       {Key? key,
       required this.widget,
-      required this.mHeight,
+      this.mHeight,
       required this.mPadding,
       required this.mBorderRadius,
       this.mMargin})
       : super(key: key);
   final Widget widget;
-  final double mHeight;
+  final double? mHeight;
   final EdgeInsets mPadding;
   final EdgeInsets? mMargin;
   final double mBorderRadius;

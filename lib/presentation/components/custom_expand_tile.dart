@@ -25,7 +25,7 @@ class CustomExpandTile extends StatelessWidget {
         style: AppTextStyles.b5DemiBold,
       ),
       tilePadding: EdgeInsets.zero,
-      initiallyExpanded: id == 1,
+      initiallyExpanded: true,
       children: elements,
     );
   }
