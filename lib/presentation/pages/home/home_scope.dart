@@ -7,6 +7,10 @@ import 'package:ichef/presentation/pages/oil_info/oil_info_page.dart';
 import 'package:ichef/presentation/routes/routes.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
+import '../product/product_info_page.dart';
+import '../product/product_sale_page.dart';
+import '../product/product_without_image_page.dart';
+
 class HomeScope extends StatelessWidget {
   HomeScope({required this.openFilter, Key? key}) : super(key: key);
   final Function() openFilter;
@@ -40,6 +44,10 @@ class HomeScope extends StatelessWidget {
                     return const ProfilePage();
                   case Routes.oilPage:
                     return const OilInfoPage();
+                  case Routes.productWithoutImagePage:
+                    return const ProductWithoutImagePage();
+                  case Routes.productSalePage:
+                    return const ProductSalePage();
                   default:
                     return HomePage(openFilter: openFilter);
                 }
