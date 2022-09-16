@@ -56,10 +56,7 @@ class _RecipeItemState extends State<RecipeItem> {
                     Navigator.pushNamed(
                       context,
                       Routes.recipeInfoPage,
-                      arguments: {
-                        'recipe_model': widget.model,
-                        'seek_to_time': value
-                      },
+                      arguments: {'recipe_model': widget.model, 'seek_to_time': value},
                     );
                   });
                 }
@@ -90,8 +87,7 @@ class _RecipeItemState extends State<RecipeItem> {
                 margin: const EdgeInsets.only(left: 15),
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  border:
-                      Border.all(color: AppColors.baseLight.shade100, width: 2),
+                  border: Border.all(color: AppColors.baseLight.shade100, width: 2),
                   image: DecorationImage(
                     image: AssetImage(widget.model.userAvatar!),
                     fit: BoxFit.cover,
@@ -109,20 +105,16 @@ class _RecipeItemState extends State<RecipeItem> {
             child: RichText(
               text: TextSpan(
                 text: widget.model.userName,
-                style: AppTextStyles.b4Regular
-                    .copyWith(color: AppColors.metalColor.shade100),
+                style: AppTextStyles.b4Regular.copyWith(color: AppColors.metalColor.shade100),
                 children: [
                   TextSpan(
                     text: ' · ',
-                    style: AppTextStyles.b4Regular
-                        .copyWith(color: AppColors.metalColor.shade50),
+                    style: AppTextStyles.b4Regular.copyWith(color: AppColors.metalColor.shade50),
                     children: [
                       TextSpan(text: widget.model.categoryName),
                     ],
                   ),
-                  TextSpan(
-                      text: '\n${widget.model.recipeName}',
-                      style: AppTextStyles.h4)
+                  TextSpan(text: '\n${widget.model.recipeName}', style: AppTextStyles.h4)
                 ],
               ),
             ),
@@ -138,9 +130,7 @@ class _RecipeItemState extends State<RecipeItem> {
                   isLike = !isLike;
                 },
                 icon: isLike ? Assets.icons.likeRed : Assets.icons.like,
-                lable: isLike
-                    ? '${likeCount + 1}'
-                    : widget.model.likeCount.toString(),
+                lable: isLike ? '${likeCount + 1}' : widget.model.likeCount.toString(),
                 isActive: true,
               ),
               IconButtonAction(
@@ -168,8 +158,7 @@ class _RecipeItemState extends State<RecipeItem> {
                 height: 32,
                 borderRadius: 12,
                 isActive: true,
-                textStyle: AppTextStyles.b4DemiBold
-                    .copyWith(color: AppColors.primaryLight.shade100),
+                textStyle: AppTextStyles.b4DemiBold.copyWith(color: AppColors.primaryLight.shade100),
               )
             ],
           ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ichef/config/constants/app_colors.dart';
 import 'package:ichef/presentation/components/recipe_item.dart';
 
 import '../../../config/constants/local_data.dart';
@@ -17,10 +18,11 @@ class RecipesTabPage extends StatelessWidget {
           openDrawer: () => callBack(index),
         );
       },
-      separatorBuilder: (context, index) => const Padding(
-        padding: EdgeInsets.only(bottom: 12),
+      separatorBuilder: (context, index) => Padding(
+        padding: const EdgeInsets.only(bottom: 12),
         child: Divider(
-          color: Color(0xffcccccc),
+          thickness: 1.5,
+          color: AppColors.metalColor.shade30,
         ),
       ),
       itemCount: listRecipes.length,

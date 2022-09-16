@@ -29,10 +29,9 @@ class BottomNavBar extends StatelessWidget {
       left: 0,
       right: 0,
       child: Container(
-        height: 44,
-        decoration: AppDecorations.defDecor.copyWith(
-            color: AppColors.baseLight.shade100,
-            borderRadius: BorderRadius.circular(0)),
+        height: 56,
+        decoration: AppDecorations.defDecor
+            .copyWith(color: AppColors.baseLight.shade100, borderRadius: BorderRadius.circular(0)),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: List.generate(

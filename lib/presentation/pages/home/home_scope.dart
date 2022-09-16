@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:ichef/presentation/pages/home/home_page.dart';
 import 'package:ichef/presentation/pages/home/profile_page.dart';
 import 'package:ichef/presentation/pages/home/recipe_info_page.dart';
+import 'package:ichef/presentation/pages/oil_info/oil_info_page.dart';
 import 'package:ichef/presentation/routes/routes.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
@@ -37,6 +38,8 @@ class HomeScope extends StatelessWidget {
                     );
                   case Routes.profilePage:
                     return const ProfilePage();
+                  case Routes.oilPage:
+                    return const OilInfoPage();
                   default:
                     return HomePage(openFilter: openFilter);
                 }
