@@ -12,6 +12,7 @@ import 'package:ichef/presentation/pages/product/components/product_composition_
 import 'package:ichef/presentation/pages/product/components/product_subs.dart';
 
 import '../product/components/brand_and_saler_container.dart';
+import '../product/product_without_image_page.dart';
 import 'components/to_favorite_list.dart';
 
 class OilInfoPage extends StatefulWidget {
@@ -53,27 +54,30 @@ class _OilInfoPageState extends State<OilInfoPage>
                       child: Image.asset(Assets.images.oil)),
                 ),
                 SafeArea(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      IconButton(
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        icon: SvgPicture.asset(
-                          Assets.icons.backArrow,
-                          height: 24,
-                          color: AppColors.metalColor,
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 10.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        IconButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          icon: SvgPicture.asset(
+                            Assets.icons.backArrow,
+                            height: 24,
+                            color: AppColors.metalColor,
+                          ),
                         ),
-                      ),
-                      IconButton(
-                        onPressed: () {},
-                        icon: SvgPicture.asset(
-                          Assets.icons.share,
-                          height: 24,
+                        IconButton(
+                          onPressed: () {},
+                          icon: SvgPicture.asset(
+                            Assets.icons.share,
+                            height: 24,
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 )
               ],
@@ -136,7 +140,7 @@ class _OilInfoPageState extends State<OilInfoPage>
                   AppTextStyles.b5Regular.copyWith(color: AppColors.baseLight),
               indicator: UnderlineTabIndicator(
                 borderSide:
-                    BorderSide(width: 4.0, color: AppColors.primaryLight),
+                    BorderSide(width: 3.0, color: AppColors.primaryLight),
               ),
               labelPadding: EdgeInsets.zero,
               tabs: List.generate(
@@ -147,12 +151,12 @@ class _OilInfoPageState extends State<OilInfoPage>
                     children: [
                       Text(productTabList[index]),
                       AnimatedContainer(
-                        duration: const Duration(milliseconds: 500),
+                        duration: const Duration(milliseconds: 400),
                         margin: const EdgeInsets.only(top: 10),
-                        height: 2,
+                        height: index == _tabController.index ? 3 : 2,
                         color: index == _tabController.index
-                            ? Colors.transparent
-                            : Colors.grey,
+                            ? AppColors.primaryLight
+                            : AppColors.metalColor.shade30,
                       )
                     ],
                   );
@@ -233,15 +237,25 @@ class _OilInfoPageState extends State<OilInfoPage>
               itemCount: 3,
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {
-                return BrandAndSalerContainer(
-                  image: salerImages[index],
-                  name: salerNames[index],
-                  price: salerPrices[index],
+                return InkWell(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              const ProductWithoutImagePage()),
+                    );
+                  },
+                  child: BrandAndSalerContainer(
+                    image: salerImages[index],
+                    name: salerNames[index],
+                    price: salerPrices[index],
+                  ),
                 );
               },
             ),
           ),
-          const SizedBox(height: 50)
+          const SizedBox(height: 90)
         ],
       ),
     );

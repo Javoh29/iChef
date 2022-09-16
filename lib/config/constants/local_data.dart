@@ -664,11 +664,13 @@ List salerImages = [
   Assets.images.saler2,
   Assets.images.saler1,
   Assets.images.saler3,
+  Assets.images.saler2,
 ];
 
 List salerNames = [
   "Окей",
   "Лента",
+  "Eldorado",
   "Eldorado",
 ];
 
@@ -676,6 +678,7 @@ List salerPrices = [
   "98",
   "88",
   "102",
+  "98",
 ];
 List<String> folders = [
   "Понравилось",
@@ -888,7 +891,7 @@ List<ProductModel> model = [
       brandPrices: brandPrices,
     ),
     title: 'Пшеничная мука',
-    ingredient: 'Инградиент - Бакалея',
+    ingredient: 'Инградиент • Бакалея',
     desc:
         'Американский тыквенный пирог с корицей — классика застолья Среднего и прочего Запада, анекдотический персонаж американского быта не лишен, однако, прелести',
     subtitle: 'Бренды',
@@ -901,7 +904,7 @@ List<ProductModel> model = [
       brandPrices: oilItemPrice,
     ),
     title: 'Масло рафинированное',
-    ingredient: 'Инградиент - Бакалея',
+    ingredient: 'Инградиент • Бакалея',
     desc:
         'Растительное масло, получаемое из плодов оливы европейской. По жирнокислотному составу представляет собой смесь триглицеридов жирных кислот с очень высоким ',
     subtitle: 'Товары',

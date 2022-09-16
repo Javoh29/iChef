@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:ichef/config/constants/app_decorations.dart';
 import 'package:ichef/config/constants/app_text_styles.dart';
@@ -35,7 +34,8 @@ class PropertiesSubtitleItemComponent extends StatelessWidget {
                   .copyWith(color: AppColors.primaryLight.shade100),
             ),
           ),
-          SizedBox(
+          Container(
+            alignment: Alignment.centerRight  ,
             width: MediaQuery.of(context).size.width / 3.2,
             child: Text(
               props[index]['type'],

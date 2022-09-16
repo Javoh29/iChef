@@ -7,7 +7,7 @@ import 'package:ichef/config/constants/local_data.dart';
 import 'package:ichef/presentation/pages/product/components/product_buy_component.dart';
 import 'package:ichef/presentation/pages/product/components/product_composition_container.dart';
 import 'package:ichef/presentation/pages/product/components/product_subs.dart';
-import 'package:ichef/presentation/pages/product/product_without_image_page.dart';
+import 'package:ichef/presentation/routes/routes.dart';
 
 import '../../components/custom_badge.dart';
 import '../../components/recipe_item.dart';
@@ -49,7 +49,8 @@ class _ProductInfoPageState extends State<ProductInfoPage>
           children: [
             Stack(
               children: [
-                Image.asset(widget.productModel.image),
+                Image.asset(widget.productModel.image,
+                    fit: BoxFit.cover, width: double.infinity),
                 SafeArea(
                   child: IconButton(
                     onPressed: () {
@@ -133,12 +134,8 @@ class _ProductInfoPageState extends State<ProductInfoPage>
                       itemBuilder: (context, index) {
                         return InkWell(
                           onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      const ProductWithoutImagePage()),
-                            );
+                            Navigator.pushNamed(
+                                context, Routes.productWithoutImagePage);
                           },
                           child: BrandAndSalerContainer(
                             image: widget.productModel.items.brandImages[index],
@@ -173,10 +170,12 @@ class _ProductInfoPageState extends State<ProductInfoPage>
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(profileTabList[index]),
-                        CustomBadge(
-                          text: '24K',
-                          isActive: _tabController.index == index,
-                        ),
+                        tabCounter[index] != 0
+                            ? CustomBadge(
+                                text: '${tabCounter[index]}',
+                                isActive: _tabController.index == index,
+                              )
+                            : Container(),
                       ],
                     ),
                   );
@@ -189,6 +188,8 @@ class _ProductInfoPageState extends State<ProductInfoPage>
       ),
     );
   }
+
+  List tabCounter = [25, 0, 2407];
 
   Widget myListViews() {
     return Column(

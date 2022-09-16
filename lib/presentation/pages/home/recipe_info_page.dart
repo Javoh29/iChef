@@ -302,7 +302,7 @@ class _RecipeInfoPageState extends State<RecipeInfoPage> {
         } else if (recipeType == "Без глютена") {
           MyApp.navigatorKey.currentState?.pushNamed(Routes.productSalePage);
         } else if (recipeType == "Масло") {
-          MyApp.navigatorKey.currentState?.pushNamed(Routes.oilPage);
+          Navigator.pushNamed(context, Routes.oilPage);
         } else {
           MyApp.navigatorKey.currentState?.push(
             MaterialPageRoute(

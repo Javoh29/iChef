@@ -81,7 +81,7 @@ class _ProductSalePageState extends State<ProductSalePage>
                   ),
                 ),
                 Wrap(
-                  spacing: 15,
+                  spacing: 20,
                   children: [
                     ProductSubsComponent(
                       onTap: () {},
