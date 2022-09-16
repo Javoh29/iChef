@@ -143,6 +143,7 @@ List<String> recipeTypes = [
   'Без глютена',
   'Любимый',
   'Любимый',
+  'Масло',
 ];
 List<String> recipePath = [
   'Десерты',
@@ -260,7 +261,7 @@ List<Map> recipeSteps2 = [
     "stepNumber": "Шаг 7",
     "stepName": "Обваливаем курицу в муке.",
     "stepContext": "Обваливаем кусочки курицы в муке один или два раза.",
-    "stepImage": "assets/images/kur_panirovke/img_5.png",
+    "stepImage": "assets/images/kur_panirovke/img_10.png",
     "stepVideo": "assets/videos/video2/video7.mp4",
     'stepComment': [
       {
@@ -663,11 +664,13 @@ List salerImages = [
   Assets.images.saler2,
   Assets.images.saler1,
   Assets.images.saler3,
+  Assets.images.saler2,
 ];
 
 List salerNames = [
   "Окей",
   "Лента",
+  "Eldorado",
   "Eldorado",
 ];
 
@@ -675,6 +678,7 @@ List salerPrices = [
   "98",
   "88",
   "102",
+  "98",
 ];
 List<String> folders = [
   "Понравилось",
@@ -846,6 +850,11 @@ List profileTabList = [
   'Блоги',
   'Чат',
 ];
+List productTabList = [
+  'Информация',
+  'Рецепты',
+  'Блоги',
+];
 
 List<Map> foodTypes = [
   {
@@ -872,4 +881,87 @@ List<Map> foodTypes = [
     "imagePath": Assets.icons.foodSix,
     "name": "Сувид",
   },
+];
+
+List<ProductModel> model = [
+  ProductModel(
+    items: BrandItems(
+      brandImages: brandImages,
+      brandNames: brandNames,
+      brandPrices: brandPrices,
+    ),
+    title: 'Пшеничная мука',
+    ingredient: 'Инградиент • Бакалея',
+    desc:
+        'Американский тыквенный пирог с корицей — классика застолья Среднего и прочего Запада, анекдотический персонаж американского быта не лишен, однако, прелести',
+    subtitle: 'Бренды',
+    image: Assets.images.wheatFlourImg,
+  ),
+  ProductModel(
+    items: BrandItems(
+      brandImages: oilItemImage,
+      brandNames: oilItemName,
+      brandPrices: oilItemPrice,
+    ),
+    title: 'Масло рафинированное',
+    ingredient: 'Инградиент • Бакалея',
+    desc:
+        'Растительное масло, получаемое из плодов оливы европейской. По жирнокислотному составу представляет собой смесь триглицеридов жирных кислот с очень высоким ',
+    subtitle: 'Товары',
+    image: Assets.images.oilIn,
+  ),
+];
+
+class ProductModel {
+  final String title, ingredient, desc, subtitle, image;
+  final BrandItems items;
+
+  ProductModel(
+      {required this.title,
+      required this.ingredient,
+      required this.items,
+      required this.desc,
+      required this.subtitle,
+      required this.image});
+}
+
+class BrandItems {
+  final List brandImages;
+  final List brandNames;
+  final List brandPrices;
+
+  BrandItems(
+      {required this.brandImages,
+      required this.brandNames,
+      required this.brandPrices});
+}
+
+List oilItemName = [
+  "Costa D'Oro",
+  "Maestro de Oliva",
+];
+
+List oilItemImage = [
+  Assets.images.oilSmall,
+  Assets.images.maestroOil,
+];
+
+List oilItemPrice = [
+  "65",
+  "65",
+];
+
+List props = [
+  {
+    'title': 'Способ очистки',
+    'type': 'Рафинированное',
+  },
+  {
+    'title': 'Особенности производства',
+    'type': 'Холодный отжим',
+  },
+  {
+    'title': 'Сорт',
+    'type': 'Высший сорт',
+  }
 ];

@@ -74,9 +74,13 @@ class _ProductWithoutImagePageState extends State<ProductWithoutImagePage>
                 ),
                 Wrap(
                   spacing: 15,
-                  children: const [
-                    ProductSubsComponent(),
-                    ProductBuyComponent(),
+                  children: [
+                    ProductSubsComponent(
+                      onTap: () {},
+                    ),
+                    ProductBuyComponent(
+                      onTap: () {},
+                    ),
                   ],
                 ),
                 Padding(

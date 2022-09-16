@@ -81,13 +81,22 @@ class _ProductSalePageState extends State<ProductSalePage>
                   ),
                 ),
                 Wrap(
-                  spacing: 15,
-                  children: const [
-                    ProductSubsComponent(),
-                    ProductBuyComponent(),
+                  spacing: 20,
+                  children: [
+                    ProductSubsComponent(
+                      onTap: () {},
+                    ),
+                    ProductBuyComponent(
+                      onTap: () {},
+                    ),
                   ],
                 ),
-                const ProductCompositionsContainer(),
+                const ProductCompositionsContainer(
+                  protein: 56,
+                  fats: 62,
+                  carbohydrates: 56,
+                  kkal: 12226,
+                ),
                 Padding(
                   padding: const EdgeInsets.only(bottom: 10),
                   child: RichText(

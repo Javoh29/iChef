@@ -3,7 +3,6 @@ import 'package:ichef/presentation/pages/home/profile_page.dart';
 import 'package:ichef/presentation/pages/home/recipe_info_page.dart';
 import 'package:ichef/presentation/pages/home/recipe_step_page.dart';
 import 'package:ichef/presentation/pages/main/main_page.dart';
-import 'package:ichef/presentation/pages/product/product_info_page.dart';
 import 'package:ichef/presentation/pages/product/product_sale_page.dart';
 import 'package:ichef/presentation/pages/product/product_without_image_page.dart';
 import 'package:ichef/presentation/pages/settings/user_prefrences_page.dart';
@@ -13,6 +12,7 @@ import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 import '../pages/calendar/generation_menu_page.dart';
 import '../pages/home/recipe_replace_page.dart';
+import '../pages/oil_info/oil_info_page.dart';
 
 class Routes {
   static const splashPage = '/';
@@ -25,6 +25,7 @@ class Routes {
   static const shoppingListPage = '/shoppingListPage';
   static const recipeReplacePage = '/recipeReplacePage';
   static const productPage = '/productPage';
+  static const oilPage = '/oilPage';
   static const profilePage = '/profilePage';
   static const productSalePage = '/productSalePage';
   static const productWithoutImagePage = '/profileWithoutImagePage';
@@ -82,10 +83,17 @@ class Routes {
             settings: routeSettings,
             builder: (_) => const ShoppingListPage(),
           );
-        case productPage:
+        // case productPage:
+        //   return MaterialPageRoute(
+        //     settings: routeSettings,
+        //     builder: (_) => const ProductInfoPage(
+        //       productModel: ,
+        //     ),
+        //   );
+        case oilPage:
           return MaterialPageRoute(
             settings: routeSettings,
-            builder: (_) => const ProductInfoPage(),
+            builder: (_) => const OilInfoPage(),
           );
 
         case productSalePage:

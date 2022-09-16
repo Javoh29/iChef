@@ -7,14 +7,18 @@ import 'package:ichef/config/constants/local_data.dart';
 import 'package:ichef/presentation/pages/product/components/product_buy_component.dart';
 import 'package:ichef/presentation/pages/product/components/product_composition_container.dart';
 import 'package:ichef/presentation/pages/product/components/product_subs.dart';
-import 'package:ichef/presentation/pages/product/product_without_image_page.dart';
+import 'package:ichef/presentation/routes/routes.dart';
 
 import '../../components/custom_badge.dart';
 import '../../components/recipe_item.dart';
 import 'components/brand_and_saler_container.dart';
 
 class ProductInfoPage extends StatefulWidget {
-  const ProductInfoPage({Key? key}) : super(key: key);
+  const ProductInfoPage({
+    Key? key,
+    required this.productModel,
+  }) : super(key: key);
+  final ProductModel productModel;
 
   @override
   State<ProductInfoPage> createState() => _ProductInfoPageState();
@@ -45,7 +49,8 @@ class _ProductInfoPageState extends State<ProductInfoPage>
           children: [
             Stack(
               children: [
-                Image.asset(Assets.images.wheatFlourImg),
+                Image.asset(widget.productModel.image,
+                    fit: BoxFit.cover, width: double.infinity),
                 SafeArea(
                   child: IconButton(
                     onPressed: () {
@@ -65,38 +70,46 @@ class _ProductInfoPageState extends State<ProductInfoPage>
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Пшеничная мука",
+                    widget.productModel.title,
                     style: AppTextStyles.h8
                         .copyWith(color: AppColors.metalColor.shade90),
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 10),
                     child: Text(
-                      "Инградиент - Бакалея",
+                      widget.productModel.ingredient,
                       style: AppTextStyles.b4Regular
                           .copyWith(color: AppColors.metalColor.shade50),
                     ),
                   ),
                   Wrap(
                     spacing: 15,
-                    children: const [
-                      ProductSubsComponent(),
-                      ProductBuyComponent(),
+                    children: [
+                      ProductSubsComponent(
+                        onTap: () {},
+                      ),
+                      ProductBuyComponent(
+                        onTap: () {},
+                      ),
                     ],
                   ),
-                  const ProductCompositionsContainer(),
+                  const ProductCompositionsContainer(
+                    protein: 56,
+                    fats: 62,
+                    carbohydrates: 56,
+                    kkal: 12226,
+                  ),
                   Padding(
                     padding: const EdgeInsets.only(bottom: 10),
                     child: RichText(
                       text: TextSpan(
-                        text:
-                            "Американский тыквенный пирог с корицей — классика застолья Среднего и прочего Запада, анекдотический персонаж американского быта не лишен, однако, прелести ",
+                        text: widget.productModel.desc,
                         style: AppTextStyles.b5Regular.copyWith(
                           color: AppColors.metalColor.shade70,
                         ),
                         children: [
                           TextSpan(
-                            text: "показать еще",
+                            text: " показать еще",
                             style: AppTextStyles.b5Regular.copyWith(
                               color: AppColors.primaryLight.shade100
                                   .withOpacity(0.6),
@@ -109,7 +122,7 @@ class _ProductInfoPageState extends State<ProductInfoPage>
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 10),
                     child: Text(
-                      "Бренды",
+                      widget.productModel.subtitle,
                       style: AppTextStyles.b6DemiBold,
                     ),
                   ),
@@ -121,21 +134,17 @@ class _ProductInfoPageState extends State<ProductInfoPage>
                       itemBuilder: (context, index) {
                         return InkWell(
                           onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      const ProductWithoutImagePage()),
-                            );
+                            Navigator.pushNamed(
+                                context, Routes.productWithoutImagePage);
                           },
                           child: BrandAndSalerContainer(
-                            image: brandImages[index],
-                            name: brandNames[index],
-                            price: brandPrices[index],
+                            image: widget.productModel.items.brandImages[index],
+                            name: widget.productModel.items.brandNames[index],
+                            price: widget.productModel.items.brandPrices[index],
                           ),
                         );
                       },
-                      itemCount: 3,
+                      itemCount: widget.productModel.items.brandPrices.length,
                     ),
                   ),
                 ],
@@ -161,10 +170,12 @@ class _ProductInfoPageState extends State<ProductInfoPage>
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(profileTabList[index]),
-                        CustomBadge(
-                          text: '24K',
-                          isActive: _tabController.index == index,
-                        ),
+                        tabCounter[index] != 0
+                            ? CustomBadge(
+                                text: '${tabCounter[index]}',
+                                isActive: _tabController.index == index,
+                              )
+                            : Container(),
                       ],
                     ),
                   );
@@ -177,6 +188,8 @@ class _ProductInfoPageState extends State<ProductInfoPage>
       ),
     );
   }
+
+  List tabCounter = [25, 0, 2407];
 
   Widget myListViews() {
     return Column(

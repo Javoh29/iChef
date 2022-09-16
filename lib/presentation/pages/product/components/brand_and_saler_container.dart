@@ -33,26 +33,27 @@ class BrandAndSalerContainer extends StatelessWidget {
         children: [
           Image.asset(
             image,
-            scale: 2,
+            height: 60,
+            fit: BoxFit.cover,
+            // scale: 2,
           ),
-          Padding(
+          Container(
+            width: MediaQuery.of(context).size.width / 4.5,
             padding: const EdgeInsets.only(top: 10),
-            child: RichText(
+            child: Text(
+              name,
+              style: AppTextStyles.b4Regular,
               textAlign: TextAlign.center,
-              text: TextSpan(
-                text: name,
-                style: AppTextStyles.b4Regular,
-                children: [
-                  TextSpan(
-                    text: "\n$price p",
-                    style: AppTextStyles.b4Regular.copyWith(
-                      color: AppColors.metalColor.shade50,
-                    ),
-                  ),
-                ],
-              ),
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
             ),
-          )
+          ),
+          Text(
+            "$price p",
+            style: AppTextStyles.b4Regular.copyWith(
+              color: AppColors.metalColor.shade50,
+            ),
+          ),
         ],
       ),
     );
