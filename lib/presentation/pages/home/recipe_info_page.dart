@@ -22,9 +22,7 @@ import '../../widgets/scale_widget.dart';
 import '../favorites/favorites_page.dart';
 
 class RecipeInfoPage extends StatefulWidget {
-  const RecipeInfoPage(
-      {required this.model, required this.seekToTime, Key? key})
-      : super(key: key);
+  const RecipeInfoPage({required this.model, required this.seekToTime, Key? key}) : super(key: key);
   final RecipeModel model;
   final Duration seekToTime;
 
@@ -74,8 +72,7 @@ class _RecipeInfoPageState extends State<RecipeInfoPage> {
                           builder: (BuildContext context) {
                             return CustomBottomSheet(
                               mHeight: size.height * 0.4,
-                              mPadding: const EdgeInsets.symmetric(
-                                  vertical: 15, horizontal: 20),
+                              mPadding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
                               mBorderRadius: const BorderRadius.only(
                                 topLeft: Radius.circular(30),
                                 topRight: Radius.circular(30),
@@ -124,13 +121,11 @@ class _RecipeInfoPageState extends State<RecipeInfoPage> {
                                     folders.length,
                                     (index) => Container(
                                       decoration: AppDecorations.defDecor,
-                                      margin: const EdgeInsets.symmetric(
-                                          vertical: 3),
+                                      margin: const EdgeInsets.symmetric(vertical: 3),
                                       child: ListTile(
                                         title: Text(
                                           folders[index],
-                                          style: AppTextStyles.h5.copyWith(
-                                              fontWeight: FontWeight.w600),
+                                          style: AppTextStyles.h5.copyWith(fontWeight: FontWeight.w600),
                                         ),
                                       ),
                                     ),
@@ -144,14 +139,11 @@ class _RecipeInfoPageState extends State<RecipeInfoPage> {
                       icon: SvgPicture.asset(Assets.icons.folder),
                       style: ButtonStyle(
                         padding: MaterialStateProperty.all(
-                          const EdgeInsets.symmetric(
-                              vertical: 6, horizontal: 10),
+                          const EdgeInsets.symmetric(vertical: 6, horizontal: 10),
                         ),
-                        backgroundColor: MaterialStateProperty.all(
-                            AppColors.metalColor.shade10),
+                        backgroundColor: MaterialStateProperty.all(AppColors.metalColor.shade10),
                         shape: MaterialStateProperty.all(
-                          RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10)),
+                          RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                         ),
                       ),
                       label: Text(
@@ -171,14 +163,11 @@ class _RecipeInfoPageState extends State<RecipeInfoPage> {
                         ),
                         style: ButtonStyle(
                           padding: MaterialStateProperty.all(
-                            const EdgeInsets.symmetric(
-                                vertical: 6, horizontal: 10),
+                            const EdgeInsets.symmetric(vertical: 6, horizontal: 10),
                           ),
-                          backgroundColor: MaterialStateProperty.all(
-                              AppColors.metalColor.shade10),
+                          backgroundColor: MaterialStateProperty.all(AppColors.metalColor.shade10),
                           shape: MaterialStateProperty.all(
-                            RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10)),
+                            RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                           ),
                         ),
                         label: Text(
@@ -246,8 +235,7 @@ class _RecipeInfoPageState extends State<RecipeInfoPage> {
           Container(
             padding: const EdgeInsets.all(20),
             child: Column(
-              children:
-                  List.generate(widget.model.recipeSteps.length, ((index) {
+              children: List.generate(widget.model.recipeSteps.length, ((index) {
                 return RecipeStepCard(
                   size: size,
                   stepImage: widget.model.recipeSteps[index]['stepImage'],
@@ -297,20 +285,11 @@ class _RecipeInfoPageState extends State<RecipeInfoPage> {
     return TextButton(
       onPressed: () {
         if (recipeType == "Panasonic 1259") {
-          MyApp.navigatorKey.currentState
-              ?.pushNamed(Routes.productWithoutImagePage);
+          Navigator.pushNamed(context, Routes.productWithoutImagePage);
         } else if (recipeType == "Без глютена") {
-          MyApp.navigatorKey.currentState?.pushNamed(Routes.productSalePage);
+          Navigator.pushNamed(context, Routes.productSalePage);
         } else if (recipeType == "Масло") {
           Navigator.pushNamed(context, Routes.oilPage);
-        } else {
-          MyApp.navigatorKey.currentState?.push(
-            MaterialPageRoute(
-              builder: (context) => ProductInfoPage(
-                productModel: model[0],
-              ),
-            ),
-          );
         }
       },
       style: AppDecorations.buttonStyle(
@@ -420,8 +399,7 @@ class _RecipeInfoPageState extends State<RecipeInfoPage> {
           bottom: 30,
           right: 20,
           child: TextButton.icon(
-            onPressed: () => MyApp.navigatorKey.currentState
-                ?.pushNamed(Routes.recipeStepPage, arguments: {
+            onPressed: () => MyApp.navigatorKey.currentState?.pushNamed(Routes.recipeStepPage, arguments: {
               "currentStep": 0,
               "stepsLength": widget.model.recipeSteps.length,
               "recipeModel": model,
@@ -431,13 +409,11 @@ class _RecipeInfoPageState extends State<RecipeInfoPage> {
             style: AppDecorations.buttonStyle(
               padding: const EdgeInsets.symmetric(horizontal: 12),
             ).copyWith(
-              overlayColor:
-                  MaterialStateProperty.all(AppColors.baseLight.shade40),
+              overlayColor: MaterialStateProperty.all(AppColors.baseLight.shade40),
             ),
             icon: Text(
               'Начать готовить',
-              style: AppTextStyles.b3Medium
-                  .copyWith(color: AppColors.baseLight.shade100),
+              style: AppTextStyles.b3Medium.copyWith(color: AppColors.baseLight.shade100),
             ),
             label: Icon(
               Icons.arrow_forward_ios,

@@ -142,7 +142,6 @@ List<String> recipeTypes = [
   'Panasonic 1259',
   'Без глютена',
   'Любимый',
-  'Любимый',
   'Масло',
 ];
 List<String> recipePath = [
