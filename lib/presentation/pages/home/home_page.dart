@@ -71,7 +71,6 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
       automaticallyImplyLeading: false,
       snap: true,
       floating: true,
-      pinned: true,
       forceElevated: innerBoxIsScrolled,
       actions: const [SizedBox.shrink()],
       centerTitle: false,
