@@ -14,7 +14,11 @@ import '../../components/recipe_item.dart';
 import 'components/brand_and_saler_container.dart';
 
 class ProductInfoPage extends StatefulWidget {
-  const ProductInfoPage({Key? key}) : super(key: key);
+  const ProductInfoPage({
+    Key? key,
+    required this.productModel,
+  }) : super(key: key);
+  final ProductModel productModel;
 
   @override
   State<ProductInfoPage> createState() => _ProductInfoPageState();
@@ -45,7 +49,7 @@ class _ProductInfoPageState extends State<ProductInfoPage>
           children: [
             Stack(
               children: [
-                Image.asset(Assets.images.wheatFlourImg),
+                Image.asset(widget.productModel.image),
                 SafeArea(
                   child: IconButton(
                     onPressed: () {
@@ -65,38 +69,46 @@ class _ProductInfoPageState extends State<ProductInfoPage>
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Пшеничная мука",
+                    widget.productModel.title,
                     style: AppTextStyles.h8
                         .copyWith(color: AppColors.metalColor.shade90),
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 10),
                     child: Text(
-                      "Инградиент - Бакалея",
+                      widget.productModel.ingredient,
                       style: AppTextStyles.b4Regular
                           .copyWith(color: AppColors.metalColor.shade50),
                     ),
                   ),
                   Wrap(
                     spacing: 15,
-                    children: const [
-                      ProductSubsComponent(),
-                      ProductBuyComponent(),
+                    children: [
+                      ProductSubsComponent(
+                        onTap: () {},
+                      ),
+                      ProductBuyComponent(
+                        onTap: () {},
+                      ),
                     ],
                   ),
-                  const ProductCompositionsContainer(),
+                  const ProductCompositionsContainer(
+                    protein: 56,
+                    fats: 62,
+                    carbohydrates: 56,
+                    kkal: 12226,
+                  ),
                   Padding(
                     padding: const EdgeInsets.only(bottom: 10),
                     child: RichText(
                       text: TextSpan(
-                        text:
-                            "Американский тыквенный пирог с корицей — классика застолья Среднего и прочего Запада, анекдотический персонаж американского быта не лишен, однако, прелести ",
+                        text: widget.productModel.desc,
                         style: AppTextStyles.b5Regular.copyWith(
                           color: AppColors.metalColor.shade70,
                         ),
                         children: [
                           TextSpan(
-                            text: "показать еще",
+                            text: " показать еще",
                             style: AppTextStyles.b5Regular.copyWith(
                               color: AppColors.primaryLight.shade100
                                   .withOpacity(0.6),
@@ -109,7 +121,7 @@ class _ProductInfoPageState extends State<ProductInfoPage>
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 10),
                     child: Text(
-                      "Бренды",
+                      widget.productModel.subtitle,
                       style: AppTextStyles.b6DemiBold,
                     ),
                   ),
@@ -129,13 +141,13 @@ class _ProductInfoPageState extends State<ProductInfoPage>
                             );
                           },
                           child: BrandAndSalerContainer(
-                            image: brandImages[index],
-                            name: brandNames[index],
-                            price: brandPrices[index],
+                            image: widget.productModel.items.brandImages[index],
+                            name: widget.productModel.items.brandNames[index],
+                            price: widget.productModel.items.brandPrices[index],
                           ),
                         );
                       },
-                      itemCount: 3,
+                      itemCount: widget.productModel.items.brandPrices.length,
                     ),
                   ),
                 ],

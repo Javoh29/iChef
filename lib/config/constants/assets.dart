@@ -35,6 +35,8 @@ class _Icons extends _AssetsHolder {
 
   String get like => '$basePath/ic_like.svg';
 
+  String get likeRed => '$basePath/ic_like_red.svg';
+
   String get share => '$basePath/ic_share.svg';
 
   String get comment => '$basePath/ic_comment.svg';
@@ -184,4 +186,16 @@ class _Images extends _AssetsHolder {
   String get saler3 => "$basePath/flour_salers/img_saler_ozon.png";
 
   String get smile => "$basePath/img_smile.png";
+
+  String get oil => "$basePath/oil.png";
+
+  String get oilComponent => "$basePath/oil_component.png";
+
+  String get barcode => "$basePath/barcode.png";
+
+  String get maestroOil => "$basePath/maestro_oil.png";
+
+  String get oilIn => "$basePath/oil_in.png";
+
+  String get oilSmall => "$basePath/small_oil.png";
 }

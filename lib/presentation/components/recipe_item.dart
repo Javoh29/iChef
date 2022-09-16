@@ -9,8 +9,8 @@ import '../../core/utils/flick_multi_player.dart';
 import '../routes/routes.dart';
 import 'icon_button_action.dart';
 
-class RecipeItem extends StatelessWidget {
-  RecipeItem(
+class RecipeItem extends StatefulWidget {
+  const RecipeItem(
       {required this.model,
       this.borderRadius,
       this.listAdditional,
@@ -22,10 +22,24 @@ class RecipeItem extends StatelessWidget {
   final RecipeModel model;
   final double? borderRadius;
   final List<Widget>? listAdditional;
-  final FlickMultiManager flickMultiManager = FlickMultiManager();
   final Duration? seekToTime;
   final bool isTap;
   final Function()? openDrawer;
+
+  @override
+  State<RecipeItem> createState() => _RecipeItemState();
+}
+
+class _RecipeItemState extends State<RecipeItem> {
+  final FlickMultiManager flickMultiManager = FlickMultiManager();
+  bool isLike = false;
+  int likeCount = 10;
+
+  @override
+  void initState() {
+    likeCount = widget.model.likeCount ?? 0;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,12 +51,15 @@ class RecipeItem extends StatelessWidget {
           children: [
             GestureDetector(
               onTap: () {
-                if (isTap) {
+                if (widget.isTap) {
                   flickMultiManager.getTime().then((value) {
                     Navigator.pushNamed(
                       context,
                       Routes.recipeInfoPage,
-                      arguments: {'recipe_model': model, 'seek_to_time': value},
+                      arguments: {
+                        'recipe_model': widget.model,
+                        'seek_to_time': value
+                      },
                     );
                   });
                 }
@@ -51,14 +68,15 @@ class RecipeItem extends StatelessWidget {
                 padding: const EdgeInsets.only(bottom: 17),
                 child: ClipRRect(
                   borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(borderRadius ?? 35), topRight: Radius.circular(borderRadius ?? 35)),
+                      topLeft: Radius.circular(widget.borderRadius ?? 35),
+                      topRight: Radius.circular(widget.borderRadius ?? 35)),
                   child: AspectRatio(
                     aspectRatio: 3 / 4,
                     child: FlickMultiPlayer(
-                      url: model.recipeVideo!,
+                      url: widget.model.recipeVideo!,
                       flickMultiManager: flickMultiManager,
-                      image: model.recipeVideoPoster,
-                      seekToTime: seekToTime,
+                      image: widget.model.recipeVideoPoster,
+                      seekToTime: widget.seekToTime,
                     ),
                   ),
                 ),
@@ -72,15 +90,16 @@ class RecipeItem extends StatelessWidget {
                 margin: const EdgeInsets.only(left: 15),
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  border: Border.all(color: AppColors.baseLight.shade100, width: 2),
+                  border:
+                      Border.all(color: AppColors.baseLight.shade100, width: 2),
                   image: DecorationImage(
-                    image: AssetImage(model.userAvatar!),
+                    image: AssetImage(widget.model.userAvatar!),
                     fit: BoxFit.cover,
                   ),
                 ),
               ),
             ),
-            if (listAdditional != null) ...listAdditional!
+            if (widget.listAdditional != null) ...widget.listAdditional!
           ],
         ),
         Padding(
@@ -89,17 +108,21 @@ class RecipeItem extends StatelessWidget {
             onTap: () => Navigator.pushNamed(context, Routes.profilePage),
             child: RichText(
               text: TextSpan(
-                text: model.userName,
-                style: AppTextStyles.b4Regular.copyWith(color: AppColors.metalColor.shade100),
+                text: widget.model.userName,
+                style: AppTextStyles.b4Regular
+                    .copyWith(color: AppColors.metalColor.shade100),
                 children: [
                   TextSpan(
                     text: ' · ',
-                    style: AppTextStyles.b4Regular.copyWith(color: AppColors.metalColor.shade50),
+                    style: AppTextStyles.b4Regular
+                        .copyWith(color: AppColors.metalColor.shade50),
                     children: [
-                      TextSpan(text: model.categoryName),
+                      TextSpan(text: widget.model.categoryName),
                     ],
                   ),
-                  TextSpan(text: '\n${model.recipeName}', style: AppTextStyles.h4)
+                  TextSpan(
+                      text: '\n${widget.model.recipeName}',
+                      style: AppTextStyles.h4)
                 ],
               ),
             ),
@@ -110,20 +133,25 @@ class RecipeItem extends StatelessWidget {
           child: Row(
             children: [
               IconButtonAction(
-                onTap: () {},
-                icon: Assets.icons.like,
-                lable: model.likeCount.toString(),
+                onTap: () {
+                  setState(() {});
+                  isLike = !isLike;
+                },
+                icon: isLike ? Assets.icons.likeRed : Assets.icons.like,
+                lable: isLike
+                    ? '${likeCount + 1}'
+                    : widget.model.likeCount.toString(),
                 isActive: true,
               ),
               IconButtonAction(
                 onTap: () {},
                 icon: Assets.icons.comment,
-                lable: model.likeCount.toString(),
+                lable: widget.model.likeCount.toString(),
               ),
               IconButtonAction(
                 onTap: () {},
                 icon: Assets.icons.variation,
-                lable: model.likeCount.toString(),
+                lable: widget.model.likeCount.toString(),
               ),
               IconButtonAction(
                 onTap: () {},
@@ -131,7 +159,7 @@ class RecipeItem extends StatelessWidget {
               ),
               const Spacer(),
               IconButtonAction(
-                onTap: openDrawer ??
+                onTap: widget.openDrawer ??
                     () {
                       Scaffold.of(context).openEndDrawer();
                     },
@@ -140,7 +168,8 @@ class RecipeItem extends StatelessWidget {
                 height: 32,
                 borderRadius: 12,
                 isActive: true,
-                textStyle: AppTextStyles.b4DemiBold.copyWith(color: AppColors.primaryLight.shade100),
+                textStyle: AppTextStyles.b4DemiBold
+                    .copyWith(color: AppColors.primaryLight.shade100),
               )
             ],
           ),

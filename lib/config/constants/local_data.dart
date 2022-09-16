@@ -143,6 +143,7 @@ List<String> recipeTypes = [
   'Без глютена',
   'Любимый',
   'Любимый',
+  'Масло',
 ];
 List<String> recipePath = [
   'Десерты',
@@ -846,6 +847,11 @@ List profileTabList = [
   'Блоги',
   'Чат',
 ];
+List productTabList = [
+  'Информация',
+  'Рецепты',
+  'Блоги',
+];
 
 List<Map> foodTypes = [
   {
@@ -872,4 +878,87 @@ List<Map> foodTypes = [
     "imagePath": Assets.icons.foodSix,
     "name": "Сувид",
   },
+];
+
+List<ProductModel> model = [
+  ProductModel(
+    items: BrandItems(
+      brandImages: brandImages,
+      brandNames: brandNames,
+      brandPrices: brandPrices,
+    ),
+    title: 'Пшеничная мука',
+    ingredient: 'Инградиент - Бакалея',
+    desc:
+        'Американский тыквенный пирог с корицей — классика застолья Среднего и прочего Запада, анекдотический персонаж американского быта не лишен, однако, прелести',
+    subtitle: 'Бренды',
+    image: Assets.images.wheatFlourImg,
+  ),
+  ProductModel(
+    items: BrandItems(
+      brandImages: oilItemImage,
+      brandNames: oilItemName,
+      brandPrices: oilItemPrice,
+    ),
+    title: 'Масло рафинированное',
+    ingredient: 'Инградиент - Бакалея',
+    desc:
+        'Растительное масло, получаемое из плодов оливы европейской. По жирнокислотному составу представляет собой смесь триглицеридов жирных кислот с очень высоким ',
+    subtitle: 'Товары',
+    image: Assets.images.oilIn,
+  ),
+];
+
+class ProductModel {
+  final String title, ingredient, desc, subtitle, image;
+  final BrandItems items;
+
+  ProductModel(
+      {required this.title,
+      required this.ingredient,
+      required this.items,
+      required this.desc,
+      required this.subtitle,
+      required this.image});
+}
+
+class BrandItems {
+  final List brandImages;
+  final List brandNames;
+  final List brandPrices;
+
+  BrandItems(
+      {required this.brandImages,
+      required this.brandNames,
+      required this.brandPrices});
+}
+
+List oilItemName = [
+  "Costa D'Oro",
+  "Maestro de Oliva",
+];
+
+List oilItemImage = [
+  Assets.images.oilSmall,
+  Assets.images.maestroOil,
+];
+
+List oilItemPrice = [
+  "65",
+  "65",
+];
+
+List props = [
+  {
+    'title': 'Способ очистки',
+    'type': 'Рафинированное',
+  },
+  {
+    'title': 'Особенности производства',
+    'type': 'Холодный отжим',
+  },
+  {
+    'title': 'Сорт',
+    'type': 'Высший сорт',
+  }
 ];

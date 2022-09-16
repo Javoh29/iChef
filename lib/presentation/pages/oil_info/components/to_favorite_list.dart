@@ -6,16 +6,18 @@ import '../../../../config/constants/app_decorations.dart';
 import '../../../../config/constants/app_text_styles.dart';
 import '../../../../config/constants/assets.dart';
 
-class ProductBuyComponent extends StatelessWidget {
-  const ProductBuyComponent({Key? key, required this.onTap}) : super(key: key);
+class OilToFavoriteComponent extends StatelessWidget {
+  const OilToFavoriteComponent({Key? key, required this.onTap})
+      : super(key: key);
   final void Function() onTap;
+
   @override
   Widget build(BuildContext context) {
     return TextButton.icon(
       onPressed: onTap,
       icon: SvgPicture.asset(Assets.icons.basket),
       label: Text(
-        "В список покупок",
+        "В корзину",
         style: AppTextStyles.b4Medium.copyWith(
           color: AppColors.primaryLight,
         ),

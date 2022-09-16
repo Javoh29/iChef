@@ -4,6 +4,7 @@ import 'package:ichef/config/constants/app_decorations.dart';
 import 'package:ichef/main.dart';
 import 'package:ichef/presentation/components/recipe_item.dart';
 import 'package:ichef/presentation/components/recipe_step_card.dart';
+import 'package:ichef/presentation/pages/product/product_info_page.dart';
 import 'package:ichef/presentation/widgets/drawer_widget.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
@@ -300,8 +301,16 @@ class _RecipeInfoPageState extends State<RecipeInfoPage> {
               ?.pushNamed(Routes.productWithoutImagePage);
         } else if (recipeType == "Без глютена") {
           MyApp.navigatorKey.currentState?.pushNamed(Routes.productSalePage);
+        } else if (recipeType == "Масло") {
+          MyApp.navigatorKey.currentState?.pushNamed(Routes.oilPage);
         } else {
-          MyApp.navigatorKey.currentState?.pushNamed(Routes.productPage);
+          MyApp.navigatorKey.currentState?.push(
+            MaterialPageRoute(
+              builder: (context) => ProductInfoPage(
+                productModel: model[0],
+              ),
+            ),
+          );
         }
       },
       style: AppDecorations.buttonStyle(

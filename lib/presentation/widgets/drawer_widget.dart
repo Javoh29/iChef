@@ -34,84 +34,115 @@ class _IngredientsDrawerState extends State<IngredientsDrawer> {
       backgroundColor: AppColors.baseLight.shade100,
       child: SafeArea(
         minimum: const EdgeInsets.all(10),
-        child: ListView(
-          shrinkWrap: true,
+        child: Column(
           children: [
-            Row(
-              children: [
-                Text(
-                  "Ингредиенты ",
-                  style: AppTextStyles.h5,
-                ),
-                const CustomBadge(text: "6", isActive: false),
-                const Spacer(),
-                TextButton(
-                  onPressed: () {},
-                  style: AppDecorations.buttonStyle(padding: const EdgeInsets.symmetric(horizontal: 12)),
-                  child: Text(
-                    "В корзину",
-                    style: AppTextStyles.b4Medium.copyWith(color: AppColors.baseLight.shade100),
-                  ),
-                )
-              ],
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 5),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            Expanded(
+              child: ListView(
+                shrinkWrap: true,
                 children: [
-                  DropDownWithIcon(
-                    title: "Количество персон",
-                    iconPath: Assets.icons.peoples,
-                    dropDownValue: dropdownvalue,
-                    elements: items,
+                  Row(
+                    children: [
+                      Text(
+                        "Ингредиенты ",
+                        style: AppTextStyles.h5,
+                      ),
+                      const CustomBadge(text: "6", isActive: false),
+                      const Spacer(),
+                      TextButton(
+                        onPressed: () {},
+                        style: AppDecorations.buttonStyle(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 12)),
+                        child: Text(
+                          "В корзину",
+                          style: AppTextStyles.b4Medium
+                              .copyWith(color: AppColors.baseLight.shade100),
+                        ),
+                      )
+                    ],
                   ),
-                  DropDownWithIcon(
-                    title: "Кол-во дней",
-                    iconPath: Assets.icons.calendar,
-                    dropDownValue: dropdownvalueCal,
-                    elements: itemsCal,
-                  ),
-                ],
-              ),
-            ),
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 12),
-              margin: const EdgeInsets.symmetric(vertical: 10),
-              decoration: AppDecorations.defDecor.copyWith(
-                color: Colors.transparent,
-                border: Border.all(
-                  width: 1,
-                  color: AppColors.metalColor.shade10,
-                ),
-              ),
-              child: Row(
-                children: [
                   Padding(
-                    padding: const EdgeInsets.only(right: 16),
-                    child: SvgPicture.asset(Assets.icons.info),
+                    padding: const EdgeInsets.symmetric(vertical: 5),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        DropDownWithIcon(
+                          title: "Количество персон",
+                          iconPath: Assets.icons.peoples,
+                          dropDownValue: dropdownvalue,
+                          elements: items,
+                        ),
+                        DropDownWithIcon(
+                          title: "Кол-во дней",
+                          iconPath: Assets.icons.calendar,
+                          dropDownValue: dropdownvalueCal,
+                          elements: itemsCal,
+                        ),
+                      ],
+                    ),
                   ),
-                  Flexible(
-                    child: Text(
-                      "Вычеркивайте добавленные инградиенты в процессе готовки, чтобы ничего не забыть",
-                      style: AppTextStyles.b4Regular,
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 10, vertical: 12),
+                    margin: const EdgeInsets.symmetric(vertical: 10),
+                    decoration: AppDecorations.defDecor.copyWith(
+                      color: Colors.transparent,
+                      border: Border.all(
+                        width: 1,
+                        color: AppColors.metalColor.shade10,
+                      ),
+                    ),
+                    child: Row(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(right: 16),
+                          child: SvgPicture.asset(Assets.icons.info),
+                        ),
+                        Flexible(
+                          child: Text(
+                            "Вычеркивайте добавленные инградиенты в процессе готовки, чтобы ничего не забыть",
+                            style: AppTextStyles.b4Regular,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  ...List.generate(
+                    widget.model.drawer.length,
+                    (index) => CustomExpandTile(
+                      id: index + 1,
+                      title: widget.model.drawer[index]['title'] ?? '',
+                      elements: widget.model.drawer[index]['items'] ?? [],
                     ),
                   ),
                 ],
               ),
             ),
-            ...List.generate(
-                widget.model.drawer.length,
-                (index) => CustomExpandTile(
-                      id: index + 1,
-                      title: widget.model.drawer[index]['title'] ?? '',
-                      elements: widget.model.drawer[index]['items'] ?? [],
-                    )),
-            // CustomExpandTile(
-            //   title: "Для травяного масла",
-            //   elements: secondIngredientsRazdel,
-            // ),
-            const SizedBox(height: 80),
+            Padding(
+              padding: const EdgeInsets.only(top: 10, bottom: 50),
+              child: ElevatedButton(
+                onPressed: () {},
+                style: AppDecorations.buttonStyle().copyWith(
+                    fixedSize: MaterialStateProperty.all(
+                        Size(MediaQuery.of(context).size.width, 48))),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SvgPicture.asset(
+                      Assets.icons.basket,
+                      color: AppColors.baseLight.shade100,
+                    ),
+                    const SizedBox(width: 5),
+                    Text(
+                      'В корзину',
+                      style: AppTextStyles.b4Medium
+                          .copyWith(color: AppColors.baseLight.shade100),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            // const SizedBox(height: 60),
           ],
         ),
       ),

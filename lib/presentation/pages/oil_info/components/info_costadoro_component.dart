@@ -1,21 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:ichef/presentation/pages/product/components/product_composition.dart';
+import 'package:ichef/config/constants/app_decorations.dart';
+import 'package:ichef/config/constants/app_text_styles.dart';
+import 'package:ichef/config/constants/assets.dart';
 
 import '../../../../config/constants/app_colors.dart';
-import '../../../../config/constants/app_decorations.dart';
-import '../../../../config/constants/app_text_styles.dart';
-import '../../../../config/constants/assets.dart';
 
-class ProductCompositionsContainer extends StatelessWidget {
-  const ProductCompositionsContainer({
+class InfoCostadoroComponent extends StatelessWidget {
+  const InfoCostadoroComponent({
     Key? key,
-    required this.protein,
-    required this.fats,
-    required this.kkal,
-    required this.carbohydrates,
+    required this.image,
+    required this.title,
+    required this.subtitle,
   }) : super(key: key);
-  final int protein, fats, kkal, carbohydrates;
+  final String image, title, subtitle;
 
   @override
   Widget build(BuildContext context) {
@@ -32,23 +30,24 @@ class ProductCompositionsContainer extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          RichText(
-            text: TextSpan(
-              text: "$kkal",
-              style: AppTextStyles.b4DemiBold,
-              children: [
-                TextSpan(
-                  text: " Ккал на 100 г\n\n",
-                  style: AppTextStyles.b5Regular.copyWith(
-                    color: AppColors.metalColor.shade50,
-                  ),
+          Image.asset(image),
+          const SizedBox(width: 20),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                title,
+                style: AppTextStyles.b5DemiBold,
+              ),
+              Text(
+                subtitle,
+                style: AppTextStyles.h5.copyWith(
+                  color: AppColors.metalColor.shade50,
                 ),
-                productComposition(protein, "Белки"),
-                productComposition(fats, "Жиры"),
-                productComposition(carbohydrates, "Углеводы"),
-              ],
-            ),
+              ),
+            ],
           ),
+          const Spacer(),
           CircleAvatar(
             radius: 15,
             child: Center(
@@ -63,7 +62,7 @@ class ProductCompositionsContainer extends StatelessWidget {
                 ),
               ),
             ),
-          )
+          ),
         ],
       ),
     );

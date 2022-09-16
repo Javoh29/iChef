@@ -17,8 +17,11 @@ class RecipesTabPage extends StatelessWidget {
           openDrawer: () => callBack(index),
         );
       },
-      separatorBuilder: (context, index) => const SizedBox(
-        height: 10,
+      separatorBuilder: (context, index) => const Padding(
+        padding: EdgeInsets.only(bottom: 12),
+        child: Divider(
+          color: Color(0xffcccccc),
+        ),
       ),
       itemCount: listRecipes.length,
     );

@@ -25,15 +25,14 @@ class BottomNavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Positioned(
-      bottom: 30,
-      left: 40,
-      right: 40,
+      bottom: 0,
+      left: 0,
+      right: 0,
       child: Container(
         height: 44,
         decoration: AppDecorations.defDecor.copyWith(
-          color: AppColors.baseLight.shade80,
-          borderRadius: BorderRadius.circular(12),
-        ),
+            color: AppColors.baseLight.shade100,
+            borderRadius: BorderRadius.circular(0)),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: List.generate(
@@ -52,12 +51,12 @@ class BottomNavBar extends StatelessWidget {
         height: 32,
         width: 32,
         alignment: Alignment.center,
-        decoration: selectedIndex == index
-            ? AppDecorations.defDecor.copyWith(
-                borderRadius: BorderRadius.circular(12),
-                color: AppColors.metalColor.shade10,
-              )
-            : null,
+        // decoration: selectedIndex == index
+        //     ? AppDecorations.defDecor.copyWith(
+        //         borderRadius: BorderRadius.circular(12),
+        //         color: AppColors.metalColor.shade10,
+        //       )
+        //     : null,
         child: SvgPicture.asset(
           menuIcons[index],
           height: 16,
