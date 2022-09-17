@@ -44,11 +44,18 @@ class _ShoppingListItemState extends State<ShoppingListItem> {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text(
-                                  sort ? poReseptu[index]['title'] : poOtdelam[index]['title'],
-                                  maxLines: 1,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: AppTextStyles.h1.copyWith(fontSize: 14),
+                                SizedBox(
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.8,
+                                  child: Text(
+                                    sort
+                                        ? poReseptu[index]['title']
+                                        : poOtdelam[index]['title'],
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                    style:
+                                        AppTextStyles.h1.copyWith(fontSize: 14),
+                                  ),
                                 ),
                                 sort || index != 4
                                     ? SvgPicture.asset(
@@ -60,16 +67,22 @@ class _ShoppingListItemState extends State<ShoppingListItem> {
                             ),
                           ),
                           ShoppingItemDetails(
-                              shippingList:
-                                  sort ? poReseptu[index]['titleListItems'] : poOtdelam[index]['titleListItems']),
-                          (sort ? poReseptu[index]['subtitle'] != null : poOtdelam[index]['subtitle'] != null)
+                              shippingList: sort
+                                  ? poReseptu[index]['titleListItems']
+                                  : poOtdelam[index]['titleListItems']),
+                          (sort
+                                  ? poReseptu[index]['subtitle'] != null
+                                  : poOtdelam[index]['subtitle'] != null)
                               ? Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Padding(
-                                      padding: const EdgeInsets.symmetric(vertical: 10),
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 10),
                                       child: Text(
-                                        sort ? poReseptu[index]['subtitle'] : poOtdelam[index]['subtitle'],
+                                        sort
+                                            ? poReseptu[index]['subtitle']
+                                            : poOtdelam[index]['subtitle'],
                                         maxLines: 1,
                                         overflow: TextOverflow.ellipsis,
                                         style: AppTextStyles.b4Regular,
@@ -77,8 +90,10 @@ class _ShoppingListItemState extends State<ShoppingListItem> {
                                     ),
                                     ShoppingItemDetails(
                                       shippingList: sort
-                                          ? poReseptu[index]['subtitleList'] ?? []
-                                          : poReseptu[index]['subtitleList'] ?? [],
+                                          ? poReseptu[index]['subtitleList'] ??
+                                              []
+                                          : poReseptu[index]['subtitleList'] ??
+                                              [],
                                     ),
                                   ],
                                 )
@@ -92,7 +107,8 @@ class _ShoppingListItemState extends State<ShoppingListItem> {
                 style: AppTextStyles.h1.copyWith(fontSize: 14),
               ),
               Container(
-                margin: const EdgeInsets.symmetric(horizontal: 2, vertical: 10),
+                margin: const EdgeInsets.only(
+                    left: 2, right: 2, top: 10, bottom: 45),
                 child: DottedBorder(
                   color: AppColors.primaryLight,
                   dashPattern: const [2, 2],

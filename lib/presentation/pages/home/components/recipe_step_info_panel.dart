@@ -18,7 +18,8 @@ class RecipeStepInfoPanel extends StatefulWidget {
       required this.onPanelClose,
       required this.stepName,
       required this.stepContext,
-      Key? key, required this.model})
+      Key? key,
+      required this.model})
       : super(key: key);
   final int index;
   final int stepsLength;
@@ -63,7 +64,9 @@ class _RecipeStepInfoPanelState extends State<RecipeStepInfoPanel> {
         : widget.stepsLength > widget.index
             ? "•••"
             : "Завершить";
-    Color currentStepBgColor = widget.index == widget.stepsLength ? AppColors.accentLight : AppColors.primaryLight;
+    Color currentStepBgColor = widget.index == widget.stepsLength
+        ? AppColors.accentLight
+        : AppColors.primaryLight;
     Widget currentStepIcon = widget.index == 1
         ? Icon(
             Icons.arrow_forward_ios,
@@ -93,14 +96,16 @@ class _RecipeStepInfoPanelState extends State<RecipeStepInfoPanel> {
             ),
             child: ListView(
               padding: EdgeInsets.zero,
-              physics: widget.isVisible ? const NeverScrollableScrollPhysics() : const BouncingScrollPhysics(),
+              physics: widget.isVisible
+                  ? const NeverScrollableScrollPhysics()
+                  : const BouncingScrollPhysics(),
               shrinkWrap: true,
               controller: _scrollController,
               children: [
                 Text(
                   widget.stepName,
                   textAlign: TextAlign.center,
-                  style: AppTextStyles.h7,
+                  style: AppTextStyles.b6DemiBold.copyWith(fontSize: 18),
                 ),
                 const SizedBox(height: 20),
                 Text(
@@ -134,7 +139,8 @@ class _RecipeStepInfoPanelState extends State<RecipeStepInfoPanel> {
             mMargin: const EdgeInsets.only(top: 10),
             widget: Text(
               '${widget.index} из ${widget.stepsLength}',
-              style: AppTextStyles.b3Medium.copyWith(color: AppColors.baseLight.shade100),
+              style: AppTextStyles.b3Medium
+                  .copyWith(color: AppColors.baseLight.shade100),
             ),
           ),
         ),
@@ -149,14 +155,18 @@ class _RecipeStepInfoPanelState extends State<RecipeStepInfoPanel> {
                 widget.onNextPage();
               }
             },
-            style: AppDecorations.buttonStyle(padding: const EdgeInsets.symmetric(horizontal: 12), borderRadius: 12)
+            style: AppDecorations.buttonStyle(
+                    padding: const EdgeInsets.symmetric(horizontal: 12),
+                    borderRadius: 12)
                 .copyWith(
               backgroundColor: MaterialStateProperty.all(currentStepBgColor),
-              overlayColor: MaterialStateProperty.all(AppColors.baseLight.shade20),
+              overlayColor:
+                  MaterialStateProperty.all(AppColors.baseLight.shade20),
             ),
             icon: Text(
               currentStepName,
-              style: AppTextStyles.b3Medium.copyWith(color: AppColors.baseLight.shade100),
+              style: AppTextStyles.b4Medium
+                  .copyWith(color: AppColors.baseLight.shade100),
             ),
             label: currentStepIcon,
           ),

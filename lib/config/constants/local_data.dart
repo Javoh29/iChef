@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:ichef/config/constants/assets.dart';
 import 'package:ichef/data/models/user_model.dart';
+import 'package:ichef/presentation/routes/routes.dart';
 
 import '../../data/models/recipe_model.dart';
+import '../../main.dart';
 import '../../presentation/components/ingridient_detail_container.dart';
 
 List<RecipeModel> listRecipes = [
@@ -504,62 +506,63 @@ List<Map> jarenayaDrawerModel = [
   {"title": 'Ингредиенты', 'items': secondIngredientsRazdel}
 ];
 
-List<Widget> secondIngredientsRazdel = const [
-  IngridientDetailContainer(
+List<Widget> secondIngredientsRazdel = [
+  const IngridientDetailContainer(
     title: "Части курицы",
     addInfo: "",
     data: "1800 гр",
     data2: "",
   ),
-  SizedBox(height: 5),
-  IngridientDetailContainer(
+  const SizedBox(height: 5),
+  const IngridientDetailContainer(
     title: "Соль",
     addInfo: "",
     data: "",
     data2: "",
   ),
-  SizedBox(height: 5),
-  IngridientDetailContainer(
+  const SizedBox(height: 5),
+  const IngridientDetailContainer(
     title: "Перец ",
     addInfo: "",
     data: "14 гр (по желанию)",
     data2: "",
   ),
-  SizedBox(height: 5),
-  IngridientDetailContainer(
+  const SizedBox(height: 5),
+  const IngridientDetailContainer(
     title: "Паприка",
     addInfo: "",
     data: "25 гр (по желанию)",
     data2: "",
   ),
-  SizedBox(height: 5),
-  IngridientDetailContainer(
+  const SizedBox(height: 5),
+  const IngridientDetailContainer(
     title: "Луковый порошек",
     addInfo: "",
     data: "20 гр (по желанию)",
     data2: "",
   ),
-  SizedBox(height: 5),
-  IngridientDetailContainer(
+  const SizedBox(height: 5),
+  const IngridientDetailContainer(
     title: "Обезжиренные сливки",
     addInfo: "",
     data: "500 гр",
     data2: "",
   ),
-  SizedBox(height: 5),
-  IngridientDetailContainer(
+  const SizedBox(height: 5),
+  const IngridientDetailContainer(
     title: "Мука",
     addInfo: "",
     data: "750 гр",
     data2: "",
   ),
-  SizedBox(height: 5),
+  const SizedBox(height: 5),
   IngridientDetailContainer(
-    title: "Масло для жарки",
-    addInfo: "",
-    data: "2 литра",
-    data2: "",
-  ),
+      title: "Масло для жарки",
+      addInfo: "",
+      data: "2 литра",
+      data2: "",
+      onTap: () => Navigator.pushNamed(
+          MyApp.navigatorKey.currentState!.context, Routes.oilPage)),
 ];
 List<Widget> firstIngredientRazdel1 = [
   const IngridientDetailContainer(
@@ -597,12 +600,13 @@ List<Widget> firstIngredientRazdel1 = [
     data2: "",
   ),
   const SizedBox(height: 5),
-  const IngridientDetailContainer(
-    title: "Оливковое масло ",
-    addInfo: "",
-    data: "150 г",
-    data2: "",
-  ),
+  IngridientDetailContainer(
+      title: "Оливковое масло ",
+      addInfo: "",
+      data: "150 г",
+      data2: "",
+      onTap: () => Navigator.pushNamed(
+          MyApp.navigatorKey.currentState!.context, Routes.oilPage)),
   const SizedBox(height: 5),
   const IngridientDetailContainer(
     title: "Перец чили",

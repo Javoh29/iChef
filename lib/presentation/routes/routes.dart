@@ -32,7 +32,8 @@ class Routes {
 
   static Route<dynamic> generateRoute(RouteSettings routeSettings) {
     try {
-      final Map<String, dynamic>? args = routeSettings.arguments as Map<String, dynamic>?;
+      final Map<String, dynamic>? args =
+          routeSettings.arguments as Map<String, dynamic>?;
       args ?? <String, dynamic>{};
       switch (routeSettings.name) {
         case splashPage:
@@ -51,6 +52,7 @@ class Routes {
             builder: (_) => RecipeInfoPage(
               model: args?['recipe_model'],
               seekToTime: args?['seek_to_time'],
+              callBack: () {},
             ),
           );
         case userPrefrencesPage:

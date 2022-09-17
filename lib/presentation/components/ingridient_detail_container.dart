@@ -11,12 +11,14 @@ class IngridientDetailContainer extends StatelessWidget {
     required this.data,
     required this.data2,
     Key? key,
+     this.onTap,
   }) : super(key: key);
 
   final String title;
   final String addInfo;
   final String data;
   final String data2;
+  final void Function()? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -29,10 +31,11 @@ class IngridientDetailContainer extends StatelessWidget {
       title: Wrap(
         children: [
           TextButton(
-            onPressed: () {},
+            onPressed: onTap,
             style: AppDecorations.buttonStyle(
               bgColor: AppColors.primaryLight.shade50,
-              border: BorderSide(color: AppColors.primaryLight.shade100, width: 1),
+              border:
+                  BorderSide(color: AppColors.primaryLight.shade100, width: 1),
             ),
             child: Text(
               title,
