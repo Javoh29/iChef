@@ -21,11 +21,7 @@ import '../favorites/favorites_page.dart';
 import 'components/recipe_item_info_panel.dart';
 
 class RecipeInfoPage extends StatefulWidget {
-  const RecipeInfoPage(
-      {required this.model,
-      required this.seekToTime,
-      Key? key,
-      required this.callBack})
+  const RecipeInfoPage({required this.model, required this.seekToTime, Key? key, required this.callBack})
       : super(key: key);
   final RecipeModel model;
   final Duration seekToTime;
@@ -61,7 +57,7 @@ class _RecipeInfoPageState extends State<RecipeInfoPage> {
           });
         },
         color: Colors.transparent,
-        minHeight: MediaQuery.of(context).size.height / 2.65,
+        minHeight: MediaQuery.of(context).size.height / 2.1,
         maxHeight: size.height,
         boxShadow: List.empty(),
         controller: _listPanelControllers,
@@ -206,36 +202,6 @@ class _RecipeInfoPageState extends State<RecipeInfoPage> {
                   iconSize: 18,
                 ),
               ],
-            ),
-          ),
-        ),
-        Positioned(
-          bottom: 30,
-          right: 20,
-          child: TextButton.icon(
-            onPressed: () => MyApp.navigatorKey.currentState
-                ?.pushNamed(Routes.recipeStepPage, arguments: {
-              "currentStep": 0,
-              "stepsLength": widget.model.recipeSteps.length,
-              "recipeModel": model,
-              "seekToTime": widget.seekToTime,
-              "pageIndex": 0,
-            }),
-            style: AppDecorations.buttonStyle(
-              padding: const EdgeInsets.symmetric(horizontal: 12),
-            ).copyWith(
-              overlayColor:
-                  MaterialStateProperty.all(AppColors.baseLight.shade40),
-            ),
-            icon: Text(
-              'Начать готовить',
-              style: AppTextStyles.b3Medium
-                  .copyWith(color: AppColors.baseLight.shade100),
-            ),
-            label: Icon(
-              Icons.arrow_forward_ios,
-              color: AppColors.baseLight.shade100,
-              size: 16,
             ),
           ),
         ),
