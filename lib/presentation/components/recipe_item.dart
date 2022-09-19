@@ -105,76 +105,83 @@ class _RecipeItemState extends State<RecipeItem> {
             if (widget.listAdditional != null) ...widget.listAdditional!
           ],
         ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15),
-          child: GestureDetector(
-            onTap: () => Navigator.pushNamed(context, Routes.profilePage),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                RichText(
-                  text: TextSpan(
-                    text: widget.model.userName,
-                    style: AppTextStyles.b4Regular.copyWith(color: AppColors.metalColor.shade100),
-                    children: [
-                      TextSpan(
-                        text: ' · ',
-                        style: AppTextStyles.b4Regular.copyWith(color: AppColors.metalColor.shade50),
-                        children: [
-                          TextSpan(text: widget.model.categoryName),
-                        ],
-                      ),
-                    ],
+        widget.isTap
+            ? Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 15),
+                child: GestureDetector(
+                  onTap: () => Navigator.pushNamed(context, Routes.profilePage),
+                  child: RichText(
+                    text: TextSpan(
+                      text: widget.model.userName,
+                      style: AppTextStyles.b4Regular
+                          .copyWith(color: AppColors.metalColor.shade100),
+                      children: [
+                        TextSpan(
+                          text: ' · ',
+                          style: AppTextStyles.b4Regular
+                              .copyWith(color: AppColors.metalColor.shade50),
+                          children: [
+                            TextSpan(text: widget.model.categoryName),
+                          ],
+                        ),
+                        TextSpan(
+                            text: '\n${widget.model.recipeName}',
+                            style: AppTextStyles.h4)
+                      ],
+                    ),
                   ),
                 ),
-                Text(
-                  '${widget.model.recipeName}',
-                  style: AppTextStyles.h4.copyWith(height: 30 / 21),
+              )
+            : Container(),
+        widget.isTap
+            ? Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 13, vertical: 10),
+                child: Row(
+                  children: [
+                    IconButtonAction(
+                      onTap: () {
+                        setState(() {});
+                        isLike = !isLike;
+                      },
+                      icon: isLike ? Assets.icons.likeRed : Assets.icons.like,
+                      lable: isLike
+                          ? '${likeCount + 1}'
+                          : widget.model.likeCount.toString(),
+                      isActive: true,
+                    ),
+                    IconButtonAction(
+                      onTap: () {},
+                      icon: Assets.icons.comment,
+                      lable: widget.model.likeCount.toString(),
+                    ),
+                    IconButtonAction(
+                      onTap: () {},
+                      icon: Assets.icons.variation,
+                      lable: widget.model.likeCount.toString(),
+                    ),
+                    IconButtonAction(
+                      onTap: () {},
+                      icon: Assets.icons.share,
+                    ),
+                    const Spacer(),
+                    IconButtonAction(
+                      onTap: widget.openDrawer ??
+                          () {
+                            Scaffold.of(context).openEndDrawer();
+                          },
+                      icon: Assets.icons.ingredients,
+                      lable: '7',
+                      height: 32,
+                      borderRadius: 12,
+                      isActive: true,
+                      textStyle: AppTextStyles.b4DemiBold
+                          .copyWith(color: AppColors.primaryLight.shade100),
+                    )
+                  ],
                 ),
-              ],
-            ),
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.only(left: 13, right: 13, bottom: 14, top: 10),
-          child: Row(
-            children: [
-              IconButtonAction(
-                onTap: () {
-                  setState(() {});
-                  isLike = !isLike;
-                },
-                icon: isLike ? Assets.icons.likeRed : Assets.icons.like,
-                lable: isLike ? '${likeCount + 1}' : widget.model.likeCount.toString(),
-                isActive: true,
-              ),
-              IconButtonAction(
-                onTap: () {},
-                icon: Assets.icons.comment,
-                lable: widget.model.commentCount.toString(),
-              ),
-              IconButtonAction(
-                onTap: () {},
-                icon: Assets.icons.variation,
-                lable: widget.model.variationCount.toString(),
-              ),
-              IconButtonAction(
-                onTap: () {},
-                icon: Assets.icons.share,
-              ),
-              const Spacer(),
-              IconButtonAction(
-                onTap: widget.openDrawer ??
-                    () {
-                      Scaffold.of(context).openEndDrawer();
-                    },
-                icon: Assets.icons.ingredients,
-                lable: '7',
-                height: 32,
-                borderRadius: 12,
-                isActive: true,
-                textStyle: AppTextStyles.b4DemiBold.copyWith(color: AppColors.primaryLight.shade100),
-
+              )
+            : Container()
       ],
     );
   }
