@@ -36,19 +36,17 @@ class RecipeStepCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => MyApp.navigatorKey.currentState
-                    ?.pushNamed(Routes.recipeStepPage, arguments: {
-                  "currentStep": currentStep,
-                  "stepsLength": stepsLength,
-                  "recipeModel": model,
-                  "seekToTime": seekToTime,
-                }),
+      onTap: () => MyApp.navigatorKey.currentState?.pushNamed(Routes.recipeStepPage, arguments: {
+        "currentStep": currentStep,
+        "stepsLength": stepsLength,
+        "recipeModel": model,
+        "seekToTime": seekToTime,
+      }),
       child: Container(
         padding: const EdgeInsets.all(16),
         margin: const EdgeInsets.only(bottom: 12),
-        decoration: AppDecorations.defDecor.copyWith(
-            color: AppColors.metalColor.shade10,
-            borderRadius: BorderRadius.circular(12)),
+        decoration: AppDecorations.defDecor
+            .copyWith(color: AppColors.metalColor.shade10, borderRadius: BorderRadius.circular(12)),
         child: Column(
           children: [
             // #video and step name
@@ -60,8 +58,7 @@ class RecipeStepCard extends StatelessWidget {
                   margin: const EdgeInsets.only(right: 20),
                   alignment: Alignment.center,
                   decoration: AppDecorations.defDecor.copyWith(
-                    image: DecorationImage(
-                        image: AssetImage(stepImage), fit: BoxFit.cover),
+                    image: DecorationImage(image: AssetImage(stepImage), fit: BoxFit.cover),
                   ),
                   child: Container(
                     width: 32,
@@ -83,13 +80,11 @@ class RecipeStepCard extends StatelessWidget {
                     children: [
                       Text(
                         stepNumber,
-                        style: AppTextStyles.b4DemiBold
-                            .copyWith(color: AppColors.metalColor.shade50),
+                        style: AppTextStyles.b4DemiBold.copyWith(color: AppColors.metalColor.shade40, fontWeight: FontWeight.w700),
                       ),
                       Text(
                         stepName,
-                        style: AppTextStyles.b1Regular
-                            .copyWith(fontWeight: FontWeight.w700),
+                        style: AppTextStyles.b1Regular.copyWith(fontWeight: FontWeight.w700, fontSize: 16),
                       )
                     ],
                   ),
@@ -98,8 +93,7 @@ class RecipeStepCard extends StatelessWidget {
                   width: 27,
                   height: 27,
                   alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                      shape: BoxShape.circle, color: AppColors.baseLight),
+                  decoration: BoxDecoration(shape: BoxShape.circle, color: AppColors.baseLight),
                   child: Icon(
                     Icons.arrow_forward_ios_rounded,
                     color: AppColors.metalColor.shade10,
@@ -113,8 +107,7 @@ class RecipeStepCard extends StatelessWidget {
               margin: const EdgeInsets.only(top: 20),
               child: Text(
                 stepContext,
-                style: AppTextStyles.h5
-                    .copyWith(color: AppColors.metalColor.shade70),
+                style: AppTextStyles.h5.copyWith(color: AppColors.metalColor.shade70),
               ),
             ),
           ],

@@ -29,7 +29,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
     super.initState();
     _tabController.addListener(() => setState(() {}));
   }
-  
+
   RecipeModel model = RecipeModel(recipeSteps: recipeSteps, userComment: userComments, drawer: nejnayaDrawerModel);
   @override
   Widget build(BuildContext context) {
@@ -114,7 +114,11 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Text('Рецепты'),
+              Text(
+                'Рецепты',
+                style: AppTextStyles.h5.copyWith(
+                    color: _tabController.index == 0 ? AppColors.primaryLight.shade100 : AppColors.metalColor.shade50),
+              ),
               CustomBadge(
                 text: '24K',
                 isActive: _tabController.index == 0,
@@ -126,8 +130,12 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
           height: 22,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: const [
-              Text('Блоги'),
+            children: [
+              Text(
+                'Блоги',
+                style: AppTextStyles.h5.copyWith(
+                    color: _tabController.index == 1 ? AppColors.primaryLight.shade100 : AppColors.metalColor.shade50),
+              ),
             ],
           ),
         ),
@@ -136,7 +144,11 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Text('Чат'),
+              Text(
+                'Чат',
+                style: AppTextStyles.h5.copyWith(
+                    color: _tabController.index == 2 ? AppColors.primaryLight.shade100 : AppColors.metalColor.shade50),
+              ),
               CustomBadge(
                 text: '194K',
                 isActive: _tabController.index == 2,

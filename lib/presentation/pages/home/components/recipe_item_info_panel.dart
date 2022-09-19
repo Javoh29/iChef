@@ -98,8 +98,8 @@ class _RecipeItemInfoPanelState extends State<RecipeItemInfoPanel> {
                   ),
                 ),
               ),
-              Container(
-                padding: const EdgeInsets.symmetric(vertical: 10),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8),
                 child: Row(
                   children: [
                     IconButtonAction(
@@ -279,34 +279,32 @@ class _RecipeItemInfoPanelState extends State<RecipeItemInfoPanel> {
                       .toList(),
                 ),
               ),
-              Row(
+              Wrap(
+                crossAxisAlignment: WrapCrossAlignment.end,
                 children: [
                   Text(
                     'Десерты',
-                    style: AppTextStyles.h5,
+                    style: AppTextStyles.h5.copyWith(fontSize: 15),
                   ),
                   const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 5),
+                    padding: EdgeInsets.symmetric(horizontal: 10),
                     child: Icon(
                       Icons.arrow_forward_ios,
-                      size: 12,
+                      size: 16,
                     ),
                   ),
                   Text(
                     'Выпечка',
-                    style: AppTextStyles.h5,
+                    style: AppTextStyles.h5.copyWith(fontSize: 15),
                   ),
                 ],
               ),
-              const SizedBox(height: 14),
               // #recipe info
               Padding(
-                padding: const EdgeInsets.only(right: 20),
+                padding: const EdgeInsets.only(right: 20, top: 15),
                 child: Text(
                   '${widget.model.recipeDesc}',
-                  style: AppTextStyles.h5.copyWith(
-                    color: AppColors.metalColor.shade70,
-                  ),
+                  style: AppTextStyles.h5.copyWith(color: AppColors.metalColor.shade70, fontSize: 15),
                 ),
               ),
               //Recipe prepairing steps
@@ -446,13 +444,13 @@ class _RecipeItemInfoPanelState extends State<RecipeItemInfoPanel> {
       },
       style: AppDecorations.buttonStyle(
         bgColor: AppColors.primaryLight.shade50,
-        padding: const EdgeInsets.symmetric(horizontal: 15),
+        padding: const EdgeInsets.symmetric(horizontal: 12),
         borderRadius: 12,
         border: BorderSide(color: AppColors.primaryLight.shade100, width: 1),
       ),
       child: Text(
         recipeType,
-        style: AppTextStyles.b4Medium.copyWith(color: AppColors.baseLight),
+        style: AppTextStyles.b4Medium.copyWith(color: AppColors.baseLight, fontSize: 13.5),
       ),
     );
   }

@@ -132,12 +132,13 @@ abstract class AppTextStyles {
       fontSize: 13.0,
       color: AppColors.metalColor.shade100);
 
-    static TextStyle b4Medium = TextStyle(
+  static TextStyle b4Medium = TextStyle(
       fontFamily: fontFamily,
       fontWeight: FontWeight.w500,
       fontStyle: FontStyle.normal,
       fontSize: 12.0,
-      color: AppColors.metalColor.shade100);
+      color: AppColors.metalColor.shade100,
+      height: 21 / 16);
 
   static TextStyle b4Regular = TextStyle(
       fontFamily: fontFamily,
