@@ -118,7 +118,7 @@ class _ShoppingListPageState extends State<ShoppingListPage> {
                     height: 50,
                     width: double.infinity,
                     margin:
-                        const EdgeInsets.only(left: 10, right: 10, bottom: 10),
+                        const EdgeInsets.only(left: 10, right: 10, bottom: 55),
                     child: TextButton(
                       onPressed: () {},
                       style: AppDecorations.buttonStyle(borderRadius: 12),

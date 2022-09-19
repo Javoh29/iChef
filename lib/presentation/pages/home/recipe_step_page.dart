@@ -82,7 +82,7 @@ class _RecipeStepState extends State<RecipeStep> {
                     });
                   },
                   color: Colors.transparent,
-                  minHeight: 235,
+                  minHeight: 270,
                   maxHeight: size.height,
                   boxShadow: List.empty(),
                   controller: _listPanelControllers[index],

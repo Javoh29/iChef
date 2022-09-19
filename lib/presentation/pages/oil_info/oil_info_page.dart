@@ -242,11 +242,11 @@ class _OilInfoPageState extends State<OilInfoPage>
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) =>
-                              const ProductWithoutImagePage()),
+                          builder: (context) => const OilInfoPage()),
                     );
                   },
                   child: BrandAndSalerContainer(
+                    onTap: () {},
                     image: salerImages[index],
                     name: salerNames[index],
                     price: salerPrices[index],

@@ -62,6 +62,7 @@ List<ShippingModel> subtitleList = [
     weight: '150 мл',
     subTitle:
         "Масло оливковое рафинированное с добавлением нерафинированного масла. Costa D'Oro S.P.A.",
+
   ),
   ShippingModel(
     id: 9,
