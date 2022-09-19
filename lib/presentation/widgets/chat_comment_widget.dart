@@ -67,7 +67,7 @@ class _ChatCommentWidgetState extends State<ChatCommentWidget> {
               ),
               Text(
                 widget.time!,
-                style: AppTextStyles.h5.copyWith(color: AppColors.metalColor.shade50, fontSize: 12),
+                style: AppTextStyles.h5.copyWith(color: AppColors.metalColor.shade100, fontSize: 12),
               ),
             ],
           ),
@@ -95,14 +95,13 @@ class _ChatCommentWidgetState extends State<ChatCommentWidget> {
                     child: Row(
                       children: [
                         Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 10),
+                          padding: const EdgeInsets.symmetric(horizontal: 5),
                           child: TextButton(
                             onPressed: () {},
                             style: AppDecorations.buttonStyle(
                                 bgColor: AppColors.baseLight.shade100,
                                 border: BorderSide(color: AppColors.primaryLight.shade100, width: 1),
-                                borderRadius: 15,
-                                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4)),
+                                borderRadius: 15),
                             child: Text(
                               '😎 112',
                               style: AppTextStyles.b4Medium.copyWith(
@@ -116,8 +115,7 @@ class _ChatCommentWidgetState extends State<ChatCommentWidget> {
                           style: AppDecorations.buttonStyle(
                               bgColor: AppColors.baseLight.shade100,
                               border: BorderSide(color: AppColors.primaryLight.shade100, width: 1),
-                              borderRadius: 15,
-                              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4)),
+                              borderRadius: 15),
                           child: Text(
                             '😍 1',
                             style: AppTextStyles.b4Medium.copyWith(
@@ -130,12 +128,12 @@ class _ChatCommentWidgetState extends State<ChatCommentWidget> {
                   ),
                   Text(
                     "Изменить",
-                    style: AppTextStyles.h5.copyWith(color: AppColors.metalColor.shade50, fontSize: 12),
+                    style: AppTextStyles.h5.copyWith(color: AppColors.metalColor.shade100, fontSize: 12),
                   ),
                   const SizedBox(width: 20),
                   Text(
                     "Удалить",
-                    style: AppTextStyles.h5.copyWith(color: AppColors.metalColor.shade50, fontSize: 12),
+                    style: AppTextStyles.h5.copyWith(color: AppColors.metalColor.shade100, fontSize: 12),
                   ),
                 ],
               )

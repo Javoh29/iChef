@@ -18,11 +18,14 @@ class CustomBadge extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 2),
       margin: const EdgeInsets.only(left: 3),
-      decoration: AppDecorations.defDecor.copyWith(color: isActive ? AppColors.primaryLight : null),
+      decoration: AppDecorations.defDecor
+          .copyWith(color: isActive ? AppColors.primaryLight : null),
       child: Text(text,
-          style: AppTextStyles.b4Regular.copyWith(
-            color: isActive ? AppColors.baseLight.shade100 : AppColors.metalColor,
-          )),
+          style: AppTextStyles.b4Medium.copyWith(
+              color: isActive
+                  ? AppColors.baseLight.shade100
+                  : AppColors.metalColor,
+              fontSize: 10)),
     );
   }
 }
