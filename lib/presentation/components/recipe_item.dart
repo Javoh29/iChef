@@ -102,26 +102,34 @@ class _RecipeItemState extends State<RecipeItem> {
           padding: const EdgeInsets.symmetric(horizontal: 15),
           child: GestureDetector(
             onTap: () => Navigator.pushNamed(context, Routes.profilePage),
-            child: RichText(
-              text: TextSpan(
-                text: widget.model.userName,
-                style: AppTextStyles.b4Regular.copyWith(color: AppColors.metalColor.shade100),
-                children: [
-                  TextSpan(
-                    text: ' · ',
-                    style: AppTextStyles.b4Regular.copyWith(color: AppColors.metalColor.shade50),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                RichText(
+                  text: TextSpan(
+                    text: widget.model.userName,
+                    style: AppTextStyles.b4Regular.copyWith(color: AppColors.metalColor.shade100),
                     children: [
-                      TextSpan(text: widget.model.categoryName),
+                      TextSpan(
+                        text: ' · ',
+                        style: AppTextStyles.b4Regular.copyWith(color: AppColors.metalColor.shade50),
+                        children: [
+                          TextSpan(text: widget.model.categoryName),
+                        ],
+                      ),
                     ],
                   ),
-                  TextSpan(text: '\n${widget.model.recipeName}', style: AppTextStyles.h4)
-                ],
-              ),
+                ),
+                Text(
+                  '${widget.model.recipeName}',
+                  style: AppTextStyles.h4.copyWith(height: 30 / 21),
+                ),
+              ],
             ),
           ),
         ),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 10),
+          padding: const EdgeInsets.only(left: 13, right: 13, bottom: 14, top: 10),
           child: Row(
             children: [
               IconButtonAction(
@@ -136,12 +144,12 @@ class _RecipeItemState extends State<RecipeItem> {
               IconButtonAction(
                 onTap: () {},
                 icon: Assets.icons.comment,
-                lable: widget.model.likeCount.toString(),
+                lable: widget.model.commentCount.toString(),
               ),
               IconButtonAction(
                 onTap: () {},
                 icon: Assets.icons.variation,
-                lable: widget.model.likeCount.toString(),
+                lable: widget.model.variationCount.toString(),
               ),
               IconButtonAction(
                 onTap: () {},

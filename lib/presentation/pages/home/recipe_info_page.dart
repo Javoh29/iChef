@@ -44,7 +44,7 @@ class _RecipeInfoPageState extends State<RecipeInfoPage> {
           itemRecipe(widget.model, size),
           // #additional info
           Container(
-            padding: const EdgeInsets.only(left: 20, top: 20),
+            padding: const EdgeInsets.only(left: 20),
             child: Column(
               children: [
                 // #additional info icons
@@ -150,6 +150,7 @@ class _RecipeInfoPageState extends State<RecipeInfoPage> {
                         'Приготовлено',
                         style: AppTextStyles.h5.copyWith(
                           color: AppColors.metalColor.shade50,
+                          fontSize: 15,
                         ),
                       ),
                     ),
@@ -191,6 +192,7 @@ class _RecipeInfoPageState extends State<RecipeInfoPage> {
                         .map(
                           (item) => Container(
                             margin: const EdgeInsets.only(right: 10),
+                            padding: const EdgeInsets.symmetric(vertical: 2),
                             child: recipeTypeButton(item),
                           ),
                         )
@@ -198,26 +200,30 @@ class _RecipeInfoPageState extends State<RecipeInfoPage> {
                   ),
                 ),
                 // #recipe path
-                Row(
-                  children: [
-                    Text(
-                      'Десерты',
-                      style: AppTextStyles.h5,
-                    ),
-                    const Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 5),
-                      child: Icon(
-                        Icons.arrow_forward_ios,
-                        size: 12,
+                SizedBox(
+                  width: double.infinity,
+                  height: 28,
+                  child: Wrap(
+                    crossAxisAlignment: WrapCrossAlignment.end,
+                    children: [
+                      Text(
+                        'Десерты',
+                        style: AppTextStyles.h5.copyWith(fontSize: 15),
                       ),
-                    ),
-                    Text(
-                      'Выпечка',
-                      style: AppTextStyles.h5,
-                    ),
-                  ],
+                      const Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 10),
+                        child: Icon(
+                          Icons.arrow_forward_ios,
+                          size: 16,
+                        ),
+                      ),
+                      Text(
+                        'Выпечка',
+                        style: AppTextStyles.h5.copyWith(fontSize: 15),
+                      ),
+                    ],
+                  ),
                 ),
-                const SizedBox(height: 14),
                 // #recipe info
                 Padding(
                   padding: const EdgeInsets.only(right: 20),
@@ -225,6 +231,7 @@ class _RecipeInfoPageState extends State<RecipeInfoPage> {
                     '${widget.model.recipeDesc}',
                     style: AppTextStyles.h5.copyWith(
                       color: AppColors.metalColor.shade70,
+                      fontSize: 15,
                     ),
                   ),
                 ),
@@ -294,13 +301,13 @@ class _RecipeInfoPageState extends State<RecipeInfoPage> {
       },
       style: AppDecorations.buttonStyle(
         bgColor: AppColors.primaryLight.shade50,
-        padding: const EdgeInsets.symmetric(horizontal: 15),
+        padding: const EdgeInsets.symmetric(horizontal: 12),
         borderRadius: 12,
         border: BorderSide(color: AppColors.primaryLight.shade100, width: 1),
       ),
       child: Text(
         recipeType,
-        style: AppTextStyles.b4Medium.copyWith(color: AppColors.baseLight),
+        style: AppTextStyles.b4Medium.copyWith(color: AppColors.baseLight, fontSize: 13.5),
       ),
     );
   }
