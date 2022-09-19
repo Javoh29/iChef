@@ -56,7 +56,10 @@ class _RecipeItemState extends State<RecipeItem> {
                     Navigator.pushNamed(
                       context,
                       Routes.recipeInfoPage,
-                      arguments: {'recipe_model': widget.model, 'seek_to_time': value},
+                      arguments: {
+                        'recipe_model': widget.model,
+                        'seek_to_time': value
+                      },
                     );
                   });
                 }
@@ -79,22 +82,26 @@ class _RecipeItemState extends State<RecipeItem> {
                 ),
               ),
             ),
-            GestureDetector(
-              onTap: () => Navigator.pushNamed(context, Routes.profilePage),
-              child: Container(
-                height: 34,
-                width: 34,
-                margin: const EdgeInsets.only(left: 15),
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  border: Border.all(color: AppColors.baseLight.shade100, width: 2),
-                  image: DecorationImage(
-                    image: AssetImage(widget.model.userAvatar!),
-                    fit: BoxFit.cover,
-                  ),
-                ),
-              ),
-            ),
+            widget.isTap
+                ? GestureDetector(
+                    onTap: () =>
+                        Navigator.pushNamed(context, Routes.profilePage),
+                    child: Container(
+                      height: 34,
+                      width: 34,
+                      margin: const EdgeInsets.only(left: 15),
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        border: Border.all(
+                            color: AppColors.baseLight.shade100, width: 2),
+                        image: DecorationImage(
+                          image: AssetImage(widget.model.userAvatar!),
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
+                  )
+                : Container(),
             if (widget.listAdditional != null) ...widget.listAdditional!
           ],
         ),
@@ -167,10 +174,7 @@ class _RecipeItemState extends State<RecipeItem> {
                 borderRadius: 12,
                 isActive: true,
                 textStyle: AppTextStyles.b4DemiBold.copyWith(color: AppColors.primaryLight.shade100),
-              )
-            ],
-          ),
-        )
+
       ],
     );
   }

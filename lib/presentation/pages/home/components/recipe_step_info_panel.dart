@@ -18,7 +18,8 @@ class RecipeStepInfoPanel extends StatefulWidget {
       required this.onPanelClose,
       required this.stepName,
       required this.stepContext,
-      Key? key, required this.model})
+      Key? key,
+      required this.model})
       : super(key: key);
   final int index;
   final int stepsLength;
@@ -100,12 +101,12 @@ class _RecipeStepInfoPanelState extends State<RecipeStepInfoPanel> {
                 Text(
                   widget.stepName,
                   textAlign: TextAlign.center,
-                  style: AppTextStyles.h7,
+                  style: AppTextStyles.h6.copyWith(fontSize: 20, color: AppColors.metalColor.shade100, height: 1.6),
                 ),
                 const SizedBox(height: 20),
                 Text(
                   widget.stepContext,
-                  style: AppTextStyles.h5,
+                  style: AppTextStyles.h5.copyWith(height: 1.6, fontSize: 16),
                 ),
                 const SizedBox(height: 30),
                 ...userComments.map(
@@ -156,7 +157,7 @@ class _RecipeStepInfoPanelState extends State<RecipeStepInfoPanel> {
             ),
             icon: Text(
               currentStepName,
-              style: AppTextStyles.b3Medium.copyWith(color: AppColors.baseLight.shade100),
+              style: AppTextStyles.b4Medium.copyWith(color: AppColors.baseLight.shade100),
             ),
             label: currentStepIcon,
           ),

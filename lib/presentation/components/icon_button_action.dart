@@ -47,10 +47,12 @@ class IconButtonAction extends StatelessWidget {
               ),
               label: Text(
                 lable!,
-                style: textStyle ?? AppTextStyles.b5Regular,
+                style: textStyle ?? AppTextStyles.b4Regular,
               ),
               style: AppDecorations.buttonStyle(
-                  bgColor: isActive ? AppColors.metalColor.shade10 : Colors.transparent,
+                  bgColor: isActive
+                      ? AppColors.metalColor.shade10
+                      : Colors.transparent,
                   borderRadius: borderRadius ?? 20,
                   padding: EdgeInsets.zero),
             ),

@@ -11,50 +11,55 @@ class BrandAndSalerContainer extends StatelessWidget {
     required this.name,
     required this.price,
     Key? key,
+    required this.onTap,
   }) : super(key: key);
 
   String image;
   String name;
   String price;
+  final void Function() onTap;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(right: 10),
-      padding: const EdgeInsets.all(10),
-      decoration: AppDecorations.defDecor.copyWith(
-        color: AppColors.baseLight.shade100,
-        border: Border.all(
-          color: AppColors.metalColor.shade30,
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        margin: const EdgeInsets.only(right: 10),
+        padding: const EdgeInsets.all(10),
+        decoration: AppDecorations.defDecor.copyWith(
+          color: AppColors.baseLight.shade100,
+          border: Border.all(
+            color: AppColors.metalColor.shade30,
+          ),
         ),
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Image.asset(
-            image,
-            height: 60,
-            fit: BoxFit.cover,
-            // scale: 2,
-          ),
-          Container(
-            width: MediaQuery.of(context).size.width / 4.5,
-            padding: const EdgeInsets.only(top: 10),
-            child: Text(
-              name,
-              style: AppTextStyles.b4Regular,
-              textAlign: TextAlign.center,
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset(
+              image,
+              height: 55,
+              fit: BoxFit.cover,
+              // scale: 2,
             ),
-          ),
-          Text(
-            "$price p",
-            style: AppTextStyles.b4Regular.copyWith(
-              color: AppColors.metalColor.shade50,
+            Container(
+              width: MediaQuery.of(context).size.width / 4.5,
+              padding: const EdgeInsets.only(top: 10),
+              child: Text(
+                name,
+                style: AppTextStyles.b4Regular,
+                textAlign: TextAlign.center,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
             ),
-          ),
-        ],
+            Text(
+              "$price p",
+              style: AppTextStyles.b4Regular.copyWith(
+                color: AppColors.metalColor.shade50,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

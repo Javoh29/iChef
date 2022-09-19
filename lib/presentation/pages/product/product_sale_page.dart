@@ -132,12 +132,13 @@ class _ProductSalePageState extends State<ProductSalePage>
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (context, index) {
                       return BrandAndSalerContainer(
+                        onTap: () {},
                         image: salerImages[index],
                         name: salerNames[index],
                         price: salerPrices[index],
                       );
                     },
-                    itemCount: 3,
+                    itemCount: salerImages.length,
                   ),
                 ),
               ],

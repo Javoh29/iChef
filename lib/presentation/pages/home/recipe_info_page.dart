@@ -3,38 +3,45 @@ import 'package:flutter_svg/svg.dart';
 import 'package:ichef/config/constants/app_decorations.dart';
 import 'package:ichef/main.dart';
 import 'package:ichef/presentation/components/recipe_item.dart';
-import 'package:ichef/presentation/components/recipe_step_card.dart';
-import 'package:ichef/presentation/pages/product/product_info_page.dart';
 import 'package:ichef/presentation/widgets/drawer_widget.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
+import 'package:sliding_up_panel/sliding_up_panel.dart';
 
 import '../../../config/constants/app_colors.dart';
 import '../../../config/constants/app_text_styles.dart';
 import '../../../config/constants/assets.dart';
-import '../../../config/constants/local_data.dart';
+import '../../../core/utils/flick_multi_manager.dart';
+import '../../../core/utils/flick_multi_player.dart';
 import '../../../data/models/recipe_model.dart';
 import '../../components/blured_panel.dart';
-import '../../components/custom_bottom_sheet.dart';
+import '../../components/icon_button_action.dart';
 import '../../routes/routes.dart';
-import '../../widgets/chat_comment_widget.dart';
 import '../../widgets/recipe_info_bottom_sheet_items.dart';
-import '../../widgets/scale_widget.dart';
 import '../favorites/favorites_page.dart';
+import 'components/recipe_item_info_panel.dart';
 
 class RecipeInfoPage extends StatefulWidget {
-  const RecipeInfoPage({required this.model, required this.seekToTime, Key? key}) : super(key: key);
+  const RecipeInfoPage({required this.model, required this.seekToTime, Key? key, required this.callBack})
+      : super(key: key);
   final RecipeModel model;
   final Duration seekToTime;
+  final Function callBack;
 
   @override
   State<RecipeInfoPage> createState() => _RecipeInfoPageState();
 }
 
 class _RecipeInfoPageState extends State<RecipeInfoPage> {
+  final FlickMultiManager flickMultiManager = FlickMultiManager();
+  bool isVisible = true;
+  late final PanelController _listPanelControllers = PanelController();
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
+      key: _scaffoldKey,
       endDrawer: IngredientsDrawer(
         model: widget.model,
       ),
@@ -399,33 +406,6 @@ class _RecipeInfoPageState extends State<RecipeInfoPage> {
                   iconSize: 18,
                 ),
               ],
-            ),
-          ),
-        ),
-        Positioned(
-          bottom: 30,
-          right: 20,
-          child: TextButton.icon(
-            onPressed: () => MyApp.navigatorKey.currentState?.pushNamed(Routes.recipeStepPage, arguments: {
-              "currentStep": 0,
-              "stepsLength": widget.model.recipeSteps.length,
-              "recipeModel": model,
-              "seekToTime": widget.seekToTime,
-              "pageIndex": 0,
-            }),
-            style: AppDecorations.buttonStyle(
-              padding: const EdgeInsets.symmetric(horizontal: 12),
-            ).copyWith(
-              overlayColor: MaterialStateProperty.all(AppColors.baseLight.shade40),
-            ),
-            icon: Text(
-              'Начать готовить',
-              style: AppTextStyles.b3Medium.copyWith(color: AppColors.baseLight.shade100),
-            ),
-            label: Icon(
-              Icons.arrow_forward_ios,
-              color: AppColors.baseLight.shade100,
-              size: 16,
             ),
           ),
         ),
