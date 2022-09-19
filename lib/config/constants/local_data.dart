@@ -330,7 +330,7 @@ List<Map> userComments = [
     "userName": "Антонина Васина",
     "userImage": Assets.images.userAvatar3,
     "lastSeen": "2 м назад",
-    "time": "17.04.2022",
+    "time": "Ср 18, 13:49",
     "chatText":
         "Спасибо, ваши рецепты помогают радовать наших любимых мужчин! А ведь они даже не догадываются, как с вашей помощью все это просто приготовить))",
     "isOwner": false
@@ -339,7 +339,7 @@ List<Map> userComments = [
     "userName": "Алина Кашкина",
     "userImage": Assets.images.userAvatar4,
     "lastSeen": "5 м назад",
-    "time": "13.07.2022",
+    "time": "Ср 18, 13:49",
     "chatText":
         "ОБЯЗАТЕЛЬНО ПРИГОТОВЬТЕ ЭТО СУПЕРСКОЕ БЛЮДО!!! действительно, мясо получилось ну очень сочным и вкусным!!! к вину-идеальное блюдо!!!",
     "isOwner": true
@@ -348,7 +348,7 @@ List<Map> userComments = [
     "userName": "Татьяна Ведунова",
     "userImage": Assets.images.userAvatar5,
     "lastSeen": "2 м назад",
-    "time": "17.07.2022",
+    "time": "Ср 18, 13:49",
     "chatText":
         '''Девочки только что приготовила мяско супер получилось сочное вкусное!!! Семья в восторге!!!''',
     "isOwner": false
@@ -357,7 +357,7 @@ List<Map> userComments = [
     "userName": "Ирина Кракомяко.",
     "userImage": Assets.images.userAvatar3,
     "lastSeen": "2 м назад",
-    "time": "20.07.2022",
+    "time": "Ср 18, 13:49",
     "chatText":
         "Вчера готовила это мясо-получилось очень вкусно!!! Съели все за один вечер.Сегодня опять его готовила, но уже добавила картофель крупными кусками, чтобы сразу с гарниром было!!! Настенька, спасибо большое за рецепт. Поедем на море-приготовлю такое мяско в дорогу!!!",
     "isOwner": false
@@ -366,7 +366,7 @@ List<Map> userComments = [
     "userName": "Зулька",
     "userImage": Assets.images.userAvatar4,
     "lastSeen": "5 м назад",
-    "time": "27.07.2022",
+    "time": "Ср 18, 13:49",
     "chatText": "Всё гениальное просто, а ещё и вкусно! Спасибо за рецептик",
     "isOwner": true
   },
@@ -374,7 +374,7 @@ List<Map> userComments = [
     "userName": "Оля Финоченова",
     "userImage": Assets.images.userAvatar5,
     "lastSeen": "2 м назад",
-    "time": "29.07.2022",
+    "time": "Ср 18, 13:49",
     "chatText":
         '''Поистенне шикарно Ирина ты просто кулинарная фея, такие шедевры))) спасибо большое)''',
     "isOwner": false
@@ -383,7 +383,7 @@ List<Map> userComments = [
     "userName": "Ольга Егорова",
     "userImage": Assets.images.userAvatar5,
     "lastSeen": "2 м назад",
-    "time": "05.08.2022",
+    "time": "Ср 18, 13:49",
     "chatText": '''Очень очень вкусно.Всем рекомендую''',
     "isOwner": false
   },
@@ -393,7 +393,7 @@ List<Map> userComments2 = [
     "userName": "utro_na_more",
     "userImage": Assets.images.userAvatar3,
     "lastSeen": "2 м назад",
-    "time": "03.01.2022",
+    "time": "Ср 18, 13:49",
     "chatText":
         "спасибо. все получилось очень нежно. гости все съели за пару минут)",
     "isOwner": false
@@ -402,7 +402,7 @@ List<Map> userComments2 = [
     "userName": "княгиня",
     "userImage": Assets.images.userAvatar4,
     "lastSeen": "5 м назад",
-    "time": "15.01.2022",
+    "time": "Ср 18, 13:49",
     "chatText":
         "Приготовила из филе куры, немного из свинины (корейка, предварительно отбив). Безусловно. из куры лучше, но и свинина неплохо. Спасибо!",
     "isOwner": true
@@ -411,7 +411,7 @@ List<Map> userComments2 = [
     "userName": "gvenevra",
     "userImage": Assets.images.userAvatar5,
     "lastSeen": "2 м назад",
-    "time": "23.01.2022",
+    "time": "Ср 18, 13:49",
     "chatText":
         '''Спасибо за вкусный рецепт! Готовлю так уже 2 месяца, и никак не можем насладится необычайно вкусным блюдом. Оно теперь одно из самых любимых блюд нашей семьи!''',
     "isOwner": false
@@ -420,7 +420,7 @@ List<Map> userComments2 = [
     "userName": "Диана Винокурова",
     "userImage": Assets.images.userAvatar3,
     "lastSeen": "2 м назад",
-    "time": "27.01.2022",
+    "time": "Ср 18, 13:49",
     "chatText":
         "Вчера сделала, очень вкусно получилось, а жарить быстро, минут 5 на сильном огне если)))))))))))))))",
     "isOwner": false
@@ -429,7 +429,7 @@ List<Map> userComments2 = [
     "userName": "Евгения Тарасова",
     "userImage": Assets.images.userAvatar4,
     "lastSeen": "5 м назад",
-    "time": "15.02.2022",
+    "time": "Ср 18, 13:49",
     "chatText": "Вчера приготовила очень понравилось! Спасибо за рецепт!",
     "isOwner": true
   },
@@ -437,7 +437,7 @@ List<Map> userComments2 = [
     "userName": "Ирина Осокина",
     "userImage": Assets.images.userAvatar5,
     "lastSeen": "2 м назад",
-    "time": "15.06.2022",
+    "time": "Ср 18, 13:49",
     "chatText":
         '''Попробовав этот рецепт, только так стала гововить курицу — это очень вкусно, и детям нравится.''',
     "isOwner": false
@@ -446,7 +446,7 @@ List<Map> userComments2 = [
     "userName": "Настя Гончарная",
     "userImage": Assets.images.userAvatar5,
     "lastSeen": "2 м назад",
-    "time": "21.10.2022",
+    "time": "Ср 18, 13:49",
     "chatText": '''Настя, спасибо за рецепт! просто и оччень вкусно!!!''',
     "isOwner": false
   },
@@ -454,7 +454,7 @@ List<Map> userComments2 = [
     "userName": "Мышечка Викуся",
     "userImage": Assets.images.userAvatar5,
     "lastSeen": "2 м назад",
-    "time": "21.10.2022",
+    "time": "Ср 18, 13:49",
     "chatText": '''Сегодня буду делать — думаю все получиться!''',
     "isOwner": false
   },
@@ -462,7 +462,7 @@ List<Map> userComments2 = [
     "userName": "Abracadabra",
     "userImage": Assets.images.userAvatar5,
     "lastSeen": "2 м назад",
-    "time": "24.10.2022",
+    "time": "Ср 18, 13:49",
     "chatText":
         '''Спасибо огромное, настолько вкусно что просто слов не хватает. Не могу остановится, пора прятать тарерку:-)))''',
     "isOwner": false
@@ -471,7 +471,7 @@ List<Map> userComments2 = [
     "userName": "marijka",
     "userImage": Assets.images.userAvatar5,
     "lastSeen": "2 м назад",
-    "time": "26.10.2022",
+    "time": "Ср 18, 13:49",
     "chatText":
         '''Получилось обалденно вкусно! Моя маленькая дочка уплетала такую курочку за обе щеки.
 ''',
@@ -481,7 +481,7 @@ List<Map> userComments2 = [
     "userName": "Иляна",
     "userImage": Assets.images.userAvatar5,
     "lastSeen": "2 м назад",
-    "time": "06.11.2022",
+    "time": "Ср 18, 13:49",
     "chatText":
         '''спасибо большое! вся семья уплетала за обе щеки...я назвала это блюдо-пища Богов!''',
     "isOwner": false
@@ -490,7 +490,7 @@ List<Map> userComments2 = [
     "userName": "elena strekoza",
     "userImage": Assets.images.userAvatar5,
     "lastSeen": "2 м назад",
-    "time": "08.11.2022",
+    "time": "Ср 18, 13:49",
     "chatText":
         '''Обязательно сделаю сегодня! Не сомневаюсь, что будет очень вкусно, готовила по другим Вашим рецептам--нравиться абсолютно всё!!!
 В курицу всегда добавляю мяту, получается очень свеженько, советую!!!''',
