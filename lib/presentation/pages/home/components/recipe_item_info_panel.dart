@@ -366,7 +366,7 @@ class _RecipeItemInfoPanelState extends State<RecipeItemInfoPanel> {
             onPressed: () => MyApp.navigatorKey.currentState?.pushNamed(Routes.recipeStepPage, arguments: {
               "currentStep": 0,
               "stepsLength": widget.model.recipeSteps.length,
-              "recipeModel": model,
+              "recipeModel": widget.model,
               "seekToTime": widget.seekToTime,
               "pageIndex": 0,
             }),
@@ -386,48 +386,6 @@ class _RecipeItemInfoPanelState extends State<RecipeItemInfoPanel> {
             ),
           ),
         ),
-
-        // Align(
-        //   alignment: Alignment.topCenter,
-        //   child: BluredPanel(
-        //     mBorderRadius: 20,
-        //     mHeight: 30,
-        //     mPadding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-        //     mMargin: const EdgeInsets.only(top: 10),
-        //     widget: Text(
-        //       '${widget.index} из ${widget.stepsLength}',
-        //       style: AppTextStyles.b3Medium
-        //           .copyWith(color: AppColors.baseLight.shade100),
-        //     ),
-        //   ),
-        // ),
-        // Positioned(
-        //   top: 0,
-        //   right: 20,
-        //   child: TextButton.icon(
-        //     onPressed: () {
-        //       if (widget.index == widget.stepsLength) {
-        //         Navigator.pop(context);
-        //       } else {
-        //         widget.onNextPage();
-        //       }
-        //     },
-        //     style: AppDecorations.buttonStyle(
-        //             padding: const EdgeInsets.symmetric(horizontal: 12),
-        //             borderRadius: 12)
-        //         .copyWith(
-        //       backgroundColor: MaterialStateProperty.all(currentStepBgColor),
-        //       overlayColor:
-        //           MaterialStateProperty.all(AppColors.baseLight.shade20),
-        //     ),
-        //     icon: Text(
-        //       currentStepName,
-        //       style: AppTextStyles.b4Medium
-        //           .copyWith(color: AppColors.baseLight.shade100),
-        //     ),
-        //     label: currentStepIcon,
-        //   ),
-        // ),
       ],
     );
   }

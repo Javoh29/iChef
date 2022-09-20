@@ -10,9 +10,9 @@ import 'package:ichef/presentation/pages/oil_info/components/ingredients.dart';
 import 'package:ichef/presentation/pages/oil_info/components/props_subtitle_item.dart';
 import 'package:ichef/presentation/pages/product/components/product_composition_container.dart';
 import 'package:ichef/presentation/pages/product/components/product_subs.dart';
+import 'package:ichef/presentation/routes/routes.dart';
 
 import '../product/components/brand_and_saler_container.dart';
-import '../product/product_without_image_page.dart';
 import 'components/to_favorite_list.dart';
 
 class OilInfoPage extends StatefulWidget {
@@ -237,20 +237,13 @@ class _OilInfoPageState extends State<OilInfoPage>
               itemCount: 3,
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {
-                return InkWell(
+                return BrandAndSalerContainer(
                   onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const OilInfoPage()),
-                    );
+                    Navigator.pushNamed(context, Routes.oilPage);
                   },
-                  child: BrandAndSalerContainer(
-                    onTap: () {},
-                    image: salerImages[index],
-                    name: salerNames[index],
-                    price: salerPrices[index],
-                  ),
+                  image: salerImages[index],
+                  name: salerNames[index],
+                  price: salerPrices[index],
                 );
               },
             ),

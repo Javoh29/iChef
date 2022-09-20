@@ -32,7 +32,9 @@ class _ShoppingListPageState extends State<ShoppingListPage> {
             SliverAppBarWidget(
               innerBoxIsScrolled: innerBoxIsScrolled,
               leading: IconButton(
-                onPressed: () => Navigator.pop(context),
+                onPressed: () {},
+
+                /// TODO: => Navigator.pop(context) da hatolik
                 icon: SvgPicture.asset(
                   Assets.icons.back,
                   height: 20,

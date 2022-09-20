@@ -6,6 +6,7 @@ import 'package:ichef/presentation/routes/routes.dart';
 import '../../data/models/recipe_model.dart';
 import '../../main.dart';
 import '../../presentation/components/ingridient_detail_container.dart';
+import '../../presentation/pages/product/product_info_page.dart';
 
 List<RecipeModel> listRecipes = [
   RecipeModel(
@@ -557,12 +558,17 @@ List<Widget> secondIngredientsRazdel = [
   ),
   const SizedBox(height: 5),
   IngridientDetailContainer(
-      title: "Масло для жарки",
-      addInfo: "",
-      data: "2 литра",
-      data2: "",
-      onTap: () => Navigator.pushNamed(
-          MyApp.navigatorKey.currentState!.context, Routes.oilPage)),
+    title: "Масло для жарки",
+    addInfo: "",
+    data: "2 литра",
+    data2: "",
+    onTap: () => Navigator.push(
+      MyApp.navigatorKey.currentState!.context,
+      MaterialPageRoute(
+        builder: (context) => ProductInfoPage(productModel: model[1]),
+      ),
+    ),
+  ),
 ];
 List<Widget> firstIngredientRazdel1 = [
   const IngridientDetailContainer(
@@ -601,12 +607,17 @@ List<Widget> firstIngredientRazdel1 = [
   ),
   const SizedBox(height: 5),
   IngridientDetailContainer(
-      title: "Оливковое масло ",
-      addInfo: "",
-      data: "150 г",
-      data2: "",
-      onTap: () => Navigator.pushNamed(
-          MyApp.navigatorKey.currentState!.context, Routes.oilPage)),
+    title: "Оливковое масло",
+    addInfo: "",
+    data: "150 г",
+    data2: "",
+    onTap: () => Navigator.push(
+      MyApp.navigatorKey.currentState!.context,
+      MaterialPageRoute(
+        builder: (context) => ProductInfoPage(productModel: model[1]),
+      ),
+    ),
+  ),
   const SizedBox(height: 5),
   const IngridientDetailContainer(
     title: "Перец чили",

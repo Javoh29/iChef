@@ -53,7 +53,7 @@ class DropDownWithIcon extends StatelessWidget {
                     value: items,
                     child: Text(
                       items,
-                      style: AppTextStyles.h6.copyWith(
+                      style: AppTextStyles.h3.copyWith(
                         color: AppColors.metalColor.shade90,
                       ),
                     ),

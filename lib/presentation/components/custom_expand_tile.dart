@@ -22,7 +22,7 @@ class CustomExpandTile extends StatelessWidget {
       iconColor: AppColors.metalColor.shade90,
       title: Text(
         title,
-        style: AppTextStyles.b5DemiBold,
+        style: AppTextStyles.b5DemiBold.copyWith(fontWeight: FontWeight.w700),
       ),
       tilePadding: EdgeInsets.zero,
       initiallyExpanded: true,

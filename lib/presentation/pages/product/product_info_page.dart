@@ -36,7 +36,7 @@ class _ProductInfoPageState extends State<ProductInfoPage>
     super.initState();
     _tabController.addListener(() => setState(() {}));
     _scrollController.addListener(() {
-      isOpenPanel = true;
+      // isOpenPanel = true;
       if (_scrollController.offset <= 0) {
         setState(() {});
         isOpenPanel = false;
@@ -161,9 +161,12 @@ class _ProductInfoPageState extends State<ProductInfoPage>
                               name: widget.productModel.items.brandNames[index],
                               price:
                                   widget.productModel.items.brandPrices[index],
-                              onTap: () {
-                                Navigator.pushNamed(context, Routes.oilPage);
-                              },
+                              onTap: index == 0
+                                  ? () {
+                                      Navigator.pushNamed(
+                                          context, Routes.oilPage);
+                                    }
+                                  : () {},
                             ),
                           );
                         },
@@ -209,8 +212,9 @@ class _ProductInfoPageState extends State<ProductInfoPage>
               ),
             ),
             SliverToBoxAdapter(
-              child: SizedBox(
-                height: MediaQuery.of(context).size.height * 3,
+              child: Container(
+                padding: const EdgeInsets.only(top: 14),
+                height: MediaQuery.of(context).size.height,
                 child: ListView.builder(
                   padding: EdgeInsets.zero,
                   controller: _scrollController,
