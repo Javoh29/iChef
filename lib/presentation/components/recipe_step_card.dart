@@ -80,7 +80,11 @@ class RecipeStepCard extends StatelessWidget {
                     children: [
                       Text(
                         stepNumber,
-                        style: AppTextStyles.b4DemiBold.copyWith(color: AppColors.metalColor.shade40, fontWeight: FontWeight.w700),
+                        style: AppTextStyles.b4DemiBold
+                            .copyWith(color: AppColors.metalColor.shade40, fontWeight: FontWeight.w700),
+                      ),
+                      const SizedBox(
+                        height: 5,
                       ),
                       Text(
                         stepName,
@@ -107,7 +111,7 @@ class RecipeStepCard extends StatelessWidget {
               margin: const EdgeInsets.only(top: 20),
               child: Text(
                 stepContext,
-                style: AppTextStyles.h5.copyWith(color: AppColors.metalColor.shade70),
+                style: AppTextStyles.h5.copyWith(color: AppColors.metalColor.shade70, fontSize: 16),
               ),
             ),
           ],

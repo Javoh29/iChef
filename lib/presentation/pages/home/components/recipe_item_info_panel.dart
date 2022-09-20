@@ -145,99 +145,103 @@ class _RecipeItemInfoPanelState extends State<RecipeItemInfoPanel> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  TextButton.icon(
-                    onPressed: () {
-                      showCupertinoModalBottomSheet(
-                        topRadius: const Radius.circular(30),
-                        bounce: true,
-                        context: context,
-                        backgroundColor: Colors.transparent,
-                        builder: (BuildContext context) {
-                          return CustomBottomSheet(
-                            mHeight: size.height * 0.4,
-                            mPadding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
-                            mBorderRadius: const BorderRadius.only(
-                              topLeft: Radius.circular(30),
-                              topRight: Radius.circular(30),
-                            ),
-                            mBgColor: AppColors.baseLight.shade100,
-                            mAppBar: Stack(
-                              children: [
-                                Container(
-                                  padding: const EdgeInsets.only(top: 7),
-                                  height: 50,
-                                  width: double.infinity,
-                                  child: Text(
-                                    'Перенести',
-                                    textAlign: TextAlign.center,
-                                    style: AppTextStyles.h5.copyWith(
-                                      fontWeight: FontWeight.w700,
-                                    ),
-                                  ),
-                                ),
-                                Positioned(
-                                  left: 0,
-                                  child: ScaleWidget(
-                                    mOnTap: () => Navigator.pop(context),
-                                    scale: .7,
-                                    child: Container(
-                                      height: 34,
-                                      width: 34,
-                                      alignment: Alignment.center,
-                                      decoration: BoxDecoration(
-                                        shape: BoxShape.circle,
-                                        color: AppColors.metalColor.shade10,
-                                      ),
-                                      child: SvgPicture.asset(
-                                        Assets.icons.cancel,
-                                        height: 16,
-                                        width: 16,
+                  SizedBox(
+                    height: 32,
+                    child: TextButton.icon(
+                      onPressed: () {
+                        showCupertinoModalBottomSheet(
+                          topRadius: const Radius.circular(30),
+                          bounce: true,
+                          context: context,
+                          backgroundColor: Colors.transparent,
+                          builder: (BuildContext context) {
+                            return CustomBottomSheet(
+                              mHeight: size.height * 0.4,
+                              mPadding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+                              mBorderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(30),
+                                topRight: Radius.circular(30),
+                              ),
+                              mBgColor: AppColors.baseLight.shade100,
+                              mAppBar: Stack(
+                                children: [
+                                  Container(
+                                    padding: const EdgeInsets.only(top: 7),
+                                    height: 50,
+                                    width: double.infinity,
+                                    child: Text(
+                                      'Перенести',
+                                      textAlign: TextAlign.center,
+                                      style: AppTextStyles.h5.copyWith(
+                                        fontWeight: FontWeight.w700,
                                       ),
                                     ),
                                   ),
-                                ),
-                              ],
-                            ),
-                            mBody: SingleChildScrollView(
-                              child: Column(
-                                children: List.generate(
-                                  folders.length,
-                                  (index) => Container(
-                                    decoration: AppDecorations.defDecor,
-                                    margin: const EdgeInsets.symmetric(vertical: 3),
-                                    child: ListTile(
-                                      title: Text(
-                                        folders[index],
-                                        style: AppTextStyles.h5.copyWith(fontWeight: FontWeight.w600),
+                                  Positioned(
+                                    left: 0,
+                                    child: ScaleWidget(
+                                      mOnTap: () => Navigator.pop(context),
+                                      scale: .7,
+                                      child: Container(
+                                        height: 34,
+                                        width: 34,
+                                        alignment: Alignment.center,
+                                        decoration: BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          color: AppColors.metalColor.shade10,
+                                        ),
+                                        child: SvgPicture.asset(
+                                          Assets.icons.cancel,
+                                          height: 16,
+                                          width: 16,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              mBody: SingleChildScrollView(
+                                child: Column(
+                                  children: List.generate(
+                                    folders.length,
+                                    (index) => Container(
+                                      decoration: AppDecorations.defDecor,
+                                      margin: const EdgeInsets.symmetric(vertical: 3),
+                                      child: ListTile(
+                                        title: Text(
+                                          folders[index],
+                                          style: AppTextStyles.h5.copyWith(fontWeight: FontWeight.w600),
+                                        ),
                                       ),
                                     ),
                                   ),
                                 ),
                               ),
-                            ),
-                          );
-                        },
-                      );
-                    },
-                    icon: SvgPicture.asset(Assets.icons.folder),
-                    style: ButtonStyle(
-                      padding: MaterialStateProperty.all(
-                        const EdgeInsets.symmetric(vertical: 6, horizontal: 10),
+                            );
+                          },
+                        );
+                      },
+                      icon: SvgPicture.asset(Assets.icons.folder),
+                      style: ButtonStyle(
+                        padding: MaterialStateProperty.all(
+                          const EdgeInsets.symmetric(horizontal: 10),
+                        ),
+                        backgroundColor: MaterialStateProperty.all(AppColors.metalColor.shade10),
+                        shape: MaterialStateProperty.all(
+                          RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                        ),
                       ),
-                      backgroundColor: MaterialStateProperty.all(AppColors.metalColor.shade10),
-                      shape: MaterialStateProperty.all(
-                        RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                      ),
-                    ),
-                    label: Text(
-                      'Приготовлено',
-                      style: AppTextStyles.h5.copyWith(
-                        color: AppColors.metalColor.shade50,
+                      label: Text(
+                        'Приготовлено',
+                        style: AppTextStyles.h5.copyWith(
+                          color: AppColors.metalColor.shade50,
+                        ),
                       ),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 10, top: 5),
+                  Container(
+                    margin: const EdgeInsets.only(right: 10, top: 5),
+                    height: 32,
                     child: TextButton.icon(
                       onPressed: () {},
                       icon: SvgPicture.asset(
@@ -246,7 +250,7 @@ class _RecipeItemInfoPanelState extends State<RecipeItemInfoPanel> {
                       ),
                       style: ButtonStyle(
                         padding: MaterialStateProperty.all(
-                          const EdgeInsets.symmetric(vertical: 6, horizontal: 10),
+                          const EdgeInsets.symmetric(horizontal: 10),
                         ),
                         backgroundColor: MaterialStateProperty.all(AppColors.metalColor.shade10),
                         shape: MaterialStateProperty.all(
@@ -263,8 +267,17 @@ class _RecipeItemInfoPanelState extends State<RecipeItemInfoPanel> {
                   ),
                 ],
               ),
+              const SizedBox(
+                height: 18,
+              ),
+              Wrap(
+                children: [
+                  ...infoIcons.map((e) => itemIconCtg(e)).toList(),
+                  itemIconCtg(Assets.icons.moreOne),
+                ],
+              ),
               Container(
-                height: 40,
+                height: 36,
                 margin: const EdgeInsets.symmetric(vertical: 20),
                 child: ListView(
                   scrollDirection: Axis.horizontal,
@@ -304,7 +317,7 @@ class _RecipeItemInfoPanelState extends State<RecipeItemInfoPanel> {
                 padding: const EdgeInsets.only(right: 20, top: 15),
                 child: Text(
                   '${widget.model.recipeDesc}',
-                  style: AppTextStyles.h5.copyWith(color: AppColors.metalColor.shade70, fontSize: 15),
+                  style: AppTextStyles.h5.copyWith(color: AppColors.metalColor.shade70, fontSize: 15.5),
                 ),
               ),
               //Recipe prepairing steps
@@ -364,7 +377,7 @@ class _RecipeItemInfoPanelState extends State<RecipeItemInfoPanel> {
             onPressed: () => MyApp.navigatorKey.currentState?.pushNamed(Routes.recipeStepPage, arguments: {
               "currentStep": 0,
               "stepsLength": widget.model.recipeSteps.length,
-              "recipeModel": model,
+              "recipeModel": widget.model,
               "seekToTime": widget.seekToTime,
               "pageIndex": 0,
             }),
@@ -427,6 +440,17 @@ class _RecipeItemInfoPanelState extends State<RecipeItemInfoPanel> {
         //   ),
         // ),
       ],
+    );
+  }
+
+  Container itemIconCtg(String item) {
+    return Container(
+      margin: const EdgeInsets.only(right: 10),
+      child: Image.asset(
+        item,
+        width: 36,
+        height: 36,
+      ),
     );
   }
 

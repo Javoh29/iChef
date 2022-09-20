@@ -79,17 +79,6 @@ class _RecipeInfoPageState extends State<RecipeInfoPage> {
     );
   }
 
-  Container itemIconCtg(String item) {
-    return Container(
-      margin: const EdgeInsets.only(right: 10),
-      child: Image.asset(
-        item,
-        width: 40,
-        height: 40,
-      ),
-    );
-  }
-
   //#recipe type button
   Widget recipeTypeButton(String recipeType) {
     return TextButton(

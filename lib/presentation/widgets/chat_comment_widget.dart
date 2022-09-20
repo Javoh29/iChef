@@ -105,9 +105,8 @@ class _ChatCommentWidgetState extends State<ChatCommentWidget> {
                                 padding: const EdgeInsets.symmetric(horizontal: 10)),
                             child: Text(
                               '😎 112',
-                              style: AppTextStyles.b4Medium.copyWith(
-                                color: AppColors.primaryLight.shade100,
-                              ),
+                              style: AppTextStyles.b4Medium
+                                  .copyWith(color: AppColors.primaryLight.shade100, fontSize: 13.5),
                             ),
                           ),
                         ),
@@ -120,9 +119,8 @@ class _ChatCommentWidgetState extends State<ChatCommentWidget> {
                               padding: const EdgeInsets.symmetric(horizontal: 10)),
                           child: Text(
                             '😍 1',
-                            style: AppTextStyles.b4Medium.copyWith(
-                              color: AppColors.primaryLight.shade100,
-                            ),
+                            style:
+                                AppTextStyles.b4Medium.copyWith(color: AppColors.primaryLight.shade100, fontSize: 13.5),
                           ),
                         ),
                       ],
