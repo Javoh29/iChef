@@ -52,9 +52,9 @@ class _MainPageState extends State<MainPage> {
           BottomNavBar(
             selectedIndex: _selectedIndex,
             onTap: (index) {
-              // if (index == 4) {
-              //   Navigator.pushNamed(context, Routes.shoppingListPage);
-              // }
+              if (index == 4) {
+                (pages[index] as ShoppingScope).navigatorKey.currentState?.popAndPushNamed('\\');
+              }
               if (index == 5) {
                 userInfoBottomSheet(context, users.first);
               } else {

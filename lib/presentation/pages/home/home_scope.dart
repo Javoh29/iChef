@@ -31,8 +31,7 @@ class HomeScope extends StatelessWidget {
       child: Navigator(
         key: navigatorKey,
         onGenerateRoute: (RouteSettings settings) {
-          final Map<String, dynamic>? args =
-              settings.arguments as Map<String, dynamic>?;
+          final Map<String, dynamic>? args = settings.arguments as Map<String, dynamic>?;
           args ?? <String, dynamic>{};
           return MaterialWithModalsPageRoute(
               settings: settings,
@@ -52,7 +51,9 @@ class HomeScope extends StatelessWidget {
                   case Routes.profilePage:
                     return const ProfilePage();
                   case Routes.oilPage:
-                    return const OilInfoPage();
+                    return ProductInfoPage(
+                      productModel: args?['product_model'],
+                    );
                   case Routes.productWithoutImagePage:
                     return const ProductWithoutImagePage();
                   case Routes.productSalePage:

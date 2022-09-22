@@ -463,7 +463,7 @@ class _RecipeItemInfoPanelState extends State<RecipeItemInfoPanel> {
         } else if (recipeType == "Без глютена") {
           Navigator.pushNamed(context, Routes.productSalePage);
         } else if (recipeType == "Масло") {
-          Navigator.pushNamed(context, Routes.oilPage);
+          Navigator.pushNamed(context, Routes.oilPage, arguments: {'product_model': model[1]});
         }
       },
       style: AppDecorations.buttonStyle(
